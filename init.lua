@@ -4,6 +4,7 @@ vim.g.maplocalleader = " "
 vim.opt.number = true
 vim.opt.relativenumber = true
 vim.g.neovide_scale_factor = 0.7
+vim.o.timeoutlen = 400
 
 require("keymaps")
 
@@ -27,8 +28,6 @@ vim.api.nvim_create_user_command("Cdf", function()
   vim.cmd("cd " .. vim.fn.expand("%:p:h"))
 end, { desc = "Change directory to current file's folder" })
 
-vim.keymap.set("n", "<S-l>", ":bnext<CR>", { desc = "Next buffer" })
-vim.keymap.set("n", "<S-h>", ":bprevious<CR>", { desc = "Previous buffer" })
 
 vim.opt.clipboard = "unnamedplus"
 vim.opt.shiftwidth = 2
@@ -59,7 +58,7 @@ require("lazy").setup({
       { "S", mode = { "n", "x", "o" }, function() require("flash").treesitter() end, desc = "Flash Treesitter" },
       { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
       { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
-      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+      -- { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
     },
   },
 })
