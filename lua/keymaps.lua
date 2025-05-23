@@ -19,7 +19,7 @@ vim.keymap.set("n", "<leader>tc", ":bd<CR>", { desc = "Close buffer" })
 
 vim.api.nvim_set_keymap("n", "<leader>f", ":Format<CR>", { noremap = true, silent = true })
 
-vim.keymap.set("n", "<C-=>", function()
+vim.keymap.set("n", "<c-=>", function()
   vim.g.neovide_scale_factor = vim.g.neovide_scale_factor + 0.1
 end)
 
@@ -32,6 +32,7 @@ vim.keymap.set("n", "<leader><leader>", "<cmd>Telescope find_files<cr>")
 vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
 vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>")
 vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")
+vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>")
 
 -- Remap Fowards and backwards
 -- nnoremap . ;
