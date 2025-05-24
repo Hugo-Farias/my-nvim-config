@@ -3,9 +3,6 @@ require("lazy").setup({
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
   { "nvim-lua/plenary.nvim" },
   { "nvim-telescope/telescope.nvim" },
-  -- { "ggandor/leap.nvim", lazy = false, config = function()
-  -- require("leap").add_default_mappings()
--- end  }
   {
     "folke/flash.nvim",
     event = "VeryLazy",
