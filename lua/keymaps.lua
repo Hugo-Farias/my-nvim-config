@@ -38,12 +38,20 @@ vim.keymap.set("n", "<C-->", function()
   vim.g.neovide_scale_factor = vim.g.neovide_scale_factor - 0.05
 end)
 
+vim.keymap.set("n", "<leader>r", "<cmd>:lua Snacks.dashboard.pick('oldfiles')<cr>")
+
 -- Telescope
 vim.keymap.set("n", "<leader><leader>", "<cmd>Telescope find_files<cr>")
 vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
 vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>")
+vim.keymap.set("n", "<C-e>", "<cmd>Telescope buffers<cr>")
 vim.keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")
 vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>")
+
+-- Disable function keys in insermode
+for i = 1, 22 do
+  vim.keymap.set("i", "<F" .. i .. ">", "<Nop>", { silent = true })
+end
 
 vim.api.nvim_create_autocmd("insertenter", {
   callback = function()
