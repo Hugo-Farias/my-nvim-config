@@ -1,3 +1,6 @@
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
 vim.keymap.set("n", "U", "<C-r>", {desc = "Redo"})
 
 for _, key in ipairs({ "<S-h>", "<S-j>" }) do
@@ -8,9 +11,14 @@ for _, key in ipairs({ "<S-l>", "<S-k>" }) do
   vim.keymap.set("n", key, ":bnext<CR>", { desc = "Next buffer" })
 end
 
+vim.keymap.set("n", "<leader>tc", ":bd<CR>", { desc = "Close buffer" })
+vim.keymap.set("n", "<C-f4>", ":bd<CR>", { desc = "Close buffer" })
+
 vim.keymap.set("n", "<c-s>", ":w<cr>", { desc = "Save" })
 
 vim.keymap.set("n", "<leader>w", ":w<CR>", { noremap = true, silent = true })
+
+vim.keymap.set("n", "<leader>pv", ":Ex<CR>")
 
 -- gh: start of line (non-blank)
 vim.keymap.set({ "n", "v" }, "gh", "^", { desc = "Go to beginning of line (non-blank)" })
@@ -19,14 +27,10 @@ vim.keymap.set({ "n", "v" }, "gh", "^", { desc = "Go to beginning of line (non-b
 vim.keymap.set({ "n", "v" }, "gl", "g_", { desc = "Go to end of line (non-blank)" })
 
 -- Exit insert mode by double-tapping navigation keys
-vim.keymap.set("i", "jk", "<Esc>", { desc = "Exit insert mode with double tap ''" }) 
--- vim.keymap.set("i", "jj", "<Esc>", { desc = "Exit insert mode with double tap 'j'" })
--- vim.keymap.set("i", "kk", "<Esc>", { desc = "Exit insert mode with double tap 'k'" }) 
-vim.keymap.set("i", "kj", "<Esc>", { desc = "Exit insert mode with double tap 'l'" })
+vim.keymap.set("i", "jk", "<Esc>", { desc = "Exit insert mode tap 'jk'" }) 
+vim.keymap.set("i", "kj", "<Esc>", { desc = "Exit insert mode tap 'kj'" })
 
 vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
-
-vim.keymap.set("n", "<leader>tc", ":bd<CR>", { desc = "Close buffer" })
 
 vim.api.nvim_set_keymap("n", "<leader>f", ":Format<CR>", { noremap = true, silent = true })
 
@@ -39,6 +43,9 @@ vim.keymap.set("n", "<C-->", function()
 end)
 
 vim.keymap.set("n", "<leader>r", "<cmd>:lua Snacks.dashboard.pick('oldfiles')<cr>")
+
+vim.keymap.set("n", "<leader>cd", "<cmd>:cd %:p:h<CR>")
+vim.fn.expand("%:p:h")
 
 -- Telescope
 vim.keymap.set("n", "<leader><leader>", "<cmd>Telescope find_files<cr>")
