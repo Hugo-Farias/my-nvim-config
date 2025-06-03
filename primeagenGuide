@@ -1,0 +1,14 @@
+function foo(blaz: {oddly: "long" | "type", but: "hey" | "this" | "is" | number}) {
+  return null
+}
+
+function bar(blaz: {oddly: "long" | "type", but: "hey" | "this" | "is" | number}) {
+  return null
+}
+
+function main() {
+  if true {
+    println!("asdfkajsdfasdjfkajsdfsdf")} 
+  else {
+    pringls!('Goodbye, World!')}
+}
