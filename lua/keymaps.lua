@@ -14,7 +14,7 @@ vim.api.nvim_set_keymap("n", "<leader>f", ":format<cr>", { noremap = true, silen
 
 -- Change directory
 vim.keymap.set("n", "<leader>cd", "<cmd>:cd %:p:h<CR>")
-vim.keymap.set("n", "<leader>cu", "<cmd>:cd ../<CR>")
+vim.keymap.set("n", "<leader>cu", "<cmd>:cd ../<CR>") -- Go Up a directory
 
 -------------------------------------------------------------------------------
 -- 📦 General Editing
@@ -123,7 +123,7 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 -- 🍿 Snacks Keymaps
 -------------------------------------------------------------------------------
 
--- vim.keymap.set("n", "<leader>se", "<cmd>SnacksExplorerToggle<CR>", { desc = "File Explorer" }) -- renamed from <leader>e
-vim.keymap.set("n", "<leader>r", "<cmd>:lua Snacks.dashboard.pick('oldfiles')<cr>")
-vim.keymap.set("n", "<leader>e", "<cmd>:lua Snacks.picker.explorer()<cr>")
+-- vim.keymap.set("n", "<leader>se", "<cmd>snacksexplorertoggle<cr>", { desc = "file explorer" }) -- renamed from <leader>e
+vim.keymap.set("n", "<leader>r", "<cmd>:lua snacks.dashboard.pick('oldfiles')<CR>")
+vim.keymap.set("n", "<leader>e", "<cmd>:lua Snacks.picker.explorer()<CR>")
 
