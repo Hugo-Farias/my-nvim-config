@@ -1,10 +1,12 @@
+require("lazy").setup({
+  require("plugins"),
+  require("colors")
+})
+
 require("keymaps")
-require("plugins")
-require("color")
 
 -- Neovim base settings
 -- vim.cmd.colorscheme('tokyonight-storm')
-DefaultColor()
 vim.opt.clipboard = "unnamedplus"
 vim.opt.shiftwidth = 2
 vim.opt.scrolloff = 25
@@ -23,7 +25,9 @@ if vim.g.neovide then
   vim.g.neovide_cursor_animation_length = 0
   -- vim.g.neovide_cursor_trail_length = 0
   -- vim.g.neovide_cursor_vfx_mode = ""
-  vim.g.neovide_opacity = 0.97
+  vim.g.neovide_opacity = 0.95
+else
+  editorScheme()
 end
 
 -- Change nvim's location to opened file's location

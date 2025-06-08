@@ -1,15 +1,9 @@
-require("lazy").setup({
+return {
   { "tpope/vim-commentary" },
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
   { "nvim-lua/plenary.nvim" },
-  { "nvim-telescope/telescope.nvim" },
-  {
-    "folke/tokyonight.nvim",
-    lazy = false,
-    priority = 1000,
-    opts = {},
-  },
-{ "rose-pine/neovim", name = "rose-pine" },
+  { "nvim-telescope/telescope.nvim" }, 
+  { "rose-pine/neovim", name = "rose-pine" },
   {
     "folke/flash.nvim",
     event = "VeryLazy",
@@ -47,4 +41,4 @@ require("lazy").setup({
       words = { enabled = true },
     },
   }
-})
+}

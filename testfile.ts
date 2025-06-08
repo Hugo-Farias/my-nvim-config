@@ -66,3 +66,6 @@ class SessionManager {
   getSessionCount(): number {
     return Object.keys(this.sessions).length
 
+  getSessionCount(): number {
+    return Object.keys(this.sessions).length
+
