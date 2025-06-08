@@ -16,6 +16,11 @@ vim.api.nvim_set_keymap("n", "<leader>f", ":format<cr>", { noremap = true, silen
 vim.keymap.set("n", "<leader>cd", "<cmd>:cd %:p:h<CR>")
 vim.keymap.set("n", "<leader>cu", "<cmd>:cd ../<CR>") -- Go Up a directory
 
+-- Save and source with Wso
+vim.api.nvim_create_user_command("Wso", function()
+  vim.cmd("write | source %")
+end, {})
+
 -------------------------------------------------------------------------------
 -- 📦 General Editing
 -------------------------------------------------------------------------------
@@ -28,6 +33,15 @@ vim.keymap.set({ "n", "v" }, "<leader>sa", "VggoG", { noremap = true })
 -- Paste over without overwriting register
 vim.keymap.set("v", "<leader>p", "\"_dP", { noremap = true, silent = true })
 
+-- Delete line without regestering into the buffer
+vim.keymap.set({"n"}, "<leader>dd", "\"_dd", { noremap = true, silent = true })
+
+-- Default behaviour for dd (register deleted line into the buffer)
+-- vim.keymap.set({"n"}, "dy", "dd", { noremap = true, silent = true })
+
+-- Prevent x from yanking every character deleted-- STUPID behaviour
+vim.keymap.set("n", "x", "\"_x", { noremap = true, silent = true })
+
 -- Start/end of line (non-blank)
 vim.keymap.set({ "n", "v" }, "gh", "^", { desc = "Go to beginning of line (non-blank)" })
 vim.keymap.set({ "n", "v" }, "gl", "g_", { desc = "Go to end of line (non-blank)" })
@@ -36,7 +50,7 @@ vim.keymap.set({ "n", "v" }, "gl", "g_", { desc = "Go to end of line (non-blank)
 vim.keymap.set("i", "jk", "<Esc>", { desc = "Exit insert mode tap 'jk'" })
 vim.keymap.set("i", "kj", "<Esc>", { desc = "Exit insert mode tap 'kj'" })
 
-vim.keymap.set("n", "<C-j>", "J", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-S-j>", "J", { noremap = true, silent = true })
 
 -------------------------------------------------------------------------------
 -- 🧠 Diagnostics
@@ -52,18 +66,24 @@ vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Line diag
 vim.keymap.set("n", "<leader>pv", ":Ex<CR>")
 
 -- Buffer navigation
-for _, key in ipairs({ "H" }) do
+for _, key in ipairs({ "H", "J" }) do
   vim.keymap.set("n", key, ":bprevious<CR>", { desc = "Previous buffer" })
 end
 
-for _, key in ipairs({ "L" }) do
+for _, key in ipairs({ "L", "K" }) do
   vim.keymap.set("n", key, ":bnext<CR>", { desc = "Next buffer" })
 end
 
 -- Close buffer
-for _, key in ipairs({ "<leader>tc", "<C-f4>", "<C-w>" }) do
+for _, key in ipairs({ "<leader>tc", "<C-f4>" }) do
   vim.keymap.set("n", key, ":bd<CR>", { desc = "Close buffer" })
 end
+
+-- Change between visible buffers/sidebars/etc...
+vim.keymap.set("n", "<M-h>", "<C-w>h")
+vim.keymap.set("n", "<M-j>", "<C-w>j")
+vim.keymap.set("n", "<M-k>", "<C-w>k")
+vim.keymap.set("n", "<M-l>", "<C-w>l")
 
 -------------------------------------------------------------------------------
 -- 🔍 Telescope
@@ -103,6 +123,9 @@ vim.keymap.set({ "n", "v" }, "gu", "<Nop>")
 -- vim.keymap.set("n", "gL", "gu", { noremap = true })
 vim.keymap.set("v", "gL", "gu", { noremap = true })
 
+-- Disable C-z minimizing Neovide's window
+vim.keymap.set({ "i", "v", "c", "t" }, "<C-z>", "<Nop>", { noremap = true, silent = true })
+
 -------------------------------------------------------------------------------
 -- ⏱  Mode Tweaks
 -------------------------------------------------------------------------------
@@ -123,7 +146,28 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 -- 🍿 Snacks Keymaps
 -------------------------------------------------------------------------------
 
--- vim.keymap.set("n", "<leader>se", "<cmd>snacksexplorertoggle<cr>", { desc = "file explorer" }) -- renamed from <leader>e
-vim.keymap.set("n", "<leader>r", "<cmd>:lua snacks.dashboard.pick('oldfiles')<CR>")
+vim.keymap.set("n", "<leader>r", "<cmd>:lua Snacks.dashboard.pick('oldfiles')<CR>")
 vim.keymap.set("n", "<leader>e", "<cmd>:lua Snacks.picker.explorer()<CR>")
+
+
+-------------------------------------------------------------------------------
+-- ⚓ Harpoon Keymaps
+-------------------------------------------------------------------------------
+
+local mark = require("harpoon.mark")
+local ui = require("harpoon.ui")
+
+vim.keymap.set("n", "<leader>a", mark.add_file)
+vim.keymap.set("n", "<C-e>", ui.toggle_quick_menu)
+
+vim.keymap.set("n", "<C-h>", function() ui.nav_file(1) end)
+vim.keymap.set("n", "<C-j>", function() ui.nav_file(2) end)
+vim.keymap.set("n", "<C-k>", function() ui.nav_file(3) end)
+vim.keymap.set("n", "<C-l>", function() ui.nav_file(4) end)
+
+-------------------------------------------------------------------------------
+-- 🌲 Undotree Keymaps
+-------------------------------------------------------------------------------
+
+vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
 

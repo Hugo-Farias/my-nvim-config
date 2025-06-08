@@ -2,8 +2,9 @@ return {
   { "tpope/vim-commentary" },
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
   { "nvim-lua/plenary.nvim" },
+  { "ThePrimeagen/harpoon" }, 
+  { "mbbill/undotree" }, 
   { "nvim-telescope/telescope.nvim" }, 
-  { "rose-pine/neovim", name = "rose-pine" },
   {
     "folke/flash.nvim",
     event = "VeryLazy",
