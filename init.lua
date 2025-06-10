@@ -1,3 +1,6 @@
+require("keymaps.general")
+require("keymaps.windows")
+
 require("lazy").setup({
   require("plugins"),
   require("colors"),
@@ -5,7 +8,7 @@ require("lazy").setup({
 
 -- Neovim base settings
 editorScheme()
-vim.opt.clipboard = "unnamedplus"
+-- vim.opt.clipboard = "unnamedplus"
 vim.opt.shiftwidth = 2
 vim.opt.scrolloff = 25
 vim.opt.number = true
@@ -45,5 +48,3 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 -- Add lazy.nvim to runtime path
 local lazypath = "C:/Users/Hugo/AppData/Local/nvim-data/site/pack/lazy/start/lazy.nvim"
 vim.opt.rtp:prepend(lazypath)
-
-require("keymaps")
