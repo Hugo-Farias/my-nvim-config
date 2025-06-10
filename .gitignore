@@ -8,6 +8,10 @@ debug
 foo.*
 *.log
 data
+*.lnk
+*.png
+*.ico
+*.jpg
 
 # Compiled Lua sources
 luac.out

@@ -9,7 +9,7 @@ vim.g.maplocalleader = " "
 -- 💾 Save / Format / File Ops
 -------------------------------------------------------------------------------
 
-vim.keymap.set("n", "<leader>w", ":w<CR>", { noremap = true, silent = true })
+-- vim.keymap.set("n", "<leader>w", ":w<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<leader>f", ":format<cr>", { noremap = true, silent = true })
 
 -- Change directory
@@ -20,6 +20,10 @@ vim.keymap.set("n", "<leader>cu", "<cmd>:cd ../<CR>") -- Go Up a directory
 vim.api.nvim_create_user_command("Wso", function()
   vim.cmd("write | source %")
 end, {})
+
+vim.keymap.set('n', '<leader>cw', function()
+  print(vim.fn.getcwd())
+end, { desc = "Show current working directory" })
 
 -------------------------------------------------------------------------------
 -- 📦 General Editing
@@ -49,8 +53,10 @@ vim.keymap.set({ "n", "v" }, "gl", "g_", { desc = "Go to end of line (non-blank)
 -- Exit insert mode
 vim.keymap.set("i", "jk", "<Esc>", { desc = "Exit insert mode tap 'jk'" })
 vim.keymap.set("i", "kj", "<Esc>", { desc = "Exit insert mode tap 'kj'" })
+vim.keymap.set("i", "JK", "<Esc>", { desc = "Exit insert mode tap 'jk'" })
+vim.keymap.set("i", "KJ", "<Esc>", { desc = "Exit insert mode tap 'kj'" })
 
-vim.keymap.set("n", "<C-S-j>", "J", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>jl", "J", { noremap = true, silent = true })
 
 -------------------------------------------------------------------------------
 -- 🧠 Diagnostics
@@ -75,7 +81,7 @@ for _, key in ipairs({ "L", "K" }) do
 end
 
 -- Close buffer
-for _, key in ipairs({ "<leader>tc", "<C-f4>" }) do
+for _, key in ipairs({ "<leader>tc", "<C-f4>", "<leader>qq" }) do
   vim.keymap.set("n", key, ":bd<CR>", { desc = "Close buffer" })
 end
 
@@ -107,7 +113,7 @@ vim.keymap.set("i", "<C-Backspace>", "<C-w>", { noremap = true })
 vim.keymap.set("i", "<C-Delete>", "<Esc>ldwi", { noremap = true })
 
 -------------------------------------------------------------------------------
--- 🛑 Disable Keys
+-- 🛑 Disable default
 -------------------------------------------------------------------------------
 
 -- Disable F13–F22 in insert/command mode
@@ -122,9 +128,11 @@ vim.keymap.set({ "n", "v" }, "gu", "<Nop>")
 -- Remap lowercase to gL
 -- vim.keymap.set("n", "gL", "gu", { noremap = true })
 vim.keymap.set("v", "gL", "gu", { noremap = true })
+vim.keymap.set("v", "u", "<C-c>", { noremap = true })
+vim.keymap.set("v", "U", "<C-c>", { noremap = true })
 
 -- Disable C-z minimizing Neovide's window
-vim.keymap.set({ "i", "v", "c", "t" }, "<C-z>", "<Nop>", { noremap = true, silent = true })
+-- vim.keymap.set({ "i", "v", "c", "t" }, "<C-z>", "<Nop>", { noremap = true, silent = true })
 
 -------------------------------------------------------------------------------
 -- ⏱  Mode Tweaks
@@ -149,6 +157,10 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 vim.keymap.set("n", "<leader>r", "<cmd>:lua Snacks.dashboard.pick('oldfiles')<CR>")
 vim.keymap.set("n", "<leader>e", "<cmd>:lua Snacks.picker.explorer()<CR>")
 
+-- Return to dashboard
+vim.keymap.set("n", "<leader>sd", function()
+  require("snacks.dashboard").open()
+end, { desc = "Open Snacks Dashboard" })
 
 -------------------------------------------------------------------------------
 -- ⚓ Harpoon Keymaps
@@ -170,4 +182,3 @@ vim.keymap.set("n", "<C-l>", function() ui.nav_file(4) end)
 -------------------------------------------------------------------------------
 
 vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
-

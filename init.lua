@@ -1,12 +1,9 @@
--- vim.g.terminal_emulator="C:/Program Files/Git/git-bash"
-
 require("lazy").setup({
   require("plugins"),
-  require("colors")
+  require("colors"),
 })
 
 -- Neovim base settings
--- vim.cmd.colorscheme('tokyonight-storm')
 editorScheme()
 vim.opt.clipboard = "unnamedplus"
 vim.opt.shiftwidth = 2
@@ -26,7 +23,7 @@ if vim.g.neovide then
   vim.g.neovide_cursor_animation_length = 0
   -- vim.g.neovide_cursor_trail_length = 4
   -- vim.g.neovide_cursor_vfx_mode = ""
-  vim.g.neovide_opacity = 0.83
+  vim.g.neovide_opacity = 0.87
 end
 
 -- Change nvim's location to opened file's location
@@ -42,11 +39,11 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 
 
 -- vim.api.nvim_create_user_command("Cdf", function()
---   vim.cmd("cd " .. vim.fn.expand("%:p:h"))
+-- vim.cmd("cd " .. vim.fn.expand("%:p:h"))
 -- end, { desc = "Change directory to current file's folder" })
 
 -- Add lazy.nvim to runtime path
--- local lazypath = "C:/Users/Hugo/AppData/Local/nvim-data/site/pack/lazy/start/lazy.nvim"
--- vim.opt.rtp:prepend(lazypath)
+local lazypath = "C:/Users/Hugo/AppData/Local/nvim-data/site/pack/lazy/start/lazy.nvim"
+vim.opt.rtp:prepend(lazypath)
 
 require("keymaps")
