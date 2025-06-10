@@ -3,7 +3,7 @@
 -------------------------------------------------------------------------------
 
 -- Open netrw
-vim.keymap.set("n", "<leader>pv", ":Ex<CR>")
+vim.keymap.set("n", "<leader>pv", ":Ex<CR>", { desc = "Open netrw (EX)"} )
 
 -- Buffer navigation
 for _, key in ipairs({ "H", "J" }) do
@@ -15,7 +15,7 @@ for _, key in ipairs({ "L", "K" }) do
 end
 
 -- Close buffer
-for _, key in ipairs({ "<leader>tc", "<C-f4>", "<leader>qq" }) do
+for _, key in ipairs({ "<C-f4>", "<leader>qb" }) do
   vim.keymap.set("n", key, ":bd<CR>", { desc = "Close buffer" })
 end
 

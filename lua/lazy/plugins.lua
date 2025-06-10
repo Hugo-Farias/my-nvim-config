@@ -7,6 +7,11 @@ return {
   { "kmonad/kmonad-vim" }, 
   { "nvim-telescope/telescope.nvim" }, 
   {
+    "akinsho/bufferline.nvim",
+    version = "*",
+    dependencies = "nvim-tree/nvim-web-devicons",
+  },
+  {
     "folke/which-key.nvim",
     event = "VeryLazy",
     opts = {

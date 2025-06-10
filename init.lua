@@ -1,14 +1,14 @@
 require("keymaps.general")
-require("keymaps.windows")
 
 require("lazy").setup({
-  require("plugins"),
-  require("colors"),
+  require("lazy.plugins"),
+  require("lazy.colors")
 })
 
 -- Neovim base settings
 editorScheme()
--- vim.opt.clipboard = "unnamedplus"
+-- vim.notify = require("notify")
+vim.opt.clipboard = "unnamedplus"
 vim.opt.shiftwidth = 2
 vim.opt.scrolloff = 25
 vim.opt.number = true
