@@ -1,13 +1,11 @@
 require("keymaps.general")
 
-require("lazy").setup({
-  require("lazy.plugins"),
-  require("lazy.colors")
-})
+require("lazy").setup("load")
 
 -- Neovim base settings
 editorScheme()
 -- vim.notify = require("notify")
+vim.o.shell = "powershell"
 vim.opt.clipboard = "unnamedplus"
 vim.opt.shiftwidth = 2
 vim.opt.scrolloff = 25
@@ -22,11 +20,12 @@ vim.opt.smartcase = true
 -- Neovide settings
 if vim.g.neovide then
   -- vim.cmd.colorscheme('tokyonight-storm')
+  vim.o.guifont = "CaskaydiaCove Nerd Font"
   vim.g.neovide_scale_factor = 0.7
   vim.g.neovide_cursor_animation_length = 0
   -- vim.g.neovide_cursor_trail_length = 4
   -- vim.g.neovide_cursor_vfx_mode = ""
-  vim.g.neovide_opacity = 0.87
+  vim.g.neovide_opacity = 0.83
 end
 
 -- Change nvim's location to opened file's location

@@ -37,11 +37,11 @@ vim.keymap.set("n", "<leader>pv", ":Ex<CR>", { desc = "Open netrw (EX)"} )
 
 -- Buffer navigation
 for _, key in ipairs({ "H", "J" }) do
-  vim.keymap.set("n", key, ":bprevious<CR>", { desc = "Previous buffer" })
+  vim.keymap.set({ "n", "v" }, key, ":bprevious<CR>", { desc = "Previous buffer" })
 end
 
 for _, key in ipairs({ "L", "K" }) do
-  vim.keymap.set("n", key, ":bnext<CR>", { desc = "Next buffer" })
+  vim.keymap.set({ "n", "v" }, key, ":bnext<CR>", { desc = "Next buffer" })
 end
 
 -- Close buffer
@@ -75,11 +75,14 @@ vim.keymap.set("v", "<leader>d", "\"_d", { noremap = true, silent = true, desc =
 vim.keymap.set("n", "<leader>dd", "\"_dd", { noremap = true, silent = true, desc = "Delete line without yank" })
 
 -- x deletes without yanking
-vim.keymap.set({ "n", "v" }, "x", "\"_x", { noremap = true, silent = true, desc = "Delete char without yank" })
+-- vim.keymap.set({ "n", "v" }, "x", "\"_x", { noremap = true, silent = true, desc = "Delete char without yank" })
+for _, key in ipairs({ "x", "X" }) do
+  vim.keymap.set({ "n", "v" }, key, "\"_x", { noremap = true, silent = true, desc = "Delete char without yank" })
+end
 
 -- Start/end of line (non-blank)
-vim.keymap.set({ "n", "v" }, "gh", "^", { desc = "Go to start of line (non-blank)" })
-vim.keymap.set({ "n", "v" }, "gl", "g_", { desc = "Go to end of line (non-blank)" })
+vim.keymap.set({ "n", "v", "x" }, "gh", "^", { desc = "Go to start of line (non-blank)" })
+vim.keymap.set({ "n", "v", "x" }, "gl", "g_", { desc = "Go to end of line (non-blank)" })
 
 -- Exit insert mode
 vim.keymap.set("i", "jk", "<Esc>", { desc = "Exit insert mode (jk)" })
