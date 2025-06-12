@@ -6,21 +6,9 @@ return {
   { "mbbill/undotree" }, 
   { "kmonad/kmonad-vim" }, 
   { "nvim-telescope/telescope.nvim" }, 
-  { "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
-  { "folke/flash.nvim", event = "VeryLazy" },
-  {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    keys = {
-      {
-	"<leader>?",
-	function()
-	  require("which-key").show({ global = false })
-	end,
-	desc = "Buffer Local Keymaps (which-key)",
-      },
-    },
-  },
+  { "akinsho/bufferline.nvim", require("config.bufferline") },
+  { "folke/flash.nvim", require("config.flash") }, 
+  { "folke/which-key.nvim", require("config.which-key") },
   {
     "folke/snacks.nvim",
     priority = 1000,

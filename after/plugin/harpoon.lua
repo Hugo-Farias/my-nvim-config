@@ -5,8 +5,8 @@ local ui = require("harpoon.ui")
 -- ⚓ Harpoon Keymaps
 -------------------------------------------------------------------------------
 
-vim.keymap.set("n", "<leader>a", mark.add_file, { desc = "Harpoon: Add file to list" })
-vim.keymap.set("n", "<C-e>", ui.toggle_quick_menu, { desc = "Harpoon: Toggle quick menu" })
+vim.keymap.set("n", "<leader>ha", mark.add_file, { desc = "Harpoon: Add file to list" })
+vim.keymap.set("n", "<leader>hh", ui.toggle_quick_menu, { desc = "Harpoon: Toggle quick menu" })
 
 vim.keymap.set("n", "<C-h>", function() ui.nav_file(1) end, { desc = "Harpoon: Navigate to file 1" })
 vim.keymap.set("n", "<C-j>", function() ui.nav_file(2) end, { desc = "Harpoon: Navigate to file 2" })
