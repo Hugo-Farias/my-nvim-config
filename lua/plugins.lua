@@ -2,7 +2,7 @@ return {
   { "tpope/vim-commentary" },
   { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
   { "nvim-lua/plenary.nvim" },
-  { "ThePrimeagen/harpoon" }, 
+  { "ThePrimeagen/harpoon", require("config.harpoon") }, 
   { "mbbill/undotree" }, 
   { "kmonad/kmonad-vim" }, 
   { "nvim-telescope/telescope.nvim" }, 

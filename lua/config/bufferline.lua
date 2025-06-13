@@ -14,17 +14,17 @@ return {
 	{ filetype = "NvimTree", text = "", padding = 1 },
       },
     },
-    highlights = {
-      buffer_selected = {
-	fg = "#ffffff",     -- text color
-	bg = "#3b3b4f",     -- background color (subtle highlight)
-	bold = true,
-	italic = false,
-      },
-      indicator_selected = {
-	fg = "#89dceb",     -- indicator color (optional)
-	bg = "#3b3b4f",     -- match background with buffer_selected
-      },
-    },
+    -- highlights = {
+    --   buffer_selected = {
+	-- fg = "#ffffff",     -- text color
+	-- bg = "#3b3b4f",     -- background color (subtle highlight)
+	-- bold = true,
+	-- italic = false,
+    --   },
+    --   indicator_selected = {
+	-- fg = "#89dceb",     -- indicator color (optional)
+	-- bg = "#3b3b4f",     -- match background with buffer_selected
+    --   },
+    -- },
   }) end
 }
