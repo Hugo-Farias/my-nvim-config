@@ -1,13 +1,14 @@
 return {
+  { "nvim-tree/nvim-web-devicons" },
   { "tpope/vim-commentary" },
-  { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate" },
+  { "nvim-treesitter/nvim-treesitter", require("config.treesitter") },
   { "nvim-lua/plenary.nvim" },
   { "ThePrimeagen/harpoon", require("config.harpoon") }, 
-  { "mbbill/undotree" }, 
+  { "mbbill/undotree", require("config.undotree") }, 
   { "kmonad/kmonad-vim" }, 
-  { "nvim-telescope/telescope.nvim" }, 
+  { "nvim-telescope/telescope.nvim", require("config.telescope") }, 
   { "akinsho/bufferline.nvim", require("config.bufferline") },
-  { "folke/flash.nvim", require("config.flash") }, 
+  -- { "folke/flash.nvim", require("config.flash") }, 
   { "folke/which-key.nvim", require("config.which-key") },
   { "folke/snacks.nvim", require("config.snacks") },
 }
