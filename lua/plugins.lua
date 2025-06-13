@@ -9,23 +9,5 @@ return {
   { "akinsho/bufferline.nvim", require("config.bufferline") },
   { "folke/flash.nvim", require("config.flash") }, 
   { "folke/which-key.nvim", require("config.which-key") },
-  {
-    "folke/snacks.nvim",
-    priority = 1000,
-    lazy = false,
-    opts = {
-      bigfile = { enabled = true },
-      dashboard = { enabled = true },
-      explorer = { enabled = true },
-      indent = { enabled = true },
-      input = { enabled = true },
-      picker = { enabled = true },
-      notifier = { enabled = true },
-      quickfile = { enabled = true },
-      scope = { enabled = true },
-      scroll = { enabled = false },
-      statuscolumn = { enabled = true },
-      words = { enabled = true },
-    },
-  }
+  { "folke/snacks.nvim", require("config.snacks") },
 }
