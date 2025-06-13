@@ -13,10 +13,10 @@ vim.g.maplocalleader = " "
 -- vim.api.nvim_set_keymap("n", "<leader>f", ":format<cr>", { noremap = true, silent = true, desc = "Format buffer" })
 
 -- Change directory to current file
-vim.keymap.set("n", "cd", "<cmd>:cd %:p:h<CR>", { desc = "CD to file directory" })
+vim.keymap.set("n", "cd", "<cmd>:cd %:p:h | pwd<CR>", { desc = "CD to file directory" })
 
 -- Go up one directory
-vim.keymap.set("n", "cu", "<cmd>:cd ../<CR>", { desc = "CD up a directory" })
+vim.keymap.set("n", "cu", "<cmd>:cd ../ | pwd<CR>", { desc = "CD up a directory" })
 
 -- Show current working directory
 vim.keymap.set("n", "<leader>cw", function()

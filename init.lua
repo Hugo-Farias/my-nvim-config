@@ -1,3 +1,7 @@
+-- Add lazy.nvim to runtime path
+local lazypath = "C:/Users/Hugo/AppData/Local/nvim-data/site/pack/lazy/start/lazy.nvim"
+vim.opt.rtp:prepend(lazypath)
+
 require("keymaps")
 
 require("lazy").setup({
@@ -45,7 +49,3 @@ vim.api.nvim_create_autocmd("BufReadPost", {
 -- vim.api.nvim_create_user_command("Cdf", function()
 -- vim.cmd("cd " .. vim.fn.expand("%:p:h"))
 -- end, { desc = "Change directory to current file's folder" })
-
--- Add lazy.nvim to runtime path
-local lazypath = "C:/Users/Hugo/AppData/Local/nvim-data/site/pack/lazy/start/lazy.nvim"
-vim.opt.rtp:prepend(lazypath)
