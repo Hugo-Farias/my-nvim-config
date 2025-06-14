@@ -18,10 +18,10 @@ vim.keymap.set("n", "cd", "<cmd>:cd %:p:h | pwd<CR>", { desc = "CD to file direc
 -- Go up one directory
 vim.keymap.set("n", "cu", "<cmd>:cd ../ | pwd<CR>", { desc = "CD up a directory" })
 
--- Show current working directory
-vim.keymap.set("n", "<leader>cw", function()
-  print(vim.fn.getcwd())
-end, { desc = "Show current working directory" })
+-- -- Show current working directory
+-- vim.keymap.set("n", "<leader>W", function()
+--   print(vim.fn.getcwd())
+-- end, { desc = "Show current working directory" })
 
 -- Save and source file
 vim.api.nvim_create_user_command("Wso", function()

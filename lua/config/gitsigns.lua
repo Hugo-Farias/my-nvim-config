@@ -1,3 +1,6 @@
+vim.keymap.set("n", "<leader>ga", ":Gitsigns preview_hunk<CR>", { desc = "Git: Analyze Line" })
+vim.keymap.set("n", "<leader>gu", ":Gitsigns reset_hunk<CR>", { desc = "Git: Undo" })
+
 return {
   "lewis6991/gitsigns.nvim",
   event = { "BufReadPre", "BufNewFile" },
@@ -23,6 +26,5 @@ return {
       status_formatter = nil,
     })
 
-    vim.keymap.set("n", "<leader>ga", ":Gitsigns preview_hunk<CR>", { desc = "Git: See Changes" })
   end
 }

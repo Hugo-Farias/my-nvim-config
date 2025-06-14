@@ -12,7 +12,7 @@ require("lazy").setup({
 -- Neovim base settings
 editorScheme()
 -- vim.o.cmdheight = 0
-vim.o.shell = "powershell"
+vim.o.shell = "pwsh"
 vim.opt.clipboard = "unnamedplus"
 vim.opt.shiftwidth = 2
 vim.opt.scrolloff = 25

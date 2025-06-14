@@ -4,9 +4,12 @@
 
 vim.keymap.set("n", "<leader>sr", "<cmd>:lua Snacks.dashboard.pick('oldfiles')<CR>", { desc = "Snacks: Open recent files" })
 vim.keymap.set("n", "<leader>e", "<cmd>:lua Snacks.picker.explorer()<CR>", { desc = "Snacks: Open explorer" })
+vim.keymap.set("n", "<leader>cR", "<cmd>:lua Snacks.rename.rename_file()<CR>", { desc = "Rename File" })
+
 vim.keymap.set("n", "<leader>gg", "<cmd>:lua Snacks.lazygit()<CR>", { desc = "Git: Lazygit" })
 vim.keymap.set("n", "<leader>gb", "<cmd>:lua Snacks.git.blame_line()<CR>", { desc = "Git: Line Blame" })
-vim.keymap.set("n", "<C-/>", "<cmd>:lua Snacks.Terminal()<CR>", { desc = "Open Terminal" })
+
+vim.keymap.set("n", "<C-t>", "<cmd>:lua Snacks.Terminal()<CR>", { desc = "Open Terminal" })
 
 -- -- Close buffer
 -- for _, key in ipairs({ "<C-f4>", "<leader>q" }) do
