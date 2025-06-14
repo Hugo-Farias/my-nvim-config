@@ -34,7 +34,7 @@ end, {})
 
 -- Open netrw
 vim.keymap.set("n", "<leader>pv", ":Ex<CR>", { desc = "Open netrw (EX)"} )
-vim.keymap.set("n", "<leader>po", ":Oil<CR>", { desc = "Open Oil"} )
+-- vim.keymap.set("n", "<leader>po", ":Ex<CR>", { desc = "Open netrw (EX)"} )
 
 -- Buffer navigation
 for _, key in ipairs({ "H", "J" }) do
@@ -45,10 +45,11 @@ for _, key in ipairs({ "L", "K" }) do
   vim.keymap.set({ "n", "x" }, key, ":bnext<CR>", { desc = "Next buffer" })
 end
 
--- Close buffer
-for _, key in ipairs({ "<C-f4>", "<leader>q" }) do
-  vim.keymap.set("n", key, ":bd<CR>", { desc = "Close buffer" })
-end
+-- -- Close buffer
+-- for _, key in ipairs({ "<C-f4>", "<leader>q" }) do
+--   -- vim.keymap.set("n", key, ":bd<CR>", { desc = "Close buffer" })
+--   vim.keymap.set("n", key, "<cmd>lua Snacks.bufdelete()<CR>", { desc = "Close buffer" })
+-- end
 
 -- Change between visible buffers/sidebars/etc...
 vim.keymap.set("n", "<M-h>", "<C-w>h")
@@ -195,5 +196,5 @@ vim.keymap.set("n", "<leader>pe", function()
   )
 
   vim.cmd("startinsert")
-end, { desc = "Open Yazi (Windows) in float" })
+end, { desc = "Open Yazi in float" })
 

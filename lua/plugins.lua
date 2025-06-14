@@ -1,7 +1,6 @@
 return {
   { "nvim-tree/nvim-web-devicons" },
   { "nvim-lualine/lualine.nvim", require("config.lualine") },
-  { 'stevearc/oil.nvim', require("config.oil") },
   -- { "folke/noice.nvim", require('config.noice') },
   { "tpope/vim-commentary" },
   { "nvim-treesitter/nvim-treesitter", require("config.treesitter") },
