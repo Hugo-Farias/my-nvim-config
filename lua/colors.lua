@@ -23,4 +23,5 @@ local function theme(repo, name)
 return {
   theme("rose-pine/neovim", "rose-pine"),
   theme("folke/tokyonight.nvim"),
+  theme("Mofiqul/dracula.nvim")
 }
