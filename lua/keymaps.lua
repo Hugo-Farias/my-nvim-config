@@ -34,6 +34,7 @@ end, {})
 
 -- Open netrw
 vim.keymap.set("n", "<leader>pv", ":Ex<CR>", { desc = "Open netrw (EX)"} )
+vim.keymap.set("n", "<leader>po", ":Oil<CR>", { desc = "Open Oil"} )
 
 -- Buffer navigation
 for _, key in ipairs({ "H", "J" }) do
@@ -73,8 +74,11 @@ vim.keymap.set({ "o", "x" }, "aa", function()
   -- vim.fn.setpos(".", pos)
 end, { desc = "Entire buffer" })
 
+-- Duplicate line
+vim.keymap.set("n", "dl", [["_yyP]], { desc = "Duplicate line (no reg)" })
+
 -- Paste without overwriting register
-vim.keymap.set("x", "<leader>p", "\"_dP", { noremap = true, silent = true, desc = "Paste without overwrite" })
+-- vim.keymap.set("x", "<leader>p", "\"_dP", { noremap = true, silent = true, desc = "Paste without overwrite" })
 
 -- Delete selection without yanking
 vim.keymap.set("x", "<leader>d", "\"_d", { noremap = true, silent = true, desc = "Delete without yank" })
@@ -156,3 +160,40 @@ vim.keymap.set({ "n", "x" }, "gu", "<Nop>", { desc = "Disable gu" })
 
 -- Optional: Prevent Neovide window from minimizing with <C-z>
 -- vim.keymap.set({ "i", "x", "c", "t" }, "<C-z>", "<Nop>", { noremap = true, silent = true, desc = "Disable <C-z>" })
+
+-- YAZI on nvim, no plugin!!!!!!!
+vim.keymap.set("n", "<leader>pe", function()
+  local buf = vim.api.nvim_create_buf(false, true)
+
+  local width = math.floor(vim.o.columns * 0.8)
+  local height = math.floor(vim.o.lines * 0.8)
+  local row = math.floor((vim.o.lines - height) / 2)
+  local col = math.floor((vim.o.columns - width) / 2)
+
+  local win = vim.api.nvim_open_win(buf, true, {
+    relative = "editor",
+    width = width,
+    height = height,
+    row = row,
+    col = col,
+    style = "minimal",
+    border = "rounded",
+  })
+
+  vim.api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
+
+  -- Use PowerShell directly and launch yazi explicitly
+  vim.fn.termopen(
+    { "powershell.exe", "-NoLogo", "-Command", "yazi" },
+    {
+      on_exit = function()
+        if vim.api.nvim_win_is_valid(win) then
+          vim.api.nvim_win_close(win, true)
+        end
+      end,
+    }
+  )
+
+  vim.cmd("startinsert")
+end, { desc = "Open Yazi (Windows) in float" })
+
