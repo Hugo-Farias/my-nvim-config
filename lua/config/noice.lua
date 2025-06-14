@@ -37,6 +37,15 @@ return {
 	  },
 	},
       },
+      routes = {
+	{
+	  filter = {
+	    event = "cmdline_show",
+	    cmdline = "^b(next|previous)$",
+	  },
+	  opts = { skip = true },
+	},
+      }
     })
   end,
 }

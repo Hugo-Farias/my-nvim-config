@@ -196,5 +196,5 @@ vim.keymap.set("n", "<leader>pe", function()
   )
 
   vim.cmd("startinsert")
-end, { desc = "Open Yazi in float" })
+end, { desc = "Yazi: Open"})
 

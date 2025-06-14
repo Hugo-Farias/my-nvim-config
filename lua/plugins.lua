@@ -2,7 +2,7 @@ return {
   { "nvim-tree/nvim-web-devicons" },
   { "rcarriga/nvim-notify", require("config.notify") },
   { "nvim-lualine/lualine.nvim", require("config.lualine") },
-  { "folke/noice.nvim", require('config.noice') },
+  -- { "folke/noice.nvim", require('config.noice') },
   { "tpope/vim-commentary" },
   { "nvim-treesitter/nvim-treesitter", require("config.treesitter") },
   { "nvim-lua/plenary.nvim" },
@@ -14,4 +14,5 @@ return {
   { "folke/flash.nvim", require("config.flash") }, 
   { "folke/which-key.nvim", require("config.which-key") },
   { "folke/snacks.nvim", require("config.snacks") },
+  { "lewis6991/gitsigns.nvim", require("config.gitsigns") },
 }
