@@ -1,16 +1,16 @@
-vim.keymap.set("n", "<leader>ga", ":Gitsigns preview_hunk<CR>", { desc = "Git: Analyze Line" })
-vim.keymap.set("n", "<leader>gu", ":Gitsigns reset_hunk<CR>", { desc = "Git: Undo" })
+vim.keymap.set("n", "<leader>ga", ":Gitsigns preview_hunk<CR>", { desc = "Gitsigns: Analyze Line" })
+vim.keymap.set("n", "<leader>gu", ":Gitsigns reset_hunk<CR>", { desc = "Gitsigns: Undo" })
 
 vim.keymap.set("n", "<leader>gd", function()
   -- vim.cmd("wincmd o")    -- close all other splits first
   vim.cmd("Gitsigns diffthis")
   vim.cmd("wincmd H")    -- push original file to the left
-end, { desc = "Git: Open vertical diff" })
+end, { desc = "Gitsigns: Open vertical diff" })
 
 
 vim.keymap.set("n", "<leader>gc", function()
   vim.cmd("wincmd o")    -- close diff
-end, { desc = "Git: Close vertical diff" })
+end, { desc = "Gitsigns: Close vertical diff" })
 
 
 return {

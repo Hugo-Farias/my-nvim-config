@@ -25,12 +25,8 @@ vim.opt.smartcase = true
 
 -- Neovide settings
 if vim.g.neovide then
-  -- vim.cmd.colorscheme('tokyonight-storm')
-  -- vim.o.guifont = "CaskaydiaCove Nerd Font"
   vim.g.neovide_scale_factor = 0.7
   vim.g.neovide_cursor_animation_length = 0
-  -- vim.g.neovide_cursor_trail_length = 4
-  -- vim.g.neovide_cursor_vfx_mode = ""
   vim.g.neovide_opacity = 0.83
 end
 

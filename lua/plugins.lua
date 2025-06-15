@@ -8,11 +8,13 @@ return {
   { "nvim-lua/plenary.nvim" },
   { "ThePrimeagen/harpoon", require("config.harpoon") }, 
   { "mbbill/undotree", require("config.undotree") }, 
-  { "kmonad/kmonad-vim" }, 
   -- { "nvim-telescope/telescope.nvim", require("config.telescope") }, 
   { "akinsho/bufferline.nvim", require("config.bufferline") },
   { "folke/flash.nvim", require("config.flash") }, 
   { "folke/which-key.nvim", require("config.which-key") },
   { "folke/snacks.nvim", require("config.snacks") },
   { "lewis6991/gitsigns.nvim", require("config.gitsigns") },
+
+  --------- Language Support ---------
+  { "kmonad/kmonad-vim" }, 
 }

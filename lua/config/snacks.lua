@@ -8,12 +8,15 @@
 -- end, { desc = "Snacks: Open dashboard" })
 
 -- Finding Files
-vim.keymap.set("n", "<leader><leader>", "<cmd>:lua Snacks.picker.files()<CR>", { desc = "Snacks: Open files" })
-vim.keymap.set("n", "<leader>sr", "<cmd>:lua Snacks.dashboard.pick('oldfiles')<CR>", { desc = "Snacks: Open recent files" })
+vim.keymap.set("n", "<leader><leader>", "<cmd>:lua Snacks.picker.files()<CR>", { desc = "Snacks: Search Files" })
+vim.keymap.set("n", "<leader>sr", "<cmd>:lua Snacks.dashboard.pick('oldfiles')<CR>", { desc = "Snacks: Search recent files" })
 vim.keymap.set("n", "<leader>e", "<cmd>:lua Snacks.picker.explorer()<CR>", { desc = "Snacks: Open explorer" })
-vim.keymap.set("n", "<leader>cR", "<cmd>:lua Snacks.rename.rename_file()<CR>", { desc = "Rename File" })
-vim.keymap.set("n", "<leader>sg", "<cmd>:lua Snacks.picker.grep()<CR>", { desc = "Snacks: Open Grep" })
-vim.keymap.set("n", "<C-e>", "<cmd>:lua Snacks.picker.buffers()<CR>", { desc = "Snacks: Open Buffers" })
+vim.keymap.set("n", "<leader>sR", "<cmd>:lua Snacks.rename.rename_file()<CR>", { desc = "Snacks: Rename File" })
+vim.keymap.set("n", "<leader>sg", "<cmd>:lua Snacks.picker.grep()<CR>", { desc = "Snacks: Search Grep" })
+vim.keymap.set("n", "<C-e>", "<cmd>:lua Snacks.picker.buffers()<CR>", { desc = "Snacks: Search Buffers" })
+vim.keymap.set("n", "<leader>sc", ":lua Snacks.picker.colorschemes()<CR>", { desc = "Snacks: Search Color Schemes" })
+vim.keymap.set("n", "<leader>sk", ":lua Snacks.picker.keymaps()<CR>", { desc = "Snacks: Search Keymaps" })
+vim.keymap.set("n", "<leader>sh", ":lua Snacks.picker.help()<CR>", { desc = "Snacks: Search Help" })
 
 -- vim.keymap.set("n", "<C-e>", function()
 --   Snacks.picker.buffers({
@@ -24,17 +27,16 @@ vim.keymap.set("n", "<C-e>", "<cmd>:lua Snacks.picker.buffers()<CR>", { desc = "
 -- end, { desc = "Snacks: Open Buffers" })
 
 -- Git shortcuts
-vim.keymap.set("n", "<leader>gg", "<cmd>:lua Snacks.lazygit()<CR>", { desc = "Git: Lazygit" })
-vim.keymap.set("n", "<leader>gb", "<cmd>:lua Snacks.git.blame_line()<CR>", { desc = "Git: Line Blame" })
+vim.keymap.set("n", "<leader>gg", "<cmd>:lua Snacks.lazygit()<CR>", { desc = "Snacks: Git Lazygit" })
+vim.keymap.set("n", "<leader>gb", "<cmd>:lua Snacks.git.blame_line()<CR>", { desc = "Snacks: Git Line Blame" })
 
 -- Toggle terminal in normal mode
--- vim.keymap.set("n", "<C-t>", "<cmd>:lua Snacks.Terminal()<CR>", { desc = "Open Terminal" })
-vim.keymap.set("n", "<C-t>", function()
+vim.keymap.set("n", "<C-y>", function()
   Snacks.terminal.toggle()
 end, { desc = "Snacks: Toggle terminal (normal)" })
 
 -- Toggle terminal in terminal mode
-vim.keymap.set("t", "<C-t>", function()
+vim.keymap.set("t", "<C-y>", function()
   vim.cmd("stopinsert")        -- exit terminal input mode
   Snacks.terminal.toggle()     -- then hide the terminal
 end, { desc = "Snacks: Toggle terminal (terminal)" })

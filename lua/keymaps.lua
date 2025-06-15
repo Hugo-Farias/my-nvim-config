@@ -32,6 +32,9 @@ end, {})
 -- 🪟 Buffers & Windows
 -------------------------------------------------------------------------------
 
+-- Go to previous buffer
+vim.keymap.set("n", "gb", "<C-6>", { desc = "Go to previous buffer" })
+
 -- Open netrw
 vim.keymap.set("n", "<leader>pv", ":Ex<CR>", { desc = "Open netrw (EX)"} )
 -- vim.keymap.set("n", "<leader>po", ":Ex<CR>", { desc = "Open netrw (EX)"} )
@@ -42,7 +45,7 @@ vim.keymap.set({ "n" }, "J", ":bprevious<CR>", { desc = "Previous buffer" })
 vim.keymap.set({ "n" }, "K", ":bnext<CR>", { desc = "Next buffer" })
 
 -- Force Quit Neovim
-vim.keymap.set("n", "<leader>Q", ":q!<CR>", { desc = "Force Quit Neovim" })
+vim.keymap.set("n", "<leader>Q", ":q<CR>", { desc = "Force Quit Neovim" })
 
 -- -- Close buffer
 -- for _, key in ipairs({ "<C-f4>", "<leader>q" }) do
@@ -74,9 +77,6 @@ vim.keymap.set({ "o", "x" }, "aa", function()
   -- vim.fn.setpos(".", pos)
 end, { desc = "Entire buffer" })
 
--- Duplicate line
-vim.keymap.set("n", "dl", [["_yyP]], { desc = "Duplicate line (no reg)" })
-
 -- Paste without overwriting register
 -- vim.keymap.set("x", "<leader>p", "\"_dP", { noremap = true, silent = true, desc = "Paste without overwrite" })
 
@@ -93,8 +93,8 @@ for _, key in ipairs({ "x", "X" }) do
 end
 
 -- Start/end of line (non-blank)
-vim.keymap.set({ "n", "x", "x" }, "gh", "^", { desc = "Go to start of line (non-blank)" })
-vim.keymap.set({ "n", "x", "x" }, "gl", "g_", { desc = "Go to end of line (non-blank)" })
+vim.keymap.set({ "n", "x", "o" }, "gh", "^", { desc = "Start of line (non-blank)" })
+vim.keymap.set({ "n", "x", "o" }, "gl", "g_", { desc = "End of line (non-blank)" })
 
 -- Exit insert mode
 vim.keymap.set("i", "jk", "<Esc>", { desc = "Exit insert mode (jk)" })
