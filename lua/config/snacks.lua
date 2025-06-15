@@ -2,7 +2,10 @@
 -- 🍿 Snacks Keymaps
 -------------------------------------------------------------------------------
 
-vim.keymap.set("n", "<leader>sf", "<cmd>:lua Snacks.picker.files()<CR>", { desc = "Snacks: Search Files" })
+for _, key in ipairs({ "<leader><leader>", "<leader>sf"}) do
+  vim.keymap.set("n", key, "<cmd>:lua Snacks.picker.files()<CR>", { desc = "Snacks: Search Files" })
+end
+-- vim.keymap.set("n", "<leader><leader>", "<cmd>:lua Snacks.picker.files()<CR>", { desc = "Snacks: Search Files" })
 vim.keymap.set("n", "<leader>sr", "<cmd>:lua Snacks.dashboard.pick('oldfiles')<CR>", { desc = "Snacks: Search recent files" })
 vim.keymap.set("n", "<leader>e", "<cmd>:lua Snacks.picker.explorer()<CR>", { desc = "Snacks: Open explorer" })
 vim.keymap.set("n", "<leader>sR", "<cmd>:lua Snacks.rename.rename_file()<CR>", { desc = "Snacks: Rename File" })

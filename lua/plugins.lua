@@ -16,7 +16,7 @@ return {
   { "lewis6991/gitsigns.nvim", require("config.gitsigns") },
   { "mason-org/mason.nvim", require("config.mason") },
   { "williamboman/mason-lspconfig.nvim", require("config.mason-lspconfig")},
-
+  { "jose-elias-alvarez/null-ls.nvim", require("config.null-ls") },
 
   --------- Language Support ---------
   { "kmonad/kmonad-vim" }, 

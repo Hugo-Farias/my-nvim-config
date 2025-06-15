@@ -1,6 +1,6 @@
 // utils.ts
 
-interface user {
+type User = {
   id: number;
   name: string;
   email: string;
@@ -62,9 +62,6 @@ class SessionManager {
 
     return false;
   }
-
-  getSessionCount(): number {
-    return Object.keys(this.sessions).length
 
   getSessionCount(): number {
     return Object.keys(this.sessions).length
