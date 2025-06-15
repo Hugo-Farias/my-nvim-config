@@ -3,6 +3,7 @@ local lazypath = "C:/Users/Hugo/AppData/Local/nvim-data/site/pack/lazy/start/laz
 vim.opt.rtp:prepend(lazypath)
 
 require("keymaps")
+-- require("lspzero")
 
 require("lazy").setup({
   require("plugins"),
@@ -11,7 +12,6 @@ require("lazy").setup({
 
 -- Neovim base settings
 editorScheme()
--- vim.o.cmdheight = 0
 vim.o.shell = "pwsh"
 vim.opt.clipboard = "unnamedplus"
 vim.opt.shiftwidth = 2
@@ -28,6 +28,8 @@ if vim.g.neovide then
   vim.g.neovide_scale_factor = 0.7
   vim.g.neovide_cursor_animation_length = 0
   vim.g.neovide_opacity = 0.83
+  vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal", blend = 0 })
+  vim.api.nvim_set_hl(0, "FloatBorder", { blend = 0 })
 end
 
 -- Change nvim's location to first opened file's location
@@ -40,8 +42,3 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     end
   end,
 })
-
-
--- vim.api.nvim_create_user_command("Cdf", function()
--- vim.cmd("cd " .. vim.fn.expand("%:p:h"))
--- end, { desc = "Change directory to current file's folder" })

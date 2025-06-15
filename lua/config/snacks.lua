@@ -2,12 +2,6 @@
 -- 🍿 Snacks Keymaps
 -------------------------------------------------------------------------------
 
--- -- Return to dashboard
--- vim.keymap.set("n", "<leader>sd", function()
---   require("snacks.dashboard").open()
--- end, { desc = "Snacks: Open dashboard" })
-
--- Finding Files
 vim.keymap.set("n", "<leader><leader>", "<cmd>:lua Snacks.picker.files()<CR>", { desc = "Snacks: Search Files" })
 vim.keymap.set("n", "<leader>sr", "<cmd>:lua Snacks.dashboard.pick('oldfiles')<CR>", { desc = "Snacks: Search recent files" })
 vim.keymap.set("n", "<leader>e", "<cmd>:lua Snacks.picker.explorer()<CR>", { desc = "Snacks: Open explorer" })
@@ -18,15 +12,6 @@ vim.keymap.set("n", "<leader>sc", ":lua Snacks.picker.colorschemes()<CR>", { des
 vim.keymap.set("n", "<leader>sk", ":lua Snacks.picker.keymaps()<CR>", { desc = "Snacks: Search Keymaps" })
 vim.keymap.set("n", "<leader>sh", ":lua Snacks.picker.help()<CR>", { desc = "Snacks: Search Help" })
 
--- vim.keymap.set("n", "<C-e>", function()
---   Snacks.picker.buffers({
---     on_show = function()
---       vim.cmd.stopinsert()
---     end,
---   })
--- end, { desc = "Snacks: Open Buffers" })
-
--- Git shortcuts
 vim.keymap.set("n", "<leader>gg", "<cmd>:lua Snacks.lazygit()<CR>", { desc = "Snacks: Git Lazygit" })
 vim.keymap.set("n", "<leader>gb", "<cmd>:lua Snacks.git.blame_line()<CR>", { desc = "Snacks: Git Line Blame" })
 
@@ -60,9 +45,6 @@ for _, key in ipairs({ "<C-f4>", "<leader>q" }) do
     end, 50)  -- small delay to allow bufdelete to finish
   end, { desc = "Close buffer" })
 end
-
-
--- vim.keymap.set("n", "<leader>sc", "<cmd>:lua Snacks.picker.pick('config')<CR>", { desc = "Snacks: Open config picker" })
 
 return {
     "folke/snacks.nvim",

@@ -1,5 +1,7 @@
 vim.keymap.set("n", "<leader>ga", ":Gitsigns preview_hunk<CR>", { desc = "Gitsigns: Analyze Line" })
 vim.keymap.set("n", "<leader>gu", ":Gitsigns reset_hunk<CR>", { desc = "Gitsigns: Undo" })
+vim.keymap.set("n", "<leader>gn", ":Gitsigns next_hunk<CR>", { desc = "Gitsigns: Next Hunk" })
+vim.keymap.set("n", "<leader>gp", ":Gitsigns prev_hunk<CR>", { desc = "Gitsigns: Prev Hunk" })
 
 vim.keymap.set("n", "<leader>gd", function()
   vim.cmd("Gitsigns diffthis")
