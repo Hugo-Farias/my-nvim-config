@@ -20,8 +20,8 @@ vim.opt.number = true
 vim.opt.relativenumber = true
 vim.opt.wrap = false
 vim.o.timeoutlen = 500
-vim.opt.ignorecase = true -- Smart Case for search/find
-vim.opt.smartcase = true -- Smart Case for search/find
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- Neovide settings
 if vim.g.neovide then

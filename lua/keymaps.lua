@@ -37,13 +37,12 @@ vim.keymap.set("n", "<leader>pv", ":Ex<CR>", { desc = "Open netrw (EX)"} )
 -- vim.keymap.set("n", "<leader>po", ":Ex<CR>", { desc = "Open netrw (EX)"} )
 
 -- Buffer navigation
-for _, key in ipairs({ "H", "J" }) do
-  vim.keymap.set({ "n", "x" }, key, ":bprevious<CR>", { desc = "Previous buffer" })
-end
+vim.keymap.set({ "n" }, "J", ":bprevious<CR>", { desc = "Previous buffer" })
 
-for _, key in ipairs({ "L", "K" }) do
-  vim.keymap.set({ "n", "x" }, key, ":bnext<CR>", { desc = "Next buffer" })
-end
+vim.keymap.set({ "n" }, "K", ":bnext<CR>", { desc = "Next buffer" })
+
+-- Force Quit Neovim
+vim.keymap.set("n", "<leader>Q", ":q!<CR>", { desc = "Force Quit Neovim" })
 
 -- -- Close buffer
 -- for _, key in ipairs({ "<C-f4>", "<leader>q" }) do

@@ -18,13 +18,21 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   config = function()
     require("gitsigns").setup({
+      -- signs = {
+      --   add          = { text = "│" },
+      --   change       = { text = "|" },
+      --   delete       = { text = "_" },
+      --   topdelete    = { text = "‾" },
+      --   changedelete = { text = "~" },
+      --   untracked    = { text = "┆" },
+      -- },
       signs = {
-        add          = { text = "│" },
-        change       = { text = "|" },
-        delete       = { text = "_" },
-        topdelete    = { text = "‾" },
-        changedelete = { text = "~" },
-        untracked    = { text = "┆" },
+        add          = { text = "a" },
+        change       = { text = "c" },
+        delete       = { text = "d" },
+        topdelete    = { text = "t" },
+        changedelete = { text = "D" },
+        untracked    = { text = "u" },
       },
       signcolumn = true,  -- show signs
       numhl      = false, -- set to true to highlight line numbers instead

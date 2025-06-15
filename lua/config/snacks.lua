@@ -13,20 +13,31 @@ vim.keymap.set("n", "<leader>sr", "<cmd>:lua Snacks.dashboard.pick('oldfiles')<C
 vim.keymap.set("n", "<leader>e", "<cmd>:lua Snacks.picker.explorer()<CR>", { desc = "Snacks: Open explorer" })
 vim.keymap.set("n", "<leader>cR", "<cmd>:lua Snacks.rename.rename_file()<CR>", { desc = "Rename File" })
 vim.keymap.set("n", "<leader>sg", "<cmd>:lua Snacks.picker.grep()<CR>", { desc = "Snacks: Open Grep" })
+vim.keymap.set("n", "<C-e>", "<cmd>:lua Snacks.picker.buffers()<CR>", { desc = "Snacks: Open Buffers" })
 
-vim.keymap.set("n", "<C-e>", function()
-  Snacks.picker.buffers({
-    on_show = function()
-      vim.cmd.stopinsert()
-    end,
-  })
-end, { desc = "Snacks: Open Buffers" })
+-- vim.keymap.set("n", "<C-e>", function()
+--   Snacks.picker.buffers({
+--     on_show = function()
+--       vim.cmd.stopinsert()
+--     end,
+--   })
+-- end, { desc = "Snacks: Open Buffers" })
 
 -- Git shortcuts
 vim.keymap.set("n", "<leader>gg", "<cmd>:lua Snacks.lazygit()<CR>", { desc = "Git: Lazygit" })
 vim.keymap.set("n", "<leader>gb", "<cmd>:lua Snacks.git.blame_line()<CR>", { desc = "Git: Line Blame" })
 
-vim.keymap.set("n", "<C-t>", "<cmd>:lua Snacks.Terminal()<CR>", { desc = "Open Terminal" })
+-- Toggle terminal in normal mode
+-- vim.keymap.set("n", "<C-t>", "<cmd>:lua Snacks.Terminal()<CR>", { desc = "Open Terminal" })
+vim.keymap.set("n", "<C-t>", function()
+  Snacks.terminal.toggle()
+end, { desc = "Snacks: Toggle terminal (normal)" })
+
+-- Toggle terminal in terminal mode
+vim.keymap.set("t", "<C-t>", function()
+  vim.cmd("stopinsert")        -- exit terminal input mode
+  Snacks.terminal.toggle()     -- then hide the terminal
+end, { desc = "Snacks: Toggle terminal (terminal)" })
 
 -- Close buffer
 for _, key in ipairs({ "<C-f4>", "<leader>q" }) do
