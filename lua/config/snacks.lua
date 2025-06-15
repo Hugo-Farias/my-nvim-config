@@ -2,7 +2,7 @@
 -- 🍿 Snacks Keymaps
 -------------------------------------------------------------------------------
 
-vim.keymap.set("n", "<leader><leader>", "<cmd>:lua Snacks.picker.files()<CR>", { desc = "Snacks: Search Files" })
+vim.keymap.set("n", "<leader>sf", "<cmd>:lua Snacks.picker.files()<CR>", { desc = "Snacks: Search Files" })
 vim.keymap.set("n", "<leader>sr", "<cmd>:lua Snacks.dashboard.pick('oldfiles')<CR>", { desc = "Snacks: Search recent files" })
 vim.keymap.set("n", "<leader>e", "<cmd>:lua Snacks.picker.explorer()<CR>", { desc = "Snacks: Open explorer" })
 vim.keymap.set("n", "<leader>sR", "<cmd>:lua Snacks.rename.rename_file()<CR>", { desc = "Snacks: Rename File" })
@@ -40,28 +40,28 @@ for _, key in ipairs({ "<C-f4>", "<leader>q" }) do
       local is_empty = info and info.linecount == 1 and vim.fn.getbufline(buf, 1)[1] == ""
 
       if is_nofile and is_unmodified and is_empty then
-        require("snacks.dashboard").open()
+	require("snacks.dashboard").open()
       end
     end, 50)  -- small delay to allow bufdelete to finish
   end, { desc = "Close buffer" })
 end
 
 return {
-    "folke/snacks.nvim",
-    priority = 1000,
-    lazy = false,
-    opts = {
-      bigfile = { enabled = true },
-      dashboard = { enabled = true },
-      explorer = { enabled = true },
-      indent = { enabled = true },
-      input = { enabled = true },
-      picker = { enabled = true },
-      notifier = { enabled = false },
-      quickfile = { enabled = true },
-      scope = { enabled = true },
-      scroll = { enabled = false },
-      statuscolumn = { enabled = true },
-      words = { enabled = true },
-    },
-  }
+  "folke/snacks.nvim",
+  priority = 1000,
+  lazy = false,
+  opts = {
+    bigfile = { enabled = true },
+    dashboard = { enabled = true },
+    explorer = { enabled = true },
+    indent = { enabled = true },
+    input = { enabled = true },
+    picker = { enabled = true },
+    notifier = { enabled = false },
+    quickfile = { enabled = true },
+    scope = { enabled = true },
+    scroll = { enabled = false },
+    statuscolumn = { enabled = true },
+    words = { enabled = true },
+  },
+}

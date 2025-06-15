@@ -33,7 +33,7 @@ end, {})
 -------------------------------------------------------------------------------
 
 -- Go to previous buffer
-vim.keymap.set("n", "gb", "<C-6>", { desc = "Go to previous buffer" })
+vim.keymap.set("n", "gt", "<C-6>", { desc = "Go to previous buffer" })
 
 -- Open netrw
 vim.keymap.set("n", "<leader>pv", ":Ex<CR>", { desc = "Open netrw (EX)"} )
@@ -119,6 +119,45 @@ vim.keymap.set("x", "U", "<C-c>", { noremap = true, desc = "Exit visual mode (U 
 vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Line diagnostics" })
 
 -------------------------------------------------------------------------------
+-- 🧭 Explorers/File Navigation
+-------------------------------------------------------------------------------
+
+vim.keymap.set("n", "<leader>pe", function()
+  local buf = vim.api.nvim_create_buf(false, true)
+
+  local width = math.floor(vim.o.columns * 0.8)
+  local height = math.floor(vim.o.lines * 0.8)
+  local row = math.floor((vim.o.lines - height) / 2)
+  local col = math.floor((vim.o.columns - width) / 2)
+
+  local win = vim.api.nvim_open_win(buf, true, {
+    relative = "editor",
+    width = width,
+    height = height,
+    row = row,
+    col = col,
+    style = "minimal",
+    border = "rounded",
+  })
+
+  vim.api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
+
+  -- Use PowerShell directly and launch yazi explicitly
+  vim.fn.termopen(
+    { "powershell.exe", "-NoLogo", "-Command", "yazi" },
+    {
+      on_exit = function()
+        if vim.api.nvim_win_is_valid(win) then
+          vim.api.nvim_win_close(win, true)
+        end
+      end,
+    }
+  )
+
+  vim.cmd("startinsert")
+end, { desc = "Yazi: Open"})
+
+-------------------------------------------------------------------------------
 -- 🔤 Insert Mode Keymaps
 -------------------------------------------------------------------------------
 
@@ -160,40 +199,3 @@ vim.keymap.set({ "n", "x" }, "gu", "<Nop>", { desc = "Disable gu" })
 
 -- Optional: Prevent Neovide window from minimizing with <C-z>
 -- vim.keymap.set({ "i", "x", "c", "t" }, "<C-z>", "<Nop>", { noremap = true, silent = true, desc = "Disable <C-z>" })
-
--- YAZI on nvim, no plugin!!!!!!!
-vim.keymap.set("n", "<leader>pe", function()
-  local buf = vim.api.nvim_create_buf(false, true)
-
-  local width = math.floor(vim.o.columns * 0.8)
-  local height = math.floor(vim.o.lines * 0.8)
-  local row = math.floor((vim.o.lines - height) / 2)
-  local col = math.floor((vim.o.columns - width) / 2)
-
-  local win = vim.api.nvim_open_win(buf, true, {
-    relative = "editor",
-    width = width,
-    height = height,
-    row = row,
-    col = col,
-    style = "minimal",
-    border = "rounded",
-  })
-
-  vim.api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
-
-  -- Use PowerShell directly and launch yazi explicitly
-  vim.fn.termopen(
-    { "powershell.exe", "-NoLogo", "-Command", "yazi" },
-    {
-      on_exit = function()
-        if vim.api.nvim_win_is_valid(win) then
-          vim.api.nvim_win_close(win, true)
-        end
-      end,
-    }
-  )
-
-  vim.cmd("startinsert")
-end, { desc = "Yazi: Open"})
-
