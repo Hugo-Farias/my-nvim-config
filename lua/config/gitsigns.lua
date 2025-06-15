@@ -1,12 +1,10 @@
 vim.keymap.set("n", "<leader>ga", ":Gitsigns preview_hunk<CR>", { desc = "Git: Analyze Line" })
 vim.keymap.set("n", "<leader>gu", ":Gitsigns reset_hunk<CR>", { desc = "Git: Undo" })
 
--- vim.keymap.set("n", "<leader>gd", ":Gitsigns diffthis<CR>", { desc = "Git: Open vertical diff" })
-
 vim.keymap.set("n", "<leader>gd", function()
   -- vim.cmd("wincmd o")    -- close all other splits first
   vim.cmd("Gitsigns diffthis")
-  vim.cmd("wincmd H")    -- go to the diff window
+  vim.cmd("wincmd H")    -- push original file to the left
 end, { desc = "Git: Open vertical diff" })
 
 
@@ -22,7 +20,7 @@ return {
     require("gitsigns").setup({
       signs = {
         add          = { text = "│" },
-        change       = { text = "l" },
+        change       = { text = "|" },
         delete       = { text = "_" },
         topdelete    = { text = "‾" },
         changedelete = { text = "~" },

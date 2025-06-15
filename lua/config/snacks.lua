@@ -12,8 +12,15 @@ vim.keymap.set("n", "<leader><leader>", "<cmd>:lua Snacks.picker.files()<CR>", {
 vim.keymap.set("n", "<leader>sr", "<cmd>:lua Snacks.dashboard.pick('oldfiles')<CR>", { desc = "Snacks: Open recent files" })
 vim.keymap.set("n", "<leader>e", "<cmd>:lua Snacks.picker.explorer()<CR>", { desc = "Snacks: Open explorer" })
 vim.keymap.set("n", "<leader>cR", "<cmd>:lua Snacks.rename.rename_file()<CR>", { desc = "Rename File" })
-vim.keymap.set("n", "<C-e>", "<cmd>:lua Snacks.picker.buffers()<CR>", { desc = "Snacks: Open Buffers" })
 vim.keymap.set("n", "<leader>sg", "<cmd>:lua Snacks.picker.grep()<CR>", { desc = "Snacks: Open Grep" })
+
+vim.keymap.set("n", "<C-e>", function()
+  Snacks.picker.buffers({
+    on_show = function()
+      vim.cmd.stopinsert()
+    end,
+  })
+end, { desc = "Snacks: Open Buffers" })
 
 -- Git shortcuts
 vim.keymap.set("n", "<leader>gg", "<cmd>:lua Snacks.lazygit()<CR>", { desc = "Git: Lazygit" })
