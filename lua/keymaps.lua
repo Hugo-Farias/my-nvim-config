@@ -44,8 +44,8 @@ vim.keymap.set({ "n" }, "J", ":bprevious<CR>", { desc = "Previous buffer" })
 
 vim.keymap.set({ "n" }, "K", ":bnext<CR>", { desc = "Next buffer" })
 
--- Force Quit Neovim
-vim.keymap.set("n", "<leader>Q", ":q<CR>", { desc = "Force Quit Neovim" })
+-- Safely Quit Neovim
+vim.keymap.set("n", "<leader>Q", ":q<CR>", { desc = "Safely quit neovim" })
 
 -- -- Close buffer
 -- for _, key in ipairs({ "<C-f4>", "<leader>q" }) do

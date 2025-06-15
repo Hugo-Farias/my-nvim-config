@@ -2,13 +2,12 @@ vim.keymap.set("n", "<leader>ga", ":Gitsigns preview_hunk<CR>", { desc = "Gitsig
 vim.keymap.set("n", "<leader>gu", ":Gitsigns reset_hunk<CR>", { desc = "Gitsigns: Undo" })
 
 vim.keymap.set("n", "<leader>gd", function()
-  -- vim.cmd("wincmd o")    -- close all other splits first
   vim.cmd("Gitsigns diffthis")
   vim.cmd("wincmd H")    -- push original file to the left
 end, { desc = "Gitsigns: Open vertical diff" })
 
 
-vim.keymap.set("n", "<leader>gc", function()
+vim.keymap.set("n", "<leader>gD", function()
   vim.cmd("wincmd o")    -- close diff
 end, { desc = "Gitsigns: Close vertical diff" })
 
@@ -18,21 +17,13 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   config = function()
     require("gitsigns").setup({
-      -- signs = {
-      --   add          = { text = "│" },
-      --   change       = { text = "|" },
-      --   delete       = { text = "_" },
-      --   topdelete    = { text = "‾" },
-      --   changedelete = { text = "~" },
-      --   untracked    = { text = "┆" },
-      -- },
       signs = {
-        add          = { text = "a" },
-        change       = { text = "c" },
-        delete       = { text = "d" },
-        topdelete    = { text = "t" },
-        changedelete = { text = "D" },
-        untracked    = { text = "u" },
+        add          = { text = "+" },
+        change       = { text = "|" },
+        delete       = { text = "-" },
+        topdelete    = { text = "‾" },
+        changedelete = { text = "~" },
+        untracked    = { text = "?" },
       },
       signcolumn = true,  -- show signs
       numhl      = false, -- set to true to highlight line numbers instead
