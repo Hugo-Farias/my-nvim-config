@@ -9,7 +9,7 @@ return {
   { "ThePrimeagen/harpoon", require("config.harpoon") }, 
   { "mbbill/undotree", require("config.undotree") }, 
   { "kmonad/kmonad-vim" }, 
-  { "nvim-telescope/telescope.nvim", require("config.telescope") }, 
+  -- { "nvim-telescope/telescope.nvim", require("config.telescope") }, 
   { "akinsho/bufferline.nvim", require("config.bufferline") },
   { "folke/flash.nvim", require("config.flash") }, 
   { "folke/which-key.nvim", require("config.which-key") },

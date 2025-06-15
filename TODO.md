@@ -1,1 +1,2 @@
 -- Install LSP
+-- Install mini.nvim
