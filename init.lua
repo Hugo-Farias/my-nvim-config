@@ -31,12 +31,57 @@ if vim.g.neovide then
   vim.api.nvim_set_hl(0, "FloatBorder", { blend = 30 })
 end
 
--- Change nvim's location to first opened file's location
+-- -- Change nvim's location to first opened file's location
+-- vim.api.nvim_create_autocmd("BufReadPost", {
+--   once = true,
+--   callback = function()
+--     local file = vim.api.nvim_buf_get_name(0)
+--     if vim.fn.filereadable(file) == 1 then
+--       vim.cmd.lcd(vim.fn.fnamemodify(file, ":h"))
+--     end
+--   end,
+-- })
+
+-- Change location to git root if found, otherwise to file's location
 vim.api.nvim_create_autocmd("BufReadPost", {
   once = true,
   callback = function()
     local file = vim.api.nvim_buf_get_name(0)
-    if vim.fn.filereadable(file) == 1 then
+    if vim.fn.filereadable(file) ~= 1 then
+      return
+    end
+
+    local function count_dirs(path)
+      local dirs = vim.fn.globpath(path, "*/", false, true)
+      return #dirs
+    end
+
+    local dir = vim.fn.fnamemodify(file, ":h")
+    local git_root = nil
+
+    while dir ~= "" and dir ~= "/" do
+      if count_dirs(dir) > 20 then
+        -- Too many folders, stop searching
+        break
+      end
+
+      if vim.fn.isdirectory(dir .. "/.git") == 1 then
+        git_root = dir
+        break
+      end
+
+      -- Go one level up
+      local parent = vim.fn.fnamemodify(dir, ":h")
+      if parent == dir then
+        break
+      end
+      dir = parent
+    end
+
+    if git_root then
+      vim.cmd.lcd(git_root)
+    else
+      -- fallback to file's directory
       vim.cmd.lcd(vim.fn.fnamemodify(file, ":h"))
     end
   end,

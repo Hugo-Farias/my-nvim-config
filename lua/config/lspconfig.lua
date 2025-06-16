@@ -39,22 +39,24 @@ return {
 	vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "LSP: Rename" }))
 	vim.keymap.set({ 'n', 'x' }, '<F3>', function() vim.lsp.buf.format({ async = true }) end, vim.tbl_extend("force", opts, { desc = "LSP: Format" }))
 	vim.keymap.set('n', '<F4>', vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "LSP: Code Action" }))
-	vim.keymap.set('n', 'gn', vim.diagnostic.goto_next, vim.tbl_extend("force", opts, { desc = "Next diagnostic" }))
-	vim.keymap.set('n', 'gp', vim.diagnostic.goto_prev, vim.tbl_extend("force", opts, { desc = "Previous diagnostic" }))
+	vim.keymap.set('n', 'gn', vim.diagnostic.goto_next, vim.tbl_extend("force", opts, { desc = "LSP: Next diagnostic" }))
+	vim.keymap.set('n', 'gp', vim.diagnostic.goto_prev, vim.tbl_extend("force", opts, { desc = "LSP: Previous diagnostic" }))
+	vim.keymap.set('n', 'ga', function()
+	  vim.diagnostic.open_float(nil, { focus = false })
+	end, vim.tbl_extend("force", opts, { desc = "LSP: Show Diagnostics" }))
       end,
     })
-
     -- Add <C-Space> to trigger nvim-cmp completion
     local cmp = require("cmp")
     cmp.setup({
       mapping = cmp.mapping.preset.insert({
-        ['<C-Space>'] = cmp.mapping.complete(),
-        ['<Tab>'] = cmp.mapping.confirm({ select = true }),
-        ['<CR>'] = cmp.mapping.confirm({ select = true }),
-        -- ['<C-e>'] = cmp.mapping.abort(),
+	['<C-Space>'] = cmp.mapping.complete(),
+	['<Tab>'] = cmp.mapping.confirm({ select = true }),
+	['<CR>'] = cmp.mapping.confirm({ select = true }),
+	-- ['<C-e>'] = cmp.mapping.abort(),
       }),
       sources = {
-        { name = "nvim_lsp" },
+	{ name = "nvim_lsp" },
       },
     })
   end,

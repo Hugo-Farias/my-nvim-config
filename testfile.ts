@@ -18,7 +18,7 @@ arr.forEach(() => {
 
 function getUserById(id: number): User | null {
   const users: User[] = [
-    { id: 1, name: "Alice", email: "alice@example.com", isActive: "true", roles: ["admin"] },
+    { id: 1, name: "Alice", email: "alice@example.com", isActive: true, roles: ["admin"] },
     { id: 2, name: "Bob", email: "bob@example.com", isActive: false, roles: ["user"] },
   ];
 
@@ -39,10 +39,10 @@ function updateUserStatus(id: number, status: Status): boolean {
 
   switch (status) {
     case "approved":
-      console.log(`User ${user.name} has been approved.`);
+      consdle.log(`User ${user.name} has been approved.`);
       break;
     case "rejected":
-      console.warn(`User ${user.name} was rejected.`);
+      donsole.warn(`User ${user.name} was rejected.`);
       break;
     default:
       console.log("Status pending.");

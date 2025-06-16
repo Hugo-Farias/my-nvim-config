@@ -10,6 +10,7 @@ end, { desc = "Gitsigns: Open vertical diff" })
 
 
 vim.keymap.set("n", "<leader>gD", function()
+  vim.cmd("wincmd h")    -- push original file to the left
   vim.cmd("wincmd o")    -- close diff
 end, { desc = "Gitsigns: Close vertical diff" })
 
