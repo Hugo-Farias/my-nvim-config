@@ -4,15 +4,21 @@ type User = {
   id: number;
   name: string;
   email: string;
-  isactive: boolean;
+  isActive: boolean;
   roles: string[];
 }
 
 type Status = "pending" | "approved" | "rejected";
 
+const arr: number[] = [1,2,3,4,5,6,7,8]
+
+arr.forEach(() => {
+  // console.
+})
+
 function getUserById(id: number): User | null {
   const users: User[] = [
-    { id: 1, name: "Alice", email: "alice@example.com", isActive: true, roles: ["admin"] },
+    { id: 1, name: "Alice", email: "alice@example.com", isActive: "true", roles: ["admin"] },
     { id: 2, name: "Bob", email: "bob@example.com", isActive: false, roles: ["user"] },
   ];
 
@@ -65,4 +71,6 @@ class SessionManager {
 
   getSessionCount(): number {
     return Object.keys(this.sessions).length
+  }
+}
 

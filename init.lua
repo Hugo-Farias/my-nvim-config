@@ -3,7 +3,6 @@ local lazypath = "C:/Users/Hugo/AppData/Local/nvim-data/site/pack/lazy/start/laz
 vim.opt.rtp:prepend(lazypath)
 
 require("keymaps")
--- require("lspzero")
 
 require("lazy").setup({
   require("plugins"),
@@ -28,8 +27,8 @@ if vim.g.neovide then
   vim.g.neovide_scale_factor = 0.7
   vim.g.neovide_cursor_animation_length = 0
   vim.g.neovide_opacity = 0.83
-  vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal", blend = 0 })
-  vim.api.nvim_set_hl(0, "FloatBorder", { blend = 0 })
+  vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal", blend = 30 })
+  vim.api.nvim_set_hl(0, "FloatBorder", { blend = 30 })
 end
 
 -- Change nvim's location to first opened file's location

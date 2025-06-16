@@ -14,15 +14,14 @@ return {
   { "folke/which-key.nvim", require("config.which-key") },
   { "folke/snacks.nvim", require("config.snacks") },
   { "lewis6991/gitsigns.nvim", require("config.gitsigns") },
-  { "mason-org/mason.nvim", require("config.mason") },
-  { "williamboman/mason-lspconfig.nvim", require("config.mason-lspconfig")},
-  { "jose-elias-alvarez/null-ls.nvim", require("config.null-ls") },
 
   --------- Language Support ---------
   { "kmonad/kmonad-vim" }, 
   
   --------- LSP ---------
-  { "neovim/nvim-lspconfig", require("config.lspzero") },
-  { "hrsh7th/nvim-cmp" },
-  { "hrsh7th/cmp-nvim-lsp" },
+  -- { "jose-elias-alvarez/null-ls.nvim", require("config.null-ls") },
+  -- { "folke/lazydev.nvim", require("config.lazydev") },
+  -- { "williamboman/mason-lspconfig.nvim", require("config.mason-lspconfig")},
+  { "mason-org/mason.nvim", require("config.mason") },
+  { "neovim/nvim-lspconfig", require("config.lspconfig") },
 }
