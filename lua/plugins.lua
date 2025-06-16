@@ -17,11 +17,9 @@ return {
 
   --------- Language Support ---------
   { "kmonad/kmonad-vim" }, 
+  -- { "jose-elias-alvarez/null-ls.nvim", require("config.null-ls") },
   
   --------- LSP ---------
-  -- { "jose-elias-alvarez/null-ls.nvim", require("config.null-ls") },
-  -- { "folke/lazydev.nvim", require("config.lazydev") },
-  -- { "williamboman/mason-lspconfig.nvim", require("config.mason-lspconfig")},
   { "mason-org/mason.nvim", require("config.mason") },
   { "neovim/nvim-lspconfig", require("config.lspconfig") },
 }
