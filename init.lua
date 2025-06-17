@@ -10,10 +10,12 @@ require("lazy").setup({
 })
 
 -- Neovim base settings
-editorScheme()
+EditorScheme()
 vim.o.shell = "pwsh"
 vim.opt.clipboard = "unnamedplus"
 vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.expandtab = true
 vim.opt.scrolloff = 25
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -24,25 +26,17 @@ vim.opt.smartcase = true
 
 -- Neovide settings
 if vim.g.neovide then
+  -- vim.g.neovide.
   vim.g.neovide_scale_factor = 0.7
   vim.g.neovide_cursor_animation_length = 0
-  vim.g.neovide_opacity = 0.83
-  vim.api.nvim_set_hl(0, "NormalFloat", { link = "Normal", blend = 30 })
-  vim.api.nvim_set_hl(0, "FloatBorder", { blend = 30 })
+  -- vim.g.neovide_window_blurred = true
+  vim.g.neovide_normal_opacity = 0.8
+  vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+  vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" }) -- inactive window
+  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" }) -- floating windows
+  vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" }) -- borders
 end
 
--- -- Change nvim's location to first opened file's location
--- vim.api.nvim_create_autocmd("BufReadPost", {
---   once = true,
---   callback = function()
---     local file = vim.api.nvim_buf_get_name(0)
---     if vim.fn.filereadable(file) == 1 then
---       vim.cmd.lcd(vim.fn.fnamemodify(file, ":h"))
---     end
---   end,
--- })
-
--- Change location to git root if found, otherwise to file's location
 vim.api.nvim_create_autocmd("BufReadPost", {
   once = true,
   callback = function()
@@ -51,19 +45,19 @@ vim.api.nvim_create_autocmd("BufReadPost", {
       return
     end
 
-    local function count_dirs(path)
-      local dirs = vim.fn.globpath(path, "*/", false, true)
-      return #dirs
-    end
+    -- local function count_dirs(path)
+    --   local dirs = vim.fn.globpath(path, "*/", false, true)
+    --   return #dirs
+    -- end
 
     local dir = vim.fn.fnamemodify(file, ":h")
     local git_root = nil
 
     while dir ~= "" and dir ~= "/" do
-      if count_dirs(dir) > 20 then
-        -- Too many folders, stop searching
-        break
-      end
+      -- if count_dirs(dir) > 20 then
+      --   -- Too many folders, stop searching
+      --   break
+      -- end
 
       if vim.fn.isdirectory(dir .. "/.git") == 1 then
         git_root = dir

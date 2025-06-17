@@ -39,10 +39,10 @@ function updateUserStatus(id: number, status: Status): boolean {
 
   switch (status) {
     case "approved":
-      consdle.log(`User ${user.name} has been approved.`);
+      console.log(`User ${user.name} has been approved.`);
       break;
     case "rejected":
-      donsole.warn(`User ${user.name} was rejected.`);
+      console.warn(`User ${user.name} was rejected.`);
       break;
     default:
       console.log("Status pending.");

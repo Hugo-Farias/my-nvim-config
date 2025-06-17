@@ -1,8 +1,22 @@
+
+for i = 1, 9 do
+  vim.keymap.set("n", "g" .. i, function()
+    require("bufferline").go_to(i, true)
+  end, { desc = "which_key_ignore" })
+end
+
+for i = 1, 9 do
+  vim.keymap.set("n", "<M-" .. i .. ">", function()
+    require("bufferline").go_to(i, true)
+  end, { desc = "which_key_ignore" })
+end
+
+
 return {
   "akinsho/bufferline.nvim",
   version = "*",
-  dependencies = "nvim-tree/nvim-web-devicons",
-  config = function() require("bufferline").setup({ 
+  dependencies = { "nvim-tree/nvim-web-devicons", "folke/which-key.nvim" },
+  config = function() require("bufferline").setup({
     options = {
       mode = "buffers",
       diagnostics = "nvim_lsp",

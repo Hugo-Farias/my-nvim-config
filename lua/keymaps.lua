@@ -63,6 +63,10 @@ vim.keymap.set("n", "<M-l>", "<C-w>l")
 -- 📦 General Editing
 -------------------------------------------------------------------------------
 
+-- Move lines
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
+
 -- Redo
 vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 
@@ -77,8 +81,9 @@ vim.keymap.set({ "o", "x" }, "aa", function()
   -- vim.fn.setpos(".", pos)
 end, { desc = "Entire buffer" })
 
--- Paste without overwriting register
--- vim.keymap.set("x", "<leader>p", "\"_dP", { noremap = true, silent = true, desc = "Paste without overwrite" })
+-- Swap Paste without overwriting register with regular
+vim.keymap.set("x", "p", "P", { noremap = true, silent = true, desc = "Paste without overwrite" })
+vim.keymap.set("x", "P", "p", { noremap = true, silent = true, desc = "Paste without overwrite" })
 
 -- Delete selection without yanking
 vim.keymap.set("x", "<leader>d", "\"_d", { noremap = true, silent = true, desc = "Delete without yank" })
@@ -123,6 +128,7 @@ vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Line diag
 -- 🧭 Explorers/File Navigation
 -------------------------------------------------------------------------------
 
+-- Open Yazi
 vim.keymap.set("n", "<leader>pe", function()
   local buf = vim.api.nvim_create_buf(false, true)
 
