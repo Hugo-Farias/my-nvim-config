@@ -197,9 +197,12 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 -------------------------------------------------------------------------------
 
 -- Disable F13–F22 in insert/command mode
-for i = 13, 22 do
+for i = 1, 22 do
   vim.keymap.set({ "i", "c" }, "<F" .. i .. ">", "<Nop>", { silent = true, desc = "Disable <F" .. i .. ">" })
 end
+
+-- Disable join line in visual mode
+vim.keymap.set("x", "J", "<Nop>", { desc = "Disable join line in visual line" })
 
 -- Remove default lowercase mapping (gu)
 vim.keymap.set({ "n", "x" }, "gu", "<Nop>", { desc = "Disable gu" })

@@ -26,12 +26,13 @@ vim.opt.smartcase = true
 
 -- Neovide settings
 if vim.g.neovide then
-  -- vim.g.neovide.
-  vim.g.neovide_scale_factor = 0.7
+  -- vim.o.guifont = "CaskaydiaCove Nerd Font:h11"
+  vim.o.guifont = "CaskaydiaCove Nerd Font:h11:#e-antialias:#h-none"
+  -- vim.g.neovide_scale_factor = 0.7
   vim.g.neovide_cursor_animation_length = 0
   -- vim.g.neovide_window_blurred = true
-  vim.g.neovide_normal_opacity = 0.85
-  vim.g.neovide_show_border = true
+  vim.g.neovide_normal_opacity = 0.83
+  vim.g.neovide_show_border = false
 end
 
 vim.api.nvim_create_autocmd("BufReadPost", {

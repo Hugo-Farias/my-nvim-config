@@ -1,6 +1,6 @@
 
 for i = 1, 9 do
-  vim.keymap.set("n", "g" .. i, function()
+  vim.keymap.set("n", "<leader>" .. i, function()
     require("bufferline").go_to(i, true)
   end, { desc = "which_key_ignore" })
 end

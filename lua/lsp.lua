@@ -14,21 +14,31 @@ vim.diagnostic.config({
   },
 })
 
-local float_opts = {
-  border = "rounded",
-  focusable = false,
-  style = "minimal",
-}
+local function jump_diag(direction)
+  vim.diagnostic.jump({ count = direction, float = true})
+end
 
-vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-  vim.lsp.handlers.hover,
-  float_opts
-)
+---- Keymaps ----
+vim.api.nvim_create_autocmd('LspAttach', {
+  desc = 'LSP actions',
+  callback = function(event)
+    local opts = { buffer = event.buf }
+    vim.keymap.set('n', 'gk', vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "LSP: Hover" }))
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, vim.tbl_extend("force", opts, { desc = "LSP: Go to Definition" }))
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, vim.tbl_extend("force", opts, { desc = "LSP: Go to Declaration" }))
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, vim.tbl_extend("force", opts, { desc = "LSP: Go to Implementation" }))
+    vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, vim.tbl_extend("force", opts, { desc = "LSP: Go to Type Definition" }))
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, vim.tbl_extend("force", opts, { desc = "LSP: References" }))
+    vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help, vim.tbl_extend("force", opts, { desc = "LSP: Signature Help" }))
+    vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "LSP: Rename" }))
+    vim.keymap.set({ 'n', 'x' }, '<F3>', function() vim.lsp.buf.format({ async = true }) end, vim.tbl_extend("force", opts, { desc = "LSP: Format" }))
+    vim.keymap.set('n', '<F4>', vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "LSP: Code Action" }))
+    vim.keymap.set('n', 'gn', function () jump_diag(1) end, vim.tbl_extend("force", opts, { desc = "LSP: Next diagnostic" }))
+    vim.keymap.set('n', 'gp', function () jump_diag(-1) end, vim.tbl_extend("force", opts, { desc = "LSP: Previous diagnostic" }))
+    vim.keymap.set('n', 'ga', function () vim.diagnostic.open_float(nil, { focus = false }) end, vim.tbl_extend("force", opts, { desc = "LSP: Show Diagnostics" }))
+  end,
+})
 
-vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-  vim.lsp.handlers.signature_help,
-  float_opts
-)
 
 
 return {
@@ -57,30 +67,6 @@ return {
     )
 
     -- require("lspconfig").lua_ls.setup {}
-
-    ---- Keymaps ----
-    vim.api.nvim_create_autocmd('LspAttach', {
-      desc = 'LSP actions',
-      callback = function(event)
-        local opts = { buffer = event.buf }
-        vim.keymap.set('n', 'gk', vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "LSP: Hover" }))
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, vim.tbl_extend("force", opts, { desc = "LSP: Go to Definition" }))
-        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, vim.tbl_extend("force", opts, { desc = "LSP: Go to Declaration" }))
-        vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, vim.tbl_extend("force", opts, { desc = "LSP: Go to Implementation" }))
-        vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, vim.tbl_extend("force", opts, { desc = "LSP: Go to Type Definition" }))
-        vim.keymap.set('n', 'gr', vim.lsp.buf.references, vim.tbl_extend("force", opts, { desc = "LSP: References" }))
-        vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help, vim.tbl_extend("force", opts, { desc = "LSP: Signature Help" }))
-        vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "LSP: Rename" }))
-        vim.keymap.set({ 'n', 'x' }, '<F3>', function() vim.lsp.buf.format({ async = true }) end, vim.tbl_extend("force", opts, { desc = "LSP: Format" }))
-        vim.keymap.set('n', '<F4>', vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "LSP: Code Action" }))
-        vim.keymap.set('n', 'gn', vim.diagnostic.get_next, vim.tbl_extend("force", opts, { desc = "LSP: Next diagnostic" }))
-        vim.keymap.set('n', 'gp', vim.diagnostic.get_prev, vim.tbl_extend("force", opts, { desc = "LSP: Previous diagnostic" }))
-        vim.keymap.set('n', 'ga', function()
-          vim.diagnostic.open_float(nil, { focus = false })
-        end, vim.tbl_extend("force", opts, { desc = "LSP: Show Diagnostics" }))
-      end,
-    })
-
 
     -- Add <C-Space> to trigger nvim-cmp completion
     local cmp = require("cmp")
