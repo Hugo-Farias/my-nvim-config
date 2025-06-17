@@ -1,2 +1,2 @@
--- Install LSP
 -- Install mini.nvim
+-- Fix autocomplete so it finishes a function with parenthesis

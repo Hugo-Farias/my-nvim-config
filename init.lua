@@ -25,16 +25,9 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
 -- Neovide settings
-if vim.g.neovide then
-  -- vim.o.guifont = "CaskaydiaCove Nerd Font:h11"
-  vim.o.guifont = "CaskaydiaCove Nerd Font:h11:#e-antialias:#h-none"
-  -- vim.g.neovide_scale_factor = 0.7
-  vim.g.neovide_cursor_animation_length = 0
-  -- vim.g.neovide_window_blurred = true
-  vim.g.neovide_normal_opacity = 0.83
-  vim.g.neovide_show_border = false
-end
+require("neovide")
 
+-- Change location to git root if found, otherwise to file's location
 vim.api.nvim_create_autocmd("BufReadPost", {
   once = true,
   callback = function()

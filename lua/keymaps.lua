@@ -76,9 +76,7 @@ vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 
 -- Add option to operate on full buffer on yank and delete
 vim.keymap.set({ "o", "x" }, "aa", function()
-  -- local pos = vim.fn.getpos(".")
   vim.cmd("normal! ggVG")
-  -- vim.fn.setpos(".", pos)
 end, { desc = "Entire buffer" })
 
 -- Swap Paste without overwriting register with regular

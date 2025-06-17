@@ -30,7 +30,7 @@ vim.keymap.set("t", "<C-y>", function()
 end, { desc = "Snacks: Toggle terminal (terminal)" })
 
 -- Close buffer
-for _, key in ipairs({ "<C-f4>", "<leader>q" }) do
+for _, key in ipairs({ "<C-f4>", "<leader>q", "<M-q>"}) do
   vim.keymap.set("n", key, function()
     require("snacks").bufdelete()
 
@@ -60,7 +60,7 @@ return {
     indent = { enabled = true },
     input = { enabled = true },
     picker = { enabled = true },
-    notifier = { enabled = false },
+    notifier = { enabled = true },
     quickfile = { enabled = true },
     scope = { enabled = true },
     scroll = { enabled = false },

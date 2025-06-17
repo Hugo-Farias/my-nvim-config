@@ -15,6 +15,7 @@ return {
   { "folke/snacks.nvim", require("config.snacks") },
   { "lewis6991/gitsigns.nvim", require("config.gitsigns") },
   { "stevearc/conform.nvim" },
+  { "windwp/nvim-autopairs" },
 
   --------- Language Support ---------
   { "kmonad/kmonad-vim" },
