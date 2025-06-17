@@ -1,18 +1,22 @@
+local floatingOpts = {
+  focusable = false,
+  style = "minimal",
+  border = "rounded",
+  source = true, -- or "if_many"
+  header = "",
+  prefix = "",
+}
+
 vim.diagnostic.config({
   virtual_text = true,
   signs = true,
   underline = true,
   update_in_insert = false,
   severity_sort = true,
-  float = {
-    focusable = false,
-    style = "minimal",
-    border = "rounded",
-    source = true, -- or "if_many"
-    header = "",
-    prefix = "",
-  },
+  float = floatingOpts,
 })
+
+-- local floatingOpts = { border = "rounded", focusable = true }
 
 local function jump_diag(direction)
   vim.diagnostic.jump({ count = direction, float = true})
@@ -23,13 +27,13 @@ vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
   callback = function(event)
     local opts = { buffer = event.buf }
-    vim.keymap.set('n', 'gk', vim.lsp.buf.hover, vim.tbl_extend("force", opts, { desc = "LSP: Hover" }))
+    vim.keymap.set('n', 'gk', function () vim.lsp.buf.hover(floatingOpts) end, vim.tbl_extend("force", opts, { desc = "LSP: Hover" }))
+    vim.keymap.set('n', 'gs', function () vim.lsp.buf.signature_help(floatingOpts) end, vim.tbl_extend("force", opts, { desc = "LSP: Signature Help" }))
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, vim.tbl_extend("force", opts, { desc = "LSP: Go to Definition" }))
     vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, vim.tbl_extend("force", opts, { desc = "LSP: Go to Declaration" }))
     vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, vim.tbl_extend("force", opts, { desc = "LSP: Go to Implementation" }))
     vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, vim.tbl_extend("force", opts, { desc = "LSP: Go to Type Definition" }))
     vim.keymap.set('n', 'gr', vim.lsp.buf.references, vim.tbl_extend("force", opts, { desc = "LSP: References" }))
-    vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help, vim.tbl_extend("force", opts, { desc = "LSP: Signature Help" }))
     vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "LSP: Rename" }))
     vim.keymap.set({ 'n', 'x' }, '<F3>', function() vim.lsp.buf.format({ async = true }) end, vim.tbl_extend("force", opts, { desc = "LSP: Format" }))
     vim.keymap.set('n', '<F4>', vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "LSP: Code Action" }))

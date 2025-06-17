@@ -13,7 +13,7 @@ type Status = "pending" | "approved" | "rejected";
 const arr: number[] = [1,2,3,4,5,6,7,8]
 
 arr.forEach((v: any) => {
-  asdfconsole.log(v)
+  console.log(v)
 })
 
 function getUserById(id: number): User | null {
@@ -39,13 +39,13 @@ function updateUserStatus(id: number, status: Status): boolean {
 
   switch (status) {
     case "approved":
-      asdfconsole.log(`User ${user.name} has been approved.`);
-      break;
+      console.log(`User ${user.name} has been approved.`);
+    break;
     case "rejected":
-      asdfconsole.warn(`User ${user.name} was rejected.`);
-      break;
+      console.warn(`User ${user.name} was rejected.`);
+    break;
     default:
-      asdfconsole.log("Status pending.");
+      console.log("Status pending.");
   }
 
   return true;
