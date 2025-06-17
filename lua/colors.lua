@@ -1,4 +1,4 @@
-function EditorScheme(color)
+function EditorColorScheme(color)
   color = color or "tokyonight-storm"
   vim.cmd.colorscheme(color)
   vim.api.nvim_set_hl(0, "Normal", {bg = "none"})
@@ -11,11 +11,11 @@ local function theme(repo, name)
     name = name,
     lazy = false,
     priority = 1000,
-    opts ={ 
+    opts ={
       transparent = true,
       styles = {
-	sidebars = "transparent",
-	floats = "transparent",
+        sidebars = "transparent",
+        floats = "transparent",
       }},
     }
   end

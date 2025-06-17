@@ -19,9 +19,9 @@ vim.keymap.set("n", "cd", "<cmd>:cd %:p:h | pwd<CR>", { desc = "CD to file direc
 vim.keymap.set("n", "cu", "<cmd>:cd ../ | pwd<CR>", { desc = "CD up a directory" })
 
 -- -- Show current working directory
--- vim.keymap.set("n", "<leader>W", function()
---   print(vim.fn.getcwd())
--- end, { desc = "Show current working directory" })
+vim.keymap.set("n", "<leader>W", function()
+  print(vim.fn.getcwd())
+end, { desc = "Show current working directory" })
 
 -- Save and source file
 vim.api.nvim_create_user_command("Wso", function()
@@ -64,8 +64,8 @@ vim.keymap.set("n", "<M-l>", "<C-w>l")
 -------------------------------------------------------------------------------
 
 -- Move lines
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
+vim.keymap.set("x", "<C-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
+vim.keymap.set("x", "<C-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
 -- Redo
 vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })

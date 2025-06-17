@@ -14,6 +14,7 @@ return {
   { "folke/which-key.nvim", require("config.which-key") },
   { "folke/snacks.nvim", require("config.snacks") },
   { "lewis6991/gitsigns.nvim", require("config.gitsigns") },
+  { "stevearc/conform.nvim" },
 
   --------- Language Support ---------
   { "kmonad/kmonad-vim" },
@@ -21,5 +22,5 @@ return {
 
   --------- LSP ---------
   { "mason-org/mason.nvim", require("config.mason") },
-  { "neovim/nvim-lspconfig", require("config.lspconfig") },
+  { "neovim/nvim-lspconfig", require("lsp") },
 }

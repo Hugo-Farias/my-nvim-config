@@ -10,7 +10,7 @@ require("lazy").setup({
 })
 
 -- Neovim base settings
-EditorScheme()
+EditorColorScheme()
 vim.o.shell = "pwsh"
 vim.opt.clipboard = "unnamedplus"
 vim.opt.shiftwidth = 2
@@ -30,11 +30,8 @@ if vim.g.neovide then
   vim.g.neovide_scale_factor = 0.7
   vim.g.neovide_cursor_animation_length = 0
   -- vim.g.neovide_window_blurred = true
-  vim.g.neovide_normal_opacity = 0.8
-  vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-  vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" }) -- inactive window
-  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" }) -- floating windows
-  vim.api.nvim_set_hl(0, "FloatBorder", { bg = "none" }) -- borders
+  vim.g.neovide_normal_opacity = 0.85
+  vim.g.neovide_show_border = true
 end
 
 vim.api.nvim_create_autocmd("BufReadPost", {
@@ -45,20 +42,10 @@ vim.api.nvim_create_autocmd("BufReadPost", {
       return
     end
 
-    -- local function count_dirs(path)
-    --   local dirs = vim.fn.globpath(path, "*/", false, true)
-    --   return #dirs
-    -- end
-
     local dir = vim.fn.fnamemodify(file, ":h")
     local git_root = nil
 
     while dir ~= "" and dir ~= "/" do
-      -- if count_dirs(dir) > 20 then
-      --   -- Too many folders, stop searching
-      --   break
-      -- end
-
       if vim.fn.isdirectory(dir .. "/.git") == 1 then
         git_root = dir
         break

@@ -12,8 +12,8 @@ type Status = "pending" | "approved" | "rejected";
 
 const arr: number[] = [1,2,3,4,5,6,7,8]
 
-arr.forEach(() => {
-  // console.
+arr.forEach((v) => {
+  console.log(v)
 })
 
 function getUserById(id: number): User | null {
