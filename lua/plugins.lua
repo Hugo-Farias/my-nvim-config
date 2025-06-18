@@ -17,11 +17,11 @@ return {
   { "stevearc/conform.nvim" },
   { "windwp/nvim-autopairs", require("config.autopairs") },
 
-  --------- Language Support ---------
+  ---- Language Support ----
   { "kmonad/kmonad-vim" },
   -- { "jose-elias-alvarez/null-ls.nvim", require("config.null-ls") },
 
-  --------- LSP ---------
+  ---- LSP ----
   { "mason-org/mason.nvim", require("config.mason") },
   { "neovim/nvim-lspconfig", require("lsp") },
 }

@@ -1,2 +1,2 @@
 -- Install mini.nvim
--- Fix autocomplete so it finishes a function with parenthesis
+-- Change nvimcmp to blink
