@@ -16,8 +16,6 @@ vim.diagnostic.config({
   float = floatingOpts,
 })
 
--- local floatingOpts = { border = "rounded", focusable = true }
-
 local function jump_diag(direction)
   vim.diagnostic.jump({ count = direction, float = true})
 end

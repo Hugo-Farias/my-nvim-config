@@ -24,7 +24,7 @@ vim.keymap.set("n", "<leader>W", function()
 end, { desc = "Show current working directory" })
 
 -- Save and source file
-vim.api.nvim_create_user_command("Wso", function()
+vim.api.nvim_create_user_command("W", function()
   vim.cmd("write | source %")
 end, {})
 

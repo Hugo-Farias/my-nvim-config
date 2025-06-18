@@ -24,6 +24,9 @@ vim.o.timeoutlen = 500
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
+---- Font for GUI
+vim.o.guifont = "CaskaydiaCove Nerd Font:h11:#e-antialias:#h-none"
+
 -- Neovide settings
 require("neovide")
 
