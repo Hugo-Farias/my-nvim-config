@@ -63,8 +63,14 @@ vim.keymap.set("n", "<M-l>", "<C-w>l")
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
 
+---- Skip between paragraphs
+vim.keymap.set("n", "(", "{{j", { desc = "Skip paragraph backwards", noremap = true })
+vim.keymap.set("n", ")", "}}{j", { desc = "Skip paragraph forwards", noremap = true })
+vim.keymap.set("n", "{", "(", { desc = "Skip paragraph forwards", noremap = true })
+vim.keymap.set("n", "}", ")", { desc = "Skip paragraph forwards", noremap = true })
+
 ---- Duplicate Line
-vim.keymap.set("n", "dl", ":co.<CR>", { desc = "Duplicate Line" })
+vim.keymap.set("n", "H", function() vim.cmd("copy .") end, { desc = "Duplicate Line" })
 
 ---- Move lines
 vim.keymap.set("x", "<C-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })

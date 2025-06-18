@@ -16,6 +16,10 @@ arr.forEach((v: any) => {
   console.log(v)
 })
 
+
+
+
+
 function getUserById(id: number): User | null {
   const users: User[] = [
     { id: 1, name: "Alice", email: "alice@example.com", isActive: true, roles: ["admin"] },
