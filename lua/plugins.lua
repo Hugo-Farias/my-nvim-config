@@ -1,7 +1,8 @@
 return {
   { "nvim-tree/nvim-web-devicons" },
   { "rcarriga/nvim-notify", require("config.notify") },
-  { "nvim-lualine/lualine.nvim", require("config.lualine") },
+  { "kana/vim-smartword", require("config.vim-smartword") },
+  -- { "nvim-lualine/lualine.nvim", require("config.lualine") },
   -- { "folke/noice.nvim", require('config.noice') },
   { "tpope/vim-commentary" },
   { "nvim-treesitter/nvim-treesitter", require("config.treesitter") },

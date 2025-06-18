@@ -63,6 +63,9 @@ vim.keymap.set("n", "<M-l>", "<C-w>l")
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
 
+---- '*' Keeps cursor on the name occurrence
+vim.keymap.set("n", "*", "*N", { desc = "'*' Keeps cursor on the name occurrence" })
+
 ---- Skip between paragraphs
 vim.keymap.set("n", "(", "{{j", { desc = "Skip paragraph backwards", noremap = true })
 vim.keymap.set("n", ")", "}}{j", { desc = "Skip paragraph forwards", noremap = true })
@@ -202,6 +205,9 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 -------------------------------------------------------------------------------
 ---- 🛑 Disable Default Mappings
 -------------------------------------------------------------------------------
+
+---- Disable s in visual mode
+vim.keymap.set("x", "s", "<Nop>", { desc = "Disable 's' in visual mode" })
 
 ---- Disable F13–F22 in insert/command mode
 for i = 1, 22 do
