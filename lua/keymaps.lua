@@ -63,6 +63,15 @@ vim.keymap.set("n", "<M-l>", "<C-w>l")
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
 
+-- Split the current line at the cursor position and keep the cursor on the original line
+vim.keymap.set("n", "<C-l>", "i<CR><Esc>==", {
+  desc = "Split line at cursor and reindent",
+  noremap = true,
+})
+
+---- Clear Search Query
+vim.keymap.set("n", "<leader>ll", "<cmd>nohlsearch | redraw<CR>", { desc = "Clear search query" })
+
 ---- '*' Keeps cursor on the name occurrence
 vim.keymap.set("n", "*", "*N", { desc = "'*' Keeps cursor on the name occurrence" })
 

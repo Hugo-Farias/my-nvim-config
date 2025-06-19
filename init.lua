@@ -5,7 +5,7 @@ vim.opt.rtp:prepend(lazypath)
 require("keymaps")
 
 require("lazy").setup({
-  require("plugins"),
+  require("loadplugins"),
   require("colors")
 })
 
@@ -26,6 +26,7 @@ vim.opt.smartcase = true
 
 ---- Font for GUI
 vim.o.guifont = "CaskaydiaCove Nerd Font:h11:#e-antialias:#h-none"
+-- vim.o.guifont = "JetBrainsMono Nerd Font"
 
 -- Neovide settings
 require("neovide")

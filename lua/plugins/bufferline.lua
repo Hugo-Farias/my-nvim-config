@@ -11,6 +11,22 @@ for i = 1, 9 do
   end, { desc = "which_key_ignore" })
 end
 
+vim.keymap.set("n", "<C-h>", function () require("bufferline").go_to(1, true) end, { desc = "Go to buffer 1" })
+vim.keymap.set("n", "<C-j>", function () require("bufferline").go_to(2, true) end, { desc = "Go to buffer 2" })
+vim.keymap.set("n", "<C-k>", function () require("bufferline").go_to(3, true) end, { desc = "Go to buffer 3" })
+vim.keymap.set("n", "<C-l>", function () require("bufferline").go_to(4, true) end, { desc = "Go to buffer 4" })
+vim.keymap.set("n", "<C-;>", function () require("bufferline").go_to(5, true) end, { desc = "Go to buffer 5" })
+
+vim.keymap.set("n", "J", "<cmd>BufferLineCyclePrev<CR>", { desc = "Bufferline: Cycle Prev" })
+vim.keymap.set("n", "K", "<cmd>BufferLineCycleNext<CR>", { desc = "Bufferline: Cycle Next" })
+
+vim.keymap.set("n", "<C-S-j>", function()
+  require("bufferline").move(-1) -- move current buffer right (end)
+end, { desc = "Move buffer right" })
+
+vim.keymap.set("n", "<C-S-k>", function()
+  require("bufferline").move(1) -- move current buffer left (start)
+end, { desc = "Move buffer left" })
 
 return {
   "akinsho/bufferline.nvim",
@@ -30,17 +46,5 @@ return {
 	{ filetype = "NvimTree", text = "", padding = 1 },
       },
     },
-    -- highlights = {
-    --   buffer_selected = {
-	-- fg = "#ffffff",     -- text color
-	-- bg = "#3b3b4f",     -- background color (subtle highlight)
-	-- bold = true,
-	-- italic = false,
-    --   },
-    --   indicator_selected = {
-	-- fg = "#89dceb",     -- indicator color (optional)
-	-- bg = "#3b3b4f",     -- match background with buffer_selected
-    --   },
-    -- },
   }) end
 }
