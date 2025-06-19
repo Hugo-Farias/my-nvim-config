@@ -206,8 +206,8 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 ---- 🛑 Disable Default Mappings
 -------------------------------------------------------------------------------
 
----- Disable s in visual mode
-vim.keymap.set("x", "s", "<Nop>", { desc = "Disable 's' in visual mode" })
+---- Disable s key
+vim.keymap.set("n", "s", "<Nop>", { desc = "Disable s key" })
 
 ---- Disable F13–F22 in insert/command mode
 for i = 1, 22 do

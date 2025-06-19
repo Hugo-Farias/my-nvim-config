@@ -25,6 +25,7 @@ return {
       show_close_icon = false,
       separator_style = "thin",
       always_show_bufferline = false,
+      numbers = 'ordinal',
       offsets = {
 	{ filetype = "NvimTree", text = "", padding = 1 },
       },
