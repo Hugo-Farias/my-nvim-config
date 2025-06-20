@@ -1,8 +1,13 @@
 function EditorColorScheme(color)
   color = color or "tokyonight-storm"
   vim.cmd.colorscheme(color)
+
   vim.api.nvim_set_hl(0, "Normal", {bg = "none"})
   vim.api.nvim_set_hl(0, "NormalFloat", {bg = "none"})
+
+  vim.api.nvim_set_hl(0, 'LineNr', { fg = "#919191", bold=true })
+  vim.api.nvim_set_hl(0, 'LineNrAbove', { fg = "#575757" })
+  vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = "#575757" })
 end
 
 local function theme(repo, name)

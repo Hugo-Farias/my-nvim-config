@@ -23,10 +23,16 @@ vim.opt.wrap = false
 vim.o.timeoutlen = 500
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.o.keymodel = ""
+
+---- Lsp text highlight
+-- vim.api.nvim_set_hl(0, "LspReferenceText",  { bold = true, bg = "#2c313c" })
+-- vim.api.nvim_set_hl(0, "LspReferenceRead",  { bold = true, bg = "#2c313c" })
+-- vim.api.nvim_set_hl(0, "LspReferenceWrite", { bold = true, bg = "#2c2c3c" })
 
 ---- Font for GUI
 vim.o.guifont = "CaskaydiaCove Nerd Font:h11:#e-antialias:#h-none"
--- vim.o.guifont = "JetBrainsMono Nerd Font"
+-- vim.o.guifont = "JetBrainsMono:h11"
 
 -- Neovide settings
 require("neovide")

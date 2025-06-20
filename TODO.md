@@ -37,10 +37,6 @@
 | **mini.trailspace**  | Highlight/remove trailing whitespace                                                  |
 | **mini.visits**      | Track and jump to most visited files (MRU-like)                                       |
 
-tabline,
-statusline,
-animate,
-clue,
 jump,
 map,
 operators,

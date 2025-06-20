@@ -11,11 +11,11 @@ for i = 1, 9 do
   end, { desc = "which_key_ignore" })
 end
 
-vim.keymap.set("n", "<C-h>", function () require("bufferline").go_to(1, true) end, { desc = "Go to buffer 1" })
-vim.keymap.set("n", "<C-j>", function () require("bufferline").go_to(2, true) end, { desc = "Go to buffer 2" })
-vim.keymap.set("n", "<C-k>", function () require("bufferline").go_to(3, true) end, { desc = "Go to buffer 3" })
-vim.keymap.set("n", "<C-l>", function () require("bufferline").go_to(4, true) end, { desc = "Go to buffer 4" })
-vim.keymap.set("n", "<C-;>", function () require("bufferline").go_to(5, true) end, { desc = "Go to buffer 5" })
+-- vim.keymap.set("n", "<C-h>", function () require("bufferline").go_to(1, true) end, { desc = "Go to buffer 1" })
+-- vim.keymap.set("n", "<C-j>", function () require("bufferline").go_to(2, true) end, { desc = "Go to buffer 2" })
+-- vim.keymap.set("n", "<C-k>", function () require("bufferline").go_to(3, true) end, { desc = "Go to buffer 3" })
+-- vim.keymap.set("n", "<C-l>", function () require("bufferline").go_to(4, true) end, { desc = "Go to buffer 4" })
+-- vim.keymap.set("n", "<C-;>", function () require("bufferline").go_to(5, true) end, { desc = "Go to buffer 5" })
 
 vim.keymap.set("n", "J", "<cmd>BufferLineCyclePrev<CR>", { desc = "Bufferline: Cycle Prev" })
 vim.keymap.set("n", "K", "<cmd>BufferLineCycleNext<CR>", { desc = "Bufferline: Cycle Next" })
@@ -31,7 +31,7 @@ end, { desc = "Move buffer left" })
 return {
   "akinsho/bufferline.nvim",
   version = "*",
-  dependencies = { "nvim-tree/nvim-web-devicons", "folke/which-key.nvim" },
+  dependencies = { "nvim-tree/nvim-web-devicons" },
   config = function() require("bufferline").setup({
     options = {
       mode = "buffers",

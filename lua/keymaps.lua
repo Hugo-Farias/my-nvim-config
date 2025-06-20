@@ -63,6 +63,25 @@ vim.keymap.set("n", "<M-l>", "<C-w>l")
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
 
+-- Create a new mapping for `qr` to start macro recording
+vim.keymap.set("n", "qr", function()
+  vim.api.nvim_feedkeys("q", "n", false)
+end, { noremap = true, desc = "Start recording macro" })
+
+vim.keymap.set('x', 'd', function()
+  if vim.fn.getline('.'):match('^%s*$') then
+    return '"_d'
+  end
+  return 'd'
+end, { expr = true })
+
+vim.keymap.set('n', 'dd', function()
+  if vim.fn.getline('.'):match('^%s*$') then
+    return '"_dd'
+  end
+  return 'dd'
+end, { expr = true })
+
 -- Split the current line at the cursor position and keep the cursor on the original line
 vim.keymap.set("n", "<C-l>", "i<CR><Esc>==", {
   desc = "Split line at cursor and reindent",
@@ -96,8 +115,15 @@ vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 -- vim.keymap.set({ "x" }, "aa", "VggoG", { noremap = true, desc = "Select all" })
 
 ---- Add option to operate on full buffer on yank and delete
-vim.keymap.set({ "o", "x" }, "aa", function()
-  vim.cmd("normal! ggVG")
+-- vim.keymap.set({ "o", "x" }, "az", function()
+--   vim.cmd("normal! ggVG")
+-- end, { desc = "Entire buffer" })
+vim.keymap.set({ "o", "x" }, "az", function()
+  local start_pos = { 1, 0 }
+  local end_pos = { vim.fn.line("$"), vim.fn.getline("$"):len() }
+  vim.fn.setpos("'<", { 0, start_pos[1], start_pos[2]+1, 0 })
+  vim.fn.setpos("'>", { 0, end_pos[1], end_pos[2]+1, 0 })
+  vim.cmd("normal! gv")
 end, { desc = "Entire buffer" })
 
 ---- Swap Paste without overwriting register with regular
@@ -215,8 +241,11 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 ---- 🛑 Disable Default Mappings
 -------------------------------------------------------------------------------
 
+-- Disable the default `q` behavior (macro recording)
+vim.keymap.set("n", "q", "<Nop>", { noremap = true })
+
 ---- Disable s key
-vim.keymap.set("n", "s", "<Nop>", { desc = "Disable s key" })
+vim.keymap.set({ "n", "x" }, "s", "<Nop>", { desc = "Disable s key" })
 
 ---- Disable F13–F22 in insert/command mode
 for i = 1, 22 do
