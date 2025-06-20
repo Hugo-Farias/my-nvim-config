@@ -15,6 +15,7 @@ return {
   -- { "echasnovski/mini.nvim", require("plugins.mini") },
   { "echasnovski/mini.surround", version="*", require("plugins.mini-surround") },
   { "echasnovski/mini.ai", require("plugins.mini-ai") },
+  { "ziontee113/color-picker.nvim", require("plugins.color-picker") },
 
   ---- Buffer/Tab line ----
   -- { "echasnovski/mini.tabline", require("plugins.mini-tabline") },
