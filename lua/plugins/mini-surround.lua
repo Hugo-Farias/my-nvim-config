@@ -1,5 +1,6 @@
 return {
   "echasnovski/mini.surround",
+  version="*",
   config = function()
     require('mini.surround').setup({
       -- No need to copy this inside `setup()`. Will be used automatically.

@@ -1,4 +1,5 @@
-vim.keymap.set("n", "<leader>cc", "<cmd>PickColor<CR>", { desc = "PickColor" })
+-- vim.keymap.set("n", "<leader>cc", "<cmd>PickColor<CR>", { desc = "PickColor" })
+-- vim.keymap.set("n", "<leader>cc", "<cmd>ConvertHEXandRGB<CR>", { desc = "ConvertHEXandRGB" })
 
 return {
   "ziontee113/color-picker.nvim",

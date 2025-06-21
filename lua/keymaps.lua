@@ -20,12 +20,12 @@ vim.keymap.set("n", "cu", "<cmd>:cd ../ | pwd<CR>", { desc = "CD up a directory"
 
 ---- Show current working directory
 vim.keymap.set("n", "<leader>W", function()
-  print(vim.fn.getcwd())
+	print(vim.fn.getcwd())
 end, { desc = "Show current working directory" })
 
 ---- Save and source file
 vim.api.nvim_create_user_command("W", function()
-  vim.cmd("write | source %")
+	vim.cmd("write | source %")
 end, {})
 
 -------------------------------------------------------------------------------
@@ -36,7 +36,7 @@ end, {})
 vim.keymap.set("n", "gt", "<C-6>", { desc = "Go to previous buffer" })
 
 ---- Open netrw
-vim.keymap.set("n", "<leader>pv", ":Ex<CR>", { desc = "Open netrw (EX)"} )
+vim.keymap.set("n", "<leader>pv", ":Ex<CR>", { desc = "Open netrw (EX)" })
 -- vim.keymap.set("n", "<leader>po", ":Ex<CR>", { desc = "Open netrw (EX)"} )
 
 ---- Buffer navigation
@@ -48,7 +48,7 @@ vim.keymap.set({ "n" }, "K", ":bnext<CR>", { desc = "Next buffer" })
 vim.keymap.set("n", "<leader>Q", ":q<CR>", { desc = "Safely quit neovim" })
 
 ---- Close buffer
--- for _, key in ipairs({ "<C-f4>", "<leader>q" }) do
+-- for _, key in ipairs({ "<C-f4>", "<leader>q", "qw" }) do
 --   -- vim.keymap.set("n", key, ":bd<CR>", { desc = "Close buffer" })
 --   vim.keymap.set("n", key, "<cmd>lua Snacks.bufdelete()<CR>", { desc = "Close buffer" })
 -- end
@@ -63,29 +63,34 @@ vim.keymap.set("n", "<M-l>", "<C-w>l")
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
 
--- Create a new mapping for `qr` to start macro recording
+---- `qp` to play macro
+vim.keymap.set("n", "qp", function()
+	vim.api.nvim_feedkeys("@", "n", false)
+end, { noremap = true, desc = "Play macro" })
+
+----- `qr` to start macro recording
 vim.keymap.set("n", "qr", function()
-  vim.api.nvim_feedkeys("q", "n", false)
+	vim.api.nvim_feedkeys("q", "n", false)
 end, { noremap = true, desc = "Start recording macro" })
 
-vim.keymap.set('x', 'd', function()
-  if vim.fn.getline('.'):match('^%s*$') then
-    return '"_d'
-  end
-  return 'd'
+vim.keymap.set("x", "d", function()
+	if vim.fn.getline("."):match("^%s*$") then
+		return '"_d'
+	end
+	return "d"
 end, { expr = true })
 
-vim.keymap.set('n', 'dd', function()
-  if vim.fn.getline('.'):match('^%s*$') then
-    return '"_dd'
-  end
-  return 'dd'
+vim.keymap.set("n", "dd", function()
+	if vim.fn.getline("."):match("^%s*$") then
+		return '"_dd'
+	end
+	return "dd"
 end, { expr = true })
 
--- Split the current line at the cursor position and keep the cursor on the original line
-vim.keymap.set("n", "<C-l>", "i<CR><Esc>==", {
-  desc = "Split line at cursor and reindent",
-  noremap = true,
+---- Split the current line at the cursor position and keep the cursor on the original line
+vim.keymap.set("n", "<C-l>", "i<CR><Esc>==k$", {
+	desc = "Split line at cursor and reindent",
+	noremap = true,
 })
 
 ---- Clear Search Query
@@ -94,14 +99,34 @@ vim.keymap.set("n", "<leader>ll", "<cmd>nohlsearch | redraw<CR>", { desc = "Clea
 ---- '*' Keeps cursor on the name occurrence
 vim.keymap.set("n", "*", "*N", { desc = "'*' Keeps cursor on the name occurrence" })
 
----- Skip between paragraphs
-vim.keymap.set("n", "(", "{{j", { desc = "Skip paragraph backwards", noremap = true })
-vim.keymap.set("n", ")", "}}{j", { desc = "Skip paragraph forwards", noremap = true })
-vim.keymap.set("n", "{", "(", { desc = "Skip paragraph forwards", noremap = true })
-vim.keymap.set("n", "}", ")", { desc = "Skip paragraph forwards", noremap = true })
+-- ---- Skip between paragraphs
+
+-- vim.keymap.set("n", "{", function()
+-- 	vim.cmd("normal! {")
+-- 	while vim.fn.getline("."):match("^%s*$") and vim.fn.line(".") > 1 do
+-- 		vim.cmd("normal! k")
+-- 	end
+-- 	vim.cmd("normal! ^")
+-- end, { desc = "Previous paragraph start (skip blanks, jump to content)" })
+
+-- vim.keymap.set("n", "}", function()
+-- 	vim.cmd("normal! }")
+-- 	local last_line = vim.fn.line("$")
+-- 	while vim.fn.getline("."):match("^%s*$") and vim.fn.line(".") < last_line do
+-- 		vim.cmd("normal! j")
+-- 	end
+-- 	vim.cmd("normal! ^")
+-- end, { desc = "Next paragraph start (skip blanks, jump to content)" })
+
+-- vim.keymap.set("n", "(", "{{j^", { desc = "Skip paragraph backwards", noremap = true })
+-- vim.keymap.set("n", ")", "}}{j^", { desc = "Skip paragraph forwards", noremap = true })
+-- vim.keymap.set("n", "{", "(", { desc = "Skip paragraph forwards", noremap = true })
+-- vim.keymap.set("n", "}", ")", { desc = "Skip paragraph forwards", noremap = true })
 
 ---- Duplicate Line
-vim.keymap.set("n", "H", function() vim.cmd("copy .") end, { desc = "Duplicate Line" })
+vim.keymap.set("n", "H", function()
+	vim.cmd("copy .")
+end, { desc = "Duplicate Line" })
 
 ---- Move lines
 vim.keymap.set("x", "<C-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
@@ -119,11 +144,11 @@ vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 --   vim.cmd("normal! ggVG")
 -- end, { desc = "Entire buffer" })
 vim.keymap.set({ "o", "x" }, "az", function()
-  local start_pos = { 1, 0 }
-  local end_pos = { vim.fn.line("$"), vim.fn.getline("$"):len() }
-  vim.fn.setpos("'<", { 0, start_pos[1], start_pos[2]+1, 0 })
-  vim.fn.setpos("'>", { 0, end_pos[1], end_pos[2]+1, 0 })
-  vim.cmd("normal! gv")
+	local start_pos = { 1, 0 }
+	local end_pos = { vim.fn.line("$"), vim.fn.getline("$"):len() }
+	vim.fn.setpos("'<", { 0, start_pos[1], start_pos[2] + 1, 0 })
+	vim.fn.setpos("'>", { 0, end_pos[1], end_pos[2] + 1, 0 })
+	vim.cmd("normal! gv")
 end, { desc = "Entire buffer" })
 
 ---- Swap Paste without overwriting register with regular
@@ -131,15 +156,15 @@ vim.keymap.set("x", "p", "P", { noremap = true, silent = true, desc = "Paste wit
 vim.keymap.set("x", "P", "p", { noremap = true, silent = true, desc = "Paste without overwrite" })
 
 ---- Delete selection without yanking
-vim.keymap.set("x", "<leader>d", "\"_d", { noremap = true, silent = true, desc = "Delete without yank" })
+vim.keymap.set("x", "<leader>d", '"_d', { noremap = true, silent = true, desc = "Delete without yank" })
 
 ---- Delete line without yanking
-vim.keymap.set("n", "<leader>dd", "\"_dd", { noremap = true, silent = true, desc = "Delete line without yank" })
+vim.keymap.set("n", "<leader>dd", '"_dd', { noremap = true, silent = true, desc = "Delete line without yank" })
 
 ---- x deletes without yanking
 -- vim.keymap.set({ "n", "x" }, "x", "\"_x", { noremap = true, silent = true, desc = "Delete char without yank" })
 for _, key in ipairs({ "x", "X" }) do
-  vim.keymap.set({ "n", "x" }, key, "\"_x", { noremap = true, silent = true, desc = "Delete char without yank" })
+	vim.keymap.set({ "n", "x" }, key, '"_x', { noremap = true, silent = true, desc = "Delete char without yank" })
 end
 
 ---- Start/end of line (non-blank)
@@ -175,39 +200,36 @@ vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Line diag
 
 ---- Open Yazi
 vim.keymap.set("n", "<leader>pe", function()
-  local buf = vim.api.nvim_create_buf(false, true)
+	local buf = vim.api.nvim_create_buf(false, true)
 
-  local width = math.floor(vim.o.columns * 0.8)
-  local height = math.floor(vim.o.lines * 0.8)
-  local row = math.floor((vim.o.lines - height) / 2)
-  local col = math.floor((vim.o.columns - width) / 2)
+	local width = math.floor(vim.o.columns * 0.8)
+	local height = math.floor(vim.o.lines * 0.8)
+	local row = math.floor((vim.o.lines - height) / 2)
+	local col = math.floor((vim.o.columns - width) / 2)
 
-  local win = vim.api.nvim_open_win(buf, true, {
-    relative = "editor",
-    width = width,
-    height = height,
-    row = row,
-    col = col,
-    style = "minimal",
-    border = "rounded",
-  })
+	local win = vim.api.nvim_open_win(buf, true, {
+		relative = "editor",
+		width = width,
+		height = height,
+		row = row,
+		col = col,
+		style = "minimal",
+		border = "rounded",
+	})
 
-  vim.api.nvim_buf_set_option(buf, 'bufhidden', 'wipe')
+	vim.api.nvim_buf_set_option(buf, "bufhidden", "wipe")
 
-  -- Use PowerShell directly and launch yazi explicitly
-  vim.fn.termopen(
-    { "powershell.exe", "-NoLogo", "-Command", "yazi" },
-    {
-      on_exit = function()
-        if vim.api.nvim_win_is_valid(win) then
-          vim.api.nvim_win_close(win, true)
-        end
-      end,
-    }
-  )
+	-- Use PowerShell directly and launch yazi explicitly
+	vim.fn.termopen({ "powershell.exe", "-NoLogo", "-Command", "yazi" }, {
+		on_exit = function()
+			if vim.api.nvim_win_is_valid(win) then
+				vim.api.nvim_win_close(win, true)
+			end
+		end,
+	})
 
-  vim.cmd("startinsert")
-end, { desc = "Yazi: Open"})
+	vim.cmd("startinsert")
+end, { desc = "Yazi: Open" })
 
 -------------------------------------------------------------------------------
 ---- 🔤 Insert Mode Keymaps
@@ -220,21 +242,28 @@ vim.keymap.set({ "c", "i" }, "<C-Backspace>", "<C-w>", { noremap = true, desc = 
 vim.keymap.set("i", "<C-Delete>", "<Esc>ldwi", { noremap = true, desc = "Delete word after cursor" })
 
 -------------------------------------------------------------------------------
+---- ☸> Command Mode Keymaps
+-------------------------------------------------------------------------------
+
+vim.keymap.set("c", "<Up>", "<C-p>", { desc = "Select Previous" })
+vim.keymap.set("c", "<Down>", "<C-n>", { desc = "Select Next" })
+
+-------------------------------------------------------------------------------
 ---- ⏱ Mode Tweaks
 -------------------------------------------------------------------------------
 
 ---- Reduce timeoutlen in insert mode for faster key sequences
 vim.api.nvim_create_autocmd("InsertEnter", {
-  callback = function()
-    vim.o.timeoutlen = 50
-  end,
+	callback = function()
+		vim.o.timeoutlen = 50
+	end,
 })
 
 ---- Restore timeoutlen when leaving insert mode
 vim.api.nvim_create_autocmd("InsertLeave", {
-  callback = function()
-    vim.o.timeoutlen = 500
-  end,
+	callback = function()
+		vim.o.timeoutlen = 500
+	end,
 })
 
 -------------------------------------------------------------------------------
@@ -249,7 +278,7 @@ vim.keymap.set({ "n", "x" }, "s", "<Nop>", { desc = "Disable s key" })
 
 ---- Disable F13–F22 in insert/command mode
 for i = 1, 22 do
-  vim.keymap.set({ "i", "c" }, "<F" .. i .. ">", "<Nop>", { silent = true, desc = "Disable <F" .. i .. ">" })
+	vim.keymap.set({ "i", "c" }, "<F" .. i .. ">", "<Nop>", { silent = true, desc = "Disable <F" .. i .. ">" })
 end
 
 ---- Disable join line in visual mode
@@ -257,4 +286,3 @@ vim.keymap.set("x", "J", "<Nop>", { desc = "Disable join line in visual line" })
 
 ---- Remove default lowercase mapping (gu)
 vim.keymap.set({ "n", "x" }, "gu", "<Nop>", { desc = "Disable gu" })
-

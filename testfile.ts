@@ -6,24 +6,33 @@ type User = {
   email: string;
   isActive: boolean;
   roles: string[];
-}
+};
 
 type Status = "pending" | "approved" | "rejected";
 
-const arr: number[] = [1,2,3,4,5,6,7,8]
+const arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
 
 arr.forEach((v: any) => {
-  console.log(v)
-})
-
-
-
-
+  console.log(v);
+  return "lua\plugins\mason.lua";
+});
 
 function getUserById(id: number): User | null {
   const users: User[] = [
-    { id: 1, name: "Alice", email: "alice@example.com", isActive: true, roles: ["admin"] },
-    { id: 2, name: "Bob", email: "bob@example.com", isActive: false, roles: ["user"] },
+    {
+      id: 1,
+      name: "Alice",
+      email: "alice@example.com",
+      isActive: true,
+      roles: ["admin"],
+    },
+    {
+      id: 2,
+      name: "Bob",
+      email: "bob@example.com",
+      isActive: false,
+      roles: ["user"],
+    },
   ];
 
   for (const user of users) {
@@ -44,10 +53,10 @@ function updateUserStatus(id: number, status: Status): boolean {
   switch (status) {
     case "approved":
       console.log(`User ${user.name} has been approved.`);
-    break;
+      break;
     case "rejected":
       console.warn(`User ${user.name} was rejected.`);
-    break;
+      break;
     default:
       console.log("Status pending.");
   }
@@ -74,7 +83,6 @@ class SessionManager {
   }
 
   getSessionCount(): number {
-    return Object.keys(this.sessions).length
+    return Object.keys(this.sessions).length;
   }
 }
-
