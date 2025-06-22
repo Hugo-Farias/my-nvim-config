@@ -2,7 +2,7 @@ return {
 	-- { "nvim-tree/nvim-web-devicons" },
 	{ "rcarriga/nvim-notify", require("plugins.notify") },
 	{ "kana/vim-smartword", require("plugins.vim-smartword") },
-	-- { "folke/noice.nvim", require('config.noice') },
+	{ "folke/noice.nvim", require("plugins.noice") },
 	{ "tpope/vim-commentary" },
 	{ "nvim-treesitter/nvim-treesitter", require("plugins.treesitter") },
 	{ "nvim-lua/plenary.nvim" },
@@ -12,11 +12,13 @@ return {
 	{ "folke/snacks.nvim", require("plugins.snacks") },
 	{ "lewis6991/gitsigns.nvim", require("plugins.gitsigns") },
 	{ "windwp/nvim-autopairs", require("plugins.autopairs") },
-	-- { "echasnovski/mini.nvim", require("plugins.mini") },
-	-- { "echasnovski/mini.icons", require("plugins.mini-icons") },
+
+	---- Mini Compilation ----
+	{ "echasnovski/mini.icons", require("plugins.mini-icons") },
 	{ "echasnovski/mini.surround", require("plugins.mini-surround") },
 	{ "echasnovski/mini.ai", require("plugins.mini-ai") },
 	{ "ziontee113/color-picker.nvim", require("plugins.color-picker") },
+	-- { "echasnovski/mini.indentscope", require("plugins.mini-indentscope") },
 
 	---- Buffer/Tab line ----
 	-- { "echasnovski/mini.tabline", require("plugins.mini-tabline") },
@@ -28,7 +30,7 @@ return {
 
 	---- Language Support ----
 	{ "kmonad/kmonad-vim" },
-	-- { "jose-elias-alvarez/null-ls.nvim", require("plugins.null-ls") },
+	-- { "jose-elias-alvarez/nLogull-ls.nvim", require("plugins.null-ls") },
 
 	---- Formatter ----
 	{ "stevearc/conform.nvim", require("plugins.conform") },

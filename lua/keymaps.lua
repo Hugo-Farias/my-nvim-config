@@ -9,6 +9,9 @@ vim.g.maplocalleader = " "
 ---- 💾 Save / Format / File Ops
 -------------------------------------------------------------------------------
 
+---- Quick Save
+vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "Save File" })
+
 ---- Format buffer
 -- vim.api.nvim_set_keymap("n", "<leader>f", ":format<cr>", { noremap = true, silent = true, desc = "Format buffer" })
 
@@ -40,9 +43,9 @@ vim.keymap.set("n", "<leader>pv", ":Ex<CR>", { desc = "Open netrw (EX)" })
 -- vim.keymap.set("n", "<leader>po", ":Ex<CR>", { desc = "Open netrw (EX)"} )
 
 ---- Buffer navigation
-vim.keymap.set({ "n" }, "J", ":bprevious<CR>", { desc = "Previous buffer" })
+-- vim.keymap.set({ "n" }, "J", ":bprevious<CR>", { desc = "Previous buffer" })
 
-vim.keymap.set({ "n" }, "K", ":bnext<CR>", { desc = "Next buffer" })
+-- vim.keymap.set({ "n" }, "K", ":bnext<CR>", { desc = "Next buffer" })
 
 ---- Safely Quit Neovim
 vim.keymap.set("n", "<leader>Q", ":q<CR>", { desc = "Safely quit neovim" })
@@ -101,27 +104,33 @@ vim.keymap.set("n", "*", "*N", { desc = "'*' Keeps cursor on the name occurrence
 
 -- ---- Skip between paragraphs
 
--- vim.keymap.set("n", "{", function()
--- 	vim.cmd("normal! {")
--- 	while vim.fn.getline("."):match("^%s*$") and vim.fn.line(".") > 1 do
--- 		vim.cmd("normal! k")
--- 	end
--- 	vim.cmd("normal! ^")
--- end, { desc = "Previous paragraph start (skip blanks, jump to content)" })
+vim.keymap.set({ "n", "x" }, "(", function()
+	local count = vim.v.count1 -- defaults to 1 if no count is given
+	for _ = 1, count do
+		vim.cmd("normal! {{")
+		while vim.fn.getline("."):match("^%s*$") and vim.fn.line(".") > 1 do
+			vim.cmd("normal! j")
+		end
+	end
+	vim.cmd("normal! ^")
+end, { desc = "Previous paragraph start (count, skip blanks, jump to content)" })
 
--- vim.keymap.set("n", "}", function()
--- 	vim.cmd("normal! }")
--- 	local last_line = vim.fn.line("$")
--- 	while vim.fn.getline("."):match("^%s*$") and vim.fn.line(".") < last_line do
--- 		vim.cmd("normal! j")
--- 	end
--- 	vim.cmd("normal! ^")
--- end, { desc = "Next paragraph start (skip blanks, jump to content)" })
+vim.keymap.set({ "n", "x" }, ")", function()
+	local count = vim.v.count1
+	for _ = 1, count do
+		vim.cmd("normal! }}{j")
+		local last_line = vim.fn.line("$")
+		while vim.fn.getline("."):match("^%s*$") and vim.fn.line(".") < last_line do
+			vim.cmd("normal! j")
+		end
+	end
+	vim.cmd("normal! ^")
+end, { desc = "Next paragraph start (count, skip blanks, jump to content)" })
 
 -- vim.keymap.set("n", "(", "{{j^", { desc = "Skip paragraph backwards", noremap = true })
 -- vim.keymap.set("n", ")", "}}{j^", { desc = "Skip paragraph forwards", noremap = true })
--- vim.keymap.set("n", "{", "(", { desc = "Skip paragraph forwards", noremap = true })
--- vim.keymap.set("n", "}", ")", { desc = "Skip paragraph forwards", noremap = true })
+vim.keymap.set("n", "{", "(", { desc = "Skip paragraph forwards", noremap = true })
+vim.keymap.set("n", "}", ")", { desc = "Skip paragraph forwards", noremap = true })
 
 ---- Duplicate Line
 vim.keymap.set("n", "H", function()
@@ -129,20 +138,13 @@ vim.keymap.set("n", "H", function()
 end, { desc = "Duplicate Line" })
 
 ---- Move lines
-vim.keymap.set("x", "<C-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
-vim.keymap.set("x", "<C-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
+vim.keymap.set("x", "<C-j>", "<cmd>m '>+1<CR>gv=gv", { desc = "Move selection down" })
+vim.keymap.set("x", "<C-k>", "<cmd>m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
 ---- Redo
 vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 
----- Select all
--- vim.keymap.set({ "n" }, "<leader>sa", "VggoG", { noremap = true, desc = "Select all" })
--- vim.keymap.set({ "x" }, "aa", "VggoG", { noremap = true, desc = "Select all" })
-
----- Add option to operate on full buffer on yank and delete
--- vim.keymap.set({ "o", "x" }, "az", function()
---   vim.cmd("normal! ggVG")
--- end, { desc = "Entire buffer" })
+---- Add option to operate on full buffer on yank, delete and select
 vim.keymap.set({ "o", "x" }, "az", function()
 	local start_pos = { 1, 0 }
 	local end_pos = { vim.fn.line("$"), vim.fn.getline("$"):len() }

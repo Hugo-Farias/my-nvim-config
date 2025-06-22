@@ -26,7 +26,8 @@ vim.opt.smartcase = true
 vim.o.keymodel = ""
 
 ---- Font for GUI
-vim.o.guifont = "CaskaydiaCove Nerd Font:h11:#e-antialias:#h-none"
+-- vim.o.guifont = "CaskaydiaCove Nerd Font:h9.7:#e-antialias:#h-none"
+vim.o.guifont = "JetBrainsMono Nerd Font:h10"
 
 -- Neovide settings
 require("neovide")

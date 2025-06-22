@@ -5,14 +5,9 @@
 for _, key in ipairs({ "<leader><leader>", "<leader>sf" }) do
 	vim.keymap.set("n", key, "<cmd>:lua Snacks.picker.files()<CR>", { desc = "Snacks: Search Files" })
 end
--- vim.keymap.set("n", "<leader><leader>", "<cmd>:lua Snacks.picker.files()<CR>", { desc = "Snacks: Search Files" })
-vim.keymap.set(
-	"n",
-	"<leader>sr",
-	"<cmd>:lua Snacks.dashboard.pick('oldfiles')<CR>",
-	{ desc = "Snacks: Search recent files" }
-)
-vim.keymap.set("n", "<leader>e", "<cmd>:lua Snacks.picker.explorer()<CR>", { desc = "Snacks: Open explorer" })
+-- stylua: ignore
+vim.keymap.set( "n", "<leader>sr", "<cmd>:lua Snacks.dashboard.pick('oldfiles')<CR>", { desc = "Snacks: Search Recent Files" })
+vim.keymap.set("n", "<leader>e", "<cmd>:lua Snacks.picker.explorer()<CR>", { desc = "Snacks: Open Explorer" })
 vim.keymap.set("n", "<leader>sR", "<cmd>:lua Snacks.rename.rename_file()<CR>", { desc = "Snacks: Rename File" })
 vim.keymap.set("n", "<leader>sg", "<cmd>:lua Snacks.picker.grep()<CR>", { desc = "Snacks: Search Grep" })
 vim.keymap.set("n", "<C-e>", "<cmd>:lua Snacks.picker.buffers()<CR>", { desc = "Snacks: Search Buffers" })
@@ -20,6 +15,12 @@ vim.keymap.set("n", "<leader>sc", ":lua Snacks.picker.colorschemes()<CR>", { des
 vim.keymap.set("n", "<leader>sk", ":lua Snacks.picker.keymaps()<CR>", { desc = "Snacks: Search Keymaps" })
 vim.keymap.set("n", "<leader>sh", ":lua Snacks.picker.help()<CR>", { desc = "Snacks: Search Help" })
 vim.keymap.set("n", "<leader>s'", ":lua Snacks.picker.registers()<CR>", { desc = "Snacks: Search Registers" })
+vim.keymap.set(
+	"n",
+	"<leader>sh",
+	":lua Snacks.notifier.show_history()<CR>",
+	{ desc = "Snacks: Show Notification History" }
+)
 
 vim.keymap.set("n", "<leader>gg", "<cmd>:lua Snacks.lazygit()<CR>", { desc = "Snacks: Git Lazygit" })
 vim.keymap.set("n", "<leader>gb", "<cmd>:lua Snacks.git.blame_line()<CR>", { desc = "Snacks: Git Line Blame" })
@@ -66,9 +67,9 @@ return {
 		indent = { enabled = true },
 		input = { enabled = true },
 		picker = { enabled = true },
-		notifier = { enabled = false },
+		notifier = { enabled = true },
 		quickfile = { enabled = true },
-		scope = { enabled = true },
+		scope = vim.tbl_deep_extend("force", { enabled = true }, require("plugins.snacks-scope")),
 		scroll = { enabled = false },
 		statuscolumn = { enabled = true },
 		words = { enabled = true },
