@@ -1,8 +1,8 @@
 -- Fix Snack's scope ii having the wrong range
 -- Change nvimcmp to blink
 -- Fix Eslint not being attached
--- Text object for ii and ai not selecting correct part of text
 -- Fix Powershell's lsp erroring out
+-- Fix lsp go to declaration
 
 -- Install mini.nvim
 | Module | Description |

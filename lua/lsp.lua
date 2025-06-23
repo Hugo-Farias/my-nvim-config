@@ -29,7 +29,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "gk", function() vim.lsp.buf.hover(floatingOpts) end, vim.tbl_extend("force", opts, { desc = "LSP: Hover" }))
 		vim.keymap.set("n", "gs", function() vim.lsp.buf.signature_help(floatingOpts) end, vim.tbl_extend("force", opts, { desc = "LSP: Signature Help" }))
 		vim.keymap.set( "n", "gd", vim.lsp.buf.definition, vim.tbl_extend("force", opts, { desc = "LSP: Go to definition" }))
-		vim.keymap.set( "n", "gd", vim.lsp.buf.declaration, vim.tbl_extend("force", opts, { desc = "LSP: Go to declaration" }))
+		vim.keymap.set( "n", "gD", vim.lsp.buf.declaration, vim.tbl_extend("force", opts, { desc = "LSP: Go to declaration" }))
 		vim.keymap.set( "n", "gi", vim.lsp.buf.implementation, vim.tbl_extend("force", opts, { desc = "LSP: Go to implementation" }))
 		vim.keymap.set( "n", "go", vim.lsp.buf.type_definition, vim.tbl_extend("force", opts, { desc = "LSP: Go to Type definition" }))
 		vim.keymap.set("n", "gr", vim.lsp.buf.references, vim.tbl_extend("force", opts, { desc = "LSP: References" }))
@@ -63,16 +63,13 @@ return {
 		local lspconfig = require("lspconfig")
 
 		local lspconfig_defaults = lspconfig.util.default_config
-		lspconfig_defaults.capabilities = vim.tbl_deep_extend(
-			"force",
-			lspconfig_defaults.capabilities,
-			require("cmp_nvim_lsp").default_capabilities()
-		)
+		lspconfig_defaults.capabilities =
+			vim.tbl_deep_extend("force", lspconfig_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 
 		local cmp = require("cmp")
 
-		lspconfig.lua_ls.setup({})
-		lspconfig.ts_ls.setup({})
+		-- lspconfig.lua_ls.setup({})
+		-- lspconfig.ts_ls.setup({})
 
 		lspconfig.powershell_es.setup({
 			cmd = {

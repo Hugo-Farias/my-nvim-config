@@ -1,41 +1,44 @@
 return {
-	-- { "nvim-tree/nvim-web-devicons" },
-	{ "rcarriga/nvim-notify", require("plugins.notify") },
-	{ "kana/vim-smartword", require("plugins.vim-smartword") },
-	{ "folke/noice.nvim", require("plugins.noice") },
-	{ "tpope/vim-commentary" },
-	{ "nvim-treesitter/nvim-treesitter", require("plugins.treesitter") },
-	{ "nvim-lua/plenary.nvim" },
-	{ "mbbill/undotree", require("plugins.undotree") },
-	{ "folke/flash.nvim", require("plugins.flash") },
-	{ "folke/which-key.nvim", require("plugins.which-key") },
-	{ "folke/snacks.nvim", require("plugins.snacks") },
-	{ "lewis6991/gitsigns.nvim", require("plugins.gitsigns") },
-	{ "windwp/nvim-autopairs", require("plugins.autopairs") },
+  -- { "nvim-tree/nvim-web-devicons" },
+  { "rcarriga/nvim-notify", require("plugins.notify") },
+  { "kana/vim-smartword", require("plugins.vim-smartword") },
+  -- { "folke/noice.nvim", require("plugins.noice") },
+  { "tpope/vim-commentary" },
+  { "nvim-treesitter/nvim-treesitter", require("plugins.treesitter") },
+  { "nvim-lua/plenary.nvim" },
+  { "mbbill/undotree", require("plugins.undotree") },
+  { "folke/flash.nvim", require("plugins.flash") },
+  { "folke/which-key.nvim", require("plugins.which-key") },
+  { "folke/snacks.nvim", require("plugins.snacks") },
+  { "lewis6991/gitsigns.nvim", require("plugins.gitsigns") },
+  { "windwp/nvim-autopairs", require("plugins.autopairs") },
 
-	---- Mini Compilation ----
-	{ "echasnovski/mini.icons", require("plugins.mini-icons") },
-	{ "echasnovski/mini.surround", require("plugins.mini-surround") },
-	{ "echasnovski/mini.ai", require("plugins.mini-ai") },
-	{ "ziontee113/color-picker.nvim", require("plugins.color-picker") },
-	-- { "echasnovski/mini.indentscope", require("plugins.mini-indentscope") },
+  ---- Explorers ----
+  { "mikavilpas/yazi.nvim" },
 
-	---- Buffer/Tab line ----
-	-- { "echasnovski/mini.tabline", require("plugins.mini-tabline") },
-	{ "akinsho/bufferline.nvim", require("plugins.bufferline") },
+  ---- Mini Compilation ----
+  { "echasnovski/mini.icons", require("plugins.mini-icons") },
+  { "echasnovski/mini.surround", require("plugins.mini-surround") },
+  { "echasnovski/mini.ai", require("plugins.mini-ai") },
+  { "ziontee113/color-picker.nvim", require("plugins.color-picker") },
+  -- { "echasnovski/mini.indentscope", require("plugins.mini-indentscope") },
 
-	---- Status Line ----
-	-- { "nvim-lualine/lualine.nvim", require("plugins.lualine") },
-	{ "echasnovski/mini.statusline", require("plugins.mini-statusline") },
+  ---- Buffer/Tab line ----
+  -- { "echasnovski/mini.tabline", require("plugins.mini-tabline") },
+  { "akinsho/bufferline.nvim", require("plugins.bufferline") },
 
-	---- Language Support ----
-	{ "kmonad/kmonad-vim" },
-	-- { "jose-elias-alvarez/nLogull-ls.nvim", require("plugins.null-ls") },
+  ---- Status Line ----
+  -- { "nvim-lualine/lualine.nvim", require("plugins.lualine") },
+  { "echasnovski/mini.statusline", require("plugins.mini-statusline") },
 
-	---- Formatter ----
-	{ "stevearc/conform.nvim", require("plugins.conform") },
+  ---- Language Support ----
+  { "kmonad/kmonad-vim" },
+  -- { "jose-elias-alvarez/nLogull-ls.nvim", require("plugins.null-ls") },
 
-	---- LSP ----
-	{ "mason-org/mason.nvim", require("plugins.mason") },
-	{ "neovim/nvim-lspconfig", require("lsp") },
+  ---- Formatter ----
+  { "stevearc/conform.nvim", require("plugins.conform") },
+
+  ---- LSP ----
+  { "mason-org/mason.nvim", require("plugins.mason") },
+  { "neovim/nvim-lspconfig", require("lsp") },
 }

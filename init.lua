@@ -12,7 +12,7 @@ require("lazy").setup({
 -- Neovim base settings
 EditorColorScheme()
 vim.o.shell = "pwsh"
-vim.opt.clipboard = "unnamedplus"
+-- vim.opt.clipboard = "unnamedplus"
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
 vim.opt.expandtab = true

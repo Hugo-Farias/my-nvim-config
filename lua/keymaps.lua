@@ -39,8 +39,7 @@ end, {})
 vim.keymap.set("n", "gt", "<C-6>", { desc = "Go to previous buffer" })
 
 ---- Open netrw
-vim.keymap.set("n", "<leader>pv", ":Ex<CR>", { desc = "Open netrw (EX)" })
--- vim.keymap.set("n", "<leader>po", ":Ex<CR>", { desc = "Open netrw (EX)"} )
+-- vim.keymap.set("n", "<leader>pv", ":Ex<CR>", { desc = "Open netrw (EX)" })
 
 ---- Buffer navigation
 -- vim.keymap.set({ "n" }, "J", ":bprevious<CR>", { desc = "Previous buffer" })
@@ -65,6 +64,12 @@ vim.keymap.set("n", "<M-l>", "<C-w>l")
 -------------------------------------------------------------------------------
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
+
+---- Paste from system's clipboard
+vim.keymap.set("n", "<leader>p", '"+p', { desc = "Paste from system's clipboard" })
+
+---- Yank into system's clipboard
+vim.keymap.set("n", "<leader>y", '"+y', { desc = "Yank into system's clipboard" })
 
 ---- `qp` to play macro
 vim.keymap.set("n", "qp", function()
@@ -103,34 +108,33 @@ vim.keymap.set("n", "<leader>ll", "<cmd>nohlsearch | redraw<CR>", { desc = "Clea
 vim.keymap.set("n", "*", "*N", { desc = "'*' Keeps cursor on the name occurrence" })
 
 -- ---- Skip between paragraphs
+-- vim.keymap.set({ "n", "x" }, "(", function()
+-- 	local count = vim.v.count1 -- defaults to 1 if no count is given
+-- 	for _ = 1, count do
+-- 		vim.cmd("normal! {{")
+-- 		while vim.fn.getline("."):match("^%s*$") and vim.fn.line(".") > 1 do
+-- 			vim.cmd("normal! j")
+-- 		end
+-- 	end
+-- 	vim.cmd("normal! ^")
+-- end, { desc = "Previous paragraph start (count, skip blanks, jump to content)" })
 
-vim.keymap.set({ "n", "x" }, "(", function()
-	local count = vim.v.count1 -- defaults to 1 if no count is given
-	for _ = 1, count do
-		vim.cmd("normal! {{")
-		while vim.fn.getline("."):match("^%s*$") and vim.fn.line(".") > 1 do
-			vim.cmd("normal! j")
-		end
-	end
-	vim.cmd("normal! ^")
-end, { desc = "Previous paragraph start (count, skip blanks, jump to content)" })
-
-vim.keymap.set({ "n", "x" }, ")", function()
-	local count = vim.v.count1
-	for _ = 1, count do
-		vim.cmd("normal! }}{j")
-		local last_line = vim.fn.line("$")
-		while vim.fn.getline("."):match("^%s*$") and vim.fn.line(".") < last_line do
-			vim.cmd("normal! j")
-		end
-	end
-	vim.cmd("normal! ^")
-end, { desc = "Next paragraph start (count, skip blanks, jump to content)" })
+-- vim.keymap.set({ "n", "x" }, ")", function()
+-- 	local count = vim.v.count1
+-- 	for _ = 1, count do
+-- 		vim.cmd("normal! }}{j")
+-- 		local last_line = vim.fn.line("$")
+-- 		while vim.fn.getline("."):match("^%s*$") and vim.fn.line(".") < last_line do
+-- 			vim.cmd("normal! j")
+-- 		end
+-- 	end
+-- 	vim.cmd("normal! ^")
+-- end, { desc = "Next paragraph start (count, skip blanks, jump to content)" })
 
 -- vim.keymap.set("n", "(", "{{j^", { desc = "Skip paragraph backwards", noremap = true })
 -- vim.keymap.set("n", ")", "}}{j^", { desc = "Skip paragraph forwards", noremap = true })
-vim.keymap.set("n", "{", "(", { desc = "Skip paragraph forwards", noremap = true })
-vim.keymap.set("n", "}", ")", { desc = "Skip paragraph forwards", noremap = true })
+-- vim.keymap.set("n", "{", "(", { desc = "Skip paragraph forwards", noremap = true })
+-- vim.keymap.set("n", "}", ")", { desc = "Skip paragraph forwards", noremap = true })
 
 ---- Duplicate Line
 vim.keymap.set("n", "H", function()
@@ -138,8 +142,8 @@ vim.keymap.set("n", "H", function()
 end, { desc = "Duplicate Line" })
 
 ---- Move lines
-vim.keymap.set("x", "<C-j>", "<cmd>m '>+1<CR>gv=gv", { desc = "Move selection down" })
-vim.keymap.set("x", "<C-k>", "<cmd>m '<-2<CR>gv=gv", { desc = "Move selection up" })
+vim.keymap.set("x", "<C-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
+vim.keymap.set("x", "<C-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
 ---- Redo
 vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
@@ -201,37 +205,37 @@ vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Line diag
 -------------------------------------------------------------------------------
 
 ---- Open Yazi
-vim.keymap.set("n", "<leader>pe", function()
-	local buf = vim.api.nvim_create_buf(false, true)
+  -- vim.keymap.set("n", "qe", function()
+	-- local buf = vim.api.nvim_create_buf(false, true)
 
-	local width = math.floor(vim.o.columns * 0.8)
-	local height = math.floor(vim.o.lines * 0.8)
-	local row = math.floor((vim.o.lines - height) / 2)
-	local col = math.floor((vim.o.columns - width) / 2)
+	-- local width = math.floor(vim.o.columns * 0.8)
+	-- local height = math.floor(vim.o.lines * 0.8)
+	-- local row = math.floor((vim.o.lines - height) / 2)
+	-- local col = math.floor((vim.o.columns - width) / 2)
 
-	local win = vim.api.nvim_open_win(buf, true, {
-		relative = "editor",
-		width = width,
-		height = height,
-		row = row,
-		col = col,
-		style = "minimal",
-		border = "rounded",
-	})
+	-- local win = vim.api.nvim_open_win(buf, true, {
+	-- 	relative = "editor",
+	-- 	width = width,
+	-- 	height = height,
+	-- 	row = row,
+	-- 	col = col,
+	-- 	style = "minimal",
+	-- 	border = "rounded",
+	-- })
 
-	vim.api.nvim_buf_set_option(buf, "bufhidden", "wipe")
+	-- vim.api.nvim_buf_set_option(buf, "bufhidden", "wipe")
 
-	-- Use PowerShell directly and launch yazi explicitly
-	vim.fn.termopen({ "powershell.exe", "-NoLogo", "-Command", "yazi" }, {
-		on_exit = function()
-			if vim.api.nvim_win_is_valid(win) then
-				vim.api.nvim_win_close(win, true)
-			end
-		end,
-	})
+	-- -- Use PowerShell directly and launch yazi explicitly
+	-- vim.fn.termopen({ "powershell.exe", "-NoLogo", "-Command", "yazi" }, {
+	-- 	on_exit = function()
+	-- 		if vim.api.nvim_win_is_valid(win) then
+	-- 			vim.api.nvim_win_close(win, true)
+	-- 		end
+	-- 	end,
+	-- })
 
-	vim.cmd("startinsert")
-end, { desc = "Yazi: Open" })
+	-- vim.cmd("startinsert")
+-- end, { desc = "Yazi: Open" })
 
 -------------------------------------------------------------------------------
 ---- 🔤 Insert Mode Keymaps

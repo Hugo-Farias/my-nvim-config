@@ -9,7 +9,7 @@ return {
 	-- try to expand the scope to this size
 	max_size = nil,
 	cursor = true, -- when true, the column of the cursor is used to determine the scope
-	edge = true, -- include the edge of the scope (typically the line above and below with smaller indent)
+	edge = false, -- include the edge of the scope (typically the line above and below with smaller indent)
 	siblings = false, -- expand single line scopes with single line siblings
 	-- what buffers to attach to
 	filter = function(buf)
@@ -46,7 +46,7 @@ return {
 	-- Alternatively, you can set them manually in your config,
 	-- using the `Snacks.scope.textobject` and `Snacks.scope.jump` functions.
 	keys = {
-		---@type table<string, snacks.scope.TextObject|{desc?:string}>
+		---@type table<string, Snacks.scope.textObject|{desc?:string}>
 		textobject = {
 			ii = {
 				min_size = 2,
@@ -58,16 +58,16 @@ return {
 				desc = "inner scope",
 			},
 			ai = {
-				cursor = false,
 				min_size = 2,
 				edge = true,
+				cursor = false,
 				treesitter = {
 					blocks = { enabled = true },
 				},
 				desc = "full scope",
 			},
 		},
-		---@type table<string, snacks.scope.Jump|{desc?:string}>
+		---@type table<string, Snacks.scope.jump|{desc?:string}>
 		jump = {
 			["[i"] = {
 				min_size = 1, -- allow single line scopes

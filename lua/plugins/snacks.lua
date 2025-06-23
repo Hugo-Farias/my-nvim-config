@@ -8,7 +8,7 @@ end
 -- stylua: ignore
 vim.keymap.set( "n", "<leader>sr", "<cmd>:lua Snacks.dashboard.pick('oldfiles')<CR>", { desc = "Snacks: Search Recent Files" })
 vim.keymap.set("n", "<leader>e", "<cmd>:lua Snacks.picker.explorer()<CR>", { desc = "Snacks: Open Explorer" })
-vim.keymap.set("n", "<leader>sR", "<cmd>:lua Snacks.rename.rename_file()<CR>", { desc = "Snacks: Rename File" })
+vim.keymap.set("n", "<leader>fR", "<cmd>:lua Snacks.rename.rename_file()<CR>", { desc = "Snacks: Rename File" })
 vim.keymap.set("n", "<leader>sg", "<cmd>:lua Snacks.picker.grep()<CR>", { desc = "Snacks: Search Grep" })
 vim.keymap.set("n", "<C-e>", "<cmd>:lua Snacks.picker.buffers()<CR>", { desc = "Snacks: Search Buffers" })
 vim.keymap.set("n", "<leader>sc", ":lua Snacks.picker.colorschemes()<CR>", { desc = "Snacks: Search Color Schemes" })
@@ -17,7 +17,7 @@ vim.keymap.set("n", "<leader>sh", ":lua Snacks.picker.help()<CR>", { desc = "Sna
 vim.keymap.set("n", "<leader>s'", ":lua Snacks.picker.registers()<CR>", { desc = "Snacks: Search Registers" })
 vim.keymap.set(
 	"n",
-	"<leader>sh",
+	"<leader>sn",
 	":lua Snacks.notifier.show_history()<CR>",
 	{ desc = "Snacks: Show Notification History" }
 )
