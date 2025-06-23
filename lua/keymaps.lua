@@ -231,8 +231,8 @@ vim.keymap.set("i", "JK", "<Esc>", { desc = "Exit insert mode (JK)" })
 vim.keymap.set("i", "KJ", "<Esc>", { desc = "Exit insert mode (KJ)" })
 
 ---- Join lines with description
-vim.keymap.set("n", "<leader>jl", "J", { noremap = true, silent = true, desc = "Join lines" })
-vim.keymap.set("n", "L", "J", { noremap = true, silent = true, desc = "Join lines" })
+-- vim.keymap.set("n", "<leader>jl", "J", { noremap = true, silent = true, desc = "Join lines" })
+-- vim.keymap.set("n", "L", "J", { noremap = true, silent = true, desc = "Join lines" })
 
 ---- Visual lowercase
 vim.keymap.set("x", "gL", "gu", { noremap = true, desc = "Visual lowercase (gu)" })
