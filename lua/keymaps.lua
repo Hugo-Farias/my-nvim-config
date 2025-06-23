@@ -55,11 +55,30 @@ vim.keymap.set("n", "<leader>Q", ":q<CR>", { desc = "Safely quit neovim" })
 --   vim.keymap.set("n", key, "<cmd>lua Snacks.bufdelete()<CR>", { desc = "Close buffer" })
 -- end
 
----- Change between visible buffers/sidebars/etc...
--- vim.keymap.set("n", "<M-h>", "<C-w>h")
--- vim.keymap.set("n", "<M-j>", "<C-w>j")
--- vim.keymap.set("n", "<M-k>", "<C-w>k")
--- vim.keymap.set("n", "<M-l>", "<C-w>l")
+---- Change focus between visible buffers/sidebars/etc...
+vim.keymap.set("n", "<Left>", "<C-w>h")
+vim.keymap.set("n", "<Down>", "<C-w>j")
+vim.keymap.set("n", "<Up>", "<C-w>k")
+vim.keymap.set("n", "<Right>", "<C-w>l")
+
+vim.keymap.set("n", "<S-Left>", "<C-w>H")
+vim.keymap.set("n", "<S-Down>", "<C-w>J")
+vim.keymap.set("n", "<S-Up>", "<C-w>K")
+vim.keymap.set("n", "<S-Right>", "<C-w>L")
+
+local function resize(key, cmd, times)
+  vim.keymap.set("n", key, string.rep(cmd, times), { noremap = true })
+end
+
+resize("<M-Left>", "<C-w><", 8)
+resize("<M-Right>", "<C-w>>", 8)
+resize("<M-Down>", "<C-w>-", 5)
+resize("<M-Up>", "<C-w>+", 5)
+
+-- vim.keymap.set("n", "<M-C-Left>", "<C-w><")
+-- vim.keymap.set("n", "<M-C-Right>", "<C-w>>")
+-- vim.keymap.set("n", "<M-C-Down>", "<C-w>-")
+-- vim.keymap.set("n", "<M-C-Up>", "<C-w>+")
 
 -------------------------------------------------------------------------------
 ---- 📦 General Editing
@@ -205,7 +224,7 @@ vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Line diag
 -------------------------------------------------------------------------------
 
 ---- Open Yazi
-vim.keymap.set("n", "qe", function()
+vim.keymap.set("n", "<leader>E", function()
   local buf = vim.api.nvim_create_buf(false, true)
 
   local width = math.floor(vim.o.columns * 0.8)
@@ -244,7 +263,16 @@ vim.keymap.set("n", "qe", function()
       if vim.fn.filereadable(chooser_path) == 1 then
         local lines = vim.fn.readfile(chooser_path)
         if #lines > 0 then
-          vim.cmd("edit " .. vim.fn.fnameescape(lines[1]))
+          -- vim.cmd("edit " .. vim.fn.fnameescape(lines[1]))
+          local filepath = vim.fn.fnameescape(lines[1])
+          vim.cmd("edit " .. filepath)
+
+          vim.defer_fn(function()
+            local bufnr = vim.fn.bufnr(filepath)
+            if bufnr ~= -1 then
+              vim.api.nvim_set_current_buf(bufnr)
+            end
+          end, 50)
         end
         vim.fn.delete(chooser_path)
       end
