@@ -23,12 +23,12 @@ vim.keymap.set("n", "cu", "<cmd>:cd ../ | pwd<CR>", { desc = "CD up a directory"
 
 ---- Show current working directory
 vim.keymap.set("n", "<leader>W", function()
-	print(vim.fn.getcwd())
+  print(vim.fn.getcwd())
 end, { desc = "Show current working directory" })
 
 ---- Save and source file
 vim.api.nvim_create_user_command("W", function()
-	vim.cmd("write | source %")
+  vim.cmd("write | source %")
 end, {})
 
 -------------------------------------------------------------------------------
@@ -56,10 +56,10 @@ vim.keymap.set("n", "<leader>Q", ":q<CR>", { desc = "Safely quit neovim" })
 -- end
 
 ---- Change between visible buffers/sidebars/etc...
-vim.keymap.set("n", "<M-h>", "<C-w>h")
-vim.keymap.set("n", "<M-j>", "<C-w>j")
-vim.keymap.set("n", "<M-k>", "<C-w>k")
-vim.keymap.set("n", "<M-l>", "<C-w>l")
+-- vim.keymap.set("n", "<M-h>", "<C-w>h")
+-- vim.keymap.set("n", "<M-j>", "<C-w>j")
+-- vim.keymap.set("n", "<M-k>", "<C-w>k")
+-- vim.keymap.set("n", "<M-l>", "<C-w>l")
 
 -------------------------------------------------------------------------------
 ---- 📦 General Editing
@@ -73,32 +73,32 @@ vim.keymap.set({ "n", "x" }, "<leader>y", '"+y', { desc = "Yank into system's cl
 
 ---- `qp` to play macro
 vim.keymap.set("n", "qp", function()
-	vim.api.nvim_feedkeys("@", "n", false)
+  vim.api.nvim_feedkeys("@", "n", false)
 end, { noremap = true, desc = "Play macro" })
 
 ----- `qr` to start macro recording
 vim.keymap.set("n", "qr", function()
-	vim.api.nvim_feedkeys("q", "n", false)
+  vim.api.nvim_feedkeys("q", "n", false)
 end, { noremap = true, desc = "Start recording macro" })
 
 vim.keymap.set("x", "d", function()
-	if vim.fn.getline("."):match("^%s*$") then
-		return '"_d'
-	end
-	return "d"
+  if vim.fn.getline("."):match("^%s*$") then
+    return '"_d'
+  end
+  return "d"
 end, { expr = true })
 
 vim.keymap.set("n", "dd", function()
-	if vim.fn.getline("."):match("^%s*$") then
-		return '"_dd'
-	end
-	return "dd"
+  if vim.fn.getline("."):match("^%s*$") then
+    return '"_dd'
+  end
+  return "dd"
 end, { expr = true })
 
 ---- Split the current line at the cursor position and keep the cursor on the original line
 vim.keymap.set("n", "<C-l>", "i<CR><Esc>==k$", {
-	desc = "Split line at cursor and reindent",
-	noremap = true,
+  desc = "Split line at cursor and reindent",
+  noremap = true,
 })
 
 ---- Clear Search Query
@@ -138,7 +138,7 @@ vim.keymap.set("n", "*", "*N", { desc = "'*' Keeps cursor on the name occurrence
 
 ---- Duplicate Line
 vim.keymap.set("n", "H", function()
-	vim.cmd("copy .")
+  vim.cmd("copy .")
 end, { desc = "Duplicate Line" })
 
 ---- Move lines
@@ -150,11 +150,11 @@ vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 
 ---- Add option to operate on full buffer on yank, delete and select
 vim.keymap.set({ "o", "x" }, "az", function()
-	local start_pos = { 1, 0 }
-	local end_pos = { vim.fn.line("$"), vim.fn.getline("$"):len() }
-	vim.fn.setpos("'<", { 0, start_pos[1], start_pos[2] + 1, 0 })
-	vim.fn.setpos("'>", { 0, end_pos[1], end_pos[2] + 1, 0 })
-	vim.cmd("normal! gv")
+  local start_pos = { 1, 0 }
+  local end_pos = { vim.fn.line("$"), vim.fn.getline("$"):len() }
+  vim.fn.setpos("'<", { 0, start_pos[1], start_pos[2] + 1, 0 })
+  vim.fn.setpos("'>", { 0, end_pos[1], end_pos[2] + 1, 0 })
+  vim.cmd("normal! gv")
 end, { desc = "Entire buffer" })
 
 ---- Swap Paste without overwriting register with regular
@@ -170,7 +170,7 @@ vim.keymap.set("n", "<leader>dd", '"_dd', { noremap = true, silent = true, desc 
 ---- x deletes without yanking
 -- vim.keymap.set({ "n", "x" }, "x", "\"_x", { noremap = true, silent = true, desc = "Delete char without yank" })
 for _, key in ipairs({ "x", "X" }) do
-	vim.keymap.set({ "n", "x" }, key, '"_x', { noremap = true, silent = true, desc = "Delete char without yank" })
+  vim.keymap.set({ "n", "x" }, key, '"_x', { noremap = true, silent = true, desc = "Delete char without yank" })
 end
 
 ---- Start/end of line (non-blank)
@@ -260,16 +260,16 @@ vim.keymap.set("c", "<Down>", "<C-n>", { desc = "Select Next" })
 
 ---- Reduce timeoutlen in insert mode for faster key sequences
 vim.api.nvim_create_autocmd("InsertEnter", {
-	callback = function()
-		vim.o.timeoutlen = 50
-	end,
+  callback = function()
+    vim.o.timeoutlen = 50
+  end,
 })
 
 ---- Restore timeoutlen when leaving insert mode
 vim.api.nvim_create_autocmd("InsertLeave", {
-	callback = function()
-		vim.o.timeoutlen = 500
-	end,
+  callback = function()
+    vim.o.timeoutlen = 500
+  end,
 })
 
 -------------------------------------------------------------------------------
@@ -284,7 +284,7 @@ vim.keymap.set({ "n", "x" }, "s", "<Nop>", { desc = "Disable s key" })
 
 ---- Disable F13–F22 in insert/command mode
 for i = 1, 22 do
-	vim.keymap.set({ "i", "c" }, "<F" .. i .. ">", "<Nop>", { silent = true, desc = "Disable <F" .. i .. ">" })
+  vim.keymap.set({ "i", "c" }, "<F" .. i .. ">", "<Nop>", { silent = true, desc = "Disable <F" .. i .. ">" })
 end
 
 ---- Disable join line in visual mode

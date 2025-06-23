@@ -1,10 +1,12 @@
 return {
-	"echasnovski/mini.statusline",
-	version = "*",
-	config = function()
-		require("mini.statusline").setup({
-			use_icons = true,
-			set_vim_settings = true, -- sets 'laststatus' to 3
-		})
-	end,
+  "echasnovski/mini.statusline",
+  version = "*",
+  opts = {
+    content = {
+      active = nil,
+      inactive = nil,
+    },
+    use_icons = true,
+    set_vim_settings = true,
+  },
 }

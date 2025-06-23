@@ -1,13 +1,13 @@
 for i = 1, 9 do
-	vim.keymap.set("n", "<leader>" .. i, function()
-		require("bufferline").go_to(i, true)
-	end, { desc = "which_key_ignore" })
+  vim.keymap.set("n", "<leader>" .. i, function()
+    require("bufferline").go_to(i, true)
+  end, { desc = "which_key_ignore" })
 end
 
 for i = 1, 9 do
-	vim.keymap.set("n", "<M-" .. i .. ">", function()
-		require("bufferline").go_to(i, true)
-	end, { desc = "which_key_ignore" })
+  vim.keymap.set("n", "<M-" .. i .. ">", function()
+    require("bufferline").go_to(i, true)
+  end, { desc = "which_key_ignore" })
 end
 
 -- vim.keymap.set("n", "<C-h>", function () require("bufferline").go_to(1, true) end, { desc = "Go to buffer 1" })
@@ -20,32 +20,32 @@ vim.keymap.set("n", "J", "<cmd>BufferLineCyclePrev<CR>", { desc = "Bufferline: C
 vim.keymap.set("n", "K", "<cmd>BufferLineCycleNext<CR>", { desc = "Bufferline: Cycle Next" })
 
 vim.keymap.set("n", "<C-S-j>", function()
-	require("bufferline").move(-1) -- move current buffer right (end)
+  require("bufferline").move(-1) -- move current buffer right (end)
 end, { desc = "Move buffer right" })
 
 vim.keymap.set("n", "<C-S-k>", function()
-	require("bufferline").move(1) -- move current buffer left (start)
+  require("bufferline").move(1) -- move current buffer left (start)
 end, { desc = "Move buffer left" })
 
 return {
-	"akinsho/bufferline.nvim",
-	version = "*",
-	-- dependencies = { "nvim-tree/nvim-web-devicons" },
-	config = function()
-		require("bufferline").setup({
-			options = {
-				mode = "buffers",
-				diagnostics = "nvim_lsp",
-				show_buffer_close_icons = false,
-				show_buffer_icons = false,
-				show_close_icon = false,
-				separator_style = "thin",
-				always_show_bufferline = false,
-				numbers = "ordinal",
-				offsets = {
-					{ filetype = "NvimTree", text = "", padding = 1 },
-				},
-			},
-		})
-	end,
+  "akinsho/bufferline.nvim",
+  version = "*",
+  -- dependencies = { "nvim-tree/nvim-web-devicons" },
+  config = function()
+    require("bufferline").setup({
+      options = {
+        mode = "buffers",
+        diagnostics = "nvim_lsp",
+        show_buffer_close_icons = false,
+        show_buffer_icons = false,
+        show_close_icon = false,
+        separator_style = "thin",
+        always_show_bufferline = false,
+        numbers = "ordinal",
+        offsets = {
+          { filetype = "NvimTree", text = "", padding = 1 },
+        },
+      },
+    })
+  end,
 }
