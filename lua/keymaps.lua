@@ -6,6 +6,27 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -------------------------------------------------------------------------------
+---- 🛑 Disable Default Mappings
+-------------------------------------------------------------------------------
+
+-- Disable the default `q` behavior (macro recording)
+vim.keymap.set({ "n", "x" }, "q", "<Nop>", { noremap = true })
+
+---- Disable s key
+vim.keymap.set({ "n", "x" }, "s", "<Nop>", { desc = "Disable s key" })
+
+---- Disable F13–F22 in insert/command mode
+for i = 1, 22 do
+  vim.keymap.set({ "i", "c" }, "<F" .. i .. ">", "<Nop>", { silent = true, desc = "Disable <F" .. i .. ">" })
+end
+
+---- Disable join line in visual mode
+-- vim.keymap.set("x", "J", "<Nop>", { desc = "Disable join line in visual line" })
+
+---- Remove default lowercase mapping (gu)
+vim.keymap.set({ "n", "x" }, "gu", "<Nop>", { desc = "Disable gu" })
+
+-------------------------------------------------------------------------------
 ---- 💾 Save / Format / File Ops
 -------------------------------------------------------------------------------
 
@@ -83,6 +104,13 @@ resize("<M-Up>", "<C-w>+", 5)
 -------------------------------------------------------------------------------
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
+
+vim.keymap.set(
+  "n",
+  "<leader>*",
+  ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
+  { desc = "Search and replace word under cursor" }
+)
 
 ---- Paste from system's clipboard
 vim.keymap.set({ "n", "x" }, "<leader>p", '"+p', { desc = "Paste from system's clipboard" })
@@ -320,24 +348,3 @@ vim.api.nvim_create_autocmd("InsertLeave", {
     vim.o.timeoutlen = 500
   end,
 })
-
--------------------------------------------------------------------------------
----- 🛑 Disable Default Mappings
--------------------------------------------------------------------------------
-
--- Disable the default `q` behavior (macro recording)
-vim.keymap.set({ "n", "x" }, "q", "<Nop>", { noremap = true })
-
----- Disable s key
-vim.keymap.set({ "n", "x" }, "s", "<Nop>", { desc = "Disable s key" })
-
----- Disable F13–F22 in insert/command mode
-for i = 1, 22 do
-  vim.keymap.set({ "i", "c" }, "<F" .. i .. ">", "<Nop>", { silent = true, desc = "Disable <F" .. i .. ">" })
-end
-
----- Disable join line in visual mode
--- vim.keymap.set("x", "J", "<Nop>", { desc = "Disable join line in visual line" })
-
----- Remove default lowercase mapping (gu)
-vim.keymap.set({ "n", "x" }, "gu", "<Nop>", { desc = "Disable gu" })
