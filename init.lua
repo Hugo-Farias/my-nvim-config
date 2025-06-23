@@ -5,8 +5,8 @@ vim.opt.rtp:prepend(lazypath)
 require("keymaps")
 
 require("lazy").setup({
-	require("loadplugins"),
-	require("colors"),
+  require("loadplugins"),
+  require("colors"),
 })
 
 -- Neovim base settings
@@ -34,35 +34,35 @@ require("neovide")
 
 -- Change location to git root if found, otherwise to file's location
 vim.api.nvim_create_autocmd("BufReadPost", {
-	once = true,
-	callback = function()
-		local file = vim.api.nvim_buf_get_name(0)
-		if vim.fn.filereadable(file) ~= 1 then
-			return
-		end
+  once = true,
+  callback = function()
+    local file = vim.api.nvim_buf_get_name(0)
+    if vim.fn.filereadable(file) ~= 1 then
+      return
+    end
 
-		local dir = vim.fn.fnamemodify(file, ":h")
-		local git_root = nil
+    local dir = vim.fn.fnamemodify(file, ":h")
+    local git_root = nil
 
-		while dir ~= "" and dir ~= "/" do
-			if vim.fn.isdirectory(dir .. "/.git") == 1 then
-				git_root = dir
-				break
-			end
+    while dir ~= "" and dir ~= "/" do
+      if vim.fn.isdirectory(dir .. "/.git") == 1 then
+        git_root = dir
+        break
+      end
 
-			-- Go one level up
-			local parent = vim.fn.fnamemodify(dir, ":h")
-			if parent == dir then
-				break
-			end
-			dir = parent
-		end
+      -- Go one level up
+      local parent = vim.fn.fnamemodify(dir, ":h")
+      if parent == dir then
+        break
+      end
+      dir = parent
+    end
 
-		if git_root then
-			vim.cmd.lcd(git_root)
-		else
-			-- fallback to file's directory
-			vim.cmd.lcd(vim.fn.fnamemodify(file, ":h"))
-		end
-	end,
+    if git_root then
+      vim.cmd.lcd(git_root)
+    else
+      -- fallback to file's directory
+      vim.cmd.lcd(vim.fn.fnamemodify(file, ":h"))
+    end
+  end,
 })
