@@ -1,6 +1,7 @@
 -- Fix Eslint not being attached
 -- Fix Powershell's lsp erroring out
 -- Change nvimcmp to blink
+-- Fix yazi opening files
 
 -- Install mini.nvim
 | Module | Description |
@@ -41,4 +42,3 @@
 
 jump,
 map,
-operators,

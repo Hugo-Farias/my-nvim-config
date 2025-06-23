@@ -13,9 +13,6 @@ return {
   { "lewis6991/gitsigns.nvim", require("plugins.gitsigns") },
   { "windwp/nvim-autopairs", require("plugins.autopairs") },
 
-  ---- Explorers ----
-  { "mikavilpas/yazi.nvim", require("plugins.yazi") },
-
   ---- Mini Compilation ----
   { "echasnovski/mini.icons", require("plugins.mini-icons") },
   { "echasnovski/mini.surround", require("plugins.mini-surround") },

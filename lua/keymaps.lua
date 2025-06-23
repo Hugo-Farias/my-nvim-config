@@ -205,37 +205,58 @@ vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Line diag
 -------------------------------------------------------------------------------
 
 ---- Open Yazi
--- vim.keymap.set("n", "qe", function()
--- local buf = vim.api.nvim_create_buf(false, true)
+vim.keymap.set("n", "qe", function()
+  local buf = vim.api.nvim_create_buf(false, true)
 
--- local width = math.floor(vim.o.columns * 0.8)
--- local height = math.floor(vim.o.lines * 0.8)
--- local row = math.floor((vim.o.lines - height) / 2)
--- local col = math.floor((vim.o.columns - width) / 2)
+  local width = math.floor(vim.o.columns * 0.8)
+  local height = math.floor(vim.o.lines * 0.8)
+  local row = math.floor((vim.o.lines - height) / 2)
+  local col = math.floor((vim.o.columns - width) / 2)
 
--- local win = vim.api.nvim_open_win(buf, true, {
--- 	relative = "editor",
--- 	width = width,
--- 	height = height,
--- 	row = row,
--- 	col = col,
--- 	style = "minimal",
--- 	border = "rounded",
--- })
+  local win = vim.api.nvim_open_win(buf, true, {
+    relative = "editor",
+    width = width,
+    height = height,
+    row = row,
+    col = col,
+    style = "minimal",
+    border = "rounded",
+  })
 
--- vim.api.nvim_buf_set_option(buf, "bufhidden", "wipe")
+  vim.api.nvim_buf_set_option(buf, "bufhidden", "wipe")
 
--- -- Use PowerShell directly and launch yazi explicitly
--- vim.fn.termopen({ "powershell.exe", "-NoLogo", "-Command", "yazi" }, {
--- 	on_exit = function()
--- 		if vim.api.nvim_win_is_valid(win) then
--- 			vim.api.nvim_win_close(win, true)
--- 		end
--- 	end,
--- })
+  local chooser_path = "C:\\Temp\\nvim-yazi.txt" -- or some other writable temp file
 
--- vim.cmd("startinsert")
--- end, { desc = "Yazi: Open" })
+  -- Ensure temp directory exists
+  vim.fn.mkdir("C:/Temp", "p")
+
+  -- Clear any stale file
+  vim.fn.delete(chooser_path)
+
+  vim.fn.termopen({
+    "C:\\PROGRA~1\\PowerShell\\7\\pwsh.exe",
+    "-NoLogo",
+    "-NoProfile",
+    "-Command",
+    "yazi --chooser-file=" .. chooser_path,
+  }, {
+    on_exit = function()
+      if vim.fn.filereadable(chooser_path) == 1 then
+        local lines = vim.fn.readfile(chooser_path)
+        if #lines > 0 then
+          vim.cmd("edit " .. vim.fn.fnameescape(lines[1]))
+        end
+        vim.fn.delete(chooser_path)
+      end
+
+      if vim.api.nvim_win_is_valid(win) then
+        vim.api.nvim_win_close(win, true)
+      end
+    end,
+  })
+
+  vim.cmd("startinsert")
+end, { desc = "Yazi: Open" })
 
 -------------------------------------------------------------------------------
 ---- 🔤 Insert Mode Keymaps
