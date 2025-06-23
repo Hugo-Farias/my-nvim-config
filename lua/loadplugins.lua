@@ -1,6 +1,6 @@
 return {
   -- { "nvim-tree/nvim-web-devicons" },
-  { "rcarriga/nvim-notify", require("plugins.notify") },
+  -- { "rcarriga/nvim-notify", require("plugins.notify") },
   { "kana/vim-smartword", require("plugins.vim-smartword") },
   -- { "folke/noice.nvim", require("plugins.noice") },
   { "tpope/vim-commentary" },
@@ -38,4 +38,7 @@ return {
   ---- LSP ----
   { "mason-org/mason.nvim", require("plugins.mason") },
   { "neovim/nvim-lspconfig", require("lsp") },
+
+  ---- Colors ----
+  require("colors"),
 }

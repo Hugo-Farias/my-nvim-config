@@ -91,12 +91,12 @@ vim.keymap.set({ "n", "x" }, "<leader>p", '"+p', { desc = "Paste from system's c
 vim.keymap.set({ "n", "x" }, "<leader>y", '"+y', { desc = "Yank into system's clipboard" })
 
 ---- `qp` to play macro
-vim.keymap.set("n", "qp", function()
+vim.keymap.set({ "n", "x" }, "qp", function()
   vim.api.nvim_feedkeys("@", "n", false)
 end, { noremap = true, desc = "Play macro" })
 
 ----- `qr` to start macro recording
-vim.keymap.set("n", "qr", function()
+vim.keymap.set({ "n", "x" }, "qr", function()
   vim.api.nvim_feedkeys("q", "n", false)
 end, { noremap = true, desc = "Start recording macro" })
 
@@ -161,8 +161,8 @@ vim.keymap.set("n", "H", function()
 end, { desc = "Duplicate Line" })
 
 ---- Move lines
-vim.keymap.set("x", "<C-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
-vim.keymap.set("x", "<C-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
+vim.keymap.set("x", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
+vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
 ---- Redo
 vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
@@ -242,7 +242,7 @@ vim.keymap.set("n", "<leader>E", function()
     border = "rounded",
   })
 
-  vim.api.nvim_buf_set_option(buf, "bufhidden", "wipe")
+  vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = buf })
 
   local chooser_path = "C:\\Temp\\nvim-yazi.txt" -- or some other writable temp file
 
@@ -326,7 +326,7 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 -------------------------------------------------------------------------------
 
 -- Disable the default `q` behavior (macro recording)
-vim.keymap.set("n", "q", "<Nop>", { noremap = true })
+vim.keymap.set({ "n", "x" }, "q", "<Nop>", { noremap = true })
 
 ---- Disable s key
 vim.keymap.set({ "n", "x" }, "s", "<Nop>", { desc = "Disable s key" })
@@ -337,7 +337,7 @@ for i = 1, 22 do
 end
 
 ---- Disable join line in visual mode
-vim.keymap.set("x", "J", "<Nop>", { desc = "Disable join line in visual line" })
+-- vim.keymap.set("x", "J", "<Nop>", { desc = "Disable join line in visual line" })
 
 ---- Remove default lowercase mapping (gu)
 vim.keymap.set({ "n", "x" }, "gu", "<Nop>", { desc = "Disable gu" })

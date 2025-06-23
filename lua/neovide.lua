@@ -7,7 +7,7 @@ if vim.g.neovide then
   vim.g.neovide_normal_opacity = 0.8
   vim.g.neovide_show_border = false
   vim.g.neovide_padding_top = 0
-  vim.g.neovide_padding_bottom = 0
+  vim.g.neovide_padding_bottom = 10
   vim.g.neovide_padding_right = 0
   vim.g.neovide_padding_left = 0
   vim.g.neovide_hide_mouse_when_typing = true

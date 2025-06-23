@@ -39,6 +39,3 @@
 | **mini.test** | Framework-independent test runner |
 | **mini.trailspace** | Highlight/remove trailing whitespace |
 | **mini.visits** | Track and jump to most visited files (MRU-like) |
-
-jump,
-map,

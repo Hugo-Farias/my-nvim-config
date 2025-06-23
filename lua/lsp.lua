@@ -73,7 +73,7 @@ return {
 
     lspconfig.powershell_es.setup({
       cmd = {
-        "pwsh",
+        "PowerShellEditorServices",
         "-NoLogo",
         "-NoProfile",
         "-Command",
