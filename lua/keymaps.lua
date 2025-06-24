@@ -13,11 +13,11 @@ vim.g.maplocalleader = " "
 vim.keymap.set({ "n", "x" }, "q", "<Nop>", { noremap = true })
 
 ---- Disable s key
-vim.keymap.set({ "n", "x" }, "s", "<Nop>", { desc = "Disable s key" })
+vim.keymap.set({ "n", "x" }, "s", "<Nop>", { noremap = true })
 
 ---- Disable F13–F22 in insert/command mode
 for i = 1, 22 do
-  vim.keymap.set({ "i", "c" }, "<F" .. i .. ">", "<Nop>", { silent = true, desc = "Disable <F" .. i .. ">" })
+  vim.keymap.set({ "i", "c" }, "<F" .. i .. ">", "<Nop>", { silent = true, noremap = true })
 end
 
 ---- Disable join line in visual mode
@@ -150,6 +150,7 @@ vim.keymap.set("n", "<C-l>", "i<CR><Esc>==k$", {
 
 ---- Clear Search Query
 vim.keymap.set("n", "<leader>ll", "<cmd>nohlsearch | redraw<CR>", { desc = "Clear search query" })
+vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search query" })
 
 ---- '*' Keeps cursor on the name occurrence
 vim.keymap.set("n", "*", "*N", { desc = "'*' Keeps cursor on the name occurrence" })
@@ -195,7 +196,7 @@ vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 ---- Redo
 vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
 
----- Add option to operate on full buffer on yank, delete and select
+---- Add option to operate on full buffer on yank, delete and visual
 vim.keymap.set({ "o", "x" }, "az", function()
   local start_pos = { 1, 0 }
   local end_pos = { vim.fn.line("$"), vim.fn.getline("$"):len() }
@@ -232,7 +233,7 @@ vim.keymap.set("i", "KJ", "<Esc>", { desc = "Exit insert mode (KJ)" })
 
 ---- Join lines with description
 -- vim.keymap.set("n", "<leader>jl", "J", { noremap = true, silent = true, desc = "Join lines" })
--- vim.keymap.set("n", "L", "J", { noremap = true, silent = true, desc = "Join lines" })
+vim.keymap.set("n", "L", "J", { silent = true, desc = "Join lines" })
 
 ---- Visual lowercase
 vim.keymap.set("x", "gL", "gu", { noremap = true, desc = "Visual lowercase (gu)" })

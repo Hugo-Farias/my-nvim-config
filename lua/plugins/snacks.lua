@@ -2,28 +2,28 @@
 -- 🍿 Snacks Keymaps
 -------------------------------------------------------------------------------
 
-for _, key in ipairs({ "<leader><leader>", "<leader>sf" }) do
-  vim.keymap.set("n", key, "<cmd>:lua Snacks.picker.files()<CR>", { desc = "Snacks: Search Files" })
-end
--- stylua: ignore
-vim.keymap.set( "n", "<leader>sr", "<cmd>:lua Snacks.dashboard.pick('oldfiles')<CR>", { desc = "Snacks: Search Recent Files" })
-vim.keymap.set("n", "<leader>e", "<cmd>:lua Snacks.picker.explorer()<CR>", { desc = "Snacks: Open Explorer" })
-vim.keymap.set("n", "<leader>fR", "<cmd>:lua Snacks.rename.rename_file()<CR>", { desc = "Snacks: Rename File" })
-vim.keymap.set("n", "<leader>sg", "<cmd>:lua Snacks.picker.grep()<CR>", { desc = "Snacks: Search Grep" })
-vim.keymap.set("n", "<C-e>", "<cmd>:lua Snacks.picker.buffers()<CR>", { desc = "Snacks: Search Buffers" })
-vim.keymap.set("n", "<leader>sc", ":lua Snacks.picker.colorschemes()<CR>", { desc = "Snacks: Search Color Schemes" })
-vim.keymap.set("n", "<leader>sk", ":lua Snacks.picker.keymaps()<CR>", { desc = "Snacks: Search Keymaps" })
-vim.keymap.set("n", "<leader>sh", ":lua Snacks.picker.help()<CR>", { desc = "Snacks: Search Help" })
-vim.keymap.set("n", "<leader>s'", ":lua Snacks.picker.registers()<CR>", { desc = "Snacks: Search Registers" })
-vim.keymap.set(
-  "n",
-  "<leader>sn",
-  ":lua Snacks.notifier.show_history()<CR>",
-  { desc = "Snacks: Show Notification History" }
-)
+-- stylua: ignore start
+vim.keymap.set("n", "<leader>sg", "<cmd>lua Snacks.picker.git_files()<CR>", { desc = "Snacks: Search Git Files" })
+vim.keymap.set("n", "<leader><leader>", "<cmd>lua Snacks.picker.files()<CR>", { desc = "Snacks: Search Files" })
+vim.keymap.set("n", "<leader>sr", "<cmd>lua Snacks.picker.recent()<CR>", { desc = "Snacks: Search Recent Files" })
+vim.keymap.set("n", "<leader>sl", "<cmd>lua Snacks.picker.lines()<CR>", { desc = "Snacks: Search Lines" })
+vim.keymap.set("n", "<leader>e", "<cmd>lua Snacks.picker.explorer()<CR>", { desc = "Snacks: Open Explorer" })
+vim.keymap.set("n", "<leader>fR", "<cmd>lua Snacks.rename.rename_file()<CR>", { desc = "Snacks: Rename File" })
+vim.keymap.set("n", "<leader>s/", "<cmd>lua Snacks.picker.grep()<CR>", { desc = "Snacks: Search Grep" })
+vim.keymap.set("n", "<C-e>", "<cmd>lua Snacks.picker.buffers()<CR>", { desc = "Snacks: Search Buffers" })
+vim.keymap.set("n", "<leader>sC", "<cmd>lua Snacks.picker.colorschemes()<CR>", { desc = "Snacks: Search Color Schemes" })
+vim.keymap.set("n", "<leader>sk", "<cmd>lua Snacks.picker.keymaps()<CR>", { desc = "Snacks: Search Keymaps" })
+vim.keymap.set("n", "<leader>sh", "<cmd>lua Snacks.picker.help()<CR>", { desc = "Snacks: Search Help" })
+vim.keymap.set("n", "<leader>s'", "<cmd>lua Snacks.picker.registers()<CR>", { desc = "Snacks: Search Registers" })
+vim.keymap.set("n", "<leader>sc", ":lua Snacks.picker.command_history()<CR>", { desc = "Snacks: Search Command History" })
+vim.keymap.set("n", "<leader>sd", ":lua Snacks.picker.diagnostics()<CR>", { desc = "Snacks: Search Diagnostics" })
+vim.keymap.set("n", "<leader>sm", ":lua Snacks.picker.marks()<CR>", { desc = "Snacks: Search Diagnostics" })
+
+vim.keymap.set("n", "<leader>sn", ":lua Snacks.notifier.show_history()<CR>", { desc = "Snacks: Show Notification History" })
 
 vim.keymap.set("n", "<leader>gg", "<cmd>:lua Snacks.lazygit()<CR>", { desc = "Snacks: Git Lazygit" })
 vim.keymap.set("n", "<leader>gb", "<cmd>:lua Snacks.git.blame_line()<CR>", { desc = "Snacks: Git Line Blame" })
+-- stylua: ignore end
 
 -- Toggle terminal in normal mode
 vim.keymap.set("n", "<C-y>", function()

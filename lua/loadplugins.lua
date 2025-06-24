@@ -1,4 +1,4 @@
-return {
+require("lazy").setup({
   -- { "nvim-tree/nvim-web-devicons" },
   -- { "rcarriga/nvim-notify", require("plugins.notify") },
   { "kana/vim-smartword", require("plugins.vim-smartword") },
@@ -43,4 +43,4 @@ return {
 
   ---- Colors ----
   require("colors"),
-}
+})
