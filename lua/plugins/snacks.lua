@@ -21,8 +21,25 @@ vim.keymap.set("n", "<leader>sm", ":lua Snacks.picker.marks()<CR>", { desc = "Sn
 
 vim.keymap.set("n", "<leader>sn", ":lua Snacks.notifier.show_history()<CR>", { desc = "Snacks: Show Notification History" })
 
-vim.keymap.set("n", "<leader>gg", "<cmd>:lua Snacks.lazygit()<CR>", { desc = "Snacks: Git Lazygit" })
-vim.keymap.set("n", "<leader>gb", "<cmd>:lua Snacks.git.blame_line()<CR>", { desc = "Snacks: Git Line Blame" })
+vim.keymap.set("n", "<leader>gg", "<cmd>lua Snacks.lazygit()<CR>", { desc = "Snacks: Git Lazygit" })
+vim.keymap.set("n", "<leader>gb", "<cmd>lua Snacks.git.blame_line()<CR>", { desc = "Snacks: Git Line Blame" })
+vim.keymap.set("n", "<leader>gl", "<cmd>lua Snacks.picker.git_log_line()<CR>", {desc = "Snacks: Git Log Line" })
+
+---- Keymaps ----
+-- stylua: ignore
+vim.api.nvim_create_autocmd("LspAttach", {
+  desc = "LSP actions",
+  callback = function()
+    vim.keymap.set("n", "gd", function() Snacks.picker.lsp_definitions() end, {desc = "LSP: Goto Definition" })
+    vim.keymap.set("n", "gD", function() Snacks.picker.lsp_declarations() end, {desc = "LSP: Goto Declaration" })
+    vim.keymap.set("n", "gr", function() Snacks.picker.lsp_references() end, {nowait = true, desc = "LSP: References" })
+    vim.keymap.set("n", "gi", function() Snacks.picker.lsp_implementations() end, {desc = "LSP: Goto Implementation" })
+    vim.keymap.set("n", "go", function() Snacks.picker.lsp_type_definitions() end, {desc = "LSP: Goto T[y]pe Definition" })
+    vim.keymap.set("n", "<leader>ss", function() Snacks.picker.lsp_symbols() end, {desc = "LSP: Symbols" })
+    vim.keymap.set("n", "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, {desc = "LSP: Workspace Symbols" })
+  end,
+})
+
 -- stylua: ignore end
 
 -- Toggle terminal in normal mode
@@ -69,7 +86,7 @@ return {
     picker = { enabled = true },
     notifier = { enabled = true },
     quickfile = { enabled = true },
-    scope = vim.tbl_deep_extend("force", { enabled = true }, require("plugins.snacks-scope")),
+    scope = { enabled = true },
     scroll = { enabled = false },
     statuscolumn = { enabled = true },
     words = { enabled = true },

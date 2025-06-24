@@ -1,4 +1,8 @@
 require("lazy").setup({
+  ---- LSP ----
+  { "mason-org/mason.nvim", require("plugins.mason") },
+  { "neovim/nvim-lspconfig", require("lsp") },
+
   -- { "nvim-tree/nvim-web-devicons" },
   -- { "rcarriga/nvim-notify", require("plugins.notify") },
   { "kana/vim-smartword", require("plugins.vim-smartword") },
@@ -14,6 +18,7 @@ require("lazy").setup({
   { "folke/snacks.nvim", require("plugins.snacks") },
   { "lewis6991/gitsigns.nvim", require("plugins.gitsigns") },
   { "windwp/nvim-autopairs", require("plugins.autopairs") },
+  { "artemave/workspace-diagnostics.nvim" },
 
   ---- Mini Compilation ----
   { "echasnovski/mini.icons", require("plugins.mini-icons") },
@@ -36,10 +41,6 @@ require("lazy").setup({
 
   ---- Formatter ----
   { "stevearc/conform.nvim", require("plugins.conform") },
-
-  ---- LSP ----
-  { "mason-org/mason.nvim", require("plugins.mason") },
-  { "neovim/nvim-lspconfig", require("lsp") },
 
   ---- Colors ----
   require("colors"),

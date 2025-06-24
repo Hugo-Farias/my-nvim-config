@@ -3,5 +3,5 @@ local lazypath = "C:/Users/Hugo/AppData/Local/nvim-data/site/pack/lazy/start/laz
 vim.opt.rtp:prepend(lazypath)
 
 require("keymaps")
-require("loadplugins")
+require("lazyload")
 require("set")

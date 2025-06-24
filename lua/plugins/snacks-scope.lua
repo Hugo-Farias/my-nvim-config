@@ -1,6 +1,4 @@
 ---@class snacks.scope.Config
----@field max_size? number
----@field enabled? boolean
 
 return {
   -- absolute minimum size of the scope.

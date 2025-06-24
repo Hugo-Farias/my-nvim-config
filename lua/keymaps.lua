@@ -149,7 +149,7 @@ vim.keymap.set("n", "<C-l>", "i<CR><Esc>==k$", {
 })
 
 ---- Clear Search Query
-vim.keymap.set("n", "<leader>ll", "<cmd>nohlsearch | redraw<CR>", { desc = "Clear search query" })
+vim.keymap.set("n", "<leader>ll", "<cmd> redraw | LspRestart<CR>", { desc = "Restart Lsp" })
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search query" })
 
 ---- '*' Keeps cursor on the name occurrence
