@@ -132,6 +132,7 @@ vim.keymap.set({ "n", "x" }, "qr", function()
   vim.api.nvim_feedkeys("q", "n", false)
 end, { noremap = true, desc = "Start recording macro" })
 
+---- Prevent dd from yanking into register if line is emplty in visual mode
 vim.keymap.set("x", "d", function()
   if vim.fn.getline("."):match("^%s*$") then
     return '"_d'
@@ -139,21 +140,34 @@ vim.keymap.set("x", "d", function()
   return "d"
 end, { expr = true })
 
-vim.keymap.set("n", "dd", function()
-  if vim.fn.getline("."):match("^%s*$") then
-    return '"_dd'
-  end
-  return "dd"
-end, { expr = true })
+---- Prevent d or y operators from yanking into register if register would be empty
+-- Save unnamed register before yank/delete
+vim.api.nvim_create_autocmd("ModeChanged", {
+  pattern = "*:[nv]", -- From any mode into Normal/Visual
+  callback = function()
+    vim.g._reg_backup = vim.fn.getreg('"')
+    vim.g._regtype_backup = vim.fn.getregtype('"')
+  end,
+})
 
----- Split the current line at the cursor position and keep the cursor on the original line
-vim.keymap.set("n", "<C-l>", "i<CR><Esc>==k$", {
-  desc = "Split line at cursor and reindent",
-  noremap = true,
+vim.api.nvim_create_autocmd("TextYankPost", {
+  callback = function()
+    local op = vim.v.event.operator
+    if op ~= "d" and op ~= "y" then
+      return
+    end
+
+    local content = vim.fn.getreg('"')
+    if content:match("^%s*$") then
+      -- Restore previous register if new one is empty
+      vim.fn.setreg('"', vim.g._reg_backup or "", vim.g._regtype_backup or "v")
+    end
+  end,
 })
 
 ---- Clear Search Query
-vim.keymap.set("n", "<leader>ll", "<cmd> redraw | LspRestart<CR>", { desc = "Restart Lsp" })
+vim.keymap.set("n", "<leader>ll", "<cmd>redraw | nohlsearch<CR>", { desc = "Clear Highlight Search" })
+vim.keymap.set("n", "<leader>lr", "<cmd>LspRestart<CR>", { desc = "Restart Lsp" })
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search query" })
 
 ---- '*' Keeps cursor on the name occurrence
@@ -235,9 +249,15 @@ vim.keymap.set("i", "kj", "<Esc>", { desc = "Exit insert mode (kj)" })
 vim.keymap.set("i", "JK", "<Esc>", { desc = "Exit insert mode (JK)" })
 vim.keymap.set("i", "KJ", "<Esc>", { desc = "Exit insert mode (KJ)" })
 
----- Join lines with description
+---- Join lines
 -- vim.keymap.set("n", "<leader>jl", "J", { noremap = true, silent = true, desc = "Join lines" })
 vim.keymap.set("n", "L", "J", { silent = true, desc = "Join lines" })
+
+---- Split lines
+vim.keymap.set("n", "<C-l>", "i<CR><Esc>==", {
+  desc = "Split line",
+  noremap = true,
+})
 
 ---- Visual lowercase
 vim.keymap.set("x", "gL", "gu", { noremap = true, desc = "Visual lowercase (gu)" })

@@ -43,6 +43,19 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 
+local home_directory = os.getenv("HOME")
+if home_directory == nil then
+  home_directory = os.getenv("USERPROFILE")
+end
+
+-- The bundle_path is where PowerShell Editor Services was installed
+-- local bundle_path = home_directory .. "/Desktop/PowerShellEditorServices"
+
+-- require("lspconfig")["powershell_es"].setup({
+--   bundle_path = bundle_path,
+--   on_attach = on_attach,
+-- })
+
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
@@ -70,45 +83,6 @@ return {
 
     -- lspconfig.lua_ls.setup({})
     -- lspconfig.ts_ls.setup({})
-
-    lspconfig.powershell_es.setup({
-      cmd = {
-        "PowerShellEditorServices",
-        "-NoLogo",
-        "-NoProfile",
-        "-Command",
-        vim.fn.expand("~")
-          .. "~/AppData/Local/nvim-data/mason/packages/powershell-editor-services/PowerShellEditorServices/Start-EditorServices.ps1",
-        "-BundledModulesPath",
-        vim.fn.expand("~") .. "~/AppData/Local/nvim-data/mason/packages/powershell-editor-services",
-        "-SessionDetailsPath",
-        vim.fn.stdpath("cache") .. "/powershell_es-session.json",
-        "-HostName",
-        "nvim",
-        "-HostProfileId",
-        "nvim",
-        "-HostVersion",
-        "1.0.0",
-        "-AdditionalModules",
-        "PowerShellEditorServices.VSCode",
-        "-LogPath",
-        vim.fn.stdpath("cache") .. "/powershell_es.log",
-        "-LogLevel",
-        "Normal",
-      },
-      filetypes = { "ps1", "psm1", "psd1" },
-      bundle_path = vim.fn.expand("~/AppData/Local/nvim-data/mason/packages/powershell-editor-services"),
-      settings = {
-        powershell = {
-          codeFormatting = {
-            Preset = "OTBS",
-          },
-        },
-      },
-      init_options = {
-        enableProfileLoading = false,
-      },
-    })
 
     cmp.setup({
       mapping = cmp.mapping.preset.insert({
