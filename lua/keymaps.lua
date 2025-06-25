@@ -341,7 +341,7 @@ end, { desc = "Yazi: Open" })
 vim.keymap.set({ "c", "i" }, "<C-Backspace>", "<C-w>", { noremap = true, desc = "Delete word before cursor" })
 
 ---- Ctrl-Delete: delete word after cursor
-vim.keymap.set("i", "<C-Delete>", "<Esc>ldwi", { noremap = true, desc = "Delete word after cursor" })
+vim.keymap.set({ "c", "i" }, "<C-Delete>", "<Esc>ldwi", { noremap = true, desc = "Delete word after cursor" })
 
 -------------------------------------------------------------------------------
 ---- ☸> Command Mode Keymaps

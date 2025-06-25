@@ -72,21 +72,29 @@ return {
 
     local cmp = require("cmp")
 
-    local home_directory = os.getenv("HOME")
-    if home_directory == nil then
-      home_directory = os.getenv("USERPROFILE")
-    end
-
-    -- The bundle_path is where PowerShell Editor Services was installed
-    local bundle_path = vim.fn.stdpath("data") .. "\\mason\\packages\\powershell-editor-services"
-
-    lspconfig.powershell_es.setup({
-      bundle_path = bundle_path,
-      on_attach = on_attach,
-    })
-
-    -- lspconfig.lua_ls.setup({})
-    -- lspconfig.ts_ls.setup({})
+    -- lspconfig["powershell_es"] = {
+    --   default_config = {
+    --     cmd = {
+    --       "pwsh",
+    --       "-NoLogo",
+    --       "-NoProfile",
+    --       "-Command",
+    --       [[
+    --     C:\Users\Hugo\AppData\Local\nvim-data\mason\packages\powershell-editor-services\PowerShellEditorServices\Start-EditorServices.ps1
+    --       -HostName 'nvim'
+    --       -HostProfileId 'nvim'
+    --       -HostVersion '1.0.0'
+    --       -LogPath 'C:\Users\Hugo\AppData\Local\Temp\pses.log'
+    --       -SessionDetailsPath 'C:\Users\Hugo\AppData\Local\Temp\pses.session.json'
+    --       -FeatureFlags @()
+    --       -AdditionalModules @()
+    --       -Stdio
+    --   ]],
+    --     },
+    --     filetypes = { "ps1", "psm1" },
+    --     root_dir = lspconfig.util.find_git_ancestor or vim.loop.cwd,
+    --   },
+    -- }
 
     cmp.setup({
       mapping = cmp.mapping.preset.insert({

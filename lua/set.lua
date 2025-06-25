@@ -42,7 +42,6 @@ require("neovide")
 
 -- Change location to git root if found, otherwise to file's location
 function SmartChangeDir()
-  -- print("SmartChangeDir", vim.cmd("pwd"))
   local file = vim.api.nvim_buf_get_name(0)
   if vim.fn.filereadable(file) ~= 1 then
     return
@@ -71,6 +70,7 @@ function SmartChangeDir()
     -- fallback to file's directory
     vim.cmd.lcd(vim.fn.fnamemodify(file, ":h"))
   end
+  vim.cmd("pwd")
 end
 
 vim.api.nvim_create_autocmd("BufReadPost", {
