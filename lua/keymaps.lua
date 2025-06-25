@@ -132,14 +132,6 @@ vim.keymap.set({ "n", "x" }, "qr", function()
   vim.api.nvim_feedkeys("q", "n", false)
 end, { noremap = true, desc = "Start recording macro" })
 
----- Prevent dd from yanking into register if line is emplty in visual mode
-vim.keymap.set("x", "d", function()
-  if vim.fn.getline("."):match("^%s*$") then
-    return '"_d'
-  end
-  return "d"
-end, { expr = true })
-
 ---- Prevent d or y operators from yanking into register if register would be empty
 -- Save unnamed register before yank/delete
 vim.api.nvim_create_autocmd("ModeChanged", {

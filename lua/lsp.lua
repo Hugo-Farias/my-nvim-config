@@ -21,40 +21,31 @@ local function jump_diag(direction)
 end
 
 ---- Keymaps ----
--- stylua: ignore
+-- stylua: ignore start
+local on_attach = function(event)
+  local opts = { buffer = event.buf }
+  vim.keymap.set("n", "gk", function() vim.lsp.buf.hover(floatingOpts) end, vim.tbl_extend("force", opts, { desc = "LSP: Hover" }))
+  vim.keymap.set("n", "gs", function() vim.lsp.buf.signature_help(floatingOpts) end, vim.tbl_extend("force", opts, { desc = "LSP: Signature Help" }))
+  -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, vim.tbl_extend("force", opts, { desc = "LSP: Go to definition" }))
+  -- vim.keymap.set( "n", "gD", vim.lsp.buf.declaration, vim.tbl_extend("force", opts, { desc = "LSP: Go to declaration" }))
+  -- vim.keymap.set( "n", "gi", vim.lsp.buf.implementation, vim.tbl_extend("force", opts, { desc = "LSP: Go to implementation" }))
+  -- vim.keymap.set("n", "gr", vim.lsp.buf.references, vim.tbl_extend("force", opts, { desc = "LSP: References" }))
+  -- vim.keymap.set( "n", "go", vim.lsp.buf.type_definition, vim.tbl_extend("force", opts, { desc = "LSP: Go to Type definition" }))
+  vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "LSP: Rename" }))
+  vim.keymap.set({ "n", "x" }, "<F3>", function() vim.lsp.buf.format({ async = true }) end, vim.tbl_extend("force", opts, { desc = "LSP: Format" }))
+  vim.keymap.set("n", "<C-CR>", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "LSP: Code action" }))
+  vim.keymap.set("n", "gn", function() jump_diag(1) end, vim.tbl_extend("force", opts, { desc = "LSP: Next diagnostic" }))
+  vim.keymap.set("n", "gp", function() jump_diag(-1) end, vim.tbl_extend("force", opts, { desc = "LSP: Previous diagnostic" }))
+  vim.keymap.set("n", "ga", function() vim.diagnostic.open_float(nil, { focus = false }) end, vim.tbl_extend("force", opts, { desc = "LSP: Line diagnostics" }))
+  vim.keymap.set("n", "gA", function() vim.diagnostic.setqflist() end, vim.tbl_extend("force", opts, { desc = "LSP: Open full buffer diagnostics" }))
+end
+-- stylua: ignore end
+
+--
 vim.api.nvim_create_autocmd("LspAttach", {
   desc = "LSP actions",
-  callback = function(event)
-    local opts = { buffer = event.buf }
-    vim.keymap.set("n", "gk", function() vim.lsp.buf.hover(floatingOpts) end, vim.tbl_extend("force", opts, { desc = "LSP: Hover" }))
-    vim.keymap.set("n", "gs", function() vim.lsp.buf.signature_help(floatingOpts) end, vim.tbl_extend("force", opts, { desc = "LSP: Signature Help" }))
-    -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, vim.tbl_extend("force", opts, { desc = "LSP: Go to definition" }))
-    -- vim.keymap.set( "n", "gD", vim.lsp.buf.declaration, vim.tbl_extend("force", opts, { desc = "LSP: Go to declaration" }))
-    -- vim.keymap.set( "n", "gi", vim.lsp.buf.implementation, vim.tbl_extend("force", opts, { desc = "LSP: Go to implementation" }))
-    -- vim.keymap.set("n", "gr", vim.lsp.buf.references, vim.tbl_extend("force", opts, { desc = "LSP: References" }))
-    -- vim.keymap.set( "n", "go", vim.lsp.buf.type_definition, vim.tbl_extend("force", opts, { desc = "LSP: Go to Type definition" }))
-    vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "LSP: Rename" }))
-    vim.keymap.set({ "n", "x" }, "<F3>", function() vim.lsp.buf.format({ async = true }) end, vim.tbl_extend("force", opts, { desc = "LSP: Format" }))
-    vim.keymap.set("n", "<C-CR>", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "LSP: Code action" }))
-    vim.keymap.set("n", "gn", function() jump_diag(1) end, vim.tbl_extend("force", opts, { desc = "LSP: Next diagnostic" }))
-    vim.keymap.set("n", "gp", function() jump_diag(-1) end, vim.tbl_extend("force", opts, { desc = "LSP: Previous diagnostic" }))
-    vim.keymap.set("n", "ga", function() vim.diagnostic.open_float(nil, { focus = false }) end, vim.tbl_extend("force", opts, { desc = "LSP: Line diagnostics" }))
-    vim.keymap.set("n", "gA", function() vim.diagnostic.setqflist() end, vim.tbl_extend("force", opts, { desc = "LSP: Open full buffer diagnostics" }))
-  end,
+  callback = on_attach,
 })
-
-local home_directory = os.getenv("HOME")
-if home_directory == nil then
-  home_directory = os.getenv("USERPROFILE")
-end
-
--- The bundle_path is where PowerShell Editor Services was installed
--- local bundle_path = home_directory .. "/Desktop/PowerShellEditorServices"
-
--- require("lspconfig")["powershell_es"].setup({
---   bundle_path = bundle_path,
---   on_attach = on_attach,
--- })
 
 return {
   "neovim/nvim-lspconfig",
@@ -80,6 +71,19 @@ return {
       vim.tbl_deep_extend("force", lspconfig_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 
     local cmp = require("cmp")
+
+    local home_directory = os.getenv("HOME")
+    if home_directory == nil then
+      home_directory = os.getenv("USERPROFILE")
+    end
+
+    -- The bundle_path is where PowerShell Editor Services was installed
+    local bundle_path = vim.fn.stdpath("data") .. "\\mason\\packages\\powershell-editor-services"
+
+    require("lspconfig")["powershell_es"].setup({
+      bundle_path = bundle_path,
+      -- on_attach = on_attach,
+    })
 
     -- lspconfig.lua_ls.setup({})
     -- lspconfig.ts_ls.setup({})
