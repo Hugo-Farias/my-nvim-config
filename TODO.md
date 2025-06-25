@@ -1,10 +1,11 @@
--- Implement AI assistent
--- Fix Eslint not being attached
--- Fix Powershell's lsp erroring out
--- Change nvimcmp to blink
--- Fix yazi opening files on broken buffer
+-- Implement AI assistent --
+-- Add autotag --
+-- Fix Eslint not being attached --
+-- Fix Powershell's lsp erroring out --
+-- Change nvimcmp to blink --
+-- Fix yazi opening files on broken buffer --
 
--- Install mini.nvim
+-- Install mini.nvim --
 | Module | Description |
 | -------------------- | ------------------------------------------------------------------------------------- |
 | **mini.align** | Align text interactively by pattern (key-value pairs, tables, etc.) |

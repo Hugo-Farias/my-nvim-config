@@ -30,6 +30,10 @@ vim.keymap.set({ "n", "x" }, "gu", "<Nop>", { desc = "Disable gu" })
 ---- 💾 Save / Format / File Ops
 -------------------------------------------------------------------------------
 
+vim.keymap.set("n", "cp", function()
+  SmartChangeDir()
+end)
+
 ---- Quick Save
 vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "Save File" })
 
