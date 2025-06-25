@@ -30,6 +30,8 @@ vim.keymap.set({ "n", "x" }, "gu", "<Nop>", { desc = "Disable gu" })
 ---- 💾 Save / Format / File Ops
 -------------------------------------------------------------------------------
 
+vim.keymap.set("x", "ss", "s", { desc = "Subistitute Selection", noremap = true })
+
 vim.keymap.set("n", "cp", function()
   SmartChangeDir()
 end)
@@ -236,10 +238,10 @@ vim.keymap.set({ "n", "x", "o" }, "gh", "^", { desc = "Start of line (non-blank)
 vim.keymap.set({ "n", "x", "o" }, "gl", "g_", { desc = "End of line (non-blank)" })
 
 ---- Exit insert mode
-vim.keymap.set("i", "jk", "<Esc>", { desc = "Exit insert mode (jk)" })
-vim.keymap.set("i", "kj", "<Esc>", { desc = "Exit insert mode (kj)" })
-vim.keymap.set("i", "JK", "<Esc>", { desc = "Exit insert mode (JK)" })
-vim.keymap.set("i", "KJ", "<Esc>", { desc = "Exit insert mode (KJ)" })
+vim.keymap.set({ "i", "c" }, "jk", "<Esc>", { desc = "Exit insert mode (jk)" })
+vim.keymap.set({ "i", "c" }, "kj", "<Esc>", { desc = "Exit insert mode (kj)" })
+vim.keymap.set({ "i", "c" }, "JK", "<Esc>", { desc = "Exit insert mode (JK)" })
+vim.keymap.set({ "i", "c" }, "KJ", "<Esc>", { desc = "Exit insert mode (KJ)" })
 
 ---- Join lines
 -- vim.keymap.set("n", "<leader>jl", "J", { noremap = true, silent = true, desc = "Join lines" })
@@ -352,16 +354,20 @@ vim.keymap.set("c", "<Down>", "<C-n>", { desc = "Select Next" })
 ---- ⏱ Mode Tweaks
 -------------------------------------------------------------------------------
 
----- Reduce timeoutlen in insert mode for faster key sequences
-vim.api.nvim_create_autocmd("InsertEnter", {
-  callback = function()
-    vim.o.timeoutlen = 50
-  end,
-})
+---- Reduce timeoutlen in insert and Cmdline mode for faster key sequences
+for _, event in ipairs({ "InsertEnter", "CmdlineEnter" }) do
+  vim.api.nvim_create_autocmd(event, {
+    callback = function()
+      vim.o.timeoutlen = 50
+    end,
+  })
+end
 
----- Restore timeoutlen when leaving insert mode
-vim.api.nvim_create_autocmd("InsertLeave", {
-  callback = function()
-    vim.o.timeoutlen = 500
-  end,
-})
+---- Restore timeoutlen when leaving insert and Cmdline mode
+for _, event in ipairs({ "InsertLeave", "CmdlineLeave" }) do
+  vim.api.nvim_create_autocmd(event, {
+    callback = function()
+      vim.o.timeoutlen = 500
+    end,
+  })
+end

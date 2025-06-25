@@ -1,7 +1,9 @@
-vim.keymap.set("n", "<leader>ga", ":Gitsigns preview_hunk<CR>", { desc = "Gitsigns: Analyze Line" })
-vim.keymap.set("n", "<leader>gu", ":Gitsigns reset_hunk<CR>", { desc = "Gitsigns: Undo" })
-vim.keymap.set("n", "<leader>gn", ":Gitsigns next_hunk<CR>", { desc = "Gitsigns: Next Hunk" })
-vim.keymap.set("n", "<leader>gp", ":Gitsigns prev_hunk<CR>", { desc = "Gitsigns: Prev Hunk" })
+vim.keymap.set("n", "<leader>ga", "<cmd>Gitsigns preview_hunk<CR>", { desc = "Gitsigns: Analyze Line" })
+vim.keymap.set("n", "<leader>gu", "<cmd>Gitsigns reset_hunk<CR>", { desc = "Gitsigns: Undo" })
+vim.keymap.set("n", "<leader>gn", "<cmd>Gitsigns nav_hunk next<CR>", { desc = "Gitsigns: Next Hunk" })
+vim.keymap.set("n", "<leader>gp", "<cmd>Gitsigns nav_hunk prev<CR>", { desc = "Gitsigns: Prev Hunk" })
+vim.keymap.set({ "o", "x" }, "ih", "<Cmd>Gitsigns select_hunk<CR>", { desc = "Gitsigns: Git Hunk" })
+vim.keymap.set({ "o", "x" }, "ah", "<Cmd>Gitsigns select_hunk<CR>", { desc = "Gitsigns: Git Hunk" })
 
 vim.keymap.set("n", "<leader>gd", function()
   vim.cmd("Gitsigns diffthis")

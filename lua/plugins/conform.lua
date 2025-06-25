@@ -41,7 +41,7 @@ return {
           },
         },
       },
-      vim.keymap.set("n", "<C-f>", function()
+      vim.keymap.set({ "n", "x" }, "<C-f>", function()
         require("conform").format({ async = true })
       end, { desc = "Format file with Conform" }),
     })

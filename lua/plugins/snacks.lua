@@ -21,12 +21,12 @@ vim.keymap.set("n", "<leader>sm", ":lua Snacks.picker.marks()<CR>", { desc = "Sn
 
 vim.keymap.set("n", "<leader>sn", ":lua Snacks.notifier.show_history()<CR>", { desc = "Snacks: Show Notification History" })
 
+---- Git Actions
 vim.keymap.set("n", "<leader>gg", "<cmd>lua Snacks.lazygit()<CR>", { desc = "Snacks: Git Lazygit" })
 vim.keymap.set("n", "<leader>gb", "<cmd>lua Snacks.git.blame_line()<CR>", { desc = "Snacks: Git Line Blame" })
 vim.keymap.set("n", "<leader>gl", "<cmd>lua Snacks.picker.git_log_line()<CR>", {desc = "Snacks: Git Log Line" })
 
 ---- Keymaps ----
--- stylua: ignore
 vim.api.nvim_create_autocmd("LspAttach", {
   desc = "LSP actions",
   callback = function()
