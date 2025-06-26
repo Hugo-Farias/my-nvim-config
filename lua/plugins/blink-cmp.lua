@@ -18,13 +18,13 @@ return { -- optional blink completion source for require statements and module a
       -- set to 'none' to disable the 'default' preset
       preset = "default",
 
-      -- ["<Up>"] = { "select_prev", "fallback" },
-      -- ["<Down>"] = { "select_next", "fallback" },
+      ["<Up>"] = { "select_prev", "fallback" },
+      ["<Down>"] = { "select_next", "fallback" },
       ["<CR>"] = { "select_and_accept", "fallback" },
       ["<Tab>"] = { "select_and_accept", "fallback" },
 
       -- disable a keymap from the preset
-      ["<C-e>"] = false, -- or {}
+      -- ["<C-e>"] = false, -- or {}
 
       ["<C-space>"] = { "show", "fallback" },
 

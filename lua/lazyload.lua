@@ -3,12 +3,15 @@ require("lazy").setup({
   { require("plugins.mason") },
   { require("lsp") },
 
+  { "nvim-lua/plenary.nvim" },
+
   ---- AutoComplete ----
   { require("plugins.blink-cmp") },
   -- { require("plugins.nvim-cmp") },
 
   ---- Ai assistant ----
   -- { require('plugins.codecompanion') },
+  -- { require("plugins.windsurf") },
 
   ---- Mini Compilation ----
   { require("plugins.mini-icons") },
@@ -22,7 +25,6 @@ require("lazy").setup({
   -- { "ThePrimeagen/harpoon" },
   { require("plugins.treesitter") },
   { require("plugins.treesitter-context") },
-  { "nvim-lua/plenary.nvim" },
   { require("plugins.undotree") },
   { require("plugins.flash") },
   { require("plugins.which-key") },

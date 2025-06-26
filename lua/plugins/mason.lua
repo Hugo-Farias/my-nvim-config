@@ -1,6 +1,6 @@
 local workspaceDiagnostics = function(client)
   require("workspace-diagnostics").populate_workspace_diagnostics(client, 0)
-  print("workspaceDiagnostics Running")
+  -- print("workspaceDiagnostics Running")
 end
 
 return {
