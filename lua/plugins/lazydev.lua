@@ -10,18 +10,19 @@ return {
       },
     },
   },
-  { -- optional cmp completion source for require statements and module annotations
-    "hrsh7th/nvim-cmp",
-    opts = function(_, opts)
-      opts.sources = opts.sources or {}
-      table.insert(opts.sources, {
-        name = "lazydev",
-        group_index = 0, -- set group index to 0 to skip loading LuaLS completions
-      })
-    end,
-  },
+  -- { -- optional cmp completion source for require statements and module annotations
+  --   "hrsh7th/nvim-cmp",
+  --   opts = function(_, opts)
+  --     opts.sources = opts.sources or {}
+  --     table.insert(opts.sources, {
+  --       name = "lazydev",
+  --       -- group_index = 0, -- set group index to 0 to skip loading LuaLS completions
+  --     })
+  --   end,
+  -- },
   { -- optional blink completion source for require statements and module annotations
     "saghen/blink.cmp",
+    version = "*",
     opts = {
       sources = {
         -- add lazydev to your completion providers
@@ -34,6 +35,27 @@ return {
             score_offset = 100,
           },
         },
+      },
+      keymap = {
+        -- set to 'none' to disable the 'default' preset
+        preset = "default",
+
+        -- ["<Up>"] = { "select_prev", "fallback" },
+        -- ["<Down>"] = { "select_next", "fallback" },
+        ["<CR>"] = { "select_and_accept", "fallback" },
+        ["<Tab>"] = { "select_and_accept", "fallback" },
+
+        -- disable a keymap from the preset
+        ["<C-e>"] = false, -- or {}
+
+        ["<C-space>"] = { "show", "fallback" },
+
+        -- show with a list of providers
+        -- ["<C-space>"] = {
+        --   function(cmp)
+        --     cmp.show({ providers = { "snippets" } })
+        --   end,
+        -- },
       },
     },
   },

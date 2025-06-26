@@ -1,7 +1,6 @@
 -- Implement AI assistent --
 -- Fix Eslint not being attached --
 -- Fix Powershell's lsp erroring out --
--- Change nvimcmp to blink --
 -- Fix yazi opening files on broken buffer --
 
 -- Install mini.nvim --

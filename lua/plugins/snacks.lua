@@ -19,6 +19,20 @@ vim.keymap.set("n", "<leader>sc", ":lua Snacks.picker.command_history()<CR>", { 
 vim.keymap.set("n", "<leader>sd", ":lua Snacks.picker.diagnostics()<CR>", { desc = "Snacks: Search Diagnostics" })
 vim.keymap.set("n", "<leader>sm", ":lua Snacks.picker.marks()<CR>", { desc = "Snacks: Search Diagnostics" })
 
+-- TODO for later, make this keymap repopulate diagnostics
+-- vim.keymap.set("n", "<leader>sD", function()
+--   for _, client in pairs(vim.lsp.get_clients()) do
+--     -- Get any valid buffer the client is attached to
+--     local bufnr = vim.lsp.get_buffers_by_client_id(client.id)[1]
+--     if bufnr then
+--       require("workspace-diagnostics").populate_workspace_diagnostics(client, bufnr)
+--     end
+--   end
+
+--   -- Open Snacks diagnostic panel
+--   vim.cmd([[lua pcall(function() Snacks.picker.diagnostics() end)]])
+-- end, { desc = "LSP: Show Full Diagnostics" })
+
 vim.keymap.set("n", "<leader>sn", ":lua Snacks.notifier.show_history()<CR>", { desc = "Snacks: Show Notification History" })
 
 ---- Git Actions ----
@@ -30,27 +44,24 @@ vim.keymap.set("n", "<leader>gl", "<cmd>lua Snacks.picker.git_log_line()<CR>", {
 vim.api.nvim_create_autocmd("LspAttach", {
   desc = "LSP actions",
   callback = function()
-    vim.keymap.set("n", "gd", function() Snacks.picker.lsp_definitions() end, {desc = "LSP: Goto Definition" })
-    vim.keymap.set("n", "gD", function() Snacks.picker.lsp_declarations() end, {desc = "LSP: Goto Declaration" })
-    vim.keymap.set("n", "gr", function() Snacks.picker.lsp_references() end, {nowait = true, desc = "LSP: References" })
-    vim.keymap.set("n", "gI", function() Snacks.picker.lsp_implementations() end, {desc = "LSP: Goto Implementation" })
-    vim.keymap.set("n", "go", function() Snacks.picker.lsp_type_definitions() end, {desc = "LSP: Goto T[y]pe Definition" })
-    vim.keymap.set("n", "<leader>ss", function() Snacks.picker.lsp_symbols() end, {desc = "LSP: Symbols" })
-    vim.keymap.set("n", "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, {desc = "LSP: Workspace Symbols" })
+    vim.keymap.set("n", "gd", "<cmd>lua Snacks.picker.lsp_definitions()<CR>", {desc = "LSP: Goto Definition" })
+    vim.keymap.set("n", "gD", "<cmd>lua Snacks.picker.lsp_declarations()<CR>", {desc = "LSP: Goto Declaration" })
+    vim.keymap.set("n", "gr", "<cmd>lua Snacks.picker.lsp_references()<CR>", {nowait = true, desc = "LSP: References" })
+    vim.keymap.set("n", "gI", "<cmd>lua Snacks.picker.lsp_implementations()<CR>", {desc = "LSP: Goto Implementation" })
+    vim.keymap.set("n", "go", "<cmd>lua Snacks.picker.lsp_type_definitions()<CR>", {desc = "LSP: Goto T[y]pe Definition" })
+    vim.keymap.set("n", "<leader>ss", "<cmd>lua Snacks.picker.lsp_symbols()<CR>", {desc = "LSP: Symbols" })
+    vim.keymap.set("n", "<leader>sS", "<cmd>lua Snacks.picker.lsp_workspace_symbols()<CR>", {desc = "LSP: Workspace Symbols" })
   end,
 })
 
--- stylua: ignore end
 
 -- Toggle terminal in normal mode
-vim.keymap.set("n", "<C-y>", function()
-  Snacks.terminal.toggle()
-end, { desc = "Snacks: Toggle terminal (normal)" })
+vim.keymap.set("n", "<C-y>", "<cmd>lua Snacks.terminal.toggle()<CR>", { desc = "Snacks: Toggle terminal (normal)" })
 
 -- Toggle terminal in terminal mode
 vim.keymap.set("t", "<C-y>", function()
   vim.cmd("stopinsert") -- exit terminal input mode
-  Snacks.terminal.toggle() -- then hide the terminal
+  vim.cmd("lua Snacks.terminal.toggle()") -- then hide the terminal
 end, { desc = "Snacks: Toggle terminal (terminal)" })
 
 -- Close buffer

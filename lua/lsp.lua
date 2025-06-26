@@ -33,7 +33,7 @@ local on_attach = function(event)
   -- vim.keymap.set( "n", "go", vim.lsp.buf.type_definition, vim.tbl_extend("force", opts, { desc = "LSP: Go to Type definition" }))
   vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "LSP: Rename" }))
   vim.keymap.set({ "n", "x" }, "<F3>", function() vim.lsp.buf.format({ async = true }) end, vim.tbl_extend("force", opts, { desc = "LSP: Format" }))
-  vim.keymap.set({ "n", "x" }, "<C-CR>", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "LSP: Code action" }))
+  vim.keymap.set({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "LSP: Code action" }))
   vim.keymap.set("n", "gn", function() jump_diag(1) end, vim.tbl_extend("force", opts, { desc = "LSP: Next diagnostic" }))
   vim.keymap.set("n", "gp", function() jump_diag(-1) end, vim.tbl_extend("force", opts, { desc = "LSP: Previous diagnostic" }))
   vim.keymap.set("n", "ga", function() vim.diagnostic.open_float(nil, { focus = false }) end, vim.tbl_extend("force", opts, { desc = "LSP: Line diagnostics" }))
@@ -49,39 +49,40 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 return {
   "neovim/nvim-lspconfig",
-  dependencies = {
-    {
-      "folke/lazydev.nvim",
-      ft = "lua",
-      opts = {
-        library = {
-          { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-        },
-      },
-    },
-    { "hrsh7th/nvim-cmp" },
-    { "hrsh7th/cmp-nvim-lsp" },
-  },
-  config = function()
-    vim.opt.signcolumn = "yes"
-    local lspconfig = require("lspconfig")
+  dependencies = require("plugins.lazydev"),
+  -- dependencies = {
+  --   {
+  --     "folke/lazydev.nvim",
+  --     ft = "lua",
+  --     opts = {
+  --       library = {
+  --         { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+  --       },
+  --     },
+  --   },
+  -- { "hrsh7th/nvim-cmp" },
+  --   { "hrsh7th/cmp-nvim-lsp" },
+  -- },
+  -- config = function()
+  -- vim.opt.signcolumn = "yes"
+  -- local lspconfig = require("lspconfig")
 
-    local lspconfig_defaults = lspconfig.util.default_config
-    lspconfig_defaults.capabilities =
-      vim.tbl_deep_extend("force", lspconfig_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
+  -- local lspconfig_defaults = lspconfig.util.default_config
+  -- lspconfig_defaults.capabilities =
+  --   vim.tbl_deep_extend("force", lspconfig_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 
-    local cmp = require("cmp")
+  -- local cmp = require("cmp")
 
-    cmp.setup({
-      mapping = cmp.mapping.preset.insert({
-        ["<C-Space>"] = cmp.mapping.complete(),
-        ["<Tab>"] = cmp.mapping.confirm({ select = true }),
-        ["<CR>"] = cmp.mapping.confirm({ select = true }),
-        ["<C-e>"] = cmp.mapping.abort(),
-      }),
-      sources = {
-        { name = "nvim_lsp" },
-      },
-    })
-  end,
+  -- cmp.setup({
+  --   mapping = cmp.mapping.preset.insert({
+  --     ["<C-Space>"] = cmp.mapping.complete(),
+  --     ["<Tab>"] = cmp.mapping.confirm({ select = true }),
+  --     ["<CR>"] = cmp.mapping.confirm({ select = true }),
+  --     ["<C-e>"] = cmp.mapping.abort(),
+  --   }),
+  --   sources = {
+  --     { name = "nvim_lsp" },
+  --   },
+  -- })
+  -- end,
 }

@@ -1,5 +1,6 @@
-local on_attach = function(client)
+local workspaceDiagnostics = function(client)
   require("workspace-diagnostics").populate_workspace_diagnostics(client, 0)
+  print("workspaceDiagnostics Running")
 end
 
 return {
@@ -31,7 +32,11 @@ return {
       -- TODO merge opts with on_attach
       vim.lsp.config(
         server,
-        vim.tbl_deep_extend("force", (opts.servers and opts.servers[server]) or {}, { on_attach = on_attach })
+        vim.tbl_deep_extend(
+          "force",
+          (opts.servers and opts.servers[server]) or {},
+          { on_attach = workspaceDiagnostics }
+        )
       )
       vim.lsp.enable(server)
       -- lspconfig[server].setup({})
