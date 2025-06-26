@@ -1,49 +1,49 @@
 require("lazy").setup({
   ---- LSP ----
-  { "mason-org/mason.nvim", require("plugins.mason") },
-  { "neovim/nvim-lspconfig", require("lsp") },
+  { require("plugins.mason") },
+  { require("lsp") },
+
+  ---- AutoComplete ----
+  { require("plugins.blink-cmp") },
+  -- { require("plugins.nvim-cmp") },
 
   ---- Ai assistant ----
-  -- { "olimorris/codecompanion.nvim", require('plugins.codecompanion') },
+  -- { require('plugins.codecompanion') },
 
   ---- Mini Compilation ----
-  { "echasnovski/mini.icons", require("plugins.mini-icons") },
-  { "echasnovski/mini.surround", require("plugins.mini-surround") },
-  { "echasnovski/mini.ai", require("plugins.mini-ai") },
-  { "ziontee113/color-picker.nvim", require("plugins.color-picker") },
-  -- { "echasnovski/mini.indentscope", require("plugins.mini-indentscope") },
+  { require("plugins.mini-icons") },
+  { require("plugins.mini-surround") },
+  { require("plugins.mini-ai") },
+  { require("plugins.color-picker") },
 
-  { "folke/snacks.nvim", require("plugins.snacks") },
-  -- { "nvim-tree/nvim-web-devicons" },
-  -- { "rcarriga/nvim-notify", require("plugins.notify") },
-  -- { "folke/noice.nvim", require("plugins.noice") },
-  { "kana/vim-smartword", require("plugins.vim-smartword") },
+  { require("plugins.snacks") },
+  { require("plugins.vim-smartword") },
   { "tpope/vim-commentary" },
   -- { "ThePrimeagen/harpoon" },
-  { "nvim-treesitter/nvim-treesitter", require("plugins.treesitter") },
-  { "nvim-treesitter/nvim-treesitter-context", require("plugins.treesitter-context") },
+  { require("plugins.treesitter") },
+  { require("plugins.treesitter-context") },
   { "nvim-lua/plenary.nvim" },
-  { "mbbill/undotree", require("plugins.undotree") },
-  { "folke/flash.nvim", require("plugins.flash") },
-  { "folke/which-key.nvim", require("plugins.which-key") },
-  { "lewis6991/gitsigns.nvim", require("plugins.gitsigns") },
-  { "windwp/nvim-autopairs", require("plugins.autopairs") },
+  { require("plugins.undotree") },
+  { require("plugins.flash") },
+  { require("plugins.which-key") },
+  { require("plugins.gitsigns") },
+  { require("plugins.autopairs") },
 
   ---- Buffer/Tab line ----
-  -- { "echasnovski/mini.tabline", require("plugins.mini-tabline") },
-  { "akinsho/bufferline.nvim", require("plugins.bufferline") },
+  -- { require("plugins.mini-tabline") },
+  { require("plugins.bufferline") },
 
   ---- Status Line ----
-  -- { "nvim-lualine/lualine.nvim", require("plugins.lualine") },
-  { "echasnovski/mini.statusline", require("plugins.mini-statusline") },
+  -- { require("plugins.lualine") },
+  { require("plugins.mini-statusline") },
 
   ---- Language Support ----
   { "kmonad/kmonad-vim" },
-  -- { "jose-elias-alvarez/nLogull-ls.nvim", require("plugins.null-ls") },
+  -- { require("plugins.null-ls") },
 
   ---- Formatter ----
-  { "stevearc/conform.nvim", require("plugins.conform") },
-  { "windwp/nvim-ts-autotag", require("plugins.nvim-ts-autotag") },
+  { require("plugins.conform") },
+  { require("plugins.nvim-ts-autotag") },
 
   ---- Colors ----
   require("colors"),
