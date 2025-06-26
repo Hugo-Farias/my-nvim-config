@@ -1,5 +1,4 @@
 -- Implement AI assistent --
--- Install autotag plugin --
 -- Fix Eslint not being attached --
 -- Fix Powershell's lsp erroring out --
 -- Change nvimcmp to blink --

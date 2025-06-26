@@ -111,6 +111,30 @@ resize("<M-Up>", "<C-w>+", 5)
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
 
+---- Flip Boolean
+vim.keymap.set("n", "gb", function()
+  local line = vim.api.nvim_get_current_line()
+  local replacements = {
+    ["true"] = "false",
+    ["false"] = "true",
+    ["True"] = "False",
+    ["False"] = "True",
+  }
+
+  for bool, flip in pairs(replacements) do
+    local s, e = line:find(bool)
+    if s then
+      -- Replace the first occurrence of the boolean
+      local new_line = line:sub(1, s - 1) .. flip .. line:sub(e + 1)
+      vim.api.nvim_set_current_line(new_line)
+      -- Move cursor to the start of replaced boolean
+      vim.api.nvim_win_set_cursor(0, { vim.api.nvim_win_get_cursor(0)[1], s - 1 })
+      return
+    end
+  end
+end, { desc = "Flip first boolean on current line" })
+
+---- Search and replace word under cursor
 vim.keymap.set(
   "n",
   "<leader>*",
