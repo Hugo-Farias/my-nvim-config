@@ -28,7 +28,7 @@ local on_attach = function(event)
   vim.keymap.set("n", "gs", function() vim.lsp.buf.signature_help(floatingOpts) end, vim.tbl_extend("force", opts, { desc = "LSP: Signature Help" }))
   -- vim.keymap.set("n", "gd", vim.lsp.buf.definition, vim.tbl_extend("force", opts, { desc = "LSP: Go to definition" }))
   -- vim.keymap.set( "n", "gD", vim.lsp.buf.declaration, vim.tbl_extend("force", opts, { desc = "LSP: Go to declaration" }))
-  -- vim.keymap.set( "n", "gi", vim.lsp.buf.implementation, vim.tbl_extend("force", opts, { desc = "LSP: Go to implementation" }))
+  -- vim.keymap.set( "n", "gI", vim.lsp.buf.implementation, vim.tbl_extend("force", opts, { desc = "LSP: Go to implementation" }))
   -- vim.keymap.set("n", "gr", vim.lsp.buf.references, vim.tbl_extend("force", opts, { desc = "LSP: References" }))
   -- vim.keymap.set( "n", "go", vim.lsp.buf.type_definition, vim.tbl_extend("force", opts, { desc = "LSP: Go to Type definition" }))
   vim.keymap.set("n", "<F2>", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "LSP: Rename" }))
@@ -71,30 +71,6 @@ return {
       vim.tbl_deep_extend("force", lspconfig_defaults.capabilities, require("cmp_nvim_lsp").default_capabilities())
 
     local cmp = require("cmp")
-
-    -- lspconfig["powershell_es"] = {
-    --   default_config = {
-    --     cmd = {
-    --       "pwsh",
-    --       "-NoLogo",
-    --       "-NoProfile",
-    --       "-Command",
-    --       [[
-    --     C:\Users\Hugo\AppData\Local\nvim-data\mason\packages\powershell-editor-services\PowerShellEditorServices\Start-EditorServices.ps1
-    --       -HostName 'nvim'
-    --       -HostProfileId 'nvim'
-    --       -HostVersion '1.0.0'
-    --       -LogPath 'C:\Users\Hugo\AppData\Local\Temp\pses.log'
-    --       -SessionDetailsPath 'C:\Users\Hugo\AppData\Local\Temp\pses.session.json'
-    --       -FeatureFlags @()
-    --       -AdditionalModules @()
-    --       -Stdio
-    --   ]],
-    --     },
-    --     filetypes = { "ps1", "psm1" },
-    --     root_dir = lspconfig.util.find_git_ancestor or vim.loop.cwd,
-    --   },
-    -- }
 
     cmp.setup({
       mapping = cmp.mapping.preset.insert({

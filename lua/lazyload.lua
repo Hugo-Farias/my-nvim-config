@@ -18,7 +18,6 @@ require("lazy").setup({
   { "folke/snacks.nvim", require("plugins.snacks") },
   { "lewis6991/gitsigns.nvim", require("plugins.gitsigns") },
   { "windwp/nvim-autopairs", require("plugins.autopairs") },
-  -- { "artemave/workspace-diagnostics.nvim" },
 
   ---- Mini Compilation ----
   { "echasnovski/mini.icons", require("plugins.mini-icons") },
