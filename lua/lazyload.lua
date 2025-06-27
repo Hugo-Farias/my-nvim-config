@@ -8,13 +8,13 @@ require("lazy").setup({
   { "nvim-lua/plenary.nvim" },
 
   ---- AutoComplete ----
-  { require("plugins.blink-cmp") },
-  -- { require("plugins.nvim-cmp") },
+  -- { require("plugins.blink-cmp") },
+  { require("plugins.nvim-cmp") },
 
   ---- AI assistant ----
   -- { require('plugins.codecompanion') },
-  -- { require("plugins.windsurf") },
-  { "github/copilot.vim" },
+  { require("plugins.windsurf") },
+  -- { "github/copilot.vim" },
 
   ---- Mini Compilation ----
   { require("plugins.mini-icons") },

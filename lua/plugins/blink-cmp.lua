@@ -18,8 +18,8 @@ return { -- optional blink completion source for require statements and module a
       -- set to 'none' to disable the 'default' preset
       preset = "default",
 
-      ["<Up>"] = { "select_prev", "fallback" },
-      ["<Down>"] = { "select_next", "fallback" },
+      -- ["<Up>"] = { "select_prev", "fallback" },
+      -- ["<Down>"] = { "select_next", "fallback" },
       ["<CR>"] = { "select_and_accept", "fallback" },
       -- ["<Tab>"] = { "select_and_accept", "fallback" },
 
@@ -36,4 +36,10 @@ return { -- optional blink completion source for require statements and module a
       -- },
     },
   },
+  config = function(_, opts)
+    require("blink.cmp").setup(opts)
+
+    vim.keymap.set("c", "<Up>", "<C-p>", { desc = "Select Previous" })
+    vim.keymap.set("c", "<Down>", "<C-n>", { desc = "Select Next" })
+  end,
 }
