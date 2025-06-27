@@ -7,6 +7,9 @@ require("lazy").setup({
   { require("plugins.treesitter-context") },
   { "nvim-lua/plenary.nvim" },
 
+  ---- Project Manager ----
+  -- { require("plugins.project") },
+
   ---- AutoComplete ----
   -- { require("plugins.blink-cmp") },
   { require("plugins.nvim-cmp") },
@@ -32,6 +35,7 @@ require("lazy").setup({
   { require("plugins.flash") },
   { require("plugins.which-key") },
   { require("plugins.gitsigns") },
+  { require("plugins.vim-visual-multi") },
 
   ---- Buffer/Tab line ----
   -- { require("plugins.mini-tabline") },

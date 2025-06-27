@@ -18,6 +18,7 @@ vim.keymap.set("n", "<leader>s'", "<cmd>lua Snacks.picker.registers()<CR>", { de
 vim.keymap.set("n", "<leader>sc", ":lua Snacks.picker.command_history()<CR>", { desc = "Snacks: Search Command History" })
 vim.keymap.set("n", "<leader>sd", ":lua Snacks.picker.diagnostics()<CR>", { desc = "Snacks: Search Diagnostics" })
 vim.keymap.set("n", "<leader>sm", ":lua Snacks.picker.marks()<CR>", { desc = "Snacks: Search Diagnostics" })
+vim.keymap.set("n", "<leader>sp", ":lua Snacks.picker.projects()<CR>", { desc = "Snacks: Search Projects" })
 
 -- TODO for later, make this keymap repopulate diagnostics
 -- vim.keymap.set("n", "<leader>sD", function()
@@ -96,7 +97,7 @@ return {
   lazy = false,
   opts = {
     bigfile = { enabled = true },
-    dashboard = { enabled = true },
+    dashboard = require("plugins.snacks-dashboard"),
     explorer = { enabled = true },
     indent = { enabled = true },
     input = { enabled = true },

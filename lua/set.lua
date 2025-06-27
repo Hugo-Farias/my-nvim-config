@@ -73,9 +73,16 @@ function SmartChangeDir()
   vim.cmd("pwd")
 end
 
-vim.api.nvim_create_autocmd("BufReadPost", {
-  once = true,
+vim.api.nvim_create_autocmd("VimLeavePre", {
+  -- once = true,
   callback = function()
-    SmartChangeDir()
+    vim.cmd("mksession! " .. vim.fn.expand("C:/Users/Hugo/AppData/Local/nvim-data/session/autosave.vim"))
   end,
 })
+
+-- vim.api.nvim_create_autocmd("BufReadPost", {
+--   once = true,
+--   callback = function()
+--     SmartChangeDir()
+--   end,
+-- })
