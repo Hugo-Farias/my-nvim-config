@@ -1,3 +1,5 @@
+vim.keymap.set("n", "<leader>cd", "<cmd>Codeium Toggle<CR>", { desc = "Codeium: Toggle" })
+
 return {
   "Exafunction/windsurf.nvim",
   dependencies = {
@@ -16,11 +18,11 @@ return {
         -- Set to true if you never want completions to be shown automatically.
         manual = false,
         -- A mapping of filetype to true or false, to enable virtual text.
-        filetypes = {},
+        filetypes = { "windsurf.lua" },
         -- Whether to enable virtual text of not for filetypes not specifically listed above.
         default_filetype_enabled = true,
         -- How long to wait (in ms) before requesting completions after typing stops.
-        idle_delay = 75,
+        idle_delay = 500,
         -- Priority of the virtual text. This usually ensures that the completions appear on top of
         -- other plugins that also add virtual text, such as LSP inlay hints, but can be modified if
         -- desired.
@@ -35,9 +37,9 @@ return {
           -- Accept the current completion.
           accept = "<Tab>",
           -- Accept the next word.
-          accept_word = false,
+          accept_word = "<M-w>",
           -- Accept the next line.
-          accept_line = false,
+          accept_line = "<M-l>",
           -- Clear the virtual text.
           clear = false,
           -- Cycle to the next completion.

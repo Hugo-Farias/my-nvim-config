@@ -15,6 +15,8 @@ require("lazy").setup({
   -- { require('plugins.codecompanion') },
   { require("plugins.windsurf") },
   -- { "github/copilot.vim" },
+  -- { require("plugins.zbirenbaum-copilot") },
+  -- { require("plugins.avante") },
 
   ---- Mini Compilation ----
   { require("plugins.mini-icons") },

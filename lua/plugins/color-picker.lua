@@ -5,8 +5,8 @@ return {
   "ziontee113/color-picker.nvim",
   cmd = { "PickColor", "PickColorInsert", "ConvertHEXandRGB", "ConvertHEXandHSL" },
   keys = {
-    { "<C-c>", "<cmd>PickColor<cr>", mode = "n", desc = "Pick color" },
-    { "<C-c>", "<cmd>PickColorInsert<cr>", mode = "i", desc = "Pick color (insert)" },
+    { "qc", "<cmd>PickColor<cr>", mode = "n", desc = "Pick color" },
+    -- { "<C-c>", "<cmd>PickColorInsert<cr>", mode = "i", desc = "Pick color (insert)" },
   },
   config = function()
     require("color-picker").setup({

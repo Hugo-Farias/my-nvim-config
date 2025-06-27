@@ -1,4 +1,4 @@
--- Implement AI assistent --
+-- Implement Avante --
 -- Fix Eslint not being attached --
 -- Fix Powershell's lsp erroring out --
 -- Fix yazi opening files on broken buffer --

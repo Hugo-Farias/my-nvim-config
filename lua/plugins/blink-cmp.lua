@@ -1,6 +1,7 @@
 return { -- optional blink completion source for require statements and module annotations
   "saghen/blink.cmp",
   version = "*",
+  -- dependencies = { "giuxtaposition/blink-cmp-copilot" },
   opts = {
     sources = {
       -- add lazydev to your completion providers
