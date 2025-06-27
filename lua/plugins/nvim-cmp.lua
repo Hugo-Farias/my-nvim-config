@@ -11,6 +11,7 @@ return {
       },
     },
     { "hrsh7th/cmp-nvim-lsp" },
+    { require("plugins.autopairs") },
   },
   config = function()
     vim.opt.signcolumn = "yes"

@@ -20,7 +20,7 @@ local function theme(repo, name)
       transparent = true,
       styles = {
         sidebars = "transparent",
-        -- floats = "transparent",
+        floats = "transparent",
       },
     },
   }

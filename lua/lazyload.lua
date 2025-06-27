@@ -3,33 +3,33 @@ require("lazy").setup({
   { require("plugins.mason") },
   { require("lsp") },
 
+  { require("plugins.treesitter") },
+  { require("plugins.treesitter-context") },
   { "nvim-lua/plenary.nvim" },
 
   ---- AutoComplete ----
   { require("plugins.blink-cmp") },
   -- { require("plugins.nvim-cmp") },
 
-  ---- Ai assistant ----
+  ---- AI assistant ----
   -- { require('plugins.codecompanion') },
   -- { require("plugins.windsurf") },
+  { "github/copilot.vim" },
 
   ---- Mini Compilation ----
   { require("plugins.mini-icons") },
   { require("plugins.mini-surround") },
   { require("plugins.mini-ai") },
-  { require("plugins.color-picker") },
 
+  { require("plugins.color-picker") },
   { require("plugins.snacks") },
   { require("plugins.vim-smartword") },
   { "tpope/vim-commentary" },
   -- { "ThePrimeagen/harpoon" },
-  { require("plugins.treesitter") },
-  { require("plugins.treesitter-context") },
   { require("plugins.undotree") },
   { require("plugins.flash") },
   { require("plugins.which-key") },
   { require("plugins.gitsigns") },
-  { require("plugins.autopairs") },
 
   ---- Buffer/Tab line ----
   -- { require("plugins.mini-tabline") },

@@ -21,7 +21,7 @@ return { -- optional blink completion source for require statements and module a
       ["<Up>"] = { "select_prev", "fallback" },
       ["<Down>"] = { "select_next", "fallback" },
       ["<CR>"] = { "select_and_accept", "fallback" },
-      ["<Tab>"] = { "select_and_accept", "fallback" },
+      -- ["<Tab>"] = { "select_and_accept", "fallback" },
 
       -- disable a keymap from the preset
       -- ["<C-e>"] = false, -- or {}

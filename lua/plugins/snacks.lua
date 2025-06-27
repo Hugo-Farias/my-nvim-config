@@ -33,7 +33,7 @@ vim.keymap.set("n", "<leader>sm", ":lua Snacks.picker.marks()<CR>", { desc = "Sn
 --   vim.cmd([[lua pcall(function() Snacks.picker.diagnostics() end)]])
 -- end, { desc = "LSP: Show Full Diagnostics" })
 
-vim.keymap.set("n", "<leader>sn", ":lua Snacks.notifier.show_history()<CR>", { desc = "Snacks: Show Notification History" })
+vim.keymap.set("n", "<leader>sn", "<cmd>lua Snacks.notifier.show_history()<CR>", { desc = "Snacks: Show Notification History" })
 
 ---- Git Actions ----
 vim.keymap.set("n", "<leader>gg", "<cmd>lua Snacks.lazygit()<CR>", { desc = "Snacks: Git Lazygit" })
@@ -64,25 +64,31 @@ vim.keymap.set("t", "<C-y>", function()
   vim.cmd("lua Snacks.terminal.toggle()") -- then hide the terminal
 end, { desc = "Snacks: Toggle terminal (terminal)" })
 
--- Close buffer
 for _, key in ipairs({ "<C-f4>", "<leader>q", "<M-q>", "qt" }) do
   vim.keymap.set("n", key, function()
     require("snacks").bufdelete()
-
-    vim.defer_fn(function()
-      local buf = vim.api.nvim_get_current_buf()
-      local info = vim.fn.getbufinfo(buf)[1]
-
-      local is_nofile = vim.bo[buf].buftype == "" and vim.fn.bufname(buf) == ""
-      local is_unmodified = not vim.bo[buf].modified
-      local is_empty = info and info.linecount == 1 and vim.fn.getbufline(buf, 1)[1] == ""
-
-      if is_nofile and is_unmodified and is_empty then
-        require("snacks.dashboard").open()
-      end
-    end, 50) -- small delay to allow bufdelete to finish
-  end, { desc = "Close buffer" })
+  end, {desc = "Close Buffer"})
 end
+
+-- Close buffer, if last buffer go bach to dashboard (Too buggy)
+-- for _, key in ipairs({ "<C-f4>", "<leader>q", "<M-q>", "qt" }) do
+--   vim.keymap.set("n", key, function()
+--     require("snacks").bufdelete()
+
+--     vim.defer_fn(function()
+--       local buf = vim.api.nvim_get_current_buf()
+--       local info = vim.fn.getbufinfo(buf)[1]
+
+--       local is_nofile = vim.bo[buf].buftype == "" and vim.fn.bufname(buf) == ""
+--       local is_unmodified = not vim.bo[buf].modified
+--       local is_empty = info and info.linecount == 1 and vim.fn.getbufline(buf, 1)[1] == ""
+
+--       if is_nofile and is_unmodified and is_empty then
+--         require("snacks.dashboard").open()
+--       end
+--     end, 50) -- small delay to allow bufdelete to finish
+--   end, { desc = "Close buffer" })
+-- end
 
 return {
   "folke/snacks.nvim",
