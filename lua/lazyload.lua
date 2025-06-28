@@ -2,6 +2,7 @@ require("lazy").setup({
   ---- LSP ----
   { require("plugins.mason") },
   { require("lsp") },
+  { require("luarocks") },
 
   { require("plugins.treesitter") },
   { require("plugins.treesitter-context") },

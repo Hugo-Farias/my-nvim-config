@@ -1,4 +1,4 @@
--------------------------------------------------------------------------------
+﻿-------------------------------------------------------------------------------
 -- 🍿 Snacks Keymaps
 -------------------------------------------------------------------------------
 
@@ -15,10 +15,10 @@ vim.keymap.set("n", "<leader>sC", "<cmd>lua Snacks.picker.colorschemes()<CR>", {
 vim.keymap.set("n", "<leader>sk", "<cmd>lua Snacks.picker.keymaps()<CR>", { desc = "Snacks: Search Keymaps" })
 vim.keymap.set("n", "<leader>sh", "<cmd>lua Snacks.picker.help()<CR>", { desc = "Snacks: Search Help" })
 vim.keymap.set("n", "<leader>s'", "<cmd>lua Snacks.picker.registers()<CR>", { desc = "Snacks: Search Registers" })
-vim.keymap.set("n", "<leader>sc", ":lua Snacks.picker.command_history()<CR>", { desc = "Snacks: Search Command History" })
-vim.keymap.set("n", "<leader>sd", ":lua Snacks.picker.diagnostics()<CR>", { desc = "Snacks: Search Diagnostics" })
-vim.keymap.set("n", "<leader>sm", ":lua Snacks.picker.marks()<CR>", { desc = "Snacks: Search Diagnostics" })
-vim.keymap.set("n", "<leader>sp", ":lua Snacks.picker.projects()<CR>", { desc = "Snacks: Search Projects" })
+vim.keymap.set("n", "<leader>sc", "<cmd>lua Snacks.picker.command_history()<CR>", { desc = "Snacks: Search Command History" })
+vim.keymap.set("n", "<leader>sd", "<cmd>lua Snacks.picker.diagnostics()<CR>", { desc = "Snacks: Search Diagnostics" })
+vim.keymap.set("n", "<leader>sm", "<cmd>lua Snacks.picker.marks()<CR>", { desc = "Snacks: Search Diagnostics" })
+vim.keymap.set("n", "<leader>sp", "<cmd>lua Snacks.picker.projects()<CR>", { desc = "Snacks: Search Projects" })
 
 -- TODO for later, make this keymap repopulate diagnostics
 -- vim.keymap.set("n", "<leader>sD", function()

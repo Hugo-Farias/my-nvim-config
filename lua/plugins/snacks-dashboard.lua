@@ -1,10 +1,10 @@
----@class snacks.dashboard.Config
+﻿---@class snacks.dashboard.Config
 return {
   enabled = true,
-  -- width = 60,
+  width = 60,
   row = nil, -- dashboard position. nil for center
   col = nil, -- dashboard position. nil for center
-  -- pane_gap = 4, -- empty columns between vertical panes
+  pane_gap = 4, -- empty columns between vertical panes
   autokeys = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", -- autokey sequence
   -- These settings are used by some built-in sections
   preset = {
@@ -14,7 +14,7 @@ return {
     -- Used by the `keys` section to show keymaps.
     -- Set your custom keymaps here.
     -- When using a function, the `items` argument are the default keymaps.
-    ---@type snacks.dashboard.Item[]
+    -- -@type snacks.dashboard.Item[]
     keys = {
       { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
       { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
@@ -24,26 +24,36 @@ return {
         icon = " ",
         key = "c",
         desc = "Config",
-        action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
+        action = "<cmd>lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})<CR>",
       },
       -- { icon = " ", key = "s", desc = "Restore Session", section = "session" },
+      {
+        icon = " ",
+        key = "p",
+        desc = "Projects",
+        action = "<cmd>lua Snacks.picker.projects()<CR>",
+      },
       {
         icon = " ",
         key = "s",
         desc = "Restore Session",
-        action = ":source C:/Users/Hugo/AppData/Local/nvim-data/session/autosave.vim",
+        action = "<cmd>source C:/Users/Hugo/AppData/Local/nvim-data/session/autosave.vim<CR>",
       },
       { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
       { icon = " ", key = "q", desc = "Quit", action = ":qa" },
     },
     -- Used by the `header` section
     header = [[
-███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗
-████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║
-██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║
-██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║
-██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║
-╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝]],
+                                                                       
+	                                                                     
+	       ████ ██████           █████      ██                     
+	      ███████████             █████                             
+	      █████████ ███████████████████ ███   ███████████   
+	     █████████  ███    █████████████ █████ ██████████████   
+	    █████████ ██████████ █████████ █████ █████ ████ █████   
+	  ███████████ ███    ███ █████████ █████ █████ ████ █████  
+	 ██████  █████████████████████ ████ █████ █████ ████ ██████ 
+                                                                        ]],
   },
   -- item field formatters
   formats = {

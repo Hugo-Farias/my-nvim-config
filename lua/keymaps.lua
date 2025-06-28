@@ -37,7 +37,7 @@ vim.keymap.set("n", "cp", function()
 end)
 
 ---- Quick Save
-vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "Save File" })
+vim.keymap.set("n", "<C-s>", "<cmd>up<CR>", { desc = "Save File" })
 
 ---- Format buffer
 -- vim.api.nvim_set_keymap("n", "<leader>f", ":format<cr>", { noremap = true, silent = true, desc = "Format buffer" })
@@ -61,6 +61,17 @@ end, {})
 -------------------------------------------------------------------------------
 ---- 🪟 Buffers & Windows
 -------------------------------------------------------------------------------
+
+local function open_in_explorer()
+  local path = vim.fn.expand("%:p:h")
+  if vim.fn.has("win32") == 1 then
+    vim.fn.system({ "explorer.exe", path })
+  else
+    print("This is Windows-only.")
+  end
+end
+
+vim.keymap.set("n", "<leader>fe", open_in_explorer, { desc = "Open file dir in Explorer" })
 
 ---- Go to previous buffer
 vim.keymap.set("n", "gt", "<C-6>", { desc = "Go to previous buffer" })

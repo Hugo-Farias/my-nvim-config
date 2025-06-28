@@ -1,4 +1,4 @@
--- Neovim base settings
+﻿-- Neovim base settings
 EditorColorScheme()
 vim.o.shell = "C:\\PROGRA~1\\PowerShell\\7\\pwsh.exe"
 vim.o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
@@ -24,7 +24,7 @@ vim.opt.termguicolors = true
 vim.opt.undodir = "C:/Users/Hugo/AppData/Local/nvim-data/undo"
 vim.opt.undofile = true
 
-vim.opt.updatetime = 300
+vim.opt.updatetime = 4000
 -- vim.opt.colorcolumn = "80"
 
 vim.opt.scrolloff = 25
@@ -35,12 +35,13 @@ vim.o.keymodel = ""
 
 ---- Font for GUI
 -- vim.o.guifont = "CaskaydiaCove Nerd Font:h9.7:#e-antialias:#h-none"
-vim.o.guifont = "JetBrainsMono Nerd Font:h10"
+vim.o.guifont = "JetBrainsMono Nerd Font:h9.5"
 
 -- Neovide settings
 require("neovide")
 
 -- Change location to git root if found, otherwise to file's location
+-- TODO don't run this if opened through projects
 function SmartChangeDir()
   local file = vim.api.nvim_buf_get_name(0)
   if vim.fn.filereadable(file) ~= 1 then
@@ -66,23 +67,43 @@ function SmartChangeDir()
 
   if git_root then
     vim.cmd.lcd(git_root)
-  else
-    -- fallback to file's directory
-    vim.cmd.lcd(vim.fn.fnamemodify(file, ":h"))
+    -- else
+    --   -- fallback to file's directory
+    --   vim.cmd.lcd(vim.fn.fnamemodify(file, ":h"))
   end
   vim.cmd("pwd")
 end
 
+function SmartSaveSession()
+  local listed_buffers = vim.tbl_filter(function(buf)
+    return vim.fn.buflisted(buf) == 1
+  end, vim.api.nvim_list_bufs())
+
+  if #listed_buffers > 1 then
+    vim.cmd("mksession! " .. vim.fn.fnameescape("C:/Users/Hugo/AppData/Local/nvim-data/session/autosave.vim"))
+  end
+end
+
+-- Before leaving
 vim.api.nvim_create_autocmd("VimLeavePre", {
-  -- once = true,
   callback = function()
-    vim.cmd("mksession! " .. vim.fn.expand("C:/Users/Hugo/AppData/Local/nvim-data/session/autosave.vim"))
+    SmartSaveSession()
   end,
 })
 
--- vim.api.nvim_create_autocmd("BufReadPost", {
---   once = true,
---   callback = function()
---     SmartChangeDir()
---   end,
--- })
+-- After buffer opened
+vim.api.nvim_create_autocmd("BufReadPost", {
+  once = true,
+  callback = function()
+    SmartChangeDir()
+  end,
+})
+
+-- Before writing to file
+vim.api.nvim_create_autocmd("BufWritePre", {
+  callback = function()
+    vim.bo.fileencoding = "utf-8"
+    vim.bo.bomb = true
+    SmartSaveSession()
+  end,
+})

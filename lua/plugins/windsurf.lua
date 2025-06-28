@@ -1,4 +1,4 @@
-vim.keymap.set("n", "<leader>cd", "<cmd>Codeium Toggle<CR>", { desc = "Codeium: Toggle" })
+﻿vim.keymap.set("n", "<leader>cd", "<cmd>Codeium Toggle<CR>", { desc = "Codeium: Toggle" })
 
 return {
   "Exafunction/windsurf.nvim",
