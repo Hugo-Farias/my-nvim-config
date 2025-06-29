@@ -74,6 +74,7 @@ function SmartChangeDir()
   vim.cmd("pwd")
 end
 
+-- Save session only if there are multiple buffers opened
 function SmartSaveSession()
   local listed_buffers = vim.tbl_filter(function(buf)
     return vim.fn.buflisted(buf) == 1
@@ -82,6 +83,12 @@ function SmartSaveSession()
   if #listed_buffers > 1 then
     vim.cmd("mksession! " .. vim.fn.fnameescape("C:/Users/Hugo/AppData/Local/nvim-data/session/autosave.vim"))
   end
+end
+
+-- Restore session if it exists
+function RestoreSession(session_file)
+  local session_location = session_file or "C:/Users/Hugo/AppData/Local/nvim-data/session/autosave.vim"
+  vim.cmd("source " .. vim.fn.fnameescape(session_location))
 end
 
 -- Before leaving
@@ -93,17 +100,22 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 
 -- After buffer opened
 vim.api.nvim_create_autocmd("BufReadPost", {
-  once = true,
   callback = function()
-    SmartChangeDir()
+    SmartSaveSession()
   end,
 })
 
--- Before writing to file
-vim.api.nvim_create_autocmd("BufWritePre", {
+-- After buffer closed
+vim.api.nvim_create_autocmd("BufDelete", {
   callback = function()
-    vim.bo.fileencoding = "utf-8"
-    vim.bo.bomb = true
     SmartSaveSession()
+  end,
+})
+
+-- After buffer opened only once
+vim.api.nvim_create_autocmd("BufReadPost", {
+  once = true,
+  callback = function()
+    SmartChangeDir()
   end,
 })

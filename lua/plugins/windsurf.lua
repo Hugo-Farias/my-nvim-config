@@ -18,11 +18,25 @@ return {
         -- Set to true if you never want completions to be shown automatically.
         manual = false,
         -- A mapping of filetype to true or false, to enable virtual text.
-        filetypes = { "windsurf.lua" },
+        filetypes = {
+          ["*.lua"] = true,
+          ["*.js"] = true,
+          ["*.jsx"] = true,
+          ["*.tsx"] = true,
+          ["*.ts"] = true,
+          ["*.json"] = true,
+          ["*.md"] = true,
+          ["*.mdx"] = true,
+          ["*.html"] = true,
+          ["*.css"] = true,
+          ["*.scss"] = true,
+          ["*.py"] = true,
+          ["*.yaml"] = true,
+        },
         -- Whether to enable virtual text of not for filetypes not specifically listed above.
         default_filetype_enabled = true,
         -- How long to wait (in ms) before requesting completions after typing stops.
-        idle_delay = 500,
+        idle_delay = 80,
         -- Priority of the virtual text. This usually ensures that the completions appear on top of
         -- other plugins that also add virtual text, such as LSP inlay hints, but can be modified if
         -- desired.
@@ -41,7 +55,7 @@ return {
           -- Accept the next line.
           accept_line = "<M-l>",
           -- Clear the virtual text.
-          clear = false,
+          clear = "<C-e>",
           -- Cycle to the next completion.
           next = "<M-]>",
           -- Cycle to the previous completion.

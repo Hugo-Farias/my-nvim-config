@@ -3,8 +3,9 @@
 -------------------------------------------------------------------------------
 
 -- stylua: ignore start
+vim.keymap.set("n", "<leader>sfj", "<cmd>lua Snacks.picker.files()<CR>", { desc = "Snacks: Search Files" }) -- Old way
+vim.keymap.set("n", "<leader><leader>", "<cmd>lua Snacks.picker.smart()<CR>", { desc = "Snacks: Smart Search Files" })
 vim.keymap.set("n", "<leader>sg", "<cmd>lua Snacks.picker.git_files()<CR>", { desc = "Snacks: Search Git Files" })
-vim.keymap.set("n", "<leader><leader>", "<cmd>lua Snacks.picker.files()<CR>", { desc = "Snacks: Search Files" })
 vim.keymap.set("n", "<leader>sr", "<cmd>lua Snacks.picker.recent()<CR>", { desc = "Snacks: Search Recent Files" })
 vim.keymap.set("n", "<leader>sl", "<cmd>lua Snacks.picker.lines()<CR>", { desc = "Snacks: Search Lines" })
 vim.keymap.set("n", "<leader>e", "<cmd>lua Snacks.picker.explorer()<CR>", { desc = "Snacks: Open Explorer" })
@@ -103,7 +104,7 @@ return {
     input = { enabled = true },
     picker = { enabled = true },
     notifier = { enabled = true },
-    quickfile = { enabled = true },
+    quickfile = { enabled = false },
     scope = { enabled = true },
     scroll = { enabled = false },
     statuscolumn = { enabled = true },

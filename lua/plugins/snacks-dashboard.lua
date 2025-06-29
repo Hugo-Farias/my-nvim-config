@@ -42,20 +42,7 @@ return {
       { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
       { icon = " ", key = "q", desc = "Quit", action = ":qa" },
     },
-    -- Used by the `header` section
-    header = [[
-                                                                       
-	                                                                     
-	       ████ ██████           █████      ██                     
-	      ███████████             █████                             
-	      █████████ ███████████████████ ███   ███████████   
-	     █████████  ███    █████████████ █████ ██████████████   
-	    █████████ ██████████ █████████ █████ █████ ████ █████   
-	  ███████████ ███    ███ █████████ █████ █████ ████ █████  
-	 ██████  █████████████████████ ████ █████ █████ ████ ██████ 
-                                                                        ]],
   },
-  -- item field formatters
   formats = {
     -- icon = function(item)
     --   if item.file and item.icon == "file" or item.icon == "directory" then

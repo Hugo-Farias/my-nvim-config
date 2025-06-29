@@ -18,8 +18,18 @@ return {
       css = true,
       html = true,
       jsx = true,
+      json = true,
+      python = true,
+      go = true,
+      rust = true,
+      c = true,
+      cpp = true,
+      java = true,
+      bash = true,
+      yaml = true,
+      toml = true,
       markdown = true, -- overrides default
-      terraform = false, -- disallow specific filetype
+      terraform = true, -- disallow specific filetype
       ["*"] = false, -- disable for all other filetypes and ignore default `filetypes`
       sh = function()
         if string.match(vim.fs.basename(vim.api.nvim_buf_get_name(0)), "^%.env.*") then

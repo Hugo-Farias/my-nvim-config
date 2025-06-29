@@ -30,7 +30,7 @@ vim.keymap.set({ "n", "x" }, "gu", "<Nop>", { desc = "Disable gu" })
 ---- 💾 Save / Format / File Ops
 -------------------------------------------------------------------------------
 
-vim.keymap.set("x", "ss", "s", { desc = "Subistitute Selection", noremap = true })
+vim.keymap.set({ "n", "x" }, "ss", "s", { desc = "Subistitute", noremap = true })
 
 vim.keymap.set("n", "cp", function()
   SmartChangeDir()
