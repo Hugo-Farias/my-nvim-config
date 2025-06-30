@@ -1,6 +1,11 @@
 local workspaceDiagnostics = function(client)
-  require("workspace-diagnostics").populate_workspace_diagnostics(client, 0)
-  -- print("workspaceDiagnostics Running")
+  local cwd = vim.fn.getcwd()
+  local git_dir = cwd .. "/.git"
+
+  if vim.loop.fs_stat(git_dir) then
+    require("workspace-diagnostics").populate_workspace_diagnostics(client, 0)
+    vim.notify("workspaceDiagnostics: finished")
+  end
 end
 
 return {
@@ -25,7 +30,7 @@ return {
 
     require("mason-lspconfig").setup({
       automatic_enable = false,
-      ensure_installed = {},
+      ensure_installed = { "lua_ls", "ts_ls", "html", "cssls", "jsonls", "bashls", "powershell_es", "tailwindcss" },
     })
 
     local lspconfig = require("lspconfig")

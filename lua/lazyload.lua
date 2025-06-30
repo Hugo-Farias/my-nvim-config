@@ -1,5 +1,4 @@
 require("lazy").setup({
-  ---- LSP ----
   { require("plugins.mason") },
   { require("lsp") },
   { require("luarocks") },
