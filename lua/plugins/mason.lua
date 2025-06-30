@@ -4,7 +4,7 @@ local workspaceDiagnostics = function(client)
 
   if vim.loop.fs_stat(git_dir) then
     require("workspace-diagnostics").populate_workspace_diagnostics(client, 0)
-    vim.notify("workspaceDiagnostics: finished")
+    -- vim.notify("workspaceDiagnostics: finished")
   end
 end
 

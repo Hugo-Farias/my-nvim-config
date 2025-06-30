@@ -1,5 +1,6 @@
-﻿-- Implement sessions basesd on projects --
+﻿-- Implement Console "Tabs" --
 -- Implement Run configuration --
+-- Fix fs_stat undefined lsp error --
 -- Fix Eslint not being attached --
 -- Fix Powershell's lsp erroring out --
 -- Fix yazi opening files on broken buffer --

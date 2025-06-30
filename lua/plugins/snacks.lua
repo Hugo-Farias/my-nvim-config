@@ -71,6 +71,7 @@ return {
     {"<leader>sm", "<cmd>lua Snacks.picker.marks()<CR>", desc = "Snacks: Search Diagnostics" },
     {"<leader>sp", "<cmd>lua Snacks.picker.projects()<CR>", desc = "Snacks: Search Projects" },
     {"<leader>sn", "<cmd>lua Snacks.notifier.show_history()<CR>", desc = "Snacks: Show Notification History" },
+    {"<leader>sH", "<cmd>lua Snacks.picker.search_history()<CR>", desc = "Snacks: Show Notification History" },
     ---- Git Actions ----
     {"<leader>gg", "<cmd>lua Snacks.lazygit()<CR>", desc = "Snacks: Git Lazygit" },
     {"<leader>gb", "<cmd>lua Snacks.git.blame_line()<CR>", desc = "Snacks: Git Line Blame" },

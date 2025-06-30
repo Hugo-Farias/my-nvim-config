@@ -1,4 +1,21 @@
-﻿---@class snacks.dashboard.Config
+﻿local function loadSession(picker, item)
+  local session_dir = "C:/Users/Hugo/AppData/Local/nvim-data/sessions/"
+  local session_name = item.file:gsub("[:/\\]", "%%") .. ".vim"
+  local session_path = session_dir .. session_name
+
+  vim.cmd("tcd " .. item.file)
+  picker:close()
+
+  if vim.loop.fs_stat(session_path) then
+    vim.cmd("silent! source " .. vim.fn.fnameescape(session_path))
+  else
+    vim.schedule(function()
+      Snacks.dashboard.pick("files")
+    end)
+  end
+end
+
+---@class snacks.dashboard.Config
 return {
   enabled = true,
   width = 60,
@@ -31,7 +48,12 @@ return {
         icon = " ",
         key = "p",
         desc = "Projects",
-        action = "<cmd>lua Snacks.picker.projects()<CR>",
+        action = function()
+          require("snacks").picker.projects({
+            confirm = loadSession,
+          })
+        end,
+        -- action = ":lua Snacks.dashboard.pick('projects')",
       },
       {
         icon = " ",

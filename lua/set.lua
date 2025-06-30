@@ -86,18 +86,24 @@ function SmartChangeDir()
 end
 
 function SmartSaveSession()
-  local listed_buffers = vim.tbl_filter(function(buf)
-    return vim.fn.buflisted(buf) == 1
-  end, vim.api.nvim_list_bufs())
+  local cwd = vim.fn.getcwd()
+  local git_dir = cwd .. "/.git"
 
-  if #listed_buffers > 1 then
-    vim.cmd("mksession! " .. vim.fn.fnameescape("C:/Users/Hugo/AppData/Local/nvim-data/session/autosave.vim"))
+  if not vim.loop.fs_stat(git_dir) then
+    return
   end
+
+  -- Replace / or \ with %
+  local session_name = cwd:gsub("[:/\\]", "%%") .. ".vim"
+  local session_path = "C:/Users/Hugo/AppData/Local/nvim-data/sessions/" .. session_name
+  vim.notify(session_name)
+
+  vim.cmd("mksession! " .. vim.fn.fnameescape(session_path))
 end
 
 -- Restore session if it exists
 function RestoreSession(session_file)
-  local session_location = session_file or "C:/Users/Hugo/AppData/Local/nvim-data/session/autosave.vim"
+  local session_location = session_file or "C:/Users/Hugo/AppData/Local/nvim-data/sessions/autosave.vim"
   vim.cmd("source " .. vim.fn.fnameescape(session_location))
 end
 
