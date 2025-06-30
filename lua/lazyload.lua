@@ -4,8 +4,13 @@ require("lazy").setup({
   { require("lsp") },
   { require("luarocks") },
 
+  ---- Formatter ----
+  { require("plugins.conform") },
+  { require("plugins.nvim-ts-autotag") },
+
   { require("plugins.treesitter") },
   { require("plugins.treesitter-context") },
+  { "HiPhish/rainbow-delimiters.nvim" },
   { "nvim-lua/plenary.nvim" },
 
   ---- Project Manager ----
@@ -49,10 +54,6 @@ require("lazy").setup({
   ---- Language Support ----
   { "kmonad/kmonad-vim" },
   -- { require("plugins.null-ls") },
-
-  ---- Formatter ----
-  { require("plugins.conform") },
-  { require("plugins.nvim-ts-autotag") },
 
   ---- Colors ----
   require("colors"),

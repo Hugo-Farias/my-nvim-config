@@ -37,7 +37,7 @@ return {
         icon = " ",
         key = "s",
         desc = "Restore Session",
-        action = "<cmd>source C:/Users/Hugo/AppData/Local/nvim-data/session/autosave.vim<CR>",
+        action = "<cmd>lua RestoreSession()<CR>",
       },
       { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
       { icon = " ", key = "q", desc = "Quit", action = ":qa" },

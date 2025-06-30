@@ -24,7 +24,7 @@ vim.opt.termguicolors = true
 vim.opt.undodir = "C:/Users/Hugo/AppData/Local/nvim-data/undo"
 vim.opt.undofile = true
 
-vim.opt.updatetime = 4000
+vim.opt.updatetime = 400
 -- vim.opt.colorcolumn = "80"
 
 vim.opt.scrolloff = 25
@@ -32,6 +32,17 @@ vim.o.timeoutlen = 500
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.o.keymodel = ""
+
+-- Fix for session restoring with blank buffer
+vim.opt.sessionoptions = {
+  "buffers",
+  "curdir",
+  "tabpages",
+  "winsize",
+  "help",
+  "terminal",
+  "folds",
+}
 
 ---- Font for GUI
 -- vim.o.guifont = "CaskaydiaCove Nerd Font:h9.7:#e-antialias:#h-none"
@@ -67,14 +78,13 @@ function SmartChangeDir()
 
   if git_root then
     vim.cmd.lcd(git_root)
-    -- else
-    --   -- fallback to file's directory
-    --   vim.cmd.lcd(vim.fn.fnamemodify(file, ":h"))
+  else
+    -- fallback to file's directory
+    vim.cmd.lcd(vim.fn.fnamemodify(file, ":h"))
   end
   vim.cmd("pwd")
 end
 
--- Save session only if there are multiple buffers opened
 function SmartSaveSession()
   local listed_buffers = vim.tbl_filter(function(buf)
     return vim.fn.buflisted(buf) == 1
@@ -92,21 +102,7 @@ function RestoreSession(session_file)
 end
 
 -- Before leaving
-vim.api.nvim_create_autocmd("VimLeavePre", {
-  callback = function()
-    SmartSaveSession()
-  end,
-})
-
--- After buffer opened
-vim.api.nvim_create_autocmd("BufReadPost", {
-  callback = function()
-    SmartSaveSession()
-  end,
-})
-
--- After buffer closed
-vim.api.nvim_create_autocmd("BufDelete", {
+vim.api.nvim_create_autocmd("VimLeave", {
   callback = function()
     SmartSaveSession()
   end,
@@ -119,3 +115,21 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     SmartChangeDir()
   end,
 })
+
+---- Reduce timeoutlen in insert and Cmdline mode for faster key sequences
+for _, event in ipairs({ "InsertEnter", "CmdlineEnter" }) do
+  vim.api.nvim_create_autocmd(event, {
+    callback = function()
+      vim.o.timeoutlen = 50
+    end,
+  })
+end
+
+---- Restore timeoutlen when leaving insert and Cmdline mode
+for _, event in ipairs({ "InsertLeave", "CmdlineLeave" }) do
+  vim.api.nvim_create_autocmd(event, {
+    callback = function()
+      vim.o.timeoutlen = 500
+    end,
+  })
+end

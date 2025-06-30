@@ -1,4 +1,5 @@
-﻿-- Implement Run configuration --
+﻿-- Implement sessions basesd on projects --
+-- Implement Run configuration --
 -- Fix Eslint not being attached --
 -- Fix Powershell's lsp erroring out --
 -- Fix yazi opening files on broken buffer --

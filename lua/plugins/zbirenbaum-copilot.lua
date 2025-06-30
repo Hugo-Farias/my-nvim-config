@@ -1,5 +1,6 @@
 -- stylua: ignore start
 vim.keymap.set( "n", "<leader>cd", "<cmd>lua require('copilot.suggestion').toggle_auto_trigger()<CR>", { desc = "Copilot: Toggle Auto Trigger" })
+vim.keymap.set( "n", "<leader>cp", "<cmd>Copilot panel<CR>", { desc = "Copilot: Toggle Panel" })
 vim.keymap.set( "n", "<leader>cn", "<cmd>Copilot<CR>", { desc = "Copilot: Status" })
 vim.keymap.set( "i", "<Tab>", "<cmd>lua require('copilot.suggestion').accept()<CR>", { desc = "Copilot: Accept" })
 vim.keymap.set( "i", "<M-]>", "<cmd>lua require('copilot.suggestion').next()<CR>", { desc = "Copilot: Next Suggestion" })
@@ -12,14 +13,16 @@ return {
   version = false,
   opts = {
     filetypes = {
-      javascript = true, -- allow specific filetype
-      typescript = true, -- allow specific filetype
+      javascript = true,
+      typescript = true,
       lua = true,
       css = true,
       html = true,
       jsx = true,
+      tsx = true,
       json = true,
       python = true,
+      ps1 = true,
       go = true,
       rust = true,
       c = true,
@@ -28,8 +31,8 @@ return {
       bash = true,
       yaml = true,
       toml = true,
-      markdown = true, -- overrides default
-      terraform = true, -- disallow specific filetype
+      markdown = true,
+      terraform = true,
       ["*"] = false, -- disable for all other filetypes and ignore default `filetypes`
       sh = function()
         if string.match(vim.fs.basename(vim.api.nvim_buf_get_name(0)), "^%.env.*") then
@@ -42,15 +45,17 @@ return {
     suggestion = {
       enabled = true,
       auto_trigger = true,
-      keymap = {
-        accept = "<Tab>",
-        next = "<M-]>",
-        prev = "<M-[>",
-        dismiss = "<C-d>",
-      },
+      -- keymap = {
+      --   accept = "<Tab>",
+      --   next = "<M-]>",
+      --   prev = "<M-[>",
+      --   dismiss = "<C-d>",
+      --   toggle_auto_trigger = "<leader>cd",
+      --   status = "<leader>cn",
+      -- },
     },
     panel = {
-      enabled = false,
+      enabled = true,
     },
   },
   -- config = function()

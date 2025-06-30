@@ -299,7 +299,7 @@ vim.keymap.set("x", "U", "<C-c>", { noremap = true, desc = "Exit visual mode (U 
 ---- 🧠 Diagnostics
 -------------------------------------------------------------------------------
 
-vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Line diagnostics" })
+-- vim.keymap.set("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Line diagnostics" })
 
 -------------------------------------------------------------------------------
 ---- 🧭 Explorers/File Navigation
@@ -384,25 +384,3 @@ vim.keymap.set({ "c", "i" }, "<C-Delete>", "<Esc>ldwi", { noremap = true, desc =
 
 vim.keymap.set("c", "<Up>", "<C-p>", { desc = "Select Previous" })
 vim.keymap.set("c", "<Down>", "<C-n>", { desc = "Select Next" })
-
--------------------------------------------------------------------------------
----- ⏱ Mode Tweaks
--------------------------------------------------------------------------------
-
----- Reduce timeoutlen in insert and Cmdline mode for faster key sequences
-for _, event in ipairs({ "InsertEnter", "CmdlineEnter" }) do
-  vim.api.nvim_create_autocmd(event, {
-    callback = function()
-      vim.o.timeoutlen = 50
-    end,
-  })
-end
-
----- Restore timeoutlen when leaving insert and Cmdline mode
-for _, event in ipairs({ "InsertLeave", "CmdlineLeave" }) do
-  vim.api.nvim_create_autocmd(event, {
-    callback = function()
-      vim.o.timeoutlen = 500
-    end,
-  })
-end

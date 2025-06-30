@@ -25,7 +25,37 @@ return {
 
     require("mason-lspconfig").setup({
       automatic_enable = false,
-      ensure_installed = { "lua_ls" },
+      ensure_installed = {},
+    })
+
+    local lspconfig = require("lspconfig")
+
+    lspconfig["powershell_es"].setup({
+      cmd = {
+        "pwsh",
+        "-NoLogo",
+        "-NoProfile",
+        "-Command",
+        vim.fn.expand("~")
+          .. "/AppData/Local/nvim-data/mason/packages/powershell-editor-services/PowerShellEditorServices/Start-EditorServices.ps1",
+        "-HostName",
+        "nvim",
+        "-HostProfileId",
+        "0",
+        "-HostVersion",
+        "1.0.0",
+        "-LogLevel",
+        "Normal",
+        "-BundledModulesPath",
+        vim.fn.expand("~") .. "/AppData/Local/nvim-data/mason/packages/powershell-editor-services",
+        "-SessionDetailsPath",
+        vim.fn.stdpath("cache") .. "/powershell_es.session.json",
+        "-FeatureFlags",
+        "@()",
+        "-AdditionalModules",
+        "@()",
+      },
+      filetypes = { "ps1" },
     })
 
     for _, server in ipairs(require("mason-lspconfig").get_installed_servers()) do
