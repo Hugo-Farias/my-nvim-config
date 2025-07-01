@@ -1,10 +1,19 @@
-﻿local function loadSession(picker, item)
-  local session_dir = "C:/Users/Hugo/AppData/Local/nvim-data/sessions/"
-  local session_name = item.file:gsub("[:/\\]", "%%") .. ".vim"
-  local session_path = session_dir .. session_name
+﻿vim.api.nvim_create_user_command("MkProject", function()
+  IsProject = true
+end, {})
 
+function SessionName(path)
+  local session_dir = "C:/Users/Hugo/AppData/Local/nvim-data/sessions/"
+  local session_name = path:gsub("[:/\\]", "%%") .. ".vim"
+  return session_dir .. session_name
+end
+
+function LoadSession(picker, item)
+  local session_path = SessionName(item.file)
   vim.cmd("tcd " .. item.file)
   picker:close()
+
+  IsProject = true
 
   if vim.loop.fs_stat(session_path) then
     vim.cmd("silent! source " .. vim.fn.fnameescape(session_path))
@@ -50,7 +59,7 @@ return {
         desc = "Projects",
         action = function()
           require("snacks").picker.projects({
-            confirm = loadSession,
+            confirm = LoadSession,
           })
         end,
         -- action = ":lua Snacks.dashboard.pick('projects')",

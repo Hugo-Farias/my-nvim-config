@@ -78,7 +78,7 @@ vim.keymap.set("n", "gt", "<C-6>", { desc = "Go to previous buffer" })
 -- vim.keymap.set({ "n" }, "K", ":bnext<CR>", { desc = "Next buffer" })
 
 ---- Safely Quit Neovim
-vim.keymap.set("n", "<leader>Q", ":q<CR>", { desc = "Safely quit neovim" })
+-- vim.keymap.set("n", "<leader>Q", ":q<CR>", { desc = "Safely quit neovim" })
 
 ---- Close buffer
 -- for _, key in ipairs({ "<C-f4>", "<leader>q", "qw" }) do
@@ -276,7 +276,7 @@ vim.keymap.set({ "i", "c" }, "KJ", "<Esc>", { desc = "Exit insert mode (KJ)" })
 vim.keymap.set("n", "L", "J", { silent = true, desc = "Join lines" })
 
 ---- Split lines upwards
-vim.keymap.set("n", "<C-k>", "DO<Esc>$p_", { desc = "Split line upwards", noremap = true })
+vim.keymap.set("n", "<C-k>", "o<Esc>k_", { desc = "Split line upwards", noremap = true })
 
 ---- Split lines downwards
 vim.keymap.set("n", "<C-j>", "i<CR><Esc>==", {

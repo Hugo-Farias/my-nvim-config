@@ -33,6 +33,26 @@ for _, key in ipairs({ "<C-f4>", "<leader>q", "<M-q>", "qt" }) do
   end, { desc = "Close Buffer" })
 end
 
+local function closeAllBuffers()
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.fn.buflisted(buf) == 1 then
+      vim.api.nvim_set_current_buf(buf)
+      require("snacks").bufdelete()
+    end
+  end
+end
+
+local function openProjects()
+  require("snacks").picker.projects({
+    confirm = function(picker, item)
+      SmartSaveSession()
+      IsProject = false
+      closeAllBuffers()
+      LoadSession(picker, item)
+    end,
+  })
+end
+
 return {
   "folke/snacks.nvim",
   priority = 1000,
@@ -69,13 +89,13 @@ return {
     {"<leader>sc", "<cmd>lua Snacks.picker.command_history()<CR>", desc = "Snacks: Search Command History" },
     {"<leader>sd", "<cmd>lua Snacks.picker.diagnostics()<CR>", desc = "Snacks: Search Diagnostics" },
     {"<leader>sm", "<cmd>lua Snacks.picker.marks()<CR>", desc = "Snacks: Search Diagnostics" },
-    {"<leader>sp", "<cmd>lua Snacks.picker.projects()<CR>", desc = "Snacks: Search Projects" },
     {"<leader>sn", "<cmd>lua Snacks.notifier.show_history()<CR>", desc = "Snacks: Show Notification History" },
     {"<leader>sH", "<cmd>lua Snacks.picker.search_history()<CR>", desc = "Snacks: Show Notification History" },
     ---- Git Actions ----
     {"<leader>gg", "<cmd>lua Snacks.lazygit()<CR>", desc = "Snacks: Git Lazygit" },
     {"<leader>gb", "<cmd>lua Snacks.git.blame_line()<CR>", desc = "Snacks: Git Line Blame" },
     {"<leader>gl", "<cmd>lua Snacks.picker.git_log_line()<CR>", desc = "Snacks: Git Log Line" },
+    {"<leader>sp", function() openProjects() end, desc = "Snacks: Search Projects" },
     -- stylua: ignore end
   },
 }

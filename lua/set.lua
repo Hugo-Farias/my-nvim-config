@@ -94,42 +94,55 @@ function SmartChangeDir()
 end
 
 function SmartSaveSession()
+  if not IsProject then
+    return
+  end
+
+  -- vim.notify("Saving session...", vim.log.levels.INFO, { title = "Session" })
+
   local cwd = vim.fn.getcwd()
   local git_dir = cwd .. "/.git"
 
+  ---@diagnostic disable-next-line: undefined-field
   if not vim.loop.fs_stat(git_dir) then
     return
   end
 
-  local listed_buffers = vim.tbl_filter(function(buf)
-    return vim.fn.buflisted(buf) == 1
-  end, vim.api.nvim_list_bufs())
+  local session_path = SessionName(cwd)
 
-  if #listed_buffers > 1 then
-    vim.notify("Session saved", vim.log.levels.INFO)
-    -- Replace / or \ with %
-    local session_name = cwd:gsub("[:/\\]", "%%") .. ".vim"
-    local session_path = "C:/Users/Hugo/AppData/Local/nvim-data/sessions/" .. session_name
+  -- Check for listed buffers that are associated with a real file on disk
+  local has_real_files = false
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if
+      vim.api.nvim_buf_is_loaded(buf)
+      and vim.api.nvim_buf_get_name(buf) ~= ""
+      and vim.loop.fs_stat(vim.api.nvim_buf_get_name(buf))
+    then
+      has_real_files = true
+      break
+    end
+  end
 
+  -- vim.notify("Has real files: " .. tostring(has_real_files), vim.log.levels.INFO, { title = "Session" })
+
+  if has_real_files then
     vim.cmd("mksession! " .. vim.fn.fnameescape(session_path))
+  else
+    -- Delete session file if it no buffers associated with files exist
+    if vim.loop.fs_stat(session_path) then
+      ---@diagnostic disable-next-line: undefined-field
+      vim.loop.fs_unlink(session_path)
+    end
   end
 end
 
--- Before leaving
-vim.api.nvim_create_autocmd("QuitPre", {
+-- Before leaving and after buffer opened
+vim.api.nvim_create_autocmd({ "QuitPre", "BufAdd" }, {
   callback = function()
     SmartSaveSession()
   end,
 })
 
--- After buffer opened
-vim.api.nvim_create_autocmd("BufAdd", {
-  callback = function()
-    SmartSaveSession()
-  end,
-})
-
--- -- After buffer opened only once
 -- vim.api.nvim_create_autocmd("BufReadPost", {
 --   once = true,
 --   callback = function()
@@ -138,19 +151,15 @@ vim.api.nvim_create_autocmd("BufAdd", {
 -- })
 
 ---- Reduce timeoutlen in insert and Cmdline mode for faster key sequences
-for _, event in ipairs({ "InsertEnter", "CmdlineEnter" }) do
-  vim.api.nvim_create_autocmd(event, {
-    callback = function()
-      vim.o.timeoutlen = 50
-    end,
-  })
-end
+vim.api.nvim_create_autocmd({ "InsertEnter", "CmdlineEnter" }, {
+  callback = function()
+    vim.o.timeoutlen = 50
+  end,
+})
 
 ---- Restore timeoutlen when leaving insert and Cmdline mode
-for _, event in ipairs({ "InsertLeave", "CmdlineLeave" }) do
-  vim.api.nvim_create_autocmd(event, {
-    callback = function()
-      vim.o.timeoutlen = 500
-    end,
-  })
-end
+vim.api.nvim_create_autocmd({ "InsertLeave", "CmdlineLeave" }, {
+  callback = function()
+    vim.o.timeoutlen = 500
+  end,
+})
