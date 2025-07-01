@@ -55,12 +55,12 @@ return {
         end,
         -- action = ":lua Snacks.dashboard.pick('projects')",
       },
-      {
-        icon = " ",
-        key = "s",
-        desc = "Restore Session",
-        action = "<cmd>lua RestoreSession()<CR>",
-      },
+      -- {
+      --   icon = " ",
+      --   key = "s",
+      --   desc = "Restore Session",
+      --   action = "<cmd>lua RestoreSession()<CR>",
+      -- },
       { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
       { icon = " ", key = "q", desc = "Quit", action = ":qa" },
     },

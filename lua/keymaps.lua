@@ -230,8 +230,8 @@ vim.keymap.set("n", "H", function()
 end, { desc = "Duplicate Line" })
 
 ---- Move lines
-vim.keymap.set("x", "J", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
-vim.keymap.set("x", "K", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
+vim.keymap.set("x", "<C-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
+vim.keymap.set("x", "<C-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 
 ---- Redo
 vim.keymap.set("n", "U", "<C-r>", { desc = "Redo" })
@@ -275,9 +275,12 @@ vim.keymap.set({ "i", "c" }, "KJ", "<Esc>", { desc = "Exit insert mode (KJ)" })
 -- vim.keymap.set("n", "<leader>jl", "J", { noremap = true, silent = true, desc = "Join lines" })
 vim.keymap.set("n", "L", "J", { silent = true, desc = "Join lines" })
 
----- Split lines
-vim.keymap.set("n", "<C-l>", "i<CR><Esc>==", {
-  desc = "Split line",
+---- Split lines upwards
+vim.keymap.set("n", "<C-k>", "DO<Esc>$p_", { desc = "Split line upwards", noremap = true })
+
+---- Split lines downwards
+vim.keymap.set("n", "<C-j>", "i<CR><Esc>==", {
+  desc = "Split line downwards",
   noremap = true,
 })
 

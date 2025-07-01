@@ -1,4 +1,6 @@
 require("lazy").setup({
+  checker = { enabled = true },
+
   { require("plugins.mason") },
   { require("lsp") },
   { require("luarocks") },
@@ -35,7 +37,7 @@ require("lazy").setup({
   { require("plugins.snacks") },
   { require("plugins.vim-smartword") },
   { "tpope/vim-commentary" },
-  -- { "ThePrimeagen/harpoon" },
+  { require("plugins.harpoon") },
   { require("plugins.undotree") },
   { require("plugins.flash") },
   { require("plugins.which-key") },

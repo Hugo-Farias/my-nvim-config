@@ -1,4 +1,4 @@
-﻿-- Neovim base settings
+-- Neovim base settings
 EditorColorScheme()
 vim.o.shell = "C:\\PROGRA~1\\PowerShell\\7\\pwsh.exe"
 vim.o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
@@ -17,6 +17,8 @@ vim.opt.smartindent = true
 
 vim.opt.wrap = false
 
+-- vim.opt.hlsearch = false
+
 vim.opt.termguicolors = true
 
 -- vim.opt.swapfile = false
@@ -32,6 +34,12 @@ vim.o.timeoutlen = 500
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.o.keymodel = ""
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
 
 -- Fix for session restoring with blank buffer
 vim.opt.sessionoptions = {
@@ -93,34 +101,41 @@ function SmartSaveSession()
     return
   end
 
-  -- Replace / or \ with %
-  local session_name = cwd:gsub("[:/\\]", "%%") .. ".vim"
-  local session_path = "C:/Users/Hugo/AppData/Local/nvim-data/sessions/" .. session_name
-  vim.notify(session_name)
+  local listed_buffers = vim.tbl_filter(function(buf)
+    return vim.fn.buflisted(buf) == 1
+  end, vim.api.nvim_list_bufs())
 
-  vim.cmd("mksession! " .. vim.fn.fnameescape(session_path))
-end
+  if #listed_buffers > 1 then
+    vim.notify("Session saved", vim.log.levels.INFO)
+    -- Replace / or \ with %
+    local session_name = cwd:gsub("[:/\\]", "%%") .. ".vim"
+    local session_path = "C:/Users/Hugo/AppData/Local/nvim-data/sessions/" .. session_name
 
--- Restore session if it exists
-function RestoreSession(session_file)
-  local session_location = session_file or "C:/Users/Hugo/AppData/Local/nvim-data/sessions/autosave.vim"
-  vim.cmd("source " .. vim.fn.fnameescape(session_location))
+    vim.cmd("mksession! " .. vim.fn.fnameescape(session_path))
+  end
 end
 
 -- Before leaving
-vim.api.nvim_create_autocmd("VimLeave", {
+vim.api.nvim_create_autocmd("QuitPre", {
   callback = function()
     SmartSaveSession()
   end,
 })
 
--- After buffer opened only once
-vim.api.nvim_create_autocmd("BufReadPost", {
-  once = true,
+-- After buffer opened
+vim.api.nvim_create_autocmd("BufAdd", {
   callback = function()
-    SmartChangeDir()
+    SmartSaveSession()
   end,
 })
+
+-- -- After buffer opened only once
+-- vim.api.nvim_create_autocmd("BufReadPost", {
+--   once = true,
+--   callback = function()
+--     SmartChangeDir()
+--   end,
+-- })
 
 ---- Reduce timeoutlen in insert and Cmdline mode for faster key sequences
 for _, event in ipairs({ "InsertEnter", "CmdlineEnter" }) do
