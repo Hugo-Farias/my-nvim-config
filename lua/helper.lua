@@ -38,7 +38,7 @@ function SmartSaveSession()
     return
   end
 
-  vim.notify("Saving session...", vim.log.levels.INFO, { title = "Session" })
+  -- vim.notify("Saving session...", vim.log.levels.INFO, { title = "Session" })
 
   local cwd = vim.fn.getcwd()
   local git_dir = cwd .. "/.git"

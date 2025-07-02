@@ -20,7 +20,7 @@ function LoadSession(picker, item)
     vim.cmd("silent! source " .. vim.fn.fnameescape(session_path))
   else
     vim.schedule(function()
-      Snacks.dashboard.pick("files")
+      vim.cmd("lua Snacks.dashboard.pick('files')")
     end)
   end
 end

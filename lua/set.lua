@@ -1,5 +1,4 @@
 -- Neovim base settings
-EditorColorScheme()
 vim.o.shell = "C:\\PROGRA~1\\PowerShell\\7\\pwsh.exe"
 vim.o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
 vim.o.shellquote = ""
@@ -16,8 +15,6 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 
 vim.opt.wrap = false
-
--- vim.opt.hlsearch = false
 
 vim.opt.termguicolors = true
 
@@ -56,5 +53,6 @@ vim.opt.sessionoptions = {
 -- vim.o.guifont = "CaskaydiaCove Nerd Font:h9.7:#e-antialias:#h-none"
 vim.o.guifont = "JetBrainsMono Nerd Font:h9.5"
 
--- Neovide settings
+-- Neovide setting
+-- s
 require("neovide")
