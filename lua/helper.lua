@@ -38,8 +38,6 @@ function SmartSaveSession()
     return
   end
 
-  -- vim.notify("Saving session...", vim.log.levels.INFO, { title = "Session" })
-
   local cwd = vim.fn.getcwd()
   local git_dir = cwd .. "/.git"
 
@@ -66,6 +64,7 @@ function SmartSaveSession()
   -- vim.notify("Has real files: " .. tostring(has_real_files), vim.log.levels.INFO, { title = "Session" })
 
   if has_real_files then
+    -- vim.notify("Saving session...", vim.log.levels.INFO, { title = "Session" })
     vim.cmd("mksession! " .. vim.fn.fnameescape(session_path))
   else
     -- Delete session file if it no buffers associated with files exist

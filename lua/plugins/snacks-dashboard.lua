@@ -36,6 +36,7 @@ local function loadPreviousSession()
   end)
   local last_session = files[1]
   if last_session then
+    IsProject = true
     vim.cmd("silent! source " .. vim.fn.fnameescape(last_session))
   end
 end
@@ -83,7 +84,7 @@ return {
       {
         icon = " ",
         key = "s",
-        desc = "Previously Opened Session",
+        desc = "Previous Session",
         action = function()
           loadPreviousSession()
         end,
