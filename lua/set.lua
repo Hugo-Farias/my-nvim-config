@@ -60,7 +60,6 @@ vim.o.guifont = "JetBrainsMono Nerd Font:h9.5"
 require("neovide")
 
 -- Change location to git root if found, otherwise to file's location
--- TODO don't run this if opened through projects
 function SmartChangeDir()
   local file = vim.api.nvim_buf_get_name(0)
   if vim.fn.filereadable(file) ~= 1 then

@@ -23,8 +23,6 @@ vim.keymap.set({ "n", "x" }, "gu", "<Nop>", { desc = "Disable gu" })
 ---- 💾 Save / Format / File Ops
 -------------------------------------------------------------------------------
 
-vim.keymap.set({ "n", "x" }, "ss", "s", { desc = "Subistitute", noremap = true })
-
 vim.keymap.set("n", "cp", function()
   SmartChangeDir()
 end)
@@ -114,6 +112,9 @@ resize("<M-Up>", "<C-w>+", 5)
 -------------------------------------------------------------------------------
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
+
+---- Substitute
+vim.keymap.set({ "n", "x" }, "ss", "s", { desc = "Subistitute", noremap = true })
 
 ---- Flip Boolean
 vim.keymap.set("n", "gb", function()

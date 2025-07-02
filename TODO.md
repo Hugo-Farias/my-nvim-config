@@ -1,5 +1,7 @@
-﻿-- Implement Console "Tabs" --
+﻿-- Move set functions to a separate file --
+-- Implement Console "Tabs" --
 -- Implement Run configuration --
+-- Implement Debug configuration --
 -- Fix fs_stat undefined lsp error --
 -- Fix Eslint not being attached --
 -- Fix Powershell's lsp erroring out --

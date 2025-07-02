@@ -1,18 +1,18 @@
 require("lazy").setup({
-  checker = { enabled = true },
+  { "nvim-lua/plenary.nvim" },
 
   { require("plugins.mason") },
   { require("lsp") },
-  { require("luarocks") },
+  -- { require("luarocks") },
 
   ---- Formatter ----
+  -- { require("plugins.null-ls") },
   { require("plugins.conform") },
   { require("plugins.nvim-ts-autotag") },
 
   { require("plugins.treesitter") },
   { require("plugins.treesitter-context") },
   { "HiPhish/rainbow-delimiters.nvim" },
-  { "nvim-lua/plenary.nvim" },
 
   ---- Project Manager ----
   -- { require("plugins.project") },
@@ -43,6 +43,7 @@ require("lazy").setup({
   { require("plugins.which-key") },
   { require("plugins.gitsigns") },
   { require("plugins.vim-visual-multi") },
+  -- { require("plugins.nvim-dap") },
 
   ---- Buffer/Tab line ----
   -- { require("plugins.mini-tabline") },
@@ -54,7 +55,6 @@ require("lazy").setup({
 
   ---- Language Support ----
   { "kmonad/kmonad-vim" },
-  -- { require("plugins.null-ls") },
 
   ---- Colors ----
   require("colors"),

@@ -1,4 +1,5 @@
 ﻿vim.api.nvim_create_user_command("MkProject", function()
+  SmartChangeDir()
   IsProject = true
 end, {})
 
@@ -21,6 +22,21 @@ function LoadSession(picker, item)
     vim.schedule(function()
       Snacks.dashboard.pick("files")
     end)
+  end
+end
+
+local function loadPreviousSession()
+  local session_dir = "C:/Users/Hugo/AppData/Local/nvim-data/sessions/"
+  local files = vim.fn.glob(session_dir .. "*.vim", false, true)
+  if #files == 0 then
+    return
+  end
+  table.sort(files, function(a, b)
+    return vim.loop.fs_stat(a).mtime.sec > vim.loop.fs_stat(b).mtime.sec
+  end)
+  local last_session = files[1]
+  if last_session then
+    vim.cmd("silent! source " .. vim.fn.fnameescape(last_session))
   end
 end
 
@@ -64,12 +80,14 @@ return {
         end,
         -- action = ":lua Snacks.dashboard.pick('projects')",
       },
-      -- {
-      --   icon = " ",
-      --   key = "s",
-      --   desc = "Restore Session",
-      --   action = "<cmd>lua RestoreSession()<CR>",
-      -- },
+      {
+        icon = " ",
+        key = "s",
+        desc = "Previously Opened Session",
+        action = function()
+          loadPreviousSession()
+        end,
+      },
       { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
       { icon = " ", key = "q", desc = "Quit", action = ":qa" },
     },

@@ -2,10 +2,12 @@ local workspaceDiagnostics = function(client)
   local cwd = vim.fn.getcwd()
   local git_dir = cwd .. "/.git"
 
-  if vim.loop.fs_stat(git_dir) then
-    require("workspace-diagnostics").populate_workspace_diagnostics(client, 0)
-    -- vim.notify("workspaceDiagnostics: finished")
+  if not vim.loop.fs_stat(git_dir) then
+    return
   end
+
+  require("workspace-diagnostics").populate_workspace_diagnostics(client, 0)
+  -- vim.notify("workspaceDiagnostics: finished")
 end
 
 return {

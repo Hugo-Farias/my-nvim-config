@@ -22,11 +22,11 @@ return {
           -- opts.jump_labels = vim.v.count == 0 and vim.fn.mode(true):find("o")
         end,
         -- hide after jump when not using jump labels
-        autohide = true,
+        autohide = false,
         -- show jump labels
         jump_labels = false,
         -- set to `false` to use the current line only
-        multi_line = true,
+        multi_line = false,
         -- When using jump labels, don't use these keys
         -- This allows using those keys directly after the motion
         label = { exclude = "hjkliardc" },

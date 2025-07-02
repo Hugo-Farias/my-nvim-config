@@ -7,13 +7,14 @@
 vim.api.nvim_create_autocmd("LspAttach", {
   desc = "LSP actions",
   callback = function()
-    vim.keymap.set("n", "gd", "<cmd>lua Snacks.picker.lsp_definitions()<CR>", {desc = "LSP: Goto Definition" })
-    vim.keymap.set("n", "gD", "<cmd>lua Snacks.picker.lsp_declarations()<CR>", {desc = "LSP: Goto Declaration" })
-    vim.keymap.set("n", "gr", "<cmd>lua Snacks.picker.lsp_references()<CR>", {nowait = true, desc = "LSP: References" })
-    vim.keymap.set("n", "gI", "<cmd>lua Snacks.picker.lsp_implementations()<CR>", {desc = "LSP: Goto Implementation" })
-    vim.keymap.set("n", "go", "<cmd>lua Snacks.picker.lsp_type_definitions()<CR>", {desc = "LSP: Goto T[y]pe Definition" })
-    vim.keymap.set("n", "<leader>ss", "<cmd>lua Snacks.picker.lsp_symbols()<CR>", {desc = "LSP: Symbols" })
-    vim.keymap.set("n", "<leader>sS", "<cmd>lua Snacks.picker.lsp_workspace_symbols()<CR>", {desc = "LSP: Workspace Symbols" })
+    vim.keymap.set("n", "gd", "<cmd>lua Snacks.picker.lsp_definitions()<CR>", { desc = "LSP: Goto Definition" })
+    vim.keymap.set("n", "gD", "<cmd>lua Snacks.picker.lsp_declarations()<CR>", { desc = "LSP: Goto Declaration" })
+    vim.keymap.set("n", "gr", "<cmd>lua Snacks.picker.lsp_references()<CR>", { nowait = true, desc = "LSP: References" })
+    vim.keymap.set("n", "gI", "<cmd>lua Snacks.picker.lsp_implementations()<CR>", { desc = "LSP: Goto Implementation" })
+    vim.keymap.set("n", "go", "<cmd>lua Snacks.picker.lsp_type_definitions()<CR>", { desc = "LSP: Goto T[y]pe Definition" })
+    vim.keymap.set("n", "<leader>ss", "<cmd>lua Snacks.picker.lsp_symbols()<CR>", { desc = "LSP: Symbols" })
+    vim.keymap.set("n", "<leader>sS", "<cmd>lua Snacks.picker.lsp_workspace_symbols()<CR>", { desc = "LSP: Workspace Symbols" })
+    vim.keymap.set("n", "<leader>sd", "<cmd>lua Snacks.picker.diagnostics()<CR>", { desc = "Snacks: Search Diagnostics" })
   end,
 })
 -- stylua: ignore end
@@ -36,6 +37,13 @@ end
 local function closeAllBuffers()
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
     if vim.fn.buflisted(buf) == 1 then
+      -- Detach all LSP clients from the buffer
+      local clients = vim.lsp.get_active_clients({ bufnr = buf })
+      for _, client in ipairs(clients) do
+        pcall(vim.lsp.buf_detach_client, buf, client.id)
+      end
+
+      -- Delete the buffer
       vim.api.nvim_set_current_buf(buf)
       require("snacks").bufdelete()
     end
@@ -87,8 +95,7 @@ return {
     {"<leader>sh", "<cmd>lua Snacks.picker.help()<CR>", desc = "Snacks: Search Help" },
     {"<leader>s'", "<cmd>lua Snacks.picker.registers()<CR>", desc = "Snacks: Search Registers" },
     {"<leader>sc", "<cmd>lua Snacks.picker.command_history()<CR>", desc = "Snacks: Search Command History" },
-    {"<leader>sd", "<cmd>lua Snacks.picker.diagnostics()<CR>", desc = "Snacks: Search Diagnostics" },
-    {"<leader>sm", "<cmd>lua Snacks.picker.marks()<CR>", desc = "Snacks: Search Diagnostics" },
+    {"<leader>sm", "<cmd>lua Snacks.picker.marks()<CR>", desc = "Snacks: Search Marks" },
     {"<leader>sn", "<cmd>lua Snacks.notifier.show_history()<CR>", desc = "Snacks: Show Notification History" },
     {"<leader>sH", "<cmd>lua Snacks.picker.search_history()<CR>", desc = "Snacks: Show Notification History" },
     ---- Git Actions ----

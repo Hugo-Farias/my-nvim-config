@@ -41,7 +41,6 @@ local on_attach = function(event)
 end
 -- stylua: ignore end
 
---
 vim.api.nvim_create_autocmd("LspAttach", {
   desc = "LSP actions",
   callback = on_attach,
@@ -56,7 +55,11 @@ return {
       library = {
         -- See the configuration section for more details
         -- Load luvit types when the `vim.uv` word is found
-        { path = "${3rd}/luv/library", words = { "vim%.uv", "vim%.loop.fs_stat" } },
+        {
+          path = "${3rd}/luv/library",
+          words = { "vim%.uv", "vim%.loop.fs_stat" },
+          unpack(vim.api.nvim_get_runtime_file("", true)),
+        },
       },
     },
   },
