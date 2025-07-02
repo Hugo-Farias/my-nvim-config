@@ -3,7 +3,7 @@ require("lazy").setup({
 
   { require("plugins.mason") },
   { require("lsp") },
-  -- { require("luarocks") },
+  -- { require("plugins.luarocks") },
 
   ---- Formatter ----
   -- { require("plugins.null-ls") },
