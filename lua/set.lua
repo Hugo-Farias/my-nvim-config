@@ -20,7 +20,7 @@ vim.opt.termguicolors = true
 
 -- vim.opt.swapfile = false
 -- vim.opt.backup = false
-vim.opt.undodir = "C:/Users/Hugo/AppData/Local/nvim-data/undo"
+vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
 vim.opt.undofile = true
 
 vim.opt.updatetime = 400

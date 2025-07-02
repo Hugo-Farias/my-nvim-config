@@ -103,6 +103,7 @@ return {
     {"<leader>gb", "<cmd>lua Snacks.git.blame_line()<CR>", desc = "Snacks: Git Line Blame" },
     {"<leader>gl", "<cmd>lua Snacks.picker.git_log_line()<CR>", desc = "Snacks: Git Log Line" },
     {"<leader>sp", function() openProjects() end, desc = "Snacks: Search Projects" },
+    {"<leader>s<Tab>", "<cmd>lua Snacks.picker.resume()<CR>", desc = "Snacks: Resume Search" },
     -- stylua: ignore end
   },
 }
