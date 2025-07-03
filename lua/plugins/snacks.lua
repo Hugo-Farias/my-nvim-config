@@ -1,8 +1,4 @@
-﻿-------------------------------------------------------------------------------
--- 🍿 Snacks Keymaps
--------------------------------------------------------------------------------
-
--- stylua: ignore start
+﻿-- stylua: ignore start
 ---- Lsp Keymaps ----
 vim.api.nvim_create_autocmd("LspAttach", {
   desc = "LSP actions",
@@ -37,12 +33,6 @@ end
 local function closeAllBuffers()
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
     if vim.fn.buflisted(buf) == 1 then
-      -- Detach all LSP clients from the buffer
-      local clients = vim.lsp.get_active_clients({ bufnr = buf })
-      for _, client in ipairs(clients) do
-        pcall(vim.lsp.buf_detach_client, buf, client.id)
-      end
-
       -- Delete the buffer
       vim.api.nvim_set_current_buf(buf)
       require("snacks").bufdelete()
@@ -81,29 +71,31 @@ return {
   },
   keys = {
     -- stylua: ignore start
-    {"<leader>sf", "<cmd>lua Snacks.picker.files()<CR>", desc = "Snacks: Search Files" },
-    {"<leader><leader>", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
-    {"<leader>sg", "<cmd>lua Snacks.picker.git_files()<CR>", desc = "Snacks: Search Git Files" },
-    {"<leader>sr", "<cmd>lua Snacks.picker.recent()<CR>", desc = "Snacks: Search Recent Files" },
-    {"<leader>sl", "<cmd>lua Snacks.picker.lines()<CR>", desc = "Snacks: Search Lines" },
-    {"<leader>e", "<cmd>lua Snacks.picker.explorer()<CR>", desc = "Snacks: Open Explorer" },
-    {"<leader>fR", "<cmd>lua Snacks.rename.rename_file()<CR>", desc = "Snacks: Rename File" },
-    {"<leader>s/", "<cmd>lua Snacks.picker.grep()<CR>", desc = "Snacks: Search Grep" },
-    {"<C-e>", "<cmd>lua Snacks.picker.buffers()<CR>", desc = "Snacks: Search Buffers" },
-    {"<leader>sC", "<cmd>lua Snacks.picker.colorschemes()<CR>", desc = "Snacks: Search Color Schemes" },
-    {"<leader>sk", "<cmd>lua Snacks.picker.keymaps()<CR>", desc = "Snacks: Search Keymaps" },
-    {"<leader>sh", "<cmd>lua Snacks.picker.help()<CR>", desc = "Snacks: Search Help" },
-    {"<leader>s'", "<cmd>lua Snacks.picker.registers()<CR>", desc = "Snacks: Search Registers" },
-    {"<leader>sc", "<cmd>lua Snacks.picker.command_history()<CR>", desc = "Snacks: Search Command History" },
-    {"<leader>sm", "<cmd>lua Snacks.picker.marks()<CR>", desc = "Snacks: Search Marks" },
-    {"<leader>sn", "<cmd>lua Snacks.notifier.show_history()<CR>", desc = "Snacks: Show Notification History" },
-    {"<leader>sH", "<cmd>lua Snacks.picker.search_history()<CR>", desc = "Snacks: Show Notification History" },
+    { "<leader>sf", "<cmd>lua Snacks.picker.files()<CR>", desc = "Snacks: Search Files" },
+    { "<leader><leader>", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
+    { "<leader>sg", "<cmd>lua Snacks.picker.git_files()<CR>", desc = "Snacks: Search Git Files" },
+    { "<leader>sr", "<cmd>lua Snacks.picker.recent()<CR>", desc = "Snacks: Search Recent Files" },
+    { "<leader>sl", "<cmd>lua Snacks.picker.lines()<CR>", desc = "Snacks: Search Lines" },
+    { "<leader>e", "<cmd>lua Snacks.picker.explorer()<CR>", desc = "Snacks: Open Explorer" },
+    { "<leader>fR", "<cmd>lua Snacks.rename.rename_file()<CR>", desc = "Snacks: Rename File" },
+    { "<leader>/", "<cmd>lua Snacks.picker.grep()<CR>", desc = "Snacks: Search Grep" },
+    { "<leader>sw", "<cmd>lua Snacks.picker.grep_word()<CR>", desc = "Snacks: Search Word Grep"},
+    { "<leader>/", "<cmd>lua Snacks.picker.grep_word()<CR>", desc = "Snacks: Search Selection Grep", mode = "x"},
+    { "<C-e>", "<cmd>lua Snacks.picker.buffers()<CR>", desc = "Snacks: Search Buffers" },
+    { "<leader>sC", "<cmd>lua Snacks.picker.colorschemes()<CR>", desc = "Snacks: Search Color Schemes" },
+    { "<leader>sk", "<cmd>lua Snacks.picker.keymaps()<CR>", desc = "Snacks: Search Keymaps" },
+    { "<leader>sh", "<cmd>lua Snacks.picker.help()<CR>", desc = "Snacks: Search Help" },
+    { "<leader>s'", "<cmd>lua Snacks.picker.registers()<CR>", desc = "Snacks: Search Registers" },
+    { "<leader>sc", "<cmd>lua Snacks.picker.command_history()<CR>", desc = "Snacks: Search Command History" },
+    { "<leader>sm", "<cmd>lua Snacks.picker.marks()<CR>", desc = "Snacks: Search Marks" },
+    { "<leader>sn", "<cmd>lua Snacks.notifier.show_history()<CR>", desc = "Snacks: Show Notification History" },
+    { "<leader>sH", "<cmd>lua Snacks.picker.search_history()<CR>", desc = "Snacks: Show Notification History" },
     ---- Git Actions ----
-    {"<leader>gg", "<cmd>lua Snacks.lazygit()<CR>", desc = "Snacks: Git Lazygit" },
-    {"<leader>gb", "<cmd>lua Snacks.git.blame_line()<CR>", desc = "Snacks: Git Line Blame" },
-    {"<leader>gl", "<cmd>lua Snacks.picker.git_log_line()<CR>", desc = "Snacks: Git Log Line" },
-    {"<leader>sp", function() openProjects() end, desc = "Snacks: Search Projects" },
-    {"<leader><Tab>", "<cmd>lua Snacks.picker.resume()<CR>", desc = "Snacks: Resume Search" },
+    { "<leader>gg", "<cmd>lua Snacks.lazygit()<CR>", desc = "Snacks: Git Lazygit" },
+    { "<leader>gb", "<cmd>lua Snacks.git.blame_line()<CR>", desc = "Snacks: Git Line Blame" },
+    { "<leader>gl", "<cmd>lua Snacks.picker.git_log_line()<CR>", desc = "Snacks: Git Log Line" },
+    { "<leader>sp", function() openProjects() end, desc = "Snacks: Search Projects" },
+    { "<leader><Tab>", "<cmd>lua Snacks.picker.resume()<CR>", desc = "Snacks: Resume Search" },
     -- stylua: ignore end
   },
 }

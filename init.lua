@@ -10,4 +10,4 @@ require("set")
 require("keymaps")
 require("lazyload")
 
-EditorColorScheme()
+EditorColorScheme("onedark")

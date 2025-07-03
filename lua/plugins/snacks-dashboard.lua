@@ -3,12 +3,6 @@
   IsProject = true
 end, {})
 
-function SessionName(path)
-  local session_dir = vim.fn.stdpath("data") .. "/sessions/"
-  local session_name = path:gsub("[:/\\]", "%%") .. ".vim"
-  return session_dir .. session_name
-end
-
 function LoadSession(picker, item)
   local session_path = SessionName(item.file)
   vim.cmd("tcd " .. item.file)

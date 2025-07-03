@@ -32,12 +32,6 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.o.keymodel = ""
 
-vim.api.nvim_create_autocmd("TextYankPost", {
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
-
 -- Fix for session restoring with blank buffer
 vim.opt.sessionoptions = {
   "buffers",
@@ -51,8 +45,12 @@ vim.opt.sessionoptions = {
 
 ---- Font for GUI
 -- vim.o.guifont = "CaskaydiaCove Nerd Font:h9.7:#e-antialias:#h-none"
-vim.o.guifont = "JetBrainsMono Nerd Font:h9.5"
+-- vim.o.guifont = "JetBrainsMono Nerd Font:h9.5"
+vim.o.guifont = "JetBrainsMono Nerd Font:h13"
 
 -- Neovide setting
--- s
 require("neovide")
+
+vim.api.nvim_create_user_command("NvimClean", function()
+  CleanShaDaFiles()
+end, { desc = "Run PowerShell alias nvimclean" })

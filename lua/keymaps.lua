@@ -113,6 +113,9 @@ resize("<M-Up>", "<C-w>+", 5)
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
 
+---- Get previous yanked text
+vim.keymap.set("n", '<leader>"', '"0p', { desc = "Get previous yanked text", noremap = true })
+
 ---- Substitute
 vim.keymap.set({ "n", "x" }, "ss", "s", { desc = "Subistitute", noremap = true })
 
@@ -170,21 +173,6 @@ vim.api.nvim_create_autocmd("ModeChanged", {
   callback = function()
     vim.g._reg_backup = vim.fn.getreg('"')
     vim.g._regtype_backup = vim.fn.getregtype('"')
-  end,
-})
-
-vim.api.nvim_create_autocmd("TextYankPost", {
-  callback = function()
-    local op = vim.v.event.operator
-    if op ~= "d" and op ~= "y" then
-      return
-    end
-
-    local content = vim.fn.getreg('"')
-    if content:match("^%s*$") then
-      -- Restore previous register if new one is empty
-      vim.fn.setreg('"', vim.g._reg_backup or "", vim.g._regtype_backup or "v")
-    end
   end,
 })
 

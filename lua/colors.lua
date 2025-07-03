@@ -1,13 +1,17 @@
 function EditorColorScheme(color)
-  color = color or "tokyonight-storm"
+  color = color
+  if not color then
+    return nil
+  end
+
   vim.cmd.colorscheme(color)
 
   -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
   -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
-  vim.api.nvim_set_hl(0, "LineNr", { fg = "#cccccc" })
-  vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#666666" })
-  vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#666666" })
+  -- vim.api.nvim_set_hl(0, "LineNr", { fg = "#cccccc" })
+  -- vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#666666" })
+  -- vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#666666" })
 end
 
 local function theme(repo, name)
@@ -17,7 +21,7 @@ local function theme(repo, name)
     lazy = false,
     priority = 1000,
     opts = {
-      transparent = true,
+      transparent = false,
       styles = {
         sidebars = "transparent",
         floats = "transparent",
@@ -31,4 +35,5 @@ return {
   theme("folke/tokyonight.nvim"),
   theme("Mofiqul/dracula.nvim"),
   theme("navarasu/onedark.nvim"),
+  theme("ellisonleao/gruvbox.nvim"),
 }

@@ -31,6 +31,11 @@ function SmartChangeDir()
   vim.cmd("pwd")
 end
 
+function SessionName(path)
+  local session_dir = vim.fn.stdpath("data") .. "/sessions/"
+  local session_name = path:gsub("[:/\\]", "%%") .. ".vim"
+  return session_dir .. session_name
+end
 -- Save session in the git root directory with a name based on the current working directory
 -- if no files are associated with the buffers, delete the session file
 function SmartSaveSession()
@@ -71,6 +76,17 @@ function SmartSaveSession()
     if vim.loop.fs_stat(session_path) then
       ---@diagnostic disable-next-line: undefined-field
       vim.loop.fs_unlink(session_path)
+    end
+  end
+end
+
+function CleanShaDaFiles()
+  local data_dir = vim.fn.stdpath("data") .. "/shada"
+  local tmp_files = vim.fn.glob(data_dir .. "/main.shada.tmp.?*", false, true)
+  for _, file in ipairs(tmp_files) do
+    local stat = vim.loop.fs_stat(file)
+    if stat and stat.size < 1024 then -- smaller than 1 KB
+      vim.fn.delete(file)
     end
   end
 end
