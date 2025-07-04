@@ -265,8 +265,10 @@ vim.keymap.set({ "i", "c" }, "KJ", "<Esc>", { desc = "Exit insert mode (KJ)" })
 -- vim.keymap.set("n", "<leader>jl", "J", { noremap = true, silent = true, desc = "Join lines" })
 vim.keymap.set("n", "L", "J", { silent = true, desc = "Join lines" })
 
----- Split lines upwards
-vim.keymap.set("n", "<C-k>", "o<Esc>k_", { desc = "Split line upwards", noremap = true })
+----Add empty line under
+vim.keymap.set("n", "<C-k>", "o<Esc>k_", { desc = "Add empty line under", noremap = true })
+---- Add empty line under insert mode
+vim.keymap.set("i", "<C-k>", "<Esc>o<Esc>k_", { desc = "Add empty line under", noremap = true })
 
 ---- Split lines downwards
 vim.keymap.set("n", "<C-j>", "i<CR><Esc>==", {
