@@ -6,8 +6,8 @@ require("config.lazy")
 
 require("helper")
 require("autocmd")
-require("set")
 require("keymaps")
+require("set")
 require("lazyload")
 
 EditorColorScheme("tokyonight-night")

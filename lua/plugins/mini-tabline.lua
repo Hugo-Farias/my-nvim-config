@@ -5,6 +5,7 @@ return {
     require("mini.tabline").setup({
       -- Whether to show file icons (requires 'nvim-web-devicons')
       show_icons = true,
+      format = true,
       -- Whether to set Vim's showtabline option automatically
       set_vim_settings = true,
     })

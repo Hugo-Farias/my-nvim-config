@@ -21,6 +21,9 @@ require("lazy").setup({
   -- { require("plugins.blink-cmp") },
   { require("plugins.nvim-cmp") },
 
+  ---- Snippets ----
+  { require("plugins.luasnip") },
+
   ---- AI assistant ----
   -- { require('plugins.codecompanion') },
   -- { require("plugins.windsurf") },

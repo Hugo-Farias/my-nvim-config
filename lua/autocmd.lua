@@ -19,6 +19,16 @@ vim.api.nvim_create_autocmd({ "QuitPre", "BufAdd" }, {
 --   end,
 -- })
 
+---- On buffer write, reload LuaSnip snippets
+vim.api.nvim_create_autocmd("BufWritePost", {
+  pattern = vim.fn.stdpath("config") .. "/lua/snippets/*.lua",
+  callback = function()
+    require("luasnip.loaders.from_lua").load({
+      paths = vim.fn.stdpath("config") .. "/lua/snippets",
+    })
+  end,
+})
+
 ---- Reduce timeoutlen in insert and Cmdline mode for faster key sequences
 vim.api.nvim_create_autocmd({ "InsertEnter", "CmdlineEnter" }, {
   callback = function()
