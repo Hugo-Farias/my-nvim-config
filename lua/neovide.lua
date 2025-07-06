@@ -1,6 +1,6 @@
 if vim.g.neovide then
   ---- Basic Settings ----
-  vim.g.neovide_scale_factor = 0.8
+  vim.g.neovide_scale_factor = 0.75
   vim.g.neovide_cursor_animation_length = 0
   -- vim.g.neovide_scroll_animation_length = 0
   vim.g.neovide_window_blurred = true

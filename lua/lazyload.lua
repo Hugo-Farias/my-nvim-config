@@ -1,8 +1,9 @@
 require("lazy").setup({
   { "nvim-lua/plenary.nvim" },
 
-  { require("plugins.mason") },
   { require("lsp") },
+  { require("plugins.mason") },
+  { require("plugins.snacks") },
   -- { require("plugins.luarocks") },
 
   ---- Formatter ----
@@ -37,7 +38,6 @@ require("lazy").setup({
   { require("plugins.mini-ai") },
 
   { require("plugins.color-picker") },
-  { require("plugins.snacks") },
   { require("plugins.vim-smartword") },
   { "tpope/vim-commentary" },
   { require("plugins.harpoon") },
@@ -46,6 +46,7 @@ require("lazy").setup({
   { require("plugins.which-key") },
   { require("plugins.gitsigns") },
   { require("plugins.vim-visual-multi") },
+  { require("plugins.timber") },
   -- { require("plugins.nvim-dap") },
 
   ---- Buffer/Tab line ----
