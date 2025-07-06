@@ -114,7 +114,7 @@ resize("<M-Up>", "<C-w>+", 5)
 -------------------------------------------------------------------------------
 
 ---- Get previous yanked text
-vim.keymap.set("n", '<leader>"', '"0p', { desc = "Get previous yanked text", noremap = true })
+vim.keymap.set({ "n", "x" }, '<leader>"', '"0p', { desc = "Get previous yanked text", noremap = true })
 
 ---- Substitute
 vim.keymap.set({ "n", "x" }, "ss", "s", { desc = "Subistitute", noremap = true })

@@ -1,11 +1,21 @@
+local copilotStatus = true
+
+local function copilotToggle()
+  vim.cmd(copilotStatus and "Copilot disable" or "Copilot enable")
+  copilotStatus = not copilotStatus
+  vim.cmd("Copilot status")
+end
+
 -- stylua: ignore start
-vim.keymap.set( "n", "<leader>cd", "<cmd>lua require('copilot.suggestion').toggle_auto_trigger()<CR>", { desc = "Copilot: Toggle Auto Trigger" })
+vim.keymap.set( "n", "<leader>cd", copilotToggle, { desc = "Copilot: Toggle Auto Trigger" })
 vim.keymap.set( "n", "<leader>cp", "<cmd>Copilot panel<CR>", { desc = "Copilot: Toggle Panel" })
 vim.keymap.set( "n", "<leader>cn", "<cmd>Copilot<CR>", { desc = "Copilot: Status" })
-vim.keymap.set( "i", "<Tab>", "<cmd>lua require('copilot.suggestion').accept()<CR>", { desc = "Copilot: Accept" })
+vim.keymap.set( "i", "<Tab>", "<cmd>lua require('copilot.suggestion').accept_line()<CR>", { desc = "Copilot: Accept Line" })
+vim.keymap.set( "i", "<M-w>", "<cmd>lua require('copilot.suggestion').accept_word()<CR>", { desc = "Copilot: Accept Word" })
+vim.keymap.set( "i", "<M-y>", "<cmd>lua require('copilot.suggestion').accept()<CR>", { desc = "Copilot: Accept All" })
 vim.keymap.set( "i", "<M-]>", "<cmd>lua require('copilot.suggestion').next()<CR>", { desc = "Copilot: Next Suggestion" })
 vim.keymap.set( "i", "<M-[>", "<cmd>lua require('copilot.suggestion').prev()<CR>", { desc = "Copilot: Prev Suggestion" })
-vim.keymap.set( "i", "<C-d>", "<cmd>lua require('copilot.suggestion').dismiss()<CR>", { desc = "Copilot: Dismiss" })
+vim.keymap.set( "i", "<C-d>", "<cmd>Copilot suggestion dismiss<CR>", { desc = "Copilot: Dismiss" })
 -- stylua: ignore end
 
 return {
