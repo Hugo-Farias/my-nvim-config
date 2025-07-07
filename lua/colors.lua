@@ -34,6 +34,7 @@ return {
   theme("rose-pine/neovim", "rose-pine"),
   theme("folke/tokyonight.nvim"),
   theme("Mofiqul/dracula.nvim"),
-  theme("navarasu/onedark.nvim"),
+  -- theme("navarasu/onedark.nvim"),
   theme("ellisonleao/gruvbox.nvim"),
+  { "navarasu/onedark.nvim", opts = { style = "darker" } },
 }

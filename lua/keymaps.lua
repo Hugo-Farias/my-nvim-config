@@ -372,3 +372,15 @@ vim.keymap.set({ "c", "i" }, "<C-Delete>", "<Esc>ldwi", { noremap = true, desc =
 
 vim.keymap.set("c", "<Up>", "<C-p>", { desc = "Select Previous" })
 vim.keymap.set("c", "<Down>", "<C-n>", { desc = "Select Next" })
+
+-------------------------------------------------------------------------------
+---- Filetype specific keymaps
+-------------------------------------------------------------------------------
+
+-- TODO fix
+-- vim.api.nvim_create_autocmd("FileType", {
+--   pattern = "javascript,typescript,javascriptreact,typescriptreact",
+--   callback = function()
+--     vim.keymap.set("n", "gp", 'yiwoconsole.log("<Esc>pa ==> ", <Esc>pa)<Esc>ge', { desc = "Print Expression" })
+--   end,
+-- })

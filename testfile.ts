@@ -8,7 +8,7 @@ type User = {
   roles: string[];
 };
 
-const unsuseVar = 9;
+const unsusedVar = 9;
 
 type Status = "pending" | "approved" | "rejected";
 

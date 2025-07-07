@@ -19,13 +19,17 @@ end
 vim.keymap.set("n", "J", "<cmd>BufferLineCyclePrev<CR>", { desc = "Bufferline: Cycle Prev" })
 vim.keymap.set("n", "K", "<cmd>BufferLineCycleNext<CR>", { desc = "Bufferline: Cycle Next" })
 
-vim.keymap.set("n", "<C-S-j>", function()
-  require("bufferline").move(-1) -- move current buffer right (end)
-end, { desc = "Move buffer right" })
+for _, key in ipairs({ "<C-S-j>", "<C-PageDown>" }) do
+  vim.keymap.set("n", key, function()
+    require("bufferline").move(-1) -- move current buffer right (end)
+  end, { desc = "Move buffer right" })
+end
 
-vim.keymap.set("n", "<C-S-k>", function()
-  require("bufferline").move(1) -- move current buffer left (start)
-end, { desc = "Move buffer left" })
+for _, key in ipairs({ "<C-S-k>", "<C-PageUp>" }) do
+  vim.keymap.set("n", key, function()
+    require("bufferline").move(1) -- move current buffer left (start)
+  end, { desc = "Move buffer left" })
+end
 
 return {
   "akinsho/bufferline.nvim",
