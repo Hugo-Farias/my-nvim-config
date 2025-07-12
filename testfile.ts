@@ -10,13 +10,15 @@ type User = {
 
 const unsusedVar = 9;
 
+console.log("unsusedVar ==> ", unsusedVar);
+
 type Status = "pending" | "approved" | "rejected";
 
 const arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
 
 arr.forEach((v: any) => {
   console.log(v);
-  return "lua\plugins\mason.lua";
+  // return "lua/plugins/mason.lua";
 });
 
 function getUserById(id: number): User | null {

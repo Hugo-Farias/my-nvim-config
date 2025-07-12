@@ -1,4 +1,5 @@
-﻿-- Implement Console "Tabs" --
+﻿-- Fix colorizer not working --
+-- Implement Console "Tabs" --
 -- Implement Run configuration --
 -- Implement Debug configuration --
 -- Fix fs_stat undefined lsp error --

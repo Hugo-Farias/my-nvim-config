@@ -26,7 +26,6 @@ require("lazy").setup({
   { require("plugins.luasnip") },
 
   ---- AI assistant ----
-  -- { require('plugins.codecompanion') },
   -- { require("plugins.windsurf") },
   -- { "github/copilot.vim" },
   { require("plugins.zbirenbaum-copilot") },
@@ -35,7 +34,13 @@ require("lazy").setup({
   ---- Mini Compilation ----
   { require("plugins.mini-icons") },
   { require("plugins.mini-surround") },
+
+  ---- Text Objects ----
   { require("plugins.mini-ai") },
+  -- { require("plugins.mini-indentscope") },
+
+  ---- Color Preview ----
+  { require("plugins.nvim-highlight-colors") },
 
   { require("plugins.color-picker") },
   { require("plugins.vim-smartword") },
@@ -54,8 +59,8 @@ require("lazy").setup({
   { require("plugins.bufferline") },
 
   ---- Status Line ----
-  -- { require("plugins.lualine") },
-  { require("plugins.mini-statusline") },
+  { require("plugins.lualine") },
+  -- { require("plugins.mini-statusline") },
 
   ---- Language Support ----
   { "kmonad/kmonad-vim" },

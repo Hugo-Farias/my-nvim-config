@@ -21,6 +21,8 @@ vim.keymap.set( "i", "<C-d>", "<cmd>Copilot suggestion dismiss<CR>", { desc = "C
 return {
   "zbirenbaum/copilot.lua",
   version = false,
+  -- lazy = true,
+  -- event = "BufReadPost",
   opts = {
     filetypes = {
       javascript = true,
@@ -55,17 +57,9 @@ return {
     suggestion = {
       enabled = true,
       auto_trigger = true,
-      -- keymap = {
-      --   accept = "<Tab>",
-      --   next = "<M-]>",
-      --   prev = "<M-[>",
-      --   dismiss = "<C-d>",
-      --   toggle_auto_trigger = "<leader>cd",
-      --   status = "<leader>cn",
-      -- },
     },
     panel = {
-      enabled = true,
+      enabled = false,
     },
   },
   -- config = function()

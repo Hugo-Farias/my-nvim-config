@@ -1,3 +1,12 @@
+-- Auto Set ini filetype for Equalizer APO config.txt
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  pattern = "C:/Program Files/EqualizerAPO/config/config.txt",
+  callback = function()
+    vim.bo.filetype = "dosini"
+  end,
+  desc = "Set filetype for Equalizer APO config.txt", -- Optional: a description for the autocmd
+})
+
 -- Before leaving and after buffer opened
 vim.api.nvim_create_autocmd({ "QuitPre", "BufAdd" }, {
   callback = function()

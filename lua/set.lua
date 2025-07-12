@@ -24,6 +24,8 @@ vim.opt.termguicolors = true
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
 vim.opt.undofile = true
 
+-- vim.opt.nohlsearch = true
+
 vim.opt.updatetime = 400
 -- vim.opt.colorcolumn = "80"
 
@@ -31,7 +33,7 @@ vim.opt.scrolloff = 25
 vim.o.timeoutlen = 500
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-vim.o.keymodel = ""
+-- vim.o.keymodel = ""
 
 -- Fix for session restoring with blank buffer
 vim.opt.sessionoptions = {
@@ -46,7 +48,7 @@ vim.opt.sessionoptions = {
 
 ---- Font for GUI
 -- vim.o.guifont = "CaskaydiaCove Nerd Font:h9.7:#e-antialias:#h-none"
-vim.o.guifont = "JetBrainsMono Nerd Font"
+vim.o.guifont = "JetBrainsMono NF"
 
 -- Neovide setting
 require("neovide")

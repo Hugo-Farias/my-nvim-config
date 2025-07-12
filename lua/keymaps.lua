@@ -182,37 +182,8 @@ vim.keymap.set("n", "<C-l>", "<Cmd>nohlsearch|diffupdate|redraw|normal! <C-L><CR
 vim.keymap.set("n", "<leader>lr", "<cmd>LspRestart<CR>", { desc = "Restart Lsp" })
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search query" })
 
----- '*' Keeps cursor on the name occurrence
+---- '*' Keeps cursor on the same occurrence
 vim.keymap.set("n", "*", "*N", { desc = "'*' Keeps cursor on the name occurrence" })
-
--- ---- Skip between paragraphs
--- vim.keymap.set({ "n", "x" }, "(", function()
--- 	local count = vim.v.count1 -- defaults to 1 if no count is given
--- 	for _ = 1, count do
--- 		vim.cmd("normal! {{")
--- 		while vim.fn.getline("."):match("^%s*$") and vim.fn.line(".") > 1 do
--- 			vim.cmd("normal! j")
--- 		end
--- 	end
--- 	vim.cmd("normal! ^")
--- end, { desc = "Previous paragraph start (count, skip blanks, jump to content)" })
-
--- vim.keymap.set({ "n", "x" }, ")", function()
--- 	local count = vim.v.count1
--- 	for _ = 1, count do
--- 		vim.cmd("normal! }}{j")
--- 		local last_line = vim.fn.line("$")
--- 		while vim.fn.getline("."):match("^%s*$") and vim.fn.line(".") < last_line do
--- 			vim.cmd("normal! j")
--- 		end
--- 	end
--- 	vim.cmd("normal! ^")
--- end, { desc = "Next paragraph start (count, skip blanks, jump to content)" })
-
--- vim.keymap.set("n", "(", "{{j^", { desc = "Skip paragraph backwards", noremap = true })
--- vim.keymap.set("n", ")", "}}{j^", { desc = "Skip paragraph forwards", noremap = true })
--- vim.keymap.set("n", "{", "(", { desc = "Skip paragraph forwards", noremap = true })
--- vim.keymap.set("n", "}", ")", { desc = "Skip paragraph forwards", noremap = true })
 
 ---- Duplicate Line
 vim.keymap.set("n", "H", function()
