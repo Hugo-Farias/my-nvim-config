@@ -48,7 +48,7 @@ vim.opt.sessionoptions = {
 
 ---- Font for GUI
 -- vim.o.guifont = "CaskaydiaCove Nerd Font:h9.7:#e-antialias:#h-none"
-vim.o.guifont = "JetBrainsMono NF"
+vim.o.guifont = "JetBrainsMono Nerd Font:#e-antialias:#h-none"
 
 -- Neovide setting
 require("neovide")

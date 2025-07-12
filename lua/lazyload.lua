@@ -6,6 +6,18 @@ require("lazy").setup({
   { require("plugins.snacks") },
   -- { require("plugins.luarocks") },
 
+  { require("plugins.color-picker") },
+  { require("plugins.vim-smartword") },
+  { "tpope/vim-commentary" },
+  { require("plugins.harpoon") },
+  { require("plugins.undotree") },
+  { require("plugins.flash") },
+  { require("plugins.which-key") },
+  { require("plugins.gitsigns") },
+  { require("plugins.vim-visual-multi") },
+  { require("plugins.timber") },
+  -- { require("plugins.nvim-dap") },
+
   ---- Formatter ----
   -- { require("plugins.null-ls") },
   { require("plugins.conform") },
@@ -37,22 +49,9 @@ require("lazy").setup({
 
   ---- Text Objects ----
   { require("plugins.mini-ai") },
-  -- { require("plugins.mini-indentscope") },
 
   ---- Color Preview ----
   { require("plugins.nvim-highlight-colors") },
-
-  { require("plugins.color-picker") },
-  { require("plugins.vim-smartword") },
-  { "tpope/vim-commentary" },
-  { require("plugins.harpoon") },
-  { require("plugins.undotree") },
-  { require("plugins.flash") },
-  { require("plugins.which-key") },
-  { require("plugins.gitsigns") },
-  { require("plugins.vim-visual-multi") },
-  { require("plugins.timber") },
-  -- { require("plugins.nvim-dap") },
 
   ---- Buffer/Tab line ----
   -- { require("plugins.mini-tabline") },

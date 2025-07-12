@@ -10,4 +10,4 @@ require("keymaps")
 require("set")
 require("lazyload")
 
-EditorColorScheme("onedark")
+EditorColorScheme("tokyonight-storm")
