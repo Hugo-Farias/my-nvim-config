@@ -1,6 +1,5 @@
-﻿-- Fix colorizer not working --
+﻿-- Add eslint config for typescript --
 -- Implement Console "Tabs" --
--- Implement Run configuration --
 -- Implement Debug configuration --
 -- Fix fs_stat undefined lsp error --
 -- Fix Eslint not being attached --

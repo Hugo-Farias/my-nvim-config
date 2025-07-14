@@ -28,7 +28,7 @@ vim.keymap.set("n", "cp", function()
 end)
 
 ---- Quick Save
-vim.keymap.set("n", "<C-s>", "<cmd>up<CR>", { desc = "Save File" })
+vim.keymap.set({ "n", "x", "i" }, "<C-s>", "<cmd>up<CR>", { desc = "Save File" })
 
 ---- Format buffer
 -- vim.api.nvim_set_keymap("n", "<leader>f", ":format<cr>", { noremap = true, silent = true, desc = "Format buffer" })
@@ -40,7 +40,7 @@ vim.keymap.set("n", "cd", "<cmd>:cd %:p:h | pwd<CR>", { desc = "CD to file direc
 vim.keymap.set("n", "cu", "<cmd>:cd ../ | pwd<CR>", { desc = "CD up a directory" })
 
 ---- Show current working directory
-vim.keymap.set("n", "<leader>W", function()
+vim.keymap.set("n", "<leader>w", function()
   print(vim.fn.getcwd())
 end, { desc = "Show current working directory" })
 
@@ -53,16 +53,7 @@ end, {})
 ---- 🪟 Buffers & Windows
 -------------------------------------------------------------------------------
 
-local function open_in_explorer()
-  local path = vim.fn.expand("%:p:h")
-  if vim.fn.has("win32") == 1 then
-    vim.fn.system({ "explorer.exe", path })
-  else
-    print("This is Windows-only.")
-  end
-end
-
-vim.keymap.set("n", "<leader>fe", open_in_explorer, { desc = "Open file dir in Explorer" })
+-- vim.keymap.set("n", "<leader>fdh", ":diffthis<CR><C-w>h", { desc = "Compare Files: Move Back" })
 
 ---- Go to previous buffer
 vim.keymap.set("n", "gt", "<C-6>", { desc = "Go to previous buffer" })
@@ -304,9 +295,9 @@ vim.keymap.set("n", "<leader>E", function()
       if vim.fn.filereadable(chooser_path) == 1 then
         local lines = vim.fn.readfile(chooser_path)
         if #lines > 0 then
-          -- vim.cmd("edit " .. vim.fn.fnameescape(lines[1]))
           local filepath = vim.fn.fnameescape(lines[1])
-          vim.cmd("edit " .. filepath)
+          vim.notify("Opening: " .. filepath, vim.log.levels.INFO, { title = "Yazi" })
+          vim.cmd("e " .. filepath)
 
           vim.defer_fn(function()
             local bufnr = vim.fn.bufnr(filepath)

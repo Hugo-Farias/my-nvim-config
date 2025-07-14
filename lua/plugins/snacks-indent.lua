@@ -1,6 +1,6 @@
 ---@class snacks.indent.Config
 return {
-  enabled = false,
+  enabled = true,
   priority = 1,
   char = "│",
   only_scope = true, -- only show indent guides of the scope
@@ -8,14 +8,14 @@ return {
   -- hl = "SnacksIndent", ---@type string|string[] hl groups for indent guides
   -- can be a list of hl groups to cycle through
   -- hl = {
-  --     "SnacksIndent1",
-  --     "SnacksIndent2",
-  --     "SnacksIndent3",
-  --     "SnacksIndent4",
-  --     "SnacksIndent5",
-  --     "SnacksIndent6",
-  --     "SnacksIndent7",
-  --     "SnacksIndent8",
+  --   "SnacksIndent1",
+  --   "SnacksIndent2",
+  --   "SnacksIndent3",
+  --   "SnacksIndent4",
+  --   "SnacksIndent5",
+  --   "SnacksIndent6",
+  --   "SnacksIndent7",
+  --   "SnacksIndent8",
   -- },
   -- animate scopes. Enabled by default for Neovim >= 0.10
   -- Works on older versions but has to trigger redraws during animation.

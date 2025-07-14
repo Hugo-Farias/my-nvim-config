@@ -15,6 +15,26 @@ vim.api.nvim_create_autocmd("LspAttach", {
 })
 -- stylua: ignore end
 
+---- Open Diff View
+vim.keymap.set("n", "<leader>fd", function()
+  vim.cmd("diffoff")
+  vim.cmd("wincmd o")
+  vim.cmd("wincmd v")
+  vim.cmd("wincmd l")
+  require("snacks").picker.files({
+    confirm = function(picker, item)
+      picker:close()
+      vim.cmd("e " .. item.file)
+      vim.cmd("diffthis")
+      vim.cmd("wincmd h")
+      vim.defer_fn(function()
+        vim.cmd("diffthis")
+        vim.cmd("diffupdate")
+      end, 100)
+    end,
+  })
+end, { desc = "Snacks: Compare Files" })
+
 -- Toggle terminal in normal mode
 vim.keymap.set("n", "<C-y>", "<cmd>lua Snacks.terminal.toggle()<CR>", { desc = "Snacks: Toggle terminal (normal)" })
 
