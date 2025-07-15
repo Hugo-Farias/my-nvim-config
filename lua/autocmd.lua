@@ -14,12 +14,15 @@ vim.api.nvim_create_autocmd({ "QuitPre", "BufAdd" }, {
   end,
 })
 
--- -- After Quiting Neovim
--- vim.api.nvim_create_autocmd("VimLeavePre", {
---   callback = function()
---     CleanShaDaFiles()
---   end,
--- })
+-- Before Quiting Neovim
+vim.api.nvim_create_autocmd("VimLeavePre", {
+  callback = function()
+    vim.cmd("LspStop")
+    -- vim.fn.jobstart({ "eslint_d", "--stop" })
+    -- vim.fn.jobstart({ "prettierd", "--stop" })
+    CleanShaDaFiles()
+  end,
+})
 
 -- vim.api.nvim_create_autocmd("BufReadPost", {
 --   once = true,
@@ -28,15 +31,15 @@ vim.api.nvim_create_autocmd({ "QuitPre", "BufAdd" }, {
 --   end,
 -- })
 
----- On buffer write, reload LuaSnip snippets
-vim.api.nvim_create_autocmd("BufWritePost", {
-  pattern = vim.fn.stdpath("config") .. "/lua/snippets/*.lua",
-  callback = function()
-    require("luasnip.loaders.from_lua").load({
-      paths = vim.fn.stdpath("config") .. "/lua/snippets",
-    })
-  end,
-})
+-- ---- On buffer write, reload LuaSnip snippets
+-- vim.api.nvim_create_autocmd("BufWritePost", {
+--   pattern = vim.fn.stdpath("config") .. "/lua/snippets/*.lua",
+--   callback = function()
+--     require("luasnip.loaders.from_lua").load({
+--       paths = { vim.fn.stdpath("config") .. "/lua/snippets" },
+--     })
+--   end,
+-- })
 
 ---- Reduce timeoutlen in insert and Cmdline mode for faster key sequences
 vim.api.nvim_create_autocmd({ "InsertEnter", "CmdlineEnter" }, {

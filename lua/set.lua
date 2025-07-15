@@ -50,8 +50,8 @@ vim.opt.sessionoptions = {
 -- vim.o.guifont = "CaskaydiaCove Nerd Font:h9.7:#e-antialias:#h-none"
 vim.o.guifont = "JetBrainsMono Nerd Font:#e-antialias:#h-none"
 
--- Neovide setting
-require("neovide")
+-- Neovide settings
+-- require("neovide")
 
 vim.api.nvim_create_user_command("NvimClean", function()
   CleanShaDaFiles()

@@ -20,9 +20,10 @@ vim.keymap.set( "i", "<C-d>", "<cmd>Copilot suggestion dismiss<CR>", { desc = "C
 
 return {
   "zbirenbaum/copilot.lua",
+  -- enabled = false,
   version = false,
-  -- lazy = true,
-  -- event = "BufReadPost",
+  lazy = true,
+  event = "BufReadPost",
   opts = {
     filetypes = {
       javascript = true,

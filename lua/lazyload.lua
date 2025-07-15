@@ -14,9 +14,12 @@ require("lazy").setup({
   { require("plugins.flash") },
   { require("plugins.which-key") },
   { require("plugins.gitsigns") },
-  { require("plugins.vim-visual-multi") },
   { require("plugins.timber") },
   -- { require("plugins.nvim-dap") },
+
+  ---- Multi Cursor ----
+  { require("plugins.multicursor") },
+  -- { "mg979/vim-visual-multi" },
 
   ---- Formatter ----
   -- { require("plugins.null-ls") },

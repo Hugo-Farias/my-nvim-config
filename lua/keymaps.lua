@@ -53,27 +53,8 @@ end, {})
 ---- 🪟 Buffers & Windows
 -------------------------------------------------------------------------------
 
--- vim.keymap.set("n", "<leader>fdh", ":diffthis<CR><C-w>h", { desc = "Compare Files: Move Back" })
-
 ---- Go to previous buffer
 vim.keymap.set("n", "gt", "<C-6>", { desc = "Go to previous buffer" })
-
----- Open netrw
--- vim.keymap.set("n", "<leader>pv", ":Ex<CR>", { desc = "Open netrw (EX)" })
-
----- Buffer navigation
--- vim.keymap.set({ "n" }, "J", ":bprevious<CR>", { desc = "Previous buffer" })
-
--- vim.keymap.set({ "n" }, "K", ":bnext<CR>", { desc = "Next buffer" })
-
----- Safely Quit Neovim
--- vim.keymap.set("n", "<leader>Q", ":q<CR>", { desc = "Safely quit neovim" })
-
----- Close buffer
--- for _, key in ipairs({ "<C-f4>", "<leader>q", "qw" }) do
---   -- vim.keymap.set("n", key, ":bd<CR>", { desc = "Close buffer" })
---   vim.keymap.set("n", key, "<cmd>lua Snacks.bufdelete()<CR>", { desc = "Close buffer" })
--- end
 
 ---- Change focus between visible buffers/sidebars/etc...
 vim.keymap.set("n", "<Left>", "<C-w>h")
@@ -86,14 +67,15 @@ vim.keymap.set("n", "<S-Down>", "<C-w>J")
 vim.keymap.set("n", "<S-Up>", "<C-w>K")
 vim.keymap.set("n", "<S-Right>", "<C-w>L")
 
-local function resize(key, cmd, times)
-  vim.keymap.set("n", key, string.rep(cmd, times), { noremap = true })
-end
+vim.keymap.set("n", "<M-Left>", "<cmd>vertical res -8<CR>", { noremap = true, desc = "Resize window left" })
+vim.keymap.set("n", "<M-Right>", "<cmd>vertical res +8<CR>", { noremap = true, desc = "Resize window right" })
+vim.keymap.set("n", "<M-Down>", "<cmd>horizontal res +5<CR>", { noremap = true, desc = "Resize window down" })
+vim.keymap.set("n", "<M-Up>", "<cmd>horizontal res -5<CR>", { noremap = true, desc = "Resize window up" })
 
-resize("<M-Left>", "<C-w><", 8)
-resize("<M-Right>", "<C-w>>", 8)
-resize("<M-Down>", "<C-w>-", 5)
-resize("<M-Up>", "<C-w>+", 5)
+-- resize("<M-Left>", "<C-w><", 8)
+-- resize("<M-Right>", "<C-w>>", 8)
+-- resize("<M-Down>", "<C-w>-", 5)
+-- resize("<M-Up>", "<C-w>+", 5)
 
 -- vim.keymap.set("n", "<M-C-Left>", "<C-w><")
 -- vim.keymap.set("n", "<M-C-Right>", "<C-w>>")
