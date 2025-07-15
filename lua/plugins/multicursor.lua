@@ -10,30 +10,36 @@ return {
     -- Add or skip cursor above/below the main cursor.
     set({ "n", "x" }, "<C-up>", function()
       mc.lineAddCursor(-1)
-    end)
+    end, { desc = "Multi-cursor: Add cursor on line above" })
+
     set({ "n", "x" }, "<C-down>", function()
       mc.lineAddCursor(1)
-    end)
-    set({ "n", "x" }, "<leader><C-up>", function()
+    end, { desc = "Multi-cursor: Add cursor on line below" })
+
+    set({ "n", "x" }, "<C-n>k", function()
       mc.lineSkipCursor(-1)
-    end)
-    set({ "n", "x" }, "<leader><C-down>", function()
+    end, { desc = "Multi-cursor: Skip line above when adding cursor" })
+
+    set({ "n", "x" }, "<C-n>j", function()
       mc.lineSkipCursor(1)
-    end)
+    end, { desc = "Multi-cursor: Skip line below when adding cursor" })
 
     -- Add or skip adding a new cursor by matching word/selection
-    set({ "n", "x" }, "<leader>n", function()
+    set({ "n", "x" }, "<C-n><C-n>", function()
       mc.matchAddCursor(1)
-    end)
-    set({ "n", "x" }, "<leader>s", function()
+    end, { desc = "Multi-cursor: Add next match as new cursor" })
+
+    set({ "n", "x" }, "<C-n>s", function()
       mc.matchSkipCursor(1)
-    end)
-    set({ "n", "x" }, "<leader>N", function()
+    end, { desc = "Multi-cursor: Skip next match" })
+
+    set({ "n", "x" }, "<C-n>N", function()
       mc.matchAddCursor(-1)
-    end)
-    set({ "n", "x" }, "<leader>S", function()
+    end, { desc = "Multi-cursor: Add previous match as new cursor" })
+
+    set({ "n", "x" }, "<C-n>S", function()
       mc.matchSkipCursor(-1)
-    end)
+    end, { desc = "Multi-cursor: Skip previous match" })
 
     -- Add and remove cursors with control + left click.
     set("n", "<c-leftmouse>", mc.handleMouse)
@@ -41,7 +47,7 @@ return {
     set("n", "<c-leftrelease>", mc.handleMouseRelease)
 
     -- Disable and enable cursors.
-    set({ "n", "x" }, "<c-q>", mc.toggleCursor)
+    set({ "n", "x" }, "<C-n>t", mc.toggleCursor, { desc = "Multi-cursor: Toggle cursors" })
 
     -- Mappings defined in a keymap layer only apply when there are
     -- multiple cursors. This lets you have overlapping mappings.
@@ -51,7 +57,7 @@ return {
       layerSet({ "n", "x" }, "<right>", mc.nextCursor)
 
       -- Delete the main cursor.
-      layerSet({ "n", "x" }, "<leader>x", mc.deleteCursor)
+      layerSet({ "n", "x" }, "<C-n>x", mc.deleteCursor)
 
       -- Enable and clear cursors using escape.
       layerSet("n", "<esc>", function()
