@@ -10,7 +10,8 @@ type User = {
 
 const unsusedVar = 9;
 // TODO: Test todo comment
-console.log("unsusedVar ==> ", unsusedVar);
+
+// console.log("unsusedVar ==> ", unsusedVar);
 
 type Status = "pending" | "approved" | "rejected";
 
@@ -68,7 +69,7 @@ function updateUserStatus(id: number, status: Status): boolean {
   return true;
 }
 
-// HACK: Test todo comment
+// HACK: Test comment
 class SessionManager {
   private sessions: Record<string, number> = {};
 

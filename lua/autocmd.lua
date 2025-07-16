@@ -4,8 +4,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
     -- Change window title to Nvim
     vim.opt.title = true
     vim.opt.titlestring = "Neovim"
-    -- Set the default filetype for new buffers
-    -- vim.bo.filetype = "text"
   end,
 })
 

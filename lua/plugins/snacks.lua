@@ -18,7 +18,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 -- stylua: ignore end
 
 ---- Open Diff View
-vim.keymap.set("n", "<leader>fd", function()
+set("n", "<leader>fd", function()
   vim.cmd("diffoff")
   vim.cmd("wincmd o")
   vim.cmd("wincmd v")
@@ -43,16 +43,16 @@ vim.keymap.set("n", "<leader>fd", function()
 end, { desc = "Snacks: Compare Files" })
 
 -- Toggle terminal in normal mode
-vim.keymap.set("n", "<C-y>", "<cmd>lua Snacks.terminal.toggle()<CR>", { desc = "Snacks: Toggle terminal (normal)" })
+set("n", "<C-y>", "<cmd>lua Snacks.terminal.toggle()<CR>", { desc = "Snacks: Toggle terminal (normal)" })
 
 -- Toggle terminal in terminal mode
-vim.keymap.set("t", "<C-y>", function()
+set("t", "<C-y>", function()
   vim.cmd("stopinsert") -- exit terminal input mode
   vim.cmd("lua Snacks.terminal.toggle()") -- then hide the terminal
 end, { desc = "Snacks: Toggle terminal (terminal)" })
 
 for _, key in ipairs({ "<C-f4>", "<leader>q", "<M-q>", "qt" }) do
-  vim.keymap.set("n", key, function()
+  set("n", key, function()
     require("snacks").bufdelete()
   end, { desc = "Close Buffer" })
 end
@@ -78,6 +78,8 @@ local function openProjects()
   })
 end
 
+-- local function pickerTodo
+
 return {
   "folke/snacks.nvim",
   priority = 1000,
@@ -85,7 +87,7 @@ return {
   opts = {
     bigfile = { enabled = true },
     dashboard = require("plugins.snacks-dashboard"),
-    explorer = { enabled = false },
+    explorer = { enabled = true },
     indent = require("plugins.snacks-indent"),
     input = { enabled = true },
     picker = require("plugins.snacks-picker"),
@@ -97,18 +99,17 @@ return {
     words = { enabled = true },
   },
   keys = {
-    -- stylua: ignore start
     { "<leader><leader>", "<cmd>lua Snacks.picker.files()<CR>", desc = "Snacks: Search Files" },
     { "<leader>sf", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
-    { "<leader>sg", "<cmd>lua Snacks.picker.git_files()<CR>", desc = "Snacks: Search Git Files" },
+    { "<leader>sgf", "<cmd>lua Snacks.picker.git_files()<CR>", desc = "Snacks: Search Git Files" },
     { "<leader>s,", "<cmd>lua Snacks.picker.files({ cwd = vim.fn.stdpath('config') })<CR>", desc = "Find Config File" },
     { "<leader>sr", "<cmd>lua Snacks.picker.recent()<CR>", desc = "Snacks: Search Recent Files" },
     { "<leader>sl", "<cmd>lua Snacks.picker.lines()<CR>", desc = "Snacks: Search Lines" },
     { "<leader>e", "<cmd>lua Snacks.picker.explorer()<CR>", desc = "Snacks: Open Explorer" },
     { "<leader>fR", "<cmd>lua Snacks.rename.rename_file()<CR>", desc = "Snacks: Rename File" },
     { "<leader>/", "<cmd>lua Snacks.picker.grep()<CR>", desc = "Snacks: Search Grep" },
-    { "<leader>sw", "<cmd>lua Snacks.picker.grep_word()<CR>", desc = "Snacks: Search Word Grep"},
-    { "<leader>/", "<cmd>lua Snacks.picker.grep_word()<CR>", desc = "Snacks: Search Selection Grep", mode = "x"},
+    { "<leader>sw", "<cmd>lua Snacks.picker.grep_word()<CR>", desc = "Snacks: Search Word Grep" },
+    { "<leader>/", "<cmd>lua Snacks.picker.grep_word()<CR>", desc = "Snacks: Search Selection Grep", mode = "x" },
     { "<C-e>", "<cmd>lua Snacks.picker.buffers()<CR>", desc = "Snacks: Search Buffers" },
     { "<leader>sb", "<cmd>lua Snacks.picker.buffers()<CR>", desc = "Snacks: Search Buffers" },
     { "<leader>sC", "<cmd>lua Snacks.picker.colorschemes()<CR>", desc = "Snacks: Search Color Schemes" },
@@ -117,14 +118,19 @@ return {
     { "<leader>s'", "<cmd>lua Snacks.picker.registers()<CR>", desc = "Snacks: Search Registers" },
     { "<leader>sc", "<cmd>lua Snacks.picker.command_history()<CR>", desc = "Snacks: Search Command History" },
     { "<leader>sm", "<cmd>lua Snacks.picker.marks()<CR>", desc = "Snacks: Search Marks" },
-    { "<leader>sn", "<cmd>lua Snacks.notifier.show_history()<CR>", desc = "Snacks: Show Notification History" },
-    { "<leader>sH", "<cmd>lua Snacks.picker.search_history()<CR>", desc = "Snacks: Show Notification History" },
+    { "<leader>n", "<cmd>lua Snacks.notifier.show_history()<CR>", desc = "Snacks: Show Notification History" },
+    { "<leader>sH", "<cmd>lua Snacks.picker.search_history()<CR>", desc = "Snacks: Search History" },
+    { "<leader>st", "<cmd>lua Snacks.picker.todo_comments()<CR>", desc = "Snacks: Search TODOs" },
+    { "<leader>sz", "<cmd>lua Snacks.picker.zoxide()<CR>", desc = "Snacks: Search Zoxide" },
+    {
+      "<leader>sp",
+      openProjects,
+      desc = "Snacks: Search Projects",
+    },
     ---- Git Actions ----
     { "<leader>gg", "<cmd>lua Snacks.lazygit()<CR>", desc = "Snacks: Git Lazygit" },
     { "<leader>gb", "<cmd>lua Snacks.git.blame_line()<CR>", desc = "Snacks: Git Line Blame" },
     { "<leader>gl", "<cmd>lua Snacks.picker.git_log_line()<CR>", desc = "Snacks: Git Log Line" },
-    { "<leader>sp", function() openProjects() end, desc = "Snacks: Search Projects" },
     { "<leader><Tab>", "<cmd>lua Snacks.picker.resume()<CR>", desc = "Snacks: Resume Search" },
-    -- stylua: ignore end
   },
 }
