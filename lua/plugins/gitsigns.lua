@@ -15,7 +15,7 @@ set("n", "<leader>gd", function()
 end, { desc = "Gitsigns: Open vertical diff" })
 
 set("n", "<leader>gD", function()
-  vim.cmd("wincmd h") -- push original file to the left
+  vim.cmd("wincmd h")
   vim.cmd("wincmd o") -- close diff
 end, { desc = "Gitsigns: Close vertical diff" })
 

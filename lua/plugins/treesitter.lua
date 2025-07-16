@@ -12,7 +12,7 @@ return {
     "TSUninstall",
   },
   keys = {
-    { "<leader>th", "<cmd>TSHighlightCapturesUnderCursor<CR>", desc = "TS highlight group under cursor" },
+    -- { "<leader>th", "<cmd>TSHighlightCapturesUnderCursor<CR>", desc = "TS highlight group under cursor" },
   },
   opts = {
     -- TSConfig equivalent: passed to require("nvim-treesitter.configs").setup(opts)

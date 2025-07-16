@@ -34,6 +34,11 @@ vim.keymap.set("n", "<leader>fd", function()
         vim.cmd("diffupdate")
       end, 100)
     end,
+    cancel = function()
+      vim.cmd("diffoff")
+      vim.cmd("wincmd h")
+      vim.cmd("wincmd o")
+    end,
   })
 end, { desc = "Snacks: Compare Files" })
 
@@ -80,7 +85,7 @@ return {
   opts = {
     bigfile = { enabled = true },
     dashboard = require("plugins.snacks-dashboard"),
-    explorer = { enabled = true },
+    explorer = { enabled = false },
     indent = require("plugins.snacks-indent"),
     input = { enabled = true },
     picker = require("plugins.snacks-picker"),

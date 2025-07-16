@@ -16,6 +16,8 @@ require("lazy").setup({
   { require("plugins.gitsigns") },
   { require("plugins.timber") },
   -- { require("plugins.nvim-dap") },
+  -- { require("plugins.comfy-line-numbers") },
+  { require("plugins.todo-comments") },
 
   ---- Multi Cursor ----
   { require("plugins.multicursor") },
@@ -44,7 +46,7 @@ require("lazy").setup({
   -- { require("plugins.windsurf") },
   -- { "github/copilot.vim" },
   { require("plugins.zbirenbaum-copilot") },
-  { require("plugins.avante") },
+  -- { require("plugins.avante") },
 
   ---- Mini Compilation ----
   { require("plugins.mini-icons") },

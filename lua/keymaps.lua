@@ -29,7 +29,7 @@ set("n", "cp", function()
 end)
 
 ---- Quick Save
-set({ "n", "x", "i" }, "<C-s>", "<cmd>up<CR>", { desc = "Save File" })
+set("n", "<C-s>", "<cmd>up<CR>", { desc = "Save File" })
 
 ---- Format buffer
 -- vim.api.nvim_set_keymap("n", "<leader>f", ":format<cr>", { noremap = true, silent = true, desc = "Format buffer" })
@@ -42,7 +42,7 @@ set("n", "cu", "<cmd>:cd ../ | pwd<CR>", { desc = "CD up a directory" })
 
 ---- Show current working directory
 set("n", "<leader>w", function()
-  print(vim.fn.getcwd())
+  print(vim.fn.expand("%:p:h"))
 end, { desc = "Show current working directory" })
 
 ---- Save and source file
@@ -259,13 +259,11 @@ set("n", "<leader>E", function()
 
   vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = buf })
 
-  local chooser_path = "C:\\Temp\\nvim-yazi.txt" -- or some other writable temp file
-
-  -- Ensure temp directory exists
+  local chooser_path = "C:\\Temp\\nvim-yazi.txt"
   vim.fn.mkdir("C:/Temp", "p")
-
-  -- Clear any stale file
   vim.fn.delete(chooser_path)
+
+  local cwd = vim.fn.expand("%:p:h") -- ← Get current buffer directory
 
   vim.fn.termopen({
     "C:\\PROGRA~1\\PowerShell\\7\\pwsh.exe",
@@ -274,12 +272,12 @@ set("n", "<leader>E", function()
     "-Command",
     "yazi --chooser-file=" .. chooser_path,
   }, {
+    cwd = cwd, -- ← Set terminal working directory
     on_exit = function()
       if vim.fn.filereadable(chooser_path) == 1 then
         local lines = vim.fn.readfile(chooser_path)
         if #lines > 0 then
           local filepath = vim.fn.fnameescape(lines[1])
-          vim.notify("Opening: " .. filepath, vim.log.levels.INFO, { title = "Yazi" })
           vim.cmd("e " .. filepath)
 
           vim.defer_fn(function()
@@ -321,11 +319,3 @@ set("c", "<Down>", "<C-n>", { desc = "Select Next" })
 -------------------------------------------------------------------------------
 ---- Filetype specific keymaps
 -------------------------------------------------------------------------------
-
--- TODO fix
--- vim.api.nvim_create_autocmd("FileType", {
---   pattern = "javascript,typescript,javascriptreact,typescriptreact",
---   callback = function()
---     set("n", "gp", 'yiwoconsole.log("<Esc>pa ==> ", <Esc>pa)<Esc>ge', { desc = "Print Expression" })
---   end,
--- })

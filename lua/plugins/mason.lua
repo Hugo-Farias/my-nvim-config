@@ -66,7 +66,6 @@ return {
     })
 
     for _, server in ipairs(require("mason-lspconfig").get_installed_servers()) do
-      -- TODO merge opts with on_attach
       vim.lsp.config(
         server,
         vim.tbl_deep_extend(
