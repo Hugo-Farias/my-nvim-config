@@ -18,6 +18,7 @@ require("lazy").setup({
   -- { require("plugins.nvim-dap") },
   -- { require("plugins.comfy-line-numbers") },
   { require("plugins.todo-comments") },
+  -- { require("plugins.render-markdown") },
 
   ---- Multi Cursor ----
   { require("plugins.multicursor") },

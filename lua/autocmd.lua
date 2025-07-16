@@ -1,3 +1,14 @@
+-- On vim startup
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    -- Change window title to Nvim
+    vim.opt.title = true
+    vim.opt.titlestring = "Neovim"
+    -- Set the default filetype for new buffers
+    -- vim.bo.filetype = "text"
+  end,
+})
+
 -- Auto Set ini filetype for Equalizer APO config.txt
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "C:/Program Files/EqualizerAPO/config/config.txt",

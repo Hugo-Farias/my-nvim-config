@@ -1,10 +1,17 @@
-﻿-- Add eslint config for typescript --
--- Implement Console "Tabs" --
--- Implement Debug configuration --
--- Fix fs_stat undefined lsp error --
--- Fix Eslint not being attached --
--- Fix Powershell's lsp erroring out --
--- Fix yazi opening files on broken buffer --
+﻿## TODO
 
--- Check these plugins:
-Rendermarkdown.nvim
+### ✅ Configuration
+
+- [ ] Add ESLint config for TypeScript
+- [ ] Implement Debug configuration
+
+### 🖥️ UI Features
+
+- [ ] Implement Console "Tabs"
+
+### 🐞 Bug Fixes
+
+- [ ] Fix `fs_stat` undefined LSP error
+- [ ] Fix ESLint not being attached
+- [ ] Fix PowerShell's LSP erroring out
+- [ ] Fix Yazi opening files in broken buffer
