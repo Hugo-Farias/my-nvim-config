@@ -25,4 +25,22 @@ return {
     -- require("luasnip").filetype_extend("javascriptreact", { "javascript" })
     -- require("luasnip").filetype_extend("typescriptreact", { "javascriptreact" })
   end,
+  keys = {
+    {
+      "<Tab>",
+      function()
+        return require("luasnip").jump(1)
+      end,
+      expr = true,
+      desc = "LuaSnip: Jump forward",
+    },
+    {
+      "<S-Tab>",
+      function()
+        return require("luasnip").jump(-1)
+      end,
+      expr = true,
+      desc = "LuaSnip: Jump backward",
+    },
+  },
 }
