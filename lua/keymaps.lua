@@ -87,30 +87,6 @@ set("n", "<M-Up>", "<cmd>horizontal res -5<CR>", { noremap = true, desc = "Resiz
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
 
----- Insert new lines below/above the current line (count-aware)
-local function insert_lines_below()
-  local count = vim.v.count1
-  local row = vim.api.nvim_win_get_cursor(0)[1]
-
-  vim.api.nvim_buf_set_lines(0, row, row, true, vim.fn["repeat"]({ "" }, count))
-  vim.api.nvim_win_set_cursor(0, { row + count, 0 })
-  vim.cmd("startinsert")
-end
-
-local function insert_lines_above()
-  local count = vim.v.count1
-  local row = vim.api.nvim_win_get_cursor(0)[1]
-
-  -- Insert above the current line
-  vim.api.nvim_buf_set_lines(0, row - 1, row - 1, true, vim.fn["repeat"]({ "" }, count))
-  -- Move cursor to the first of the newly inserted lines
-  vim.api.nvim_win_set_cursor(0, { row, 0 })
-  vim.cmd("startinsert")
-end
-
-vim.keymap.set("n", "o", insert_lines_below, { desc = "Insert lines below (count-aware)" })
-vim.keymap.set("n", "O", insert_lines_above, { desc = "Insert lines above (count-aware)" })
-
 ---- Center cursor on screen on scroll
 set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center cursor" })
 set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center cursor" })
@@ -241,7 +217,7 @@ set("n", "L", "J", { silent = true, desc = "Join lines" })
 ----Add empty line under
 set("n", "<C-k>", "o<Esc>k_", { desc = "Add empty line under", noremap = true })
 ---- Add empty line under insert mode
-set("i", "<C-k>", "<Esc>o<Esc>k_", { desc = "Add empty line under", noremap = true })
+set("i", "<C-k>", "<Esc>o<Esc>k_i", { desc = "Add empty line under", noremap = true })
 
 ---- Split lines downwards
 set("n", "<C-j>", "i<CR><Esc>==", {
