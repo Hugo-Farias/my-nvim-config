@@ -129,10 +129,14 @@ set(
 )
 
 ---- Paste from system's clipboard
-set({ "n", "x" }, "<leader>p", '"+p', { desc = "Paste from system's clipboard" })
+for _, key in ipairs({ "p", "P" }) do
+  set({ "n", "x" }, "<leader>" .. key, '"+' .. key .. "==", { desc = "Paste from system's clipboard" })
+end
 
 ---- Yank into system's clipboard
-set({ "n", "x" }, "<leader>y", '"+y', { desc = "Yank into system's clipboard" })
+for _, key in ipairs({ "y", "Y" }) do
+  set({ "n", "x" }, "<leader>" .. key, '"+' .. key, { desc = "Yank into system's clipboard" })
+end
 
 ---- `qp` to play macro
 set({ "n", "x" }, "qp", function()
@@ -197,7 +201,7 @@ set("n", "<leader>dd", '"_dd', { noremap = true, silent = true, desc = "Delete l
 ---- x deletes without yanking
 -- set({ "n", "x" }, "x", "\"_x", { noremap = true, silent = true, desc = "Delete char without yank" })
 for _, key in ipairs({ "x", "X" }) do
-  set({ "n", "x" }, key, '"_x', { noremap = true, silent = true, desc = "Delete char without yank" })
+  set({ "n", "x" }, key, '"_' .. key, { noremap = true, silent = true, desc = "Delete char without yank" })
 end
 
 ---- Start/end of line (non-blank)

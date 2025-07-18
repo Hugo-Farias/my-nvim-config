@@ -78,6 +78,29 @@ local function openProjects()
   })
 end
 
+local function searchScratchFiles()
+  local scratch_dir = vim.fn.getcwd():gsub("\\", "/") .. "/.scratch/"
+  if vim.fn.isdirectory(scratch_dir) == 0 then
+    vim.notify("No scratch files found")
+    return
+  end
+
+  require("snacks").picker.files({
+    cwd = scratch_dir,
+    prompt_title = "Scratch Files",
+    confirm = function(picker, item)
+      picker:close()
+      local full_path = scratch_dir .. item.file
+      vim.notify("Opening: " .. full_path)
+
+      vim.schedule(function()
+        -- Prefer this safe form over vim.cmd("e " .. full_path)
+        vim.cmd({ cmd = "edit", args = { full_path } })
+      end)
+    end,
+  })
+end
+
 -- local function pickerTodo
 
 return {
@@ -99,10 +122,11 @@ return {
     words = { enabled = true },
   },
   keys = {
+    -- stylua: ignore start
     { "<leader><leader>", "<cmd>lua Snacks.picker.files()<CR>", desc = "Snacks: Search Files" },
     { "<leader>sf", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
     { "<leader>sgf", "<cmd>lua Snacks.picker.git_files()<CR>", desc = "Snacks: Search Git Files" },
-    { "<leader>s,", "<cmd>lua Snacks.picker.files({ cwd = vim.fn.stdpath('config') })<CR>", desc = "Find Config File" },
+    { "<leader>s,", "<cmd>lua Snacks.picker.files({ cwd = vim.fn.stdpath('config') })<CR>", desc = "Snacks: Search Config File"},
     { "<leader>sr", "<cmd>lua Snacks.picker.recent()<CR>", desc = "Snacks: Search Recent Files" },
     { "<leader>sl", "<cmd>lua Snacks.picker.lines()<CR>", desc = "Snacks: Search Lines" },
     { "<leader>e", "<cmd>lua Snacks.picker.explorer()<CR>", desc = "Snacks: Open Explorer" },
@@ -114,19 +138,16 @@ return {
     { "<leader>sb", "<cmd>lua Snacks.picker.buffers()<CR>", desc = "Snacks: Search Buffers" },
     { "<leader>sC", "<cmd>lua Snacks.picker.colorschemes()<CR>", desc = "Snacks: Search Color Schemes" },
     { "<leader>sk", "<cmd>lua Snacks.picker.keymaps()<CR>", desc = "Snacks: Search Keymaps" },
-    { "<leader>sh", "<cmd>lua Snacks.picker.help()<CR>", desc = "Snacks: Search Help" },
+    { "<leader>sH", "<cmd>lua Snacks.picker.help()<CR>", desc = "Snacks: Search Help" },
+    { "<leader>sh", "<cmd>lua Snacks.picker.search_history()<CR>", desc = "Snacks: Search History" },
     { "<leader>s'", "<cmd>lua Snacks.picker.registers()<CR>", desc = "Snacks: Search Registers" },
     { "<leader>sc", "<cmd>lua Snacks.picker.command_history()<CR>", desc = "Snacks: Search Command History" },
     { "<leader>sm", "<cmd>lua Snacks.picker.marks()<CR>", desc = "Snacks: Search Marks" },
     { "<leader>n", "<cmd>lua Snacks.notifier.show_history()<CR>", desc = "Snacks: Show Notification History" },
-    { "<leader>sH", "<cmd>lua Snacks.picker.search_history()<CR>", desc = "Snacks: Search History" },
     { "<leader>st", "<cmd>lua Snacks.picker.todo_comments()<CR>", desc = "Snacks: Search TODOs" },
     { "<leader>sz", "<cmd>lua Snacks.picker.zoxide()<CR>", desc = "Snacks: Search Zoxide" },
-    {
-      "<leader>sp",
-      openProjects,
-      desc = "Snacks: Search Projects",
-    },
+    { "<leader>sy", searchScratchFiles, desc = "Snacks: Search Scratch Files" },
+    { "<leader>sp", openProjects, desc = "Snacks: Search Projects" },
     ---- Git Actions ----
     { "<leader>gg", "<cmd>lua Snacks.lazygit()<CR>", desc = "Snacks: Git Lazygit" },
     { "<leader>gb", "<cmd>lua Snacks.git.blame_line()<CR>", desc = "Snacks: Git Line Blame" },
