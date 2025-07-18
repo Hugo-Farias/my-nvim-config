@@ -50,20 +50,6 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 --   end,
 -- })
 
----- Reduce timeoutlen in insert and Cmdline mode for faster key sequences
-vim.api.nvim_create_autocmd({ "InsertEnter", "CmdlineEnter" }, {
-  callback = function()
-    vim.o.timeoutlen = 50
-  end,
-})
-
----- Restore timeoutlen when leaving insert and Cmdline mode
-vim.api.nvim_create_autocmd({ "InsertLeave", "CmdlineLeave" }, {
-  callback = function()
-    vim.o.timeoutlen = 500
-  end,
-})
-
 ---- Prevent d and y operations from replacing the register if the content is empty
 ---- Highlight yanked text
 vim.api.nvim_create_autocmd("TextYankPost", {
@@ -79,5 +65,19 @@ vim.api.nvim_create_autocmd("TextYankPost", {
       vim.fn.setreg('"', vim.g._reg_backup or "", vim.g._regtype_backup or "v")
     end
     vim.highlight.on_yank()
+  end,
+})
+
+---- Reduce timeoutlen in insert and Cmdline
+vim.api.nvim_create_autocmd({ "InsertEnter", "CmdlineEnter" }, {
+  callback = function()
+    vim.o.timeoutlen = 50
+  end,
+})
+
+---- Restore timeoutlen when leaving insert and Cmdline mode
+vim.api.nvim_create_autocmd({ "InsertLeave", "CmdlineLeave" }, {
+  callback = function()
+    vim.o.timeoutlen = 500
   end,
 })

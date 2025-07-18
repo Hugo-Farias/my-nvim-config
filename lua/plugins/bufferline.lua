@@ -16,9 +16,6 @@ end
 -- vim.keymap.set("n", "<C-l>", function () require("bufferline").go_to(4, true) end, { desc = "Go to buffer 4" })
 -- vim.keymap.set("n", "<C-;>", function () require("bufferline").go_to(5, true) end, { desc = "Go to buffer 5" })
 
-vim.keymap.set("n", "J", "<cmd>BufferLineCyclePrev<CR>", { desc = "Bufferline: Cycle Prev" })
-vim.keymap.set("n", "K", "<cmd>BufferLineCycleNext<CR>", { desc = "Bufferline: Cycle Next" })
-
 for _, key in ipairs({ "<C-S-j>", "<C-PageDown>" }) do
   vim.keymap.set("n", key, function()
     require("bufferline").move(-1) -- move current buffer right (end)
@@ -34,22 +31,25 @@ end
 return {
   "akinsho/bufferline.nvim",
   version = "*",
+  lazy = false,
   -- dependencies = { "nvim-tree/nvim-web-devicons" },
-  config = function()
-    require("bufferline").setup({
-      options = {
-        mode = "buffers",
-        diagnostics = "nvim_lsp",
-        show_buffer_close_icons = false,
-        show_buffer_icons = false,
-        show_close_icon = false,
-        separator_style = "thin",
-        always_show_bufferline = false,
-        numbers = "ordinal",
-        offsets = {
-          { filetype = "NvimTree", text = "", padding = 1 },
-        },
+  opts = {
+    options = {
+      mode = "buffers",
+      diagnostics = "nvim_lsp",
+      show_buffer_close_icons = false,
+      show_buffer_icons = false,
+      show_close_icon = false,
+      separator_style = "thin",
+      always_show_bufferline = false,
+      numbers = "ordinal",
+      offsets = {
+        { filetype = "NvimTree", text = "", padding = 1 },
       },
-    })
-  end,
+    },
+  },
+  keys = {
+    { "J", "<cmd>BufferLineCyclePrev<CR>", desc = "Bufferline: Cycle Prev" },
+    { "K", "<cmd>BufferLineCycleNext<CR>", desc = "Bufferline: Cycle Next" },
+  },
 }

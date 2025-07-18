@@ -1,5 +1,6 @@
 if vim.g.neovide then
   ---- Basic Settings ----
+  vim.o.guifont = "JetBrainsMono Nerd Font:#e-antialias:#h-none"
   vim.g.neovide_scale_factor = 0.7
   vim.g.neovide_cursor_animation_length = 0
   -- vim.g.neovide_scroll_animation_length = 0

@@ -31,12 +31,14 @@ function SmartChangeDir()
   vim.cmd("pwd")
 end
 
+-- Get the session's directory path
 function SessionName(path)
   local session_dir = vim.fn.stdpath("data") .. "/sessions/"
   local session_name = path:gsub("[:/\\]", "%%") .. ".vim"
   return session_dir .. session_name
 end
--- Save session in the git root directory with a name based on the current working directory
+
+-- Save session in nvim-data/session with name based on the current working directory
 -- if no files are associated with the buffers, delete the session file
 function SmartSaveSession()
   if not IsProject then
@@ -66,13 +68,10 @@ function SmartSaveSession()
     end
   end
 
-  -- vim.notify("Has real files: " .. tostring(has_real_files), vim.log.levels.INFO, { title = "Session" })
-
   if has_real_files then
-    -- vim.notify("Saving session...", vim.log.levels.INFO, { title = "Session" })
     vim.cmd("mksession! " .. vim.fn.fnameescape(session_path))
   else
-    -- Delete session file if it no buffers associated with files exist
+    -- Delete session file
     if vim.loop.fs_stat(session_path) then
       ---@diagnostic disable-next-line: undefined-field
       vim.loop.fs_unlink(session_path)
@@ -80,6 +79,7 @@ function SmartSaveSession()
   end
 end
 
+-- Clean up temporary ShaDa files that are smaller than 1 KB
 function CleanShaDaFiles()
   local data_dir = vim.fn.stdpath("data") .. "/shada"
   local tmp_files = vim.fn.glob(data_dir .. "/main.shada.tmp.?*", false, true)
