@@ -103,40 +103,29 @@ end
 
 -- Temporary workaround
 local function searchTodos()
-  -- require("snacks.picker").grep()
-
-  -- vim.defer_fn(function()
-  --   local keys = vim.api.nvim_replace_termcodes("(TODO\\:|FIX\\:|HACK\\:)<Esc>", true, false, true)
-  --   vim.api.nvim_feedkeys(keys, "n", false)
-  -- end, 50)
-
   require("snacks").picker.pick(nil, {
     title = "Search TODOs",
     live = false,
-    -- layout = "select",
+    -- layout = "right",
     format = "text",
     finder = function()
-      local command = [[rg --no-heading --color=never --line-number "(TODO:|FIX:|HACK:)" ]]
+      local command = [[rg --no-heading --line-number --column --trim "(TODO\:|FIX\:|HACK\:)" ]]
       local command_result = vim.fn.system(command)
 
       local items = {}
       for line in command_result:gmatch("[^\n]+") do
-        local filename, linenr, content = line:match("^(.-):(%d+):(.*)")
+        local filename, linenr, col, content = line:match("^(.-):(%d+):(.-):(.*)")
         if filename and linenr and content then
           local abs_path = vim.fn.fnamemodify(filename, ":p")
           table.insert(items, {
-            text = string.format("%s:%s: %s", filename, linenr, content),
+            text = filename .. ":" .. linenr .. ":" .. col .. ": " .. content,
             file = abs_path,
-            -- pos = { tonumber(line), 1 },
-            -- lnum = tonumber(line),
-            -- lnum = tonumber(linenr),
+            pos = { tonumber(linenr), tonumber(col) },
           })
         end
       end
-
       return items
     end,
-
     confirm = function(picker, item)
       picker:close()
       local filename, linenr = item.text:match("^(.-):(%d+):")
