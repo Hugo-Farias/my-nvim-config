@@ -103,12 +103,48 @@ end
 
 -- Temporary workaround
 local function searchTodos()
-  require("snacks.picker").grep()
+  -- require("snacks.picker").grep()
 
-  vim.defer_fn(function()
-    local keys = vim.api.nvim_replace_termcodes("(TODO\\:|FIX\\:|HACK\\:)<Esc>", true, false, true)
-    vim.api.nvim_feedkeys(keys, "n", false)
-  end, 50)
+  -- vim.defer_fn(function()
+  --   local keys = vim.api.nvim_replace_termcodes("(TODO\\:|FIX\\:|HACK\\:)<Esc>", true, false, true)
+  --   vim.api.nvim_feedkeys(keys, "n", false)
+  -- end, 50)
+
+  require("snacks").picker.pick(nil, {
+    title = "Search TODOs",
+    live = false,
+    -- layout = "select",
+    format = "text",
+    finder = function()
+      local command = [[rg --no-heading --color=never --line-number "(TODO:|FIX:|HACK:)" ]]
+      local command_result = vim.fn.system(command)
+
+      local items = {}
+      for line in command_result:gmatch("[^\n]+") do
+        local filename, linenr, content = line:match("^(.-):(%d+):(.*)")
+        if filename and linenr and content then
+          local abs_path = vim.fn.fnamemodify(filename, ":p")
+          table.insert(items, {
+            text = string.format("%s:%s: %s", filename, linenr, content),
+            file = abs_path,
+            -- pos = { tonumber(line), 1 },
+            -- lnum = tonumber(line),
+            -- lnum = tonumber(linenr),
+          })
+        end
+      end
+
+      return items
+    end,
+
+    confirm = function(picker, item)
+      picker:close()
+      local filename, linenr = item.text:match("^(.-):(%d+):")
+      if filename and linenr then
+        vim.cmd(string.format("edit +%s %s", linenr, filename))
+      end
+    end,
+  })
 end
 
 return {
@@ -141,8 +177,8 @@ return {
     { "<leader>e", "<cmd>lua Snacks.picker.explorer()<CR>", desc = "Snacks: Open Explorer" },
     { "<leader>fR", "<cmd>lua Snacks.rename.rename_file()<CR>", desc = "Snacks: Rename File" },
     { "<leader>/", "<cmd>lua Snacks.picker.grep()<CR>", desc = "Snacks: Search Grep" },
-    { "<leader>sw", "<cmd>lua Snacks.picker.grep_word()<CR>", desc = "Snacks: Search Word Grep" },
-    { "<leader>/", "<cmd>lua Snacks.picker.grep_word()<CR>", desc = "Snacks: Search Selection Grep", mode = "x" },
+    { "<leader>sw", "<cmd>lua Snacks.picker.grep_word()<CR>", desc = "Snacks: Search Word Grep", mode = { "n", "x" } },
+    -- { "<leader>/", "<cmd>lua Snacks.picker.grep_word()<CR>", desc = "Snacks: Search Selection Grep", mode = "x" },
     { "<C-e>", "<cmd>lua Snacks.picker.buffers()<CR>", desc = "Snacks: Search Buffers" },
     { "<leader>sb", "<cmd>lua Snacks.picker.buffers()<CR>", desc = "Snacks: Search Buffers" },
     { "<leader>sC", "<cmd>lua Snacks.picker.colorschemes()<CR>", desc = "Snacks: Search Color Schemes" },
@@ -150,7 +186,7 @@ return {
     { "<leader>sH", "<cmd>lua Snacks.picker.help()<CR>", desc = "Snacks: Search Help" },
     { "<leader>sh", "<cmd>lua Snacks.picker.search_history()<CR>", desc = "Snacks: Search History" },
     { "<leader>s'", "<cmd>lua Snacks.picker.registers()<CR>", desc = "Snacks: Search Registers" },
-    { "<leader>sc", "<cmd>lua Snacks.picker.command_history()<CR>", desc = "Snacks: Search Command History" },
+    { "<leader>s:", "<cmd>lua Snacks.picker.command_history()<CR>", desc = "Snacks: Search Command History" },
     { "<leader>n", "<cmd>lua Snacks.notifier.show_history()<CR>", desc = "Snacks: Show Notification History" },
     { "<leader>sm", "<cmd>lua Snacks.picker.marks()<CR>", desc = "Snacks: Search Marks" },
     { "<leader>sz", "<cmd>lua Snacks.picker.zoxide()<CR>", desc = "Snacks: Search Zoxide" },

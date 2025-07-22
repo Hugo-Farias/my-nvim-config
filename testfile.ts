@@ -11,8 +11,6 @@ type User = {
 const unsusedVar = 9;
 // TODO: Test todo comment
 
-// console.log("unsusedVar ==> ", unsusedVar);
-
 type Status = "pending" | "approved" | "rejected";
 
 const arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8];

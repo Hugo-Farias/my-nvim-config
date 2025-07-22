@@ -1,7 +1,7 @@
 local set = vim.keymap.set
 
 local floatingOpts = {
-  focusable = false,
+  focusable = true,
   style = "minimal",
   border = "rounded",
   source = true, -- or "if_many"

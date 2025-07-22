@@ -49,7 +49,8 @@ require("lazy").setup({
   { require("plugins.bufferline") },
 
   ---- Status Line ----
-  { require("plugins.lualine") },
+  { require("plugins.mini-statusline") },
+  -- { require("plugins.lualine") },
 
   ---- Language Support ----
   { "kmonad/kmonad-vim" },
@@ -58,7 +59,6 @@ require("lazy").setup({
   require("colors"),
 })
 -- { require("plugins.blink-cmp") },
--- { require("plugins.mini-statusline") },
 -- { require("plugins.mini-tabline") },
 -- { require("plugins.nvim-dap") },
 -- { require("plugins.comfy-line-numbers") },
