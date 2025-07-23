@@ -91,7 +91,6 @@ local function searchScratchFiles()
     confirm = function(picker, item)
       picker:close()
       local full_path = scratch_dir .. item.file
-      vim.notify("Opening: " .. full_path)
 
       vim.schedule(function()
         -- Prefer this safe form over vim.cmd("e " .. full_path)
@@ -101,38 +100,53 @@ local function searchScratchFiles()
   })
 end
 
--- Temporary workaround
+-- FIX: Missing content from search results
 local function searchTodos()
-  require("snacks").picker.pick(nil, {
-    title = "Search TODOs",
-    live = false,
+  require("snacks").picker.grep({
+    title = "TODOs",
     -- layout = "right",
-    format = "text",
-    finder = function()
-      local command = [[rg --no-heading --line-number --column --trim "(TODO\:|FIX\:|HACK\:)" ]]
-      local command_result = vim.fn.system(command)
+    -- format = "file",
+    on_show = function()
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-g>", true, false, true), "i", false)
+      -- vim.cmd.stopinsert()
+    end,
+    finder = "grep",
+    search = function()
+      return [[(TODO\:|FIX\:|WARN\:|HACK\:|NOTE\:|TEST\:)]]
+    end,
+    -- finder = function()
+    --   local command =
+    --     [[rg --no-heading --color=never --line-number --column "(TODO\:|FIX\:|WARN\:|HACK\:|NOTE\:|TEST\:|TEST\:)" ]]
+    --   local command_result = vim.fn.system(command)
 
-      local items = {}
-      for line in command_result:gmatch("[^\n]+") do
-        local filename, linenr, col, content = line:match("^(.-):(%d+):(.-):(.*)")
-        if filename and linenr and content then
-          local abs_path = vim.fn.fnamemodify(filename, ":p")
-          table.insert(items, {
-            text = filename .. ":" .. linenr .. ":" .. col .. ": " .. content,
-            file = abs_path,
-            pos = { tonumber(linenr), tonumber(col) },
-          })
-        end
-      end
-      return items
-    end,
-    confirm = function(picker, item)
-      picker:close()
-      local filename, linenr = item.text:match("^(.-):(%d+):")
-      if filename and linenr then
-        vim.cmd(string.format("edit +%s %s", linenr, filename))
-      end
-    end,
+    --   local items = {}
+    --   for line in command_result:gmatch("[^\n]+") do
+    --     local filename, linenr, col, content = line:match("^(.-):(%d+):(.-):(.*)")
+    --     if filename and linenr and content then
+    --       local abs_path = vim.fn.fnamemodify(filename, ":p")
+    --       table.insert(items, {
+    --         text = line,
+    --         file = abs_path,
+    --         pos = { tonumber(linenr), tonumber(col) },
+    --         item = "tiem",
+    --       })
+    --     end
+    --   end
+    --   return items
+    -- end,
+    -- confirm = function(picker, item)
+    --   picker:close()
+
+    --   local filename, linenr, colnr, _ = item.text:match("^(.-):(%d+):(.-):(.*)")
+    --   if filename and linenr and colnr then
+    --     vim.cmd(string.format("edit +%s %s", linenr, filename))
+    --     vim.schedule(function()
+    --       vim.api.nvim_win_set_cursor(0, { tonumber(linenr), tonumber(colnr) - 1 })
+    --     end)
+    --   else
+    --     vim.notify("Failed to parse file, line, or column", vim.log.levels.ERROR)
+    --   end
+    -- end,
   })
 end
 

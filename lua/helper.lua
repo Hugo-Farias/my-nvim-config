@@ -90,3 +90,7 @@ function CleanShaDaFiles()
     end
   end
 end
+
+vim.api.nvim_create_user_command("DeleteAllMarks", function()
+  vim.cmd("delmarks A-Z a-z 0-9")
+end, {})

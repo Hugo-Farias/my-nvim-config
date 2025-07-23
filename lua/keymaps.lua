@@ -87,6 +87,13 @@ set("n", "<M-Up>", "<cmd>horizontal res -5<CR>", { noremap = true, desc = "Resiz
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
 
+-- Marks are always uppercase
+for c = string.byte("a"), string.byte("z") do
+  local lower = string.char(c)
+  local upper = string.char(c):upper()
+  vim.keymap.set("n", "m" .. lower, "m" .. upper, { noremap = true })
+end
+
 ---- Center cursor on screen on scroll
 set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center cursor" })
 set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center cursor" })

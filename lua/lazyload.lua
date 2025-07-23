@@ -11,7 +11,7 @@ require("lazy").setup({
   { "tpope/vim-commentary" },
   { require("plugins.harpoon") },
   { require("plugins.undotree") },
-  { require("plugins.flash") },
+  -- { require("plugins.flash") },
   { require("plugins.which-key") },
   { require("plugins.gitsigns") },
   { require("plugins.timber") },
