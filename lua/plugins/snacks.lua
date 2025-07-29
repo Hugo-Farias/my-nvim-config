@@ -43,10 +43,10 @@ set("n", "<leader>fd", function()
 end, { desc = "Snacks: Compare Files" })
 
 -- Toggle terminal in normal mode
-set("n", "<C-y>", "<cmd>lua Snacks.terminal.toggle()<CR>", { desc = "Snacks: Toggle terminal (normal)" })
+set("n", "<leader>t", "<cmd>lua Snacks.terminal.toggle()<CR>", { desc = "Snacks: Toggle terminal (normal)" })
 
 -- Toggle terminal in terminal mode
-set("t", "<C-y>", function()
+set("t", "<Esc>", function()
   vim.cmd("stopinsert") -- exit terminal input mode
   vim.cmd("lua Snacks.terminal.toggle()") -- then hide the terminal
 end, { desc = "Snacks: Toggle terminal (terminal)" })
@@ -87,6 +87,7 @@ local function searchScratchFiles()
 
   require("snacks").picker.files({
     cwd = scratch_dir,
+    title = "Scratch Files",
     prompt_title = "Scratch Files",
     confirm = function(picker, item)
       picker:close()
@@ -100,7 +101,6 @@ local function searchScratchFiles()
   })
 end
 
--- FIX: Missing content from search results
 local function searchTodos()
   require("snacks").picker.grep({
     title = "TODOs",
@@ -108,7 +108,7 @@ local function searchTodos()
     -- format = "file",
     on_show = function()
       vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-g>", true, false, true), "i", false)
-      -- vim.cmd.stopinsert()
+      vim.cmd.stopinsert()
     end,
     finder = "grep",
     search = function()
@@ -173,7 +173,7 @@ return {
     { "<leader><Tab>", "<cmd>lua Snacks.picker.resume()<CR>", desc = "Snacks: Resume Search" },
     { "<leader><leader>", "<cmd>lua Snacks.picker.files()<CR>", desc = "Snacks: Search Files" },
     { "<leader>sf", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
-    { "<leader>sg", "<cmd>lua Snacks.picker.git_files()<CR>", desc = "Snacks: Search Git Files" },
+    { "<leader>sg", "<cmd>lua Snacks.picker.git_diff()<CR>", desc = "Snacks: Search Git Diffs" },
     { "<leader>s,", "<cmd>lua Snacks.picker.files({ cwd = vim.fn.stdpath('config') })<CR>", desc = "Snacks: Search Config File"},
     { "<leader>sr", "<cmd>lua Snacks.picker.recent()<CR>", desc = "Snacks: Search Recent Files" },
     { "<leader>sl", "<cmd>lua Snacks.picker.lines()<CR>", desc = "Snacks: Search Lines" },
@@ -182,7 +182,7 @@ return {
     { "<leader>/", "<cmd>lua Snacks.picker.grep()<CR>", desc = "Snacks: Search Grep" },
     { "<leader>sw", "<cmd>lua Snacks.picker.grep_word()<CR>", desc = "Snacks: Search Word Grep", mode = { "n", "x" } },
     -- { "<leader>/", "<cmd>lua Snacks.picker.grep_word()<CR>", desc = "Snacks: Search Selection Grep", mode = "x" },
-    { "<C-e>", "<cmd>lua Snacks.picker.buffers()<CR>", desc = "Snacks: Search Buffers" },
+    -- { "<C-e>", "<cmd>lua Snacks.picker.buffers()<CR>", desc = "Snacks: Search Buffers" },
     { "<leader>sb", "<cmd>lua Snacks.picker.buffers()<CR>", desc = "Snacks: Search Buffers" },
     { "<leader>sC", "<cmd>lua Snacks.picker.colorschemes()<CR>", desc = "Snacks: Search Color Schemes" },
     { "<leader>sk", "<cmd>lua Snacks.picker.keymaps()<CR>", desc = "Snacks: Search Keymaps" },
@@ -193,7 +193,9 @@ return {
     { "<leader>n", "<cmd>lua Snacks.notifier.show_history()<CR>", desc = "Snacks: Show Notification History" },
     { "<leader>sm", "<cmd>lua Snacks.picker.marks()<CR>", desc = "Snacks: Search Marks" },
     { "<leader>sz", "<cmd>lua Snacks.picker.zoxide()<CR>", desc = "Snacks: Search Zoxide" },
-    { "<leader>sy", searchScratchFiles, desc = "Snacks: Search Scratch Files" },
+    { "<leader>sy", searchScratchFiles, desc = "Snacks: Search Custom Scratch Files" },
+    { "<leader>s.", "<cmd>lua Snacks.scratch.select()<CR>", desc = "Snacks: Pick Project Scratch File" },
+    { "<leader>.", "<cmd>lua Snacks.scratch()<CR>", desc = "Snacks: Open Project Scratch File" },
     { "<leader>sp", openProjects, desc = "Snacks: Search Projects" },
     -- { "<leader>u", "<cmd>lua Snacks.picker.undo()<CR>", desc = "Snacks: Search Undos" },
     { "<leader>st", searchTodos, desc = "Search TODOs" },

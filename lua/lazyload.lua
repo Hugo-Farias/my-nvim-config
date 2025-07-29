@@ -8,14 +8,17 @@ require("lazy").setup({
 
   { require("plugins.color-picker") },
   { require("plugins.vim-smartword") },
-  { "tpope/vim-commentary" },
   { require("plugins.harpoon") },
   { require("plugins.undotree") },
   -- { require("plugins.flash") },
   { require("plugins.which-key") },
   { require("plugins.gitsigns") },
   { require("plugins.timber") },
-
+  {
+    "Aasim-A/scrollEOF.nvim",
+    event = { "CursorMoved", "WinScrolled" },
+    opts = {},
+  },
   ---- Multi Cursor ----
   { require("plugins.multicursor") },
 
@@ -33,7 +36,8 @@ require("lazy").setup({
   { require("plugins.luasnip") },
 
   ---- AI assistant ----
-  { require("plugins.zbirenbaum-copilot") },
+  -- { require("plugins.zbirenbaum-copilot") },
+  { require("plugins.windsurf") },
 
   ---- Mini Compilation ----
   { require("plugins.mini-icons") },
@@ -66,6 +70,5 @@ require("lazy").setup({
 -- { require("plugins.luarocks") },
 -- { require("plugins.null-ls") },
 -- { require("plugins.project") },
--- { require("plugins.windsurf") },
 -- { "github/copilot.vim" },
 -- { require("plugins.avante") },

@@ -12,9 +12,6 @@ return {
       enable_cmp_source = false,
       virtual_text = {
         enabled = true,
-
-        -- These are the defaults
-
         -- Set to true if you never want completions to be shown automatically.
         manual = false,
         -- A mapping of filetype to true or false, to enable virtual text.
@@ -32,11 +29,12 @@ return {
           ["*.scss"] = true,
           ["*.py"] = true,
           ["*.yaml"] = true,
+          ["*"] = false,
         },
         -- Whether to enable virtual text of not for filetypes not specifically listed above.
         default_filetype_enabled = true,
         -- How long to wait (in ms) before requesting completions after typing stops.
-        idle_delay = 80,
+        idle_delay = 200,
         -- Priority of the virtual text. This usually ensures that the completions appear on top of
         -- other plugins that also add virtual text, such as LSP inlay hints, but can be modified if
         -- desired.
@@ -48,17 +46,11 @@ return {
         accept_fallback = nil,
         -- Key bindings for managing completions in virtual text mode.
         key_bindings = {
-          -- Accept the current completion.
-          accept = "<Tab>",
-          -- Accept the next word.
+          accept = "<M-y>",
           accept_word = "<M-w>",
-          -- Accept the next line.
-          accept_line = "<M-l>",
-          -- Clear the virtual text.
-          clear = "<C-e>",
-          -- Cycle to the next completion.
+          accept_line = "<Tab>",
+          clear = "<C-d>",
           next = "<M-]>",
-          -- Cycle to the previous completion.
           prev = "<M-[>",
         },
       },

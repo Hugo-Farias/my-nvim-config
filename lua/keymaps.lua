@@ -90,8 +90,16 @@ set("n", "<M-Up>", "<cmd>horizontal res -5<CR>", { noremap = true, desc = "Resiz
 -- Marks are always uppercase
 for c = string.byte("a"), string.byte("z") do
   local lower = string.char(c)
-  local upper = string.char(c):upper()
+  local upper = string.upper(lower)
+
+  -- Set mark: ma → mA
   vim.keymap.set("n", "m" .. lower, "m" .. upper, { noremap = true })
+
+  -- Jump to mark by line: 'a → 'A
+  vim.keymap.set("n", "'" .. lower, "'" .. upper, { noremap = true })
+
+  -- Jump to mark by exact position: `a → `A
+  vim.keymap.set("n", "`" .. lower, "`" .. upper, { noremap = true })
 end
 
 ---- Center cursor on screen on scroll
@@ -105,7 +113,7 @@ set({ "n", "x" }, '<leader>"', '"0p', { desc = "Paste previously yanked text", n
 set({ "n", "x" }, "ss", "s", { desc = "Subistitute", noremap = true })
 
 ---- Flip Boolean
-set("n", "gb", function()
+set("n", "qb", function()
   local line = vim.api.nvim_get_current_line()
   local replacements = {
     ["true"] = "false",
@@ -226,12 +234,13 @@ set({ "i", "c" }, "KJ", "<Esc>", { desc = "Exit insert mode (KJ)" })
 set("n", "L", "J", { silent = true, desc = "Join lines" })
 
 ----Add empty line under
-set("n", "<C-k>", "o<Esc>k_", { desc = "Add empty line under", noremap = true })
+set("n", "<C-k>", "mzo<Esc>k_`z<cmd>delmarks z<CR>", { desc = "Add empty line under", noremap = true })
+
 ---- Add empty line under insert mode
 set("i", "<C-k>", "<Esc>o<Esc>k_i", { desc = "Add empty line under", noremap = true })
 
 ---- Split lines downwards
-set("n", "<C-j>", "i<CR><Esc>==", {
+set("n", "<C-j>", "mzi<CR><Esc>==`z<cmd>delmarks z<CR>", {
   desc = "Split line downwards",
   noremap = true,
 })
@@ -278,7 +287,7 @@ set("n", "<leader>E", function()
   vim.fn.mkdir("C:/Temp", "p")
   vim.fn.delete(chooser_path)
 
-  local cwd = vim.fn.expand("%:p:h") -- ← Get current buffer directory
+  local cwd = vim.fn.expand("%:p:h")
 
   vim.fn.termopen({
     "C:\\PROGRA~1\\PowerShell\\7\\pwsh.exe",

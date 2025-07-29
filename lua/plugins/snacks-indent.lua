@@ -5,7 +5,7 @@ return {
   char = "│",
   only_scope = true, -- only show indent guides of the scope
   only_current = true, -- only show indent guides in the current window
-  -- hl = "SnacksIndent", ---@type string|string[] hl groups for indent guides
+  hl = "SnacksIndent", ---@type string|string[] hl groups for indent guides
   -- can be a list of hl groups to cycle through
   -- hl = {
   --   "SnacksIndent1",

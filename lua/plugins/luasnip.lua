@@ -27,13 +27,12 @@ return {
   end,
   keys = {
     {
-      "<C-l>",
+      "<C-t>",
       function()
         return require("luasnip").jump(1)
       end,
       expr = true,
       desc = "LuaSnip: Jump forward",
-      mode = { "i" },
     },
     -- {
     --   "<S-Tab>",
