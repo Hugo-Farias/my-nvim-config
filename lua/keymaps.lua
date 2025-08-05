@@ -18,7 +18,7 @@ end
 -- set("x", "J", "<Nop>", { desc = "Disable join line in visual line" })
 
 ---- Remove default lowercase mapping (gu)
-set({ "n", "x" }, "gu", "<Nop>", { desc = "Disable gu" })
+set({ "n", "x" }, "gu", "<Nop>")
 
 -------------------------------------------------------------------------------
 ---- 💾 Save / Format / File Ops
@@ -87,6 +87,11 @@ set("n", "<M-Up>", "<cmd>horizontal res -5<CR>", { noremap = true, desc = "Resiz
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
 
+set("n", "K", "<cmd>bnext<CR>", { desc = "Next Buffer" })
+set("n", "J", "<cmd>bprev<CR>", { desc = "Previous Buffer" })
+
+set("n", "gw", "=", { desc = "Align text" })
+
 -- Marks are always uppercase
 for c = string.byte("a"), string.byte("z") do
   local lower = string.char(c)
@@ -103,8 +108,8 @@ for c = string.byte("a"), string.byte("z") do
 end
 
 ---- Center cursor on screen on scroll
-set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center cursor" })
-set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center cursor" })
+-- set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center cursor" })
+-- set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center cursor" })
 
 ---- Get previous yanked text
 set({ "n", "x" }, '<leader>"', '"0p', { desc = "Paste previously yanked text", noremap = true })
@@ -113,7 +118,7 @@ set({ "n", "x" }, '<leader>"', '"0p', { desc = "Paste previously yanked text", n
 set({ "n", "x" }, "ss", "s", { desc = "Subistitute", noremap = true })
 
 ---- Flip Boolean
-set("n", "qb", function()
+set("n", "gb", function()
   local line = vim.api.nvim_get_current_line()
   local replacements = {
     ["true"] = "false",
@@ -144,14 +149,20 @@ set(
 )
 
 ---- Paste from system's clipboard
-for _, key in ipairs({ "p", "P" }) do
-  set({ "n", "x" }, "<leader>" .. key, '"+' .. key .. "==", { desc = "Paste from system's clipboard" })
-end
+-- for _, key in ipairs({ "p", "P" }) do
+--   set({ "n", "x" }, "<leader>" .. key, '"+' .. key .. "==", { desc = "Paste from system's clipboard" })
+-- end
+set({ "n", "x" }, "<leader>p", '"+p', { desc = "Paste from system's clipboard" })
+set({ "n", "x" }, "<leader>P", 'o<Esc>"+p^', { desc = "which_key_ignore" })
 
 ---- Yank into system's clipboard
-for _, key in ipairs({ "y", "Y" }) do
-  set({ "n", "x" }, "<leader>" .. key, '"+' .. key, { desc = "Yank into system's clipboard" })
-end
+-- for _, key in ipairs({ "y", "Y" }) do
+--   set({ "n", "x" }, "<leader>" .. key, '"+' .. key, { desc = "Yank into system's clipboard" })
+-- end
+
+set({ "n", "x" }, "<leader>y", '"+y', { desc = "Yank into system's clipboard" })
+
+set({ "n", "x" }, "<leader>Y", '"+y$', { desc = "which_key_ignore" })
 
 ---- `qp` to play macro
 set({ "n", "x" }, "qp", function()
@@ -195,7 +206,7 @@ set("x", "<C-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 set("n", "U", "<C-r>", { desc = "Redo" })
 
 ---- Add option to operate on full buffer on yank, delete and visual
-set({ "o", "x" }, "az", function()
+set({ "o", "x" }, "ae", function()
   local start_pos = { 1, 0 }
   local end_pos = { vim.fn.line("$"), vim.fn.getline("$"):len() }
   vim.fn.setpos("'<", { 0, start_pos[1], start_pos[2] + 1, 0 })
@@ -231,7 +242,7 @@ set({ "i", "c" }, "KJ", "<Esc>", { desc = "Exit insert mode (KJ)" })
 
 ---- Join lines
 -- set("n", "<leader>jl", "J", { noremap = true, silent = true, desc = "Join lines" })
-set("n", "L", "J", { silent = true, desc = "Join lines" })
+set("n", "L", "mzJ`z<cmd>delmarks z<CR>", { silent = true, desc = "Join lines" })
 
 ----Add empty line under
 set("n", "<C-k>", "mzo<Esc>k_`z<cmd>delmarks z<CR>", { desc = "Add empty line under", noremap = true })

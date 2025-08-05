@@ -19,7 +19,7 @@ return {
       WARN = { icon = " ", color = "warning", alt = { "WARNING", "XXX" } },
       PERF = { icon = " ", alt = { "OPTIM", "PERFORMANCE", "OPTIMIZE" } },
       NOTE = { icon = " ", color = "hint", alt = { "INFO" } },
-      TEST = { icon = "⏲ ", color = "test", alt = { "TESTING", "PASSED", "FAILED" } },
+      TEST = { icon = " ", color = "hint", alt = { "TESTING", "PASSED", "FAILED" } },
     },
     gui_style = {
       fg = "NONE", -- The gui style to use for the fg highlight group.
@@ -70,7 +70,6 @@ return {
   keys = {
     { "]t", "<cmd>lua require('todo-comments').jump_next()<CR>", desc = "Next todo comment" },
     { "[t", "<cmd>lua require('todo-comments').jump_prev()<CR>", desc = "Previous todo comment" },
-    -- FIX: this command doesn't exist
     -- { "<leader>st", "<cmd>lua Snacks.picker.todo_comments()<CR>", desc = "Search TODOs" },
   },
 }

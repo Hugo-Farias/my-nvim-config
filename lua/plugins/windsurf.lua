@@ -1,4 +1,4 @@
-﻿vim.keymap.set("n", "<leader>cd", "<cmd>Codeium Toggle<CR>", { desc = "Codeium: Toggle" })
+﻿vim.keymap.set("n", "<leader>cd", "<cmd>Codeium Toggle<CR>", { desc = "Codeium: Toggle On/Off" })
 
 return {
   "Exafunction/windsurf.nvim",
@@ -46,8 +46,8 @@ return {
         accept_fallback = nil,
         -- Key bindings for managing completions in virtual text mode.
         key_bindings = {
-          accept = "<M-y>",
-          accept_word = "<M-w>",
+          accept = "<C-y>",
+          accept_word = "<C-l>",
           accept_line = "<Tab>",
           clear = "<C-d>",
           next = "<M-]>",

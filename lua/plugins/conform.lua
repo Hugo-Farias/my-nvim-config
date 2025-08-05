@@ -15,6 +15,7 @@ return {
         json = { "prettierd" },
         jsonc = { "prettierd" },
         yaml = { "prettierd" },
+        yml = { "prettierd" },
         markdown = { "prettierd" },
         ["markdown.mdx"] = { "prettierd" },
         graphql = { "prettierd" },

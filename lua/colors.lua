@@ -12,10 +12,6 @@ function EditorColorScheme(color)
   vim.api.nvim_set_hl(0, "LineNr", { fg = "#e6e6e6" })
   vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#666666" })
   vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#666666" })
-
-  -- vim.api.nvim_set_hl(0, "@variable", { fg = "#ff5f5f" }) -- for 'console'
-  -- vim.api.nvim_set_hl(0, "@property", { fg = "#5fafff" }) -- for 'log'
-  -- vim.api.nvim_set_hl(0, "@variable.parameter", { fg = "#afd75f" }) -- for 'message'
 end
 
 local function theme(repo, name, style)

@@ -43,10 +43,10 @@ set("n", "<leader>fd", function()
 end, { desc = "Snacks: Compare Files" })
 
 -- Toggle terminal in normal mode
-set("n", "<leader>t", "<cmd>lua Snacks.terminal.toggle()<CR>", { desc = "Snacks: Toggle terminal (normal)" })
+set("n", "<C-y>", "<cmd>lua Snacks.terminal.toggle()<CR>", { desc = "Snacks: Toggle terminal (normal)" })
 
 -- Toggle terminal in terminal mode
-set("t", "<Esc>", function()
+set("t", "<C-y>", function()
   vim.cmd("stopinsert") -- exit terminal input mode
   vim.cmd("lua Snacks.terminal.toggle()") -- then hide the terminal
 end, { desc = "Snacks: Toggle terminal (terminal)" })
@@ -104,8 +104,6 @@ end
 local function searchTodos()
   require("snacks").picker.grep({
     title = "TODOs",
-    -- layout = "right",
-    -- format = "file",
     on_show = function()
       vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-g>", true, false, true), "i", false)
       vim.cmd.stopinsert()
@@ -114,39 +112,6 @@ local function searchTodos()
     search = function()
       return [[(TODO\:|FIX\:|WARN\:|HACK\:|NOTE\:|TEST\:)]]
     end,
-    -- finder = function()
-    --   local command =
-    --     [[rg --no-heading --color=never --line-number --column "(TODO\:|FIX\:|WARN\:|HACK\:|NOTE\:|TEST\:|TEST\:)" ]]
-    --   local command_result = vim.fn.system(command)
-
-    --   local items = {}
-    --   for line in command_result:gmatch("[^\n]+") do
-    --     local filename, linenr, col, content = line:match("^(.-):(%d+):(.-):(.*)")
-    --     if filename and linenr and content then
-    --       local abs_path = vim.fn.fnamemodify(filename, ":p")
-    --       table.insert(items, {
-    --         text = line,
-    --         file = abs_path,
-    --         pos = { tonumber(linenr), tonumber(col) },
-    --         item = "tiem",
-    --       })
-    --     end
-    --   end
-    --   return items
-    -- end,
-    -- confirm = function(picker, item)
-    --   picker:close()
-
-    --   local filename, linenr, colnr, _ = item.text:match("^(.-):(%d+):(.-):(.*)")
-    --   if filename and linenr and colnr then
-    --     vim.cmd(string.format("edit +%s %s", linenr, filename))
-    --     vim.schedule(function()
-    --       vim.api.nvim_win_set_cursor(0, { tonumber(linenr), tonumber(colnr) - 1 })
-    --     end)
-    --   else
-    --     vim.notify("Failed to parse file, line, or column", vim.log.levels.ERROR)
-    --   end
-    -- end,
   })
 end
 
@@ -164,7 +129,7 @@ return {
     notifier = { enabled = true },
     quickfile = { enabled = true },
     scope = { enabled = true },
-    scroll = { enabled = false },
+    scroll = require("plugins.snacks-scroll"),
     statuscolumn = { enabled = true },
     words = { enabled = true },
   },
@@ -182,8 +147,9 @@ return {
     { "<leader>/", "<cmd>lua Snacks.picker.grep()<CR>", desc = "Snacks: Search Grep" },
     { "<leader>sw", "<cmd>lua Snacks.picker.grep_word()<CR>", desc = "Snacks: Search Word Grep", mode = { "n", "x" } },
     -- { "<leader>/", "<cmd>lua Snacks.picker.grep_word()<CR>", desc = "Snacks: Search Selection Grep", mode = "x" },
-    -- { "<C-e>", "<cmd>lua Snacks.picker.buffers()<CR>", desc = "Snacks: Search Buffers" },
+    { "<C-e>", "<cmd>lua Snacks.picker.buffers()<CR>", desc = "Snacks: Search Buffers" },
     { "<leader>sb", "<cmd>lua Snacks.picker.buffers()<CR>", desc = "Snacks: Search Buffers" },
+    { "<leader>sc", "<cmd>lua Snacks.picker.commands()<CR>", desc = "Snacks: Search Commands" },
     { "<leader>sC", "<cmd>lua Snacks.picker.colorschemes()<CR>", desc = "Snacks: Search Color Schemes" },
     { "<leader>sk", "<cmd>lua Snacks.picker.keymaps()<CR>", desc = "Snacks: Search Keymaps" },
     { "<leader>sH", "<cmd>lua Snacks.picker.help()<CR>", desc = "Snacks: Search Help" },
@@ -197,7 +163,7 @@ return {
     { "<leader>s.", "<cmd>lua Snacks.scratch.select()<CR>", desc = "Snacks: Pick Project Scratch File" },
     { "<leader>.", "<cmd>lua Snacks.scratch()<CR>", desc = "Snacks: Open Project Scratch File" },
     { "<leader>sp", openProjects, desc = "Snacks: Search Projects" },
-    -- { "<leader>u", "<cmd>lua Snacks.picker.undo()<CR>", desc = "Snacks: Search Undos" },
+    { "<leader>su", "<cmd>lua Snacks.picker.undo()<CR>", desc = "Snacks: Search Undos" },
     { "<leader>st", searchTodos, desc = "Search TODOs" },
     -- { "<leader>st", "<cmd>lua Snacks.picker.todo_comments()<CR>", desc = "Search TODOs" },
     ---- Git Actions ----

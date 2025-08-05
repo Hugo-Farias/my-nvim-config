@@ -7,18 +7,17 @@ require("lazy").setup({
   { require("plugins.snacks") },
 
   { require("plugins.color-picker") },
-  { require("plugins.vim-smartword") },
+  -- { require("plugins.vim-smartword") },
+  { require("plugins.nvim-spider") },
   { require("plugins.harpoon") },
   { require("plugins.undotree") },
   -- { require("plugins.flash") },
   { require("plugins.which-key") },
   { require("plugins.gitsigns") },
   { require("plugins.timber") },
-  {
-    "Aasim-A/scrollEOF.nvim",
-    event = { "CursorMoved", "WinScrolled" },
-    opts = {},
-  },
+  { "Aasim-A/scrollEOF.nvim", event = { "CursorMoved", "WinScrolled" }, opts = {} },
+  { require("plugins.neoscroll") },
+
   ---- Multi Cursor ----
   { require("plugins.multicursor") },
 
@@ -50,7 +49,7 @@ require("lazy").setup({
   { require("plugins.nvim-highlight-colors") },
 
   ---- Buffer/Tab line ----
-  { require("plugins.bufferline") },
+  -- { require("plugins.bufferline") },
 
   ---- Status Line ----
   { require("plugins.mini-statusline") },
