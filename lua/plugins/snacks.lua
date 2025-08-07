@@ -52,9 +52,7 @@ set("t", "<C-y>", function()
 end, { desc = "Snacks: Toggle terminal (terminal)" })
 
 for _, key in ipairs({ "<C-f4>", "<leader>q", "<M-q>", "qt" }) do
-  set("n", key, function()
-    require("snacks").bufdelete()
-  end, { desc = "Close Buffer" })
+  set("n", key, "<cmd>lua Snacks.bufdelete()<CR>", { desc = "Close Buffer" })
 end
 
 local function closeAllBuffers()
@@ -137,6 +135,7 @@ return {
     -- stylua: ignore start
     { "<leader><Tab>", "<cmd>lua Snacks.picker.resume()<CR>", desc = "Snacks: Resume Search" },
     { "<leader><leader>", "<cmd>lua Snacks.picker.files()<CR>", desc = "Snacks: Search Files" },
+    { "<C-p>", "<cmd>lua Snacks.picker.files()<CR>", desc = "Snacks: Search Files" },
     { "<leader>sf", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
     { "<leader>sg", "<cmd>lua Snacks.picker.git_diff()<CR>", desc = "Snacks: Search Git Diffs" },
     { "<leader>s,", "<cmd>lua Snacks.picker.files({ cwd = vim.fn.stdpath('config') })<CR>", desc = "Snacks: Search Config File"},

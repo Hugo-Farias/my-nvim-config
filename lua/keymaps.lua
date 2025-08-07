@@ -93,23 +93,19 @@ set("n", "J", "<cmd>bprev<CR>", { desc = "Previous Buffer" })
 set("n", "gw", "=", { desc = "Align text" })
 
 -- Marks are always uppercase
-for c = string.byte("a"), string.byte("z") do
-  local lower = string.char(c)
-  local upper = string.upper(lower)
-
-  -- Set mark: ma → mA
-  vim.keymap.set("n", "m" .. lower, "m" .. upper, { noremap = true })
-
-  -- Jump to mark by line: 'a → 'A
-  vim.keymap.set("n", "'" .. lower, "'" .. upper, { noremap = true })
-
-  -- Jump to mark by exact position: `a → `A
-  vim.keymap.set("n", "`" .. lower, "`" .. upper, { noremap = true })
-end
-
----- Center cursor on screen on scroll
--- set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down and center cursor" })
--- set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up and center cursor" })
+-- for c = string.byte("a"), string.byte("z") do
+--   local lower = string.char(c)
+--   local upper = string.upper(lower)
+--
+--   -- Set mark: ma → mA
+--   vim.keymap.set("n", "m" .. lower, "m" .. upper, { noremap = true })
+--
+--   -- Jump to mark by line: 'a → 'A
+--   vim.keymap.set("n", "'" .. lower, "'" .. upper, { noremap = true })
+--
+--   -- Jump to mark by exact position: `a → `A
+--   vim.keymap.set("n", "`" .. lower, "`" .. upper, { noremap = true })
+-- end
 
 ---- Get previous yanked text
 set({ "n", "x" }, '<leader>"', '"0p', { desc = "Paste previously yanked text", noremap = true })
@@ -187,16 +183,20 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 ---- Clear Search Query
 set("n", "<leader>ll", "<cmd>redraw | nohlsearch<CR>", { desc = "Clear Highlight Search" })
 set("n", "<C-l>", "<Cmd>nohlsearch|diffupdate|redraw|normal! <C-L><CR>", { desc = "Clear Highlight Search" })
-set("n", "<leader>lr", "<cmd>LspRestart<CR>", { desc = "Restart Lsp" })
+set(
+  "n",
+  "<leader>lr",
+  "mz<cmd>bd | LspRestart<CR><C-6>`z<cmd>delmarks z<CR>jk<C-6><cmd>bd<CR>",
+  { desc = "Restart Lsp" }
+)
 set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search query" })
+set("n", "<leader>lm", "<cmd>DeleteAllMarks<CR>jk", { desc = "Delete All Marks" })
 
 ---- '*' Keeps cursor on the same occurrence
 set("n", "*", "*N", { desc = "'*' Keeps cursor on the name occurrence" })
 
 ---- Duplicate Line
-set("n", "H", function()
-  vim.cmd("copy .")
-end, { desc = "Duplicate Line" })
+set("n", "H", "<cmd>copy .<CR>", { desc = "Duplicate Line" })
 
 ---- Move lines
 set("x", "<C-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
@@ -206,7 +206,7 @@ set("x", "<C-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
 set("n", "U", "<C-r>", { desc = "Redo" })
 
 ---- Add option to operate on full buffer on yank, delete and visual
-set({ "o", "x" }, "ae", function()
+set({ "o", "x" }, "az", function()
   local start_pos = { 1, 0 }
   local end_pos = { vim.fn.line("$"), vim.fn.getline("$"):len() }
   vim.fn.setpos("'<", { 0, start_pos[1], start_pos[2] + 1, 0 })
@@ -274,6 +274,7 @@ set("x", "U", "<C-c>", { noremap = true, desc = "Exit visual mode (U override)" 
 -------------------------------------------------------------------------------
 
 ---- Open Yazi
+--- TODO: make this open on current buffer directory instead of working directory
 set("n", "<leader>E", function()
   local buf = vim.api.nvim_create_buf(false, true)
 

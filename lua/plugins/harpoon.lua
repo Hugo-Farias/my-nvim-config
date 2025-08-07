@@ -11,7 +11,7 @@ return {
     for i, key in ipairs({ "h", "j", "k", "l", ";" }) do
       vim.keymap.set("n", "q" .. key, function()
         ui.nav_file(i)
-      end, { desc = "which_key_ignore" .. i })
+      end, { desc = "which_key_ignore" })
     end
   end,
 }

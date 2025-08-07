@@ -7,8 +7,8 @@ require("lazy").setup({
   { require("plugins.snacks") },
 
   { require("plugins.color-picker") },
-  -- { require("plugins.vim-smartword") },
-  { require("plugins.nvim-spider") },
+  { require("plugins.vim-smartword") },
+  -- { require("plugins.nvim-spider") },
   { require("plugins.harpoon") },
   { require("plugins.undotree") },
   -- { require("plugins.flash") },
@@ -35,12 +35,13 @@ require("lazy").setup({
   { require("plugins.luasnip") },
 
   ---- AI assistant ----
-  -- { require("plugins.zbirenbaum-copilot") },
-  { require("plugins.windsurf") },
+  { require("plugins.zbirenbaum-copilot") },
+  -- { require("plugins.windsurf") },
 
   ---- Mini Compilation ----
   { require("plugins.mini-icons") },
   { require("plugins.mini-surround") },
+  -- { require("plugins.mini-files") },
 
   ---- Text Objects ----
   { require("plugins.mini-ai") },
