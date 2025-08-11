@@ -90,7 +90,7 @@ set("n", "<M-Up>", "<cmd>horizontal res -5<CR>", { noremap = true, desc = "Resiz
 set("n", "K", "<cmd>bnext<CR>", { desc = "Next Buffer" })
 set("n", "J", "<cmd>bprev<CR>", { desc = "Previous Buffer" })
 
-set("n", "gw", "=", { desc = "Align text" })
+-- set("n", "gw", "=", { desc = "Align text" })
 
 -- Marks are always uppercase
 -- for c = string.byte("a"), string.byte("z") do
@@ -186,11 +186,14 @@ set("n", "<C-l>", "<Cmd>nohlsearch|diffupdate|redraw|normal! <C-L><CR>", { desc 
 set(
   "n",
   "<leader>lr",
-  "mz<cmd>bd | LspRestart<CR><C-6>`z<cmd>delmarks z<CR>jk<C-6><cmd>bd<CR>",
-  { desc = "Restart Lsp" }
+  "m0<cmd>enew<CR><C-6><cmd>bd<CR><C-6>`0<cmd>delm 0<CR><C-6><cmd>bd<CR>",
+  { desc = "Refresh buffer" }
 )
 set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search query" })
-set("n", "<leader>lm", "<cmd>DeleteAllMarks<CR>jk", { desc = "Delete All Marks" })
+
+set("n", "<leader>lm", "<cmd>DeleteAllMarks<CR>jk", { desc = "Clear All Marks" })
+
+set("n", "<leader>lf", "<cmd>e!<CR>", { desc = "Reload from file" })
 
 ---- '*' Keeps cursor on the same occurrence
 set("n", "*", "*N", { desc = "'*' Keeps cursor on the name occurrence" })
@@ -242,16 +245,16 @@ set({ "i", "c" }, "KJ", "<Esc>", { desc = "Exit insert mode (KJ)" })
 
 ---- Join lines
 -- set("n", "<leader>jl", "J", { noremap = true, silent = true, desc = "Join lines" })
-set("n", "L", "mzJ`z<cmd>delmarks z<CR>", { silent = true, desc = "Join lines" })
+set("n", "L", "m0J`0<cmd>delm 0<CR>", { silent = true, desc = "Join lines" })
 
 ----Add empty line under
-set("n", "<C-k>", "mzo<Esc>k_`z<cmd>delmarks z<CR>", { desc = "Add empty line under", noremap = true })
+set("n", "<C-k>", "m0o<Esc>k_`0<cmd>delm 0<CR>", { desc = "Add empty line under", noremap = true })
 
 ---- Add empty line under insert mode
 set("i", "<C-k>", "<Esc>o<Esc>k_i", { desc = "Add empty line under", noremap = true })
 
 ---- Split lines downwards
-set("n", "<C-j>", "mzi<CR><Esc>==`z<cmd>delmarks z<CR>", {
+set("n", "<C-j>", "m0i<CR><Esc>==`0<cmd>delm 0<CR>", {
   desc = "Split line downwards",
   noremap = true,
 })
@@ -262,12 +265,6 @@ set("x", "gL", "gu", { noremap = true, desc = "Visual lowercase (gu)" })
 ---- Exit visual mode overrides
 set("x", "u", "<C-c>", { noremap = true, desc = "Exit visual mode (u override)" })
 set("x", "U", "<C-c>", { noremap = true, desc = "Exit visual mode (U override)" })
-
--------------------------------------------------------------------------------
----- 🧠 Diagnostics
--------------------------------------------------------------------------------
-
--- set("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Line diagnostics" })
 
 -------------------------------------------------------------------------------
 ---- 🧭 Explorers/File Navigation

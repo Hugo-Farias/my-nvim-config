@@ -1,8 +1,9 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Add lazy.nvim to runtime path
-require("config.lazy")
+-- TODO: find solution for shada files not being saved
+
+require("config.lazy") -- Add lazy.nvim to runtime path
 
 require("helper")
 require("autocmd")
@@ -10,4 +11,4 @@ require("keymaps")
 require("set")
 require("lazyload")
 
-EditorColorScheme("onedark")
+EditorColorScheme("tokyonight-moon")

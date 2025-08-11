@@ -1,6 +1,4 @@
-﻿vim.keymap.set("n", "<leader>cd", "<cmd>Codeium Toggle<CR>", { desc = "Codeium: Toggle On/Off" })
-
-return {
+﻿return {
   "Exafunction/windsurf.nvim",
   dependencies = {
     "nvim-lua/plenary.nvim",
@@ -53,6 +51,9 @@ return {
           next = "<M-]>",
           prev = "<M-[>",
         },
+      },
+      keys = {
+        { "<leader>cd", "<cmd>Codeium toggle<CR>", { desc = "Codeium: Toggle" } },
       },
     })
   end,

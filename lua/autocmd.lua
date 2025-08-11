@@ -29,7 +29,7 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
     vim.cmd("LspStop")
     -- vim.fn.jobstart({ "eslint_d", "--stop" })
     -- vim.fn.jobstart({ "prettierd", "--stop" })
-    CleanShaDaFiles()
+    -- CleanShaDaFiles()
   end,
 })
 
@@ -50,8 +50,8 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 --   end,
 -- })
 
----- Prevent d and y operations from replacing the register if the content is empty
 ---- Highlight yanked text
+---- Prevent d and y operations from replacing the register if the content is empty
 vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function()
     local op = vim.v.event.operator

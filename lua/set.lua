@@ -24,10 +24,10 @@ vim.opt.termguicolors = true
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
 vim.opt.undofile = true
 
-vim.o.hlsearch = false
-vim.opt.incsearch = true
+-- vim.o.hlsearch = false
+-- vim.opt.incsearch = true
 
-vim.opt.updatetime = 400
+vim.opt.updatetime = 2000
 -- vim.opt.colorcolumn = "80"
 
 vim.opt.scrolloff = 20

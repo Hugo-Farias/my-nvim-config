@@ -99,7 +99,8 @@ local function searchScratchFiles()
   })
 end
 
-local function searchTodos()
+local function searchTodos(param)
+  local search = param or [[(TODO\:|FIX\:|WARN\:|HACK\:|NOTE\:|TEST\:)]]
   require("snacks").picker.grep({
     title = "TODOs",
     on_show = function()
@@ -108,7 +109,7 @@ local function searchTodos()
     end,
     finder = "grep",
     search = function()
-      return [[(TODO\:|FIX\:|WARN\:|HACK\:|NOTE\:|TEST\:)]]
+      return search
     end,
   })
 end
@@ -154,7 +155,7 @@ return {
     { "<leader>sH", "<cmd>lua Snacks.picker.help()<CR>", desc = "Snacks: Search Help" },
     { "<leader>sh", "<cmd>lua Snacks.picker.search_history()<CR>", desc = "Snacks: Search History" },
     { "<leader>s'", "<cmd>lua Snacks.picker.registers()<CR>", desc = "Snacks: Search Registers" },
-    { "<leader>s:", "<cmd>lua Snacks.picker.command_history()<CR>", desc = "Snacks: Search Command History" },
+    { "<leader>s;", "<cmd>lua Snacks.picker.command_history()<CR>", desc = "Snacks: Search Command History" },
     { "<leader>n", "<cmd>lua Snacks.notifier.show_history()<CR>", desc = "Snacks: Show Notification History" },
     { "<leader>sm", "<cmd>lua Snacks.picker.marks()<CR>", desc = "Snacks: Search Marks" },
     { "<leader>sz", "<cmd>lua Snacks.picker.zoxide()<CR>", desc = "Snacks: Search Zoxide" },
@@ -163,7 +164,8 @@ return {
     { "<leader>.", "<cmd>lua Snacks.scratch()<CR>", desc = "Snacks: Open Project Scratch File" },
     { "<leader>sp", openProjects, desc = "Snacks: Search Projects" },
     { "<leader>su", "<cmd>lua Snacks.picker.undo()<CR>", desc = "Snacks: Search Undos" },
-    { "<leader>st", searchTodos, desc = "Search TODOs" },
+    { "<leader>sT", searchTodos, desc = "Search TODOs" },
+    { "<leader>st", function () searchTodos([[(TODO\:)]]) end, desc = "Search TODOs" },
     -- { "<leader>st", "<cmd>lua Snacks.picker.todo_comments()<CR>", desc = "Search TODOs" },
     ---- Git Actions ----
     { "<leader>gg", "<cmd>lua Snacks.lazygit()<CR>", desc = "Snacks: Git Lazygit" },

@@ -1,5 +1,4 @@
 function EditorColorScheme(color)
-  color = color
   if not color then
     return nil
   end
@@ -36,6 +35,6 @@ return {
   theme("folke/tokyonight.nvim"),
   theme("Mofiqul/dracula.nvim"),
   theme("ellisonleao/gruvbox.nvim"),
-  theme("navarasu/onedark.nvim", "onedark", "warmer"),
+  theme("navarasu/onedark.nvim", "onedark", "darker"),
   theme("nickkadutskyi/jb.nvim"),
 }

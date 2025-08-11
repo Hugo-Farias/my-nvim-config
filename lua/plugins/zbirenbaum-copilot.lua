@@ -4,7 +4,7 @@ local autoTriggerStatus = true
 local function copilotToggle()
   vim.cmd(copilotStatus and "Copilot disable" or "Copilot enable")
   copilotStatus = not copilotStatus
-  vim.cmd("Copilot status")
+  vim.notify(copilotStatus and "Copilot Enabled" or "Copilot Disabled")
 end
 
 local function autoTriggerToggle()
@@ -32,7 +32,6 @@ return {
       tsx = true,
       json = true,
       python = true,
-      ps1 = true,
       go = true,
       rust = true,
       c = true,
@@ -53,24 +52,23 @@ return {
       end,
     },
     suggestion = {
-      enabled = false,
-      auto_trigger = true,
+      enabled = copilotStatus,
+      auto_trigger = autoTriggerStatus,
     },
     panel = {
       enabled = false,
     },
   },
   keys = {
-    -- { "<leader>sw", "<cmd>lua Snacks.picker.grep_word()<CR>", desc = "Snacks: Search Word Grep", mode = { "n", "x" } },
     -- stylua: ignore start
-    { "<leader>cd", copilotToggle, { desc = "Copilot: Toggle On/Off" } },
-    { "<C-d>", autoTriggerToggle, { desc = "Copilot: Toggle Auto Trigger" }, mode = "i" },
-    { "<leader>cp", "<cmd>Copilot panel<CR>", { desc = "Copilot: Toggle Panel" } },
-    { "<leader>cn", "<cmd>Copilot<CR>", { desc = "Copilot: Status" } },
-    { "<Tab>", "<cmd>lua require('copilot.suggestion').accept_line()<CR>", { desc = "Copilot: Accept Line" }, mode = "i" },
-    { "<C-l>", "<cmd>lua require('copilot.suggestion').accept_word()<CR>", { desc = "Copilot: Accept Word" }, mode = "i" },
-    { "<C-y>", "<cmd>lua require('copilot.suggestion').accept()<CR>", { desc = "Copilot: Accept All" }, mode = "i" },
-    { "<M-]>", "<cmd>lua require('copilot.suggestion').next()<CR>", { desc = "Copilot: Next Suggestion" }, mode = "i" },
-    { "<M-[>", "<cmd>lua require('copilot.suggestion').prev()<CR>", { desc = "Copilot: Prev Suggestion" }, mode = "i" },
+    { "<leader>cd", copilotToggle, desc = "Copilot: Toggle" },
+    { "<C-d>", autoTriggerToggle, desc = "Copilot: Toggle Auto Trigger", mode = "i" },
+    { "<leader>cp", "<cmd>Copilot panel<CR>", desc = "Copilot: Toggle Panel" },
+    { "<leader>cn", "<cmd>Copilot<CR>", desc = "Copilot: Status" },
+    { "<Tab>", "<cmd>lua require('copilot.suggestion').accept_line()<CR>", desc = "Copilot: Accept Line", mode = "i" },
+    { "<C-l>", "<cmd>lua require('copilot.suggestion').accept_word()<CR>", desc = "Copilot: Accept Word", mode = "i" },
+    { "<C-y>", "<cmd>lua require('copilot.suggestion').accept()<CR>", desc = "Copilot: Accept All", mode = "i" },
+    { "<M-]>", "<cmd>lua require('copilot.suggestion').next()<CR>", desc = "Copilot: Next Suggestion", mode = "i" },
+    { "<M-[>", "<cmd>lua require('copilot.suggestion').prev()<CR>", desc = "Copilot: Prev Suggestion", mode = "i" },
   },
 }
