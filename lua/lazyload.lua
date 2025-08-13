@@ -15,7 +15,7 @@ require("lazy").setup({
   { require("plugins.which-key") },
   { require("plugins.gitsigns") },
   { require("plugins.timber") },
-  -- { "Aasim-A/scrollEOF.nvim", event = { "CursorMoved", "WinScrolled" }, opts = {} },
+  { "Aasim-A/scrollEOF.nvim", event = { "CursorMoved", "WinScrolled" }, opts = {} },
   { require("plugins.neoscroll") },
 
   ---- Multi Cursor ----
@@ -54,8 +54,8 @@ require("lazy").setup({
   { require("plugins.mini-tabline") },
 
   ---- Status Line ----
-  { require("plugins.mini-statusline") },
-  -- { require("plugins.lualine") },
+  -- { require("plugins.mini-statusline") },
+  { require("plugins.lualine") },
 
   ---- Language Support ----
   { "kmonad/kmonad-vim" },
