@@ -5,10 +5,6 @@
 - [ ] Add ESLint config for TypeScript
 - [ ] Implement Debug configuration
 
-### 🖥️ UI Features
-
-- [ ] Implement Console "Tabs"
-
 ### 🐞 Bug Fixes
 
 - [ ] Fix `fs_stat` undefined LSP error

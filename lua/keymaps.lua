@@ -24,9 +24,11 @@ set({ "n", "x" }, "gu", "<Nop>")
 ---- 💾 Save / Format / File Ops
 -------------------------------------------------------------------------------
 
+set("n", "cy", "<cmd>pwd<CR>", { desc = "Show current working directory" })
+
 set("n", "cp", function()
   SmartChangeDir()
-end)
+end, { desc = "CD to git root" })
 
 ---- Quick Save
 set("n", "<C-s>", "<cmd>up<CR>", { desc = "Save File" })
@@ -35,13 +37,13 @@ set("n", "<C-s>", "<cmd>up<CR>", { desc = "Save File" })
 -- vim.api.nvim_set_keymap("n", "<leader>f", ":format<cr>", { noremap = true, silent = true, desc = "Format buffer" })
 
 ---- Change directory to current file
-set("n", "cd", "<cmd>:cd %:p:h | pwd<CR>", { desc = "CD to file directory" })
+set("n", "cd", "<cmd>cd %:p:h | pwd<CR>", { desc = "CD to file directory" })
 
 ---- Go up one directory
-set("n", "cu", "<cmd>:cd ../ | pwd<CR>", { desc = "CD up a directory" })
+set("n", "cu", "<cmd>cd ../ | pwd<CR>", { desc = "CD up a directory" })
 
 ---- Show current working directory
-set("n", "<leader>w", function()
+set("n", "co", function()
   print(vim.fn.expand("%:p:h"))
 end, { desc = "Show current working directory" })
 
@@ -183,9 +185,10 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 ---- Clear Search Query
 set("n", "<leader>ll", "<cmd>redraw | nohlsearch<CR>", { desc = "Clear Highlight Search" })
 set("n", "<C-l>", "<Cmd>nohlsearch|diffupdate|redraw|normal! <C-L><CR>", { desc = "Clear Highlight Search" })
+set("n", "<leader>lr", "<cmd>LspRestart<CR>", { desc = "LSP: Restart" })
 set(
   "n",
-  "<leader>lr",
+  "<leader>lR",
   "m0<cmd>enew<CR><C-6><cmd>bd<CR><C-6>`0<cmd>delm 0<CR><C-6><cmd>bd<CR>",
   { desc = "Refresh buffer" }
 )

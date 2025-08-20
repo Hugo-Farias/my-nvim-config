@@ -37,4 +37,5 @@ return {
   theme("ellisonleao/gruvbox.nvim"),
   theme("navarasu/onedark.nvim", "onedark", "darker"),
   theme("nickkadutskyi/jb.nvim"),
+  theme("catppuccin/nvim", "catppuccin"),
 }

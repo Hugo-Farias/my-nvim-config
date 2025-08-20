@@ -72,6 +72,9 @@ local function openProjects()
       IsProject = false
       closeAllBuffers()
       LoadSession(picker, item)
+      vim.defer_fn(function()
+        vim.cmd("LspRestart")
+      end, 5000)
     end,
   })
 end
@@ -165,7 +168,7 @@ return {
     { "<leader>sp", openProjects, desc = "Snacks: Search Projects" },
     { "<leader>su", "<cmd>lua Snacks.picker.undo()<CR>", desc = "Snacks: Search Undos" },
     { "<leader>sT", searchTodos, desc = "Search TODOs" },
-    { "<leader>st", function () searchTodos([[(TODO\:)]]) end, desc = "Search TODOs" },
+    { "<leader>st", function () searchTodos([[(TODO\:|FIX\:)]]) end, desc = "Search TODOs" },
     -- { "<leader>st", "<cmd>lua Snacks.picker.todo_comments()<CR>", desc = "Search TODOs" },
     ---- Git Actions ----
     { "<leader>gg", "<cmd>lua Snacks.lazygit()<CR>", desc = "Snacks: Git Lazygit" },

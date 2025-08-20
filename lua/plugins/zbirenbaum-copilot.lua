@@ -1,4 +1,4 @@
-local copilotStatus = false
+local copilotStatus = true
 local autoTriggerStatus = true
 
 local function copilotToggle()

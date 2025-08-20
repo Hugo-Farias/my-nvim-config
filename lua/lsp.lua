@@ -18,9 +18,9 @@ vim.diagnostic.config({
   float = floatingOpts,
 })
 
-local function jump_diag(direction)
-  vim.diagnostic.jump({ count = direction, float = true })
-end
+-- local function jump_diag(direction)
+--   vim.diagnostic.jump({ count = direction, float = true })
+-- end
 
 ---- Keymaps ----
 -- stylua: ignore start
@@ -39,7 +39,6 @@ local on_attach = function(event)
   -- set("n", "]d", function() jump_diag(1) end, vim.tbl_extend("force", opts, { desc = "LSP: Next diagnostic" }))
   -- set("n", "[d", function() jump_diag(-1) end, vim.tbl_extend("force", opts, { desc = "LSP: Previous diagnostic" }))
   set("n", "ga", function() vim.diagnostic.open_float(nil, { focusable = true }) end, vim.tbl_extend("force", opts, { desc = "LSP: Line diagnostics" }))
-
   set("n", "gA", function() vim.diagnostic.setqflist() end, vim.tbl_extend("force", opts, { desc = "LSP: Open full buffer diagnostics" }))
 end
 -- stylua: ignore end

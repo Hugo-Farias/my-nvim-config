@@ -1,6 +1,7 @@
 function greet(name) {
   console.log("Hi " + name + "!");
 }
+
 const user = "Hugo";
 greet(user);
 
