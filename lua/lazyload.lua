@@ -17,7 +17,8 @@ require("lazy").setup({
   { require("plugins.timber") },
   { "Aasim-A/scrollEOF.nvim", event = { "CursorMoved", "WinScrolled" }, opts = {} },
   { require("plugins.neoscroll") },
-  -- { require("plugins.trouble") },
+  { require("plugins.render-markdown") },
+  { require("plugins.oil") },
 
   ---- Multi Cursor ----
   { require("plugins.multicursor") },
@@ -67,7 +68,6 @@ require("lazy").setup({
 -- { require("plugins.blink-cmp") },
 -- { require("plugins.nvim-dap") },
 -- { require("plugins.comfy-line-numbers") },
--- { require("plugins.render-markdown") },
 -- { require("plugins.luarocks") },
 -- { require("plugins.null-ls") },
 -- { require("plugins.project") },

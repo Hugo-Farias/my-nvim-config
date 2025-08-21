@@ -124,7 +124,7 @@ return {
   opts = {
     bigfile = { enabled = true },
     dashboard = require("plugins.snacks-dashboard"),
-    explorer = { enabled = true },
+    explorer = { enabled = false },
     indent = require("plugins.snacks-indent"),
     input = { enabled = true },
     picker = require("plugins.snacks-picker"),
@@ -145,7 +145,7 @@ return {
     { "<leader>s,", "<cmd>lua Snacks.picker.files({ cwd = vim.fn.stdpath('config') })<CR>", desc = "Snacks: Search Config File"},
     { "<leader>sr", "<cmd>lua Snacks.picker.recent()<CR>", desc = "Snacks: Search Recent Files" },
     { "<leader>sl", "<cmd>lua Snacks.picker.lines()<CR>", desc = "Snacks: Search Lines" },
-    { "<leader>e", "<cmd>lua Snacks.picker.explorer()<CR>", desc = "Snacks: Open Explorer" },
+    -- { "<leader>e", "<cmd>lua Snacks.picker.explorer()<CR>", desc = "Snacks: Open Explorer" },
     { "<leader>fR", "<cmd>lua Snacks.rename.rename_file()<CR>", desc = "Snacks: Rename File" },
     { "<leader>/", "<cmd>lua Snacks.picker.grep()<CR>", desc = "Snacks: Search Grep" },
     { "<leader>sw", "<cmd>lua Snacks.picker.grep_word()<CR>", desc = "Snacks: Search Word Grep", mode = { "n", "x" } },
