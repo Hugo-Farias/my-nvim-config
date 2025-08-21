@@ -1,8 +1,10 @@
 -- Neovim base settings
-vim.o.shell = "C:\\PROGRA~1\\PowerShell\\7\\pwsh.exe"
-vim.o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
-vim.o.shellquote = ""
-vim.o.shellxquote = ""
+if vim.fn.has("win32") == 1 then
+  vim.o.shell = "C:\\PROGRA~1\\PowerShell\\7\\pwsh.exe"
+  vim.o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
+  vim.o.shellquote = ""
+  vim.o.shellxquote = ""
+end
 -- vim.opt.clipboard = "unnamedplus"
 
 vim.opt.number = true
