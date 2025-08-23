@@ -18,7 +18,7 @@ require("lazy").setup({
   { "Aasim-A/scrollEOF.nvim", event = { "CursorMoved", "WinScrolled" }, opts = {} },
   { require("plugins.neoscroll") },
   { require("plugins.render-markdown") },
-  { require("plugins.oil") },
+  -- { require("plugins.oil") },
 
   ---- Multi Cursor ----
   { require("plugins.multicursor") },

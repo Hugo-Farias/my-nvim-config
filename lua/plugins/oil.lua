@@ -209,7 +209,7 @@ return {
     },
   },
   keys = {
-    { "<leader>e", "<cmd>Oil<cr>", desc = "Open Oil" },
-    { "<leader>o", "<cmd>Oil float<cr>", desc = "Open Oil Float" },
+    { "<leader>o", "<cmd>Oil<cr>", desc = "Open Oil" },
+    -- { "<leader>o", "<cmd>Oil float<cr>", desc = "Open Oil Float" },
   },
 }
