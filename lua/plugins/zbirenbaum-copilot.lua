@@ -19,8 +19,8 @@ return {
   "zbirenbaum/copilot.lua",
   -- enabled = false,
   version = false,
-  lazy = true,
-  event = "BufReadPost",
+  lazy = false,
+  -- event = "BufReadPost",
   opts = {
     filetypes = {
       javascript = true,
@@ -61,7 +61,7 @@ return {
   },
   keys = {
     -- stylua: ignore start
-    { "<leader>cd", copilotToggle, desc = "Copilot: Toggle" },
+    { "<leader>lc", copilotToggle, desc = "Copilot: Toggle" },
     { "<C-d>", autoTriggerToggle, desc = "Copilot: Toggle Auto Trigger", mode = "i" },
     { "<leader>cp", "<cmd>Copilot panel<CR>", desc = "Copilot: Toggle Panel" },
     { "<leader>cn", "<cmd>Copilot<CR>", desc = "Copilot: Status" },

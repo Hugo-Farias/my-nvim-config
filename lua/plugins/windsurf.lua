@@ -53,7 +53,7 @@
         },
       },
       keys = {
-        { "<leader>cd", "<cmd>Codeium toggle<CR>", { desc = "Codeium: Toggle" } },
+        { "<leader>lc", "<cmd>Codeium toggle<CR>", { desc = "Codeium: Toggle" } },
       },
     })
   end,
