@@ -1,5 +1,5 @@
-local copilotStatus = true
-local autoTriggerStatus = true
+local copilotStatus = false -- is copilot enabled on start up
+-- local autoTriggerStatus = true
 
 local function copilotToggle()
   vim.cmd(copilotStatus and "Copilot disable" or "Copilot enable")
@@ -7,19 +7,18 @@ local function copilotToggle()
   vim.notify(copilotStatus and "Copilot Enabled" or "Copilot Disabled")
 end
 
-local function autoTriggerToggle()
-  -- vim.cmd(copilotStatus and "Copilot disable" or "Copilot enable")
-  vim.cmd("Copilot suggestion toggle_auto_trigger")
-  local notifyText = "Copilot Auto Trigger"
-  autoTriggerStatus = not autoTriggerStatus
-  vim.notify(autoTriggerStatus and notifyText .. " On" or notifyText .. " Off")
-end
+-- local function autoTriggerToggle()
+--   -- vim.cmd(copilotStatus and "Copilot disable" or "Copilot enable")
+--   vim.cmd("Copilot suggestion toggle_auto_trigger")
+--   local notifyText = "Copilot Auto Trigger"
+--   autoTriggerStatus = not autoTriggerStatus
+--   vim.notify(autoTriggerStatus and notifyText .. " On" or notifyText .. " Off")
+-- end
 
 return {
   "zbirenbaum/copilot.lua",
-  -- enabled = false,
   version = false,
-  lazy = false,
+  lazy = not copilotStatus,
   -- event = "BufReadPost",
   opts = {
     filetypes = {
@@ -52,8 +51,8 @@ return {
       end,
     },
     suggestion = {
-      enabled = copilotStatus,
-      auto_trigger = autoTriggerStatus,
+      enabled = true,
+      auto_trigger = true,
     },
     panel = {
       enabled = false,
@@ -62,7 +61,7 @@ return {
   keys = {
     -- stylua: ignore start
     { "<leader>lc", copilotToggle, desc = "Copilot: Toggle" },
-    { "<C-d>", autoTriggerToggle, desc = "Copilot: Toggle Auto Trigger", mode = "i" },
+    -- { "<C-d>", autoTriggerToggle, desc = "Copilot: Toggle Auto Trigger", mode = "i" },
     { "<leader>cp", "<cmd>Copilot panel<CR>", desc = "Copilot: Toggle Panel" },
     { "<leader>cn", "<cmd>Copilot<CR>", desc = "Copilot: Status" },
     { "<Tab>", "<cmd>lua require('copilot.suggestion').accept_line()<CR>", desc = "Copilot: Accept Line", mode = "i" },

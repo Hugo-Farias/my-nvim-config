@@ -18,9 +18,9 @@ function LoadSession(picker, item)
     end)
   end
   vim.cmd.stopinsert()
-  vim.defer_fn(function()
-    vim.cmd("LspRestart")
-  end, 10000)
+  -- vim.defer_fn(function()
+  --   vim.cmd("LspRestart")
+  -- end, 10000)
 end
 
 local function loadPreviousSession()

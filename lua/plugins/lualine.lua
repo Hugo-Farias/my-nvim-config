@@ -76,7 +76,7 @@ return {
             icon_only = true,
             padding = { left = 1, right = 0 },
           },
-          "filename",
+          { "filename", symbols = { modified = "🟡" } },
         },
         lualine_c = {
           {

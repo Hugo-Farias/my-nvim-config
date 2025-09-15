@@ -116,7 +116,7 @@ set({ "n", "x" }, '<leader>"', '"0p', { desc = "Paste previously yanked text", n
 set({ "n", "x" }, "ss", "s", { desc = "Subistitute", noremap = true })
 
 ---- Flip Boolean
-set("n", "gb", function()
+set("n", "<C-b>", function()
   local line = vim.api.nvim_get_current_line()
   local replacements = {
     ["true"] = "false",

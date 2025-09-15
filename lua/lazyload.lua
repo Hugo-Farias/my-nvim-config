@@ -7,8 +7,8 @@ require("lazy").setup({
   { require("plugins.snacks") },
 
   { require("plugins.color-picker") },
-  { require("plugins.vim-smartword") },
-  -- { require("plugins.nvim-spider") },
+  -- { require("plugins.vim-smartword") },
+  { require("plugins.nvim-spider") },
   { require("plugins.harpoon") },
   { require("plugins.undotree") },
   -- { require("plugins.flash") },
