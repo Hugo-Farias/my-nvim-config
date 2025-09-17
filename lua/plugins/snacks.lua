@@ -55,12 +55,20 @@ for _, key in ipairs({ "<C-f4>", "<leader>q", "<M-q>", "qt" }) do
   set("n", key, "<cmd>lua Snacks.bufdelete()<CR>", { desc = "Close Buffer" })
 end
 
+-- local function closeAllBuffers()
+--   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+--     if vim.fn.buflisted(buf) == 1 then
+--       -- Delete the buffer
+--       vim.api.nvim_set_current_buf(buf)
+--       require("snacks").bufdelete()
+--     end
+--   end
+-- end
+
 local function closeAllBuffers()
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
     if vim.fn.buflisted(buf) == 1 then
-      -- Delete the buffer
-      vim.api.nvim_set_current_buf(buf)
-      require("snacks").bufdelete()
+      require("snacks").bufdelete(buf)
     end
   end
 end
@@ -68,6 +76,7 @@ end
 local function openProjects()
   require("snacks").picker.projects({
     confirm = function(picker, item)
+      picker:close()
       SmartSaveSession()
       IsProject = false
       closeAllBuffers()

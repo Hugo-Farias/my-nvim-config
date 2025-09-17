@@ -17,7 +17,7 @@ function LoadSession(picker, item)
       vim.cmd("lua Snacks.dashboard.pick('files')")
     end)
   end
-  vim.cmd.stopinsert()
+  -- vim.cmd.stopinsert()
   -- vim.defer_fn(function()
   --   vim.cmd("LspRestart")
   -- end, 10000)
