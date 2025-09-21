@@ -76,11 +76,15 @@ end
 local function openProjects()
   require("snacks").picker.projects({
     confirm = function(picker, item)
+      vim.cmd("LspStop")
       picker:close()
       SmartSaveSession()
       IsProject = false
       closeAllBuffers()
       LoadSession(picker, item)
+      vim.defer_fn(function()
+        vim.cmd("LspRestart")
+      end, 1000)
     end,
   })
 end

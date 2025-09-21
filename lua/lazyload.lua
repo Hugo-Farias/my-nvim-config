@@ -31,7 +31,8 @@ require("lazy").setup({
   { "HiPhish/rainbow-delimiters.nvim" },
 
   ---- AutoComplete ----
-  { require("plugins.nvim-cmp") },
+  -- { require("plugins.nvim-cmp") },
+  { require("plugins.blink-cmp") },
 
   ---- Snippets ----
   { require("plugins.luasnip") },
@@ -65,7 +66,7 @@ require("lazy").setup({
   ---- Colors ----
   require("colors"),
 })
--- { require("plugins.blink-cmp") },
+
 -- { require("plugins.nvim-dap") },
 -- { require("plugins.comfy-line-numbers") },
 -- { require("plugins.luarocks") },
