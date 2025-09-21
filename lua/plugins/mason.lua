@@ -32,37 +32,27 @@ return {
 
     require("mason-lspconfig").setup({
       automatic_enable = false,
-      ensure_installed = { "lua_ls", "ts_ls", "html", "cssls", "jsonls", "bashls", "powershell_es", "tailwindcss" },
+      ensure_installed = {
+        "lua_ls",
+        "ts_ls",
+        "eslint",
+        "html",
+        "cssls",
+        "jsonls",
+        "bashls",
+        "powershell_es",
+        "tailwindcss",
+      },
     })
 
     local lspconfig = require("lspconfig")
 
-    lspconfig["powershell_es"].setup({
-      cmd = {
-        "pwsh",
-        "-NoLogo",
-        "-NoProfile",
-        "-Command",
-        vim.fn.expand("~")
-          .. "/AppData/Local/nvim-data/mason/packages/powershell-editor-services/PowerShellEditorServices/Start-EditorServices.ps1",
-        "-HostName",
-        "nvim",
-        "-HostProfileId",
-        "0",
-        "-HostVersion",
-        "1.0.0",
-        "-LogLevel",
-        "Normal",
-        "-BundledModulesPath",
-        vim.fn.expand("~") .. "/AppData/Local/nvim-data/mason/packages/powershell-editor-services",
-        "-SessionDetailsPath",
-        vim.fn.stdpath("cache") .. "/powershell_es.session.json",
-        "-FeatureFlags",
-        "@()",
-        "-AdditionalModules",
-        "@()",
-      },
-      filetypes = { "ps1" },
+    lspconfig.eslint.setup({
+      on_attach = function(client, bufnr)
+        -- Disable ESLint formatting if you want Prettier only
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentRangeFormattingProvider = false
+      end,
     })
 
     for _, server in ipairs(require("mason-lspconfig").get_installed_servers()) do
