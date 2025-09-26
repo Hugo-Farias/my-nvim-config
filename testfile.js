@@ -1,5 +1,5 @@
 function greet(name) {
-  console.asdflog("Hi " + name + "!");
+  console.log("Hi " + name + "!");
 }
 
 const user = "Hugo";

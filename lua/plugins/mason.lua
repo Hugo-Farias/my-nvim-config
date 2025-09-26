@@ -7,7 +7,7 @@ local workspaceDiagnostics = function(client)
   end
 
   require("workspace-diagnostics").populate_workspace_diagnostics(client, 0)
-  -- vim.notify("workspaceDiagnostics: finished")
+  vim.notify("workspaceDiagnostics: finished")
 end
 
 return {
@@ -30,6 +30,8 @@ return {
   config = function(_, opts)
     require("mason").setup()
 
+    vim.notify(opts)
+
     require("mason-lspconfig").setup({
       automatic_enable = false,
       ensure_installed = {
@@ -45,27 +47,31 @@ return {
       },
     })
 
-    local lspconfig = require("lspconfig")
+    -- local lspconfig = require("lspconfig")
 
-    lspconfig.eslint.setup({
+    for _, server in ipairs(require("mason-lspconfig").get_installed_servers()) do
+      vim.lsp.enable(server)
+    end
+
+    -- for _, server in ipairs(require("mason-lspconfig").get_installed_servers()) do
+    --   vim.lsp.config(
+    --     server,
+    --     vim.tbl_deep_extend(
+    --       "force",
+    --       (opts.servers and opts.servers[server]) or {},
+    --       { on_attach = workspaceDiagnostics }
+    --     )
+    --   )
+    --   vim.lsp.enable(server)
+    --   -- lspconfig[server].setup({})
+    -- end
+
+    vim.lsp.config("eslint", {
       on_attach = function(client, bufnr)
         -- Disable ESLint formatting if you want Prettier only
         client.server_capabilities.documentFormattingProvider = false
         client.server_capabilities.documentRangeFormattingProvider = false
       end,
     })
-
-    for _, server in ipairs(require("mason-lspconfig").get_installed_servers()) do
-      vim.lsp.config(
-        server,
-        vim.tbl_deep_extend(
-          "force",
-          (opts.servers and opts.servers[server]) or {},
-          { on_attach = workspaceDiagnostics }
-        )
-      )
-      vim.lsp.enable(server)
-      -- lspconfig[server].setup({})
-    end
   end,
 }

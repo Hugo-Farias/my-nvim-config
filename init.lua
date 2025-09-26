@@ -1,7 +1,7 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- TODO: find solution for shada files not being saved
+-- TODO: find solution for shada files being created with 0 bytes
 
 require("config.lazy") -- Add lazy.nvim to runtime path
 

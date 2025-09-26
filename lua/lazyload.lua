@@ -16,8 +16,8 @@ require("lazy").setup({
   { require("plugins.gitsigns") },
   { require("plugins.timber") },
   { "Aasim-A/scrollEOF.nvim", event = { "CursorMoved", "WinScrolled" }, opts = {} },
-  { require("plugins.neoscroll") },
-  { require("plugins.render-markdown") },
+  { require("plugins.neoscroll") }, -- Smooth Scrolling
+  -- { require("plugins.render-markdown") },
   -- { require("plugins.oil") },
 
   ---- Multi Cursor ----
@@ -44,8 +44,7 @@ require("lazy").setup({
   ---- Mini Compilation ----
   { require("plugins.mini-icons") },
   { require("plugins.mini-surround") },
-  -- { require("plugins.mini-files") },
-
+  { require("plugins.mini-pairs") },
   ---- Text Objects ----
   { require("plugins.mini-ai") },
 
@@ -71,6 +70,5 @@ require("lazy").setup({
 -- { require("plugins.comfy-line-numbers") },
 -- { require("plugins.luarocks") },
 -- { require("plugins.null-ls") },
--- { require("plugins.project") },
 -- { "github/copilot.vim" },
--- { require("plugins.avante") },
+-- { require("plugins.mini-files") },

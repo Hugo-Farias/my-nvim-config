@@ -343,7 +343,7 @@ end, { desc = "Yazi: Open" })
 set({ "c", "i" }, "<C-Backspace>", "<C-w>", { noremap = true, desc = "Delete word before cursor" })
 
 ---- Ctrl-Delete: delete word after cursor
-set({ "c", "i" }, "<C-Delete>", "<Esc>ldwi", { noremap = true, desc = "Delete word after cursor" })
+set({ "c", "i" }, "<C-Delete>", "<C-o>de", { noremap = true, desc = "Delete word after cursor" })
 
 -------------------------------------------------------------------------------
 ---- ☸> Command Mode Keymaps

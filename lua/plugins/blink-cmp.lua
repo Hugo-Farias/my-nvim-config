@@ -15,6 +15,9 @@ return { -- optional blink completion source for require statements and module a
           -- make lazydev completions top priority (see `:h blink.cmp`)
           score_offset = 100,
         },
+        -- lsp = {
+        --   trigger_characters = { ".", ":", "->" }, -- force trigger on dot
+        -- },
       },
     },
     keymap = {
@@ -24,12 +27,17 @@ return { -- optional blink completion source for require statements and module a
       ["<Up>"] = { "select_prev", "fallback" },
       ["<Down>"] = { "select_next", "fallback" },
       ["<CR>"] = { "select_and_accept", "fallback" },
-      -- ["<Tab>"] = { "select_and_accept", "fallback" },
+      -- ["<Tab>"] = { "none", "fallback" },
 
       -- disable a keymap from the preset
       -- ["<C-e>"] = false, -- or {}
+      ["<C-e>"] = { "hide", "fallback" },
 
-      ["<C-space>"] = { "show", "fallback" },
+      -- ["<C-k>"] = { "show_documentation", "fallback" },
+
+      -- ["<C-n>"] = { "show", "fallback" },
+      -- ["<C-p>"] = { "show", "fallback" },
+      --
 
       -- show with a list of providers
       -- ["<C-space>"] = {
@@ -39,14 +47,19 @@ return { -- optional blink completion source for require statements and module a
       -- },
     },
   },
-  -- keys = {
-  --   { "<leader>sw", "<cmd>lua Snacks.picker.grep_word()<CR>", desc = "Snacks: Search Word Grep", mode = { "n", "x" } },
-  --   { "<Up>", "<cmd>lua Snacks.picker.grep_word()<CR>", desc = "Snacks: Search Word Grep", mode = { "n", "x" } },
-  -- },
-  -- config = function(_, opts)
-  --   require("blink.cmp").setup(opts)
-  --
-  --   vim.keymap.set("c", "<Up>", "<C-p>", { desc = "Select Previous" })
-  --   vim.keymap.set("c", "<Down>", "<C-n>", { desc = "Select Next" })
-  -- end,
+  keys = {
+    {
+      "<C-n>",
+      function()
+        local cmp = require("blink.cmp")
+        if cmp.is_visible() then
+          cmp.select_next()
+        else
+          cmp.show()
+        end
+      end,
+      mode = "i",
+      desc = "Show menu or select next item",
+    },
+  },
 }
