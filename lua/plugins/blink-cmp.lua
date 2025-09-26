@@ -1,6 +1,7 @@
 return { -- optional blink completion source for require statements and module annotations
   "saghen/blink.cmp",
   version = "*",
+  lazy = false,
   -- dependencies = { "giuxtaposition/blink-cmp-copilot" },
   opts = {
     snippets = { preset = "luasnip" },
