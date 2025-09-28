@@ -28,8 +28,8 @@ return {
         "html",
         "cssls",
         "jsonls",
-        "bashls",
-        "powershell_es",
+        -- "bashls",
+        -- "powershell_es",
         "tailwindcss",
       },
     })

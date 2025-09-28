@@ -89,6 +89,19 @@ set("n", "<M-Up>", "<cmd>horizontal res -5<CR>", { noremap = true, desc = "Resiz
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
 
+-- Turn on diff mode
+set("n", "<leader>fc", function()
+  vim.cmd("diffthis")
+  vim.cmd("diffupdate")
+  vim.notify("Diff Mode On")
+end, { desc = "Snacks: Compare Files in Split" })
+
+-- Turn off diff mode
+set("n", "<leader>fC", function()
+  vim.cmd("diffoff")
+  vim.notify("Diff Mode Off")
+end, { desc = "Snacks: Close File Compare" })
+
 set("n", "K", "<cmd>bnext<CR>", { desc = "Next Buffer" })
 set("n", "J", "<cmd>bprev<CR>", { desc = "Previous Buffer" })
 

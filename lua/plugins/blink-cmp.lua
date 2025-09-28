@@ -23,7 +23,7 @@ return { -- optional blink completion source for require statements and module a
     },
     keymap = {
       -- set to 'none' to disable the 'default' preset
-      preset = "default",
+      preset = "none",
 
       ["<Up>"] = { "select_prev", "fallback" },
       ["<Down>"] = { "select_next", "fallback" },
@@ -49,6 +49,19 @@ return { -- optional blink completion source for require statements and module a
     },
   },
   keys = {
+    {
+      "<C-p>",
+      function()
+        local cmp = require("blink.cmp")
+        if cmp.is_visible() then
+          cmp.select_prev()
+        else
+          cmp.show()
+        end
+      end,
+      mode = "i",
+      desc = "Show menu or select next item",
+    },
     {
       "<C-n>",
       function()

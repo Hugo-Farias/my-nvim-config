@@ -24,14 +24,14 @@ vim.api.nvim_create_autocmd({ "QuitPre", "BufAdd" }, {
 })
 
 -- Before Quiting Neovim
-vim.api.nvim_create_autocmd("VimLeavePre", {
-  callback = function()
-    vim.cmd("LspStop")
-    -- vim.fn.jobstart({ "eslint_d", "--stop" })
-    -- vim.fn.jobstart({ "prettierd", "--stop" })
-    -- CleanShaDaFiles()
-  end,
-})
+-- vim.api.nvim_create_autocmd("VimLeavePre", {
+--   callback = function()
+--     vim.cmd("LspStop")
+--     -- vim.fn.jobstart({ "eslint_d", "--stop" })
+--     -- vim.fn.jobstart({ "prettierd", "--stop" })
+--     -- CleanShaDaFiles()
+--   end,
+-- })
 
 -- vim.api.nvim_create_autocmd("BufReadPost", {
 --   once = true,

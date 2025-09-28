@@ -12,10 +12,29 @@ vim.api.nvim_create_autocmd("LspAttach", {
     set("n", "go", "<cmd>lua Snacks.picker.lsp_type_definitions()<CR>", { desc = "LSP: Goto Type Definition" })
     set("n", "<leader>ss", "<cmd>lua Snacks.picker.lsp_symbols()<CR>", { desc = "LSP: Symbols" })
     set("n", "<leader>sS", "<cmd>lua Snacks.picker.lsp_workspace_symbols()<CR>", { desc = "LSP: Workspace Symbols" })
-    set("n", "<leader>sd", "<cmd>lua Snacks.picker.diagnostics()<CR>", { desc = "Snacks: Search Diagnostics" })
+    set("n", "<leader>sd", "<cmd>lua Snacks.picker.diagnostics()<CR>", { desc = "LSP: Search Diagnostics" })
   end,
 })
 -- stylua: ignore end
+
+---- Open File in Vertical Split
+set("n", "<leader>fs", function()
+  vim.cmd("diffoff")
+  vim.cmd("wincmd o")
+  vim.cmd("wincmd v")
+  vim.cmd("wincmd l")
+  require("snacks").picker.files({
+    confirm = function(picker, item)
+      picker:close()
+      vim.cmd("e " .. item.file)
+    end,
+    cancel = function()
+      vim.cmd("diffoff")
+      vim.cmd("wincmd h")
+      vim.cmd("wincmd o")
+    end,
+  })
+end, { desc = "Snacks: Open File in Split" })
 
 ---- Open Diff View
 set("n", "<leader>fd", function()
