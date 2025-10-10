@@ -34,7 +34,7 @@ return { -- optional blink completion source for require statements and module a
       -- ["<C-e>"] = false, -- or {}
       ["<C-e>"] = { "hide", "fallback" },
 
-      -- ["<C-k>"] = { "show_documentation", "fallback" },
+      ["<C-k>"] = { "show_documentation", "fallback" },
 
       -- ["<C-n>"] = { "show", "fallback" },
       -- ["<C-p>"] = { "show", "fallback" },

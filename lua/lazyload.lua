@@ -10,7 +10,7 @@ require("lazy").setup({
   -- { require("plugins.vim-smartword") },
   { require("plugins.nvim-spider") },
   { require("plugins.harpoon") },
-  { require("plugins.undotree") },
+  -- { require("plugins.undotree") },
   -- { require("plugins.flash") },
   { require("plugins.which-key") },
   { require("plugins.gitsigns") },

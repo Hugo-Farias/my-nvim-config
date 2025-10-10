@@ -24,6 +24,16 @@ set({ "n", "x" }, "gu", "<Nop>")
 ---- 💾 Save / Format / File Ops
 -------------------------------------------------------------------------------
 
+--- Run file
+set("n", "<leader>rf", function()
+  vim.cmd("!ii %")
+end, { desc = "Run current file" })
+
+-- Execute script inside Neovim
+set("n", "<leader>rs", function()
+  vim.cmd("!& %")
+end, { desc = "Execute script inside Neovim" })
+
 set("n", "cy", "<cmd>pwd<CR>", { desc = "Show current working directory" })
 
 set("n", "cp", function()
