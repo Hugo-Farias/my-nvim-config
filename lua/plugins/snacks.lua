@@ -66,7 +66,7 @@ set("n", "<C-y>", "<cmd>lua Snacks.terminal.toggle()<CR>", { desc = "Snacks: Tog
 
 -- Toggle terminal in terminal mode
 set("t", "<C-y>", function()
-  vim.cmd("stopinsert") -- exit terminal input mode
+  vim.cmd.stopinsert() -- exit terminal input mode
   vim.cmd("lua Snacks.terminal.toggle()") -- then hide the terminal
 end, { desc = "Snacks: Toggle terminal (terminal)" })
 
@@ -92,6 +92,7 @@ local function closeAllBuffers()
   end
 end
 
+-- TODO: fix biome restart issue
 local function openProjects()
   require("snacks").picker.projects({
     confirm = function(picker, item)
@@ -102,6 +103,7 @@ local function openProjects()
       closeAllBuffers()
       LoadSession(picker, item)
       vim.defer_fn(function()
+        vim.fn.system("Get-Process biome -ErrorAction SilentlyContinue | Stop-Process")
         vim.cmd("LspRestart")
       end, 1000)
     end,
@@ -165,8 +167,15 @@ return {
     words = { enabled = true },
   },
   keys = {
+    {
+      "<leader><Tab>",
+      function()
+        require("snacks").picker.resume()
+        vim.cmd.stopinsert()
+      end,
+      desc = "Snacks: Resume Search",
+    },
     -- stylua: ignore start
-    { "<leader><Tab>", "<cmd>lua Snacks.picker.resume()<CR>", desc = "Snacks: Resume Search" },
     { "<leader><leader>", "<cmd>lua Snacks.picker.files()<CR>", desc = "Snacks: Search Files" },
     { "<C-p>", "<cmd>lua Snacks.picker.files()<CR>", desc = "Snacks: Search Files" },
     { "<leader>sf", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
@@ -196,8 +205,8 @@ return {
     { "<leader>.", "<cmd>lua Snacks.scratch()<CR>", desc = "Snacks: Open Project Scratch File" },
     { "<leader>sp", openProjects, desc = "Snacks: Search Projects" },
     { "<leader>su", "<cmd>lua Snacks.picker.undo()<CR>", desc = "Snacks: Search Undos" },
-    { "<leader>sT", searchTodos, desc = "Search TODOs" },
-    { "<leader>st", function () searchTodos([[(TODO\:|FIX\:)]]) end, desc = "Search TODOs" },
+    { "<leader>sT", searchTodos, desc = "Snacks: Search Every TODO" },
+    { "<leader>st", function () searchTodos([[(TODO\:|FIX\:)]]) end, desc = "Snacks: Search TODOs" },
     -- { "<leader>st", "<cmd>lua Snacks.picker.todo_comments()<CR>", desc = "Search TODOs" },
     ---- Git Actions ----
     { "<leader>gg", "<cmd>lua Snacks.lazygit()<CR>", desc = "Snacks: Git Lazygit" },

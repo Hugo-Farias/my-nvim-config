@@ -16,5 +16,7 @@ return {
     t("("), i(1, ""), t(") => {"), i(2, ""), t("}"),
   }),
 
-  -- sylua: ignore end
+  s(".log", {
+    t("console.log("), i(1, ""), t(")"),
+  }),
 }

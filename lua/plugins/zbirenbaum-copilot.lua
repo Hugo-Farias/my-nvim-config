@@ -1,4 +1,4 @@
-local copilotStatus = false -- is copilot enabled on start up
+local copilotStatus = true -- is copilot enabled on start up
 -- local autoTriggerStatus = true
 
 local function copilotToggle()

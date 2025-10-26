@@ -31,10 +31,10 @@ local function theme(repo, name, style)
 end
 
 return {
-  theme("rose-pine/neovim", "rose-pine"),
+  -- theme("rose-pine/neovim", "rose-pine"),
   theme("folke/tokyonight.nvim"),
-  theme("ellisonleao/gruvbox.nvim"),
+  -- theme("ellisonleao/gruvbox.nvim"),
   theme("navarasu/onedark.nvim", "onedark", "darker"),
-  theme("nickkadutskyi/jb.nvim"),
-  theme("catppuccin/nvim", "catppuccin"),
+  -- theme("nickkadutskyi/jb.nvim"),
+  -- theme("catppuccin/nvim", "catppuccin"),
 }

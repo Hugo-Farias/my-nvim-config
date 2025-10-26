@@ -29,16 +29,17 @@ return {
         "cssls",
         "stylua",
         "biome",
-        -- "jsonls",
+        "jsonls",
         -- "bashls",
         -- "powershell_es",
         "tailwindcss",
       },
     })
 
-    -- local lspconfig = require("lspconfig")
-
-    -- vim.lsp.enable("lua_ls")
+    -- vim.lsp.config("biome", {
+    --   cmd = { "biome", "lsp-proxy" },
+    --   root_dir = vim.fs.root(0, { "biome.json", "package.json", ".git" }),
+    -- })
 
     for _, server in ipairs(require("mason-lspconfig").get_installed_servers()) do
       vim.lsp.enable(server)

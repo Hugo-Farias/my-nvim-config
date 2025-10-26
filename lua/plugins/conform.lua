@@ -9,24 +9,24 @@ return {
         typescript = { "biome" },
         typescriptreact = { "biome" },
         css = { "biome" },
-        scss = { "biome" },
-        less = { "biome" },
-        html = { "biome" },
+        scss = { "prettierd" },
+        less = { "prettierd" },
+        html = { "prettierd" },
         json = { "biome" },
         jsonc = { "biome" },
-        yaml = { "biome" },
-        yml = { "biome" },
-        markdown = { "biome" },
+        yaml = { "prettierd" },
+        yml = { "prettierd" },
+        markdown = { "prettierd" },
         ["markdown.mdx"] = { "biome" },
         graphql = { "biome" },
         vue = { "biome" },
-        handlebars = { "biome" },
+        handlebars = { "prettierd" },
       },
       format_on_save = {
         timeout_ms = 500,
         lsp_format = "fallback",
         filter = function(client)
-          return client.name == "eslint"
+          return client.name == "biome"
         end,
       },
       formatters = {

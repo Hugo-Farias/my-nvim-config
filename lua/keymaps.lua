@@ -186,11 +186,16 @@ set({ "n", "x" }, "<leader>y", '"+y', { desc = "Yank into system's clipboard" })
 set({ "n", "x" }, "<leader>Y", '"+y$', { desc = "which_key_ignore" })
 
 ---- `qp` to play macro
-set({ "n", "x" }, "qp", function()
+set({ "n", "x" }, "qe", function()
   vim.api.nvim_feedkeys("@", "n", false)
 end, { noremap = true, desc = "Play macro" })
 
------ `qr` to start macro recording
+---- 'Q' to replay last played macro
+set({ "n", "x" }, "Q", function()
+  vim.api.nvim_feedkeys("@@", "n", false)
+end, { noremap = true, desc = "Replay last played macro" })
+
+---- `qr` to start macro recording
 set({ "n", "x" }, "qr", function()
   vim.api.nvim_feedkeys("q", "n", false)
 end, { noremap = true, desc = "Start recording macro" })
@@ -208,7 +213,10 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 ---- Clear Search Query
 set("n", "<leader>ll", "<cmd>redraw | nohlsearch<CR>", { desc = "Clear Highlight Search" })
 set("n", "<C-l>", "<Cmd>nohlsearch|diffupdate|redraw|normal! <C-L><CR>", { desc = "Clear Highlight Search" })
-set("n", "<leader>lr", "<cmd>LspRestart<CR>", { desc = "LSP: Restart" })
+set("n", "<leader>lr", function()
+  vim.fn.system("Get-Process biome -ErrorAction SilentlyContinue | Stop-Process")
+  vim.cmd("LspRestart")
+end, { desc = "LSP: Restart" })
 set(
   "n",
   "<leader>lR",
