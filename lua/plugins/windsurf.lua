@@ -2,7 +2,7 @@
   "Exafunction/windsurf.nvim",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    "hrsh7th/nvim-cmp",
+    -- "hrsh7th/nvim-cmp",
   },
   config = function()
     require("codeium").setup({
@@ -43,6 +43,7 @@
         -- Defaults to \t normally or <c-n> when a popup is showing.
         accept_fallback = nil,
         -- Key bindings for managing completions in virtual text mode.
+        --
         key_bindings = {
           accept = "<C-y>",
           accept_word = "<C-l>",

@@ -1,12 +1,11 @@
 require("lazy").setup({
-  { "nvim-lua/plenary.nvim" },
+  -- { "nvim-lua/plenary.nvim" },
 
   { require("lsp") },
   { require("plugins.mason") },
   { require("plugins.todo-comments") },
   { require("plugins.snacks") },
 
-  { require("plugins.color-picker") },
   -- { require("plugins.vim-smartword") },
   { require("plugins.nvim-spider") },
   { require("plugins.harpoon") },
@@ -25,7 +24,7 @@ require("lazy").setup({
 
   ---- Formatter ----
   { require("plugins.conform") },
-  { require("plugins.nvim-ts-autotag") },
+  -- { require("plugins.nvim-ts-autotag") },
   { require("plugins.treesitter") },
   { require("plugins.treesitter-context") },
   { "HiPhish/rainbow-delimiters.nvim" },
@@ -48,12 +47,16 @@ require("lazy").setup({
   ---- Text Objects ----
   { require("plugins.mini-ai") },
 
-  ---- Color Preview ----
+  ---- Color Preview/Pickers ----
+  -- { require("plugins.oklch-color-picker") },
+  { require("plugins.ccc") },
   { require("plugins.nvim-highlight-colors") },
+  -- { require("plugins.color-picker") },
+  { require("plugins.color-converter") },
 
   ---- Buffer/Tab line ----
   -- { require("plugins.bufferline") },
-  { require("plugins.mini-tabline") },
+  -- { require("plugins.mini-tabline") },
 
   ---- Status Line ----
   -- { require("plugins.mini-statusline") },

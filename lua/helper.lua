@@ -1,3 +1,13 @@
+-- Restart LSP and LLMs
+function RestartAll()
+  vim.fn.system("Get-Process biome -ErrorAction SilentlyContinue | Stop-Process")
+  vim.cmd("silent! Copilot disable")
+  vim.cmd("LspStop")
+  vim.cmd("silent! Copilot enable")
+  vim.cmd("LspStart")
+  vim.cmd("LspRestart")
+end
+
 -- Change location to git root if found, otherwise to file's location
 function SmartChangeDir()
   local file = vim.api.nvim_buf_get_name(0)

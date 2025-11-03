@@ -5,13 +5,13 @@ return {
   "ziontee113/color-picker.nvim",
   cmd = { "PickColor", "PickColorInsert", "ConvertHEXandRGB", "ConvertHEXandHSL" },
   keys = {
-    { "qc", "<cmd>PickColor<cr>", mode = { "n", "x" }, desc = "Color Picker: PickColor" },
+    -- { "qc", "<cmd>PickColor<cr>", mode = { "n", "x" }, desc = "Color Picker: PickColor" },
     { "<leader>cc", "<cmd>PickColor<cr>", mode = { "n", "x" }, desc = "Color Picker: PickColor" },
     -- { "<C-c>", "<cmd>PickColorInsert<cr>", mode = "i", desc = "Pick color (insert)" },
   },
   config = function()
     require("color-picker").setup({
-      icons = { "ﱢ", "" },
+      icons = { "", "" },
       border = "rounded",
       keymap = {
         U = "<Plug>ColorPickerSlider5Decrease",

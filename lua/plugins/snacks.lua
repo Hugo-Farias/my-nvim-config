@@ -102,10 +102,7 @@ local function openProjects()
       IsProject = false
       closeAllBuffers()
       LoadSession(picker, item)
-      vim.defer_fn(function()
-        vim.fn.system("Get-Process biome -ErrorAction SilentlyContinue | Stop-Process")
-        vim.cmd("LspRestart")
-      end, 1000)
+      vim.defer_fn(RestartAll, 1000)
     end,
   })
 end

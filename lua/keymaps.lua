@@ -213,10 +213,7 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 ---- Clear Search Query
 set("n", "<leader>ll", "<cmd>redraw | nohlsearch<CR>", { desc = "Clear Highlight Search" })
 set("n", "<C-l>", "<Cmd>nohlsearch|diffupdate|redraw|normal! <C-L><CR>", { desc = "Clear Highlight Search" })
-set("n", "<leader>lr", function()
-  vim.fn.system("Get-Process biome -ErrorAction SilentlyContinue | Stop-Process")
-  vim.cmd("LspRestart")
-end, { desc = "LSP: Restart" })
+set("n", "<leader>lr", RestartAll, { desc = "LSP: Restart" })
 set(
   "n",
   "<leader>lR",
