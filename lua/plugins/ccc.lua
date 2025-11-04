@@ -4,12 +4,12 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   opts = {
     highlighter = {
-      auto_enable = false,
+      auto_enable = true,
       lsp = true,
     },
   },
   keys = {
-    { "qcc", "<cmd>CccPick<cr>", desc = "Color Picker" },
+    { "<leader>cc", "<cmd>CccPick<cr>", desc = "Color Picker" },
     -- { "qcr", "<cmd>CccConvert<cr>", desc = "Color Convert" },
   },
 }

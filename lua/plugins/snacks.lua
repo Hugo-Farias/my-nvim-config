@@ -156,12 +156,13 @@ return {
     indent = require("plugins.snacks-indent"),
     input = { enabled = true },
     picker = require("plugins.snacks-picker"),
-    notifier = { enabled = true },
+    notifier = { enabled = true, timeout = 3000 },
     quickfile = { enabled = true },
     scope = { enabled = true },
     scroll = require("plugins.snacks-scroll"),
     statuscolumn = { enabled = true },
     words = { enabled = true },
+    styles = { notification = { wo = { wrap = true } } },
   },
   keys = {
     {
@@ -209,7 +210,8 @@ return {
     { "<leader>gg", "<cmd>lua Snacks.lazygit()<CR>", desc = "Snacks: Git Lazygit" },
     { "<leader>gb", "<cmd>lua Snacks.git.blame_line()<CR>", desc = "Snacks: Git Line Blame" },
     { "<leader>gl", "<cmd>lua Snacks.picker.git_log_line()<CR>", desc = "Snacks: Git Log Line" },
-    { "<leader>gf", "<cmd>lua Snacks.picker.git_diff()<CR>", desc = "Snacks: Git Search Diff" },
+    { "<leader>gd", "<cmd>lua Snacks.picker.git_diff()<CR>", desc = "Snacks: Git Search Diff" },
+    { "<leader>gf", "<cmd>lua Snacks.picker.git_log_file()<CR>", desc = "Snacks: Git Search Diff File" },
     ---- Jumps ----
     { "]w", "<cmd>lua Snacks.words.jump(1)<CR>", desc = "Snacks: Jump to Next Word" },
     { "[w", "<cmd>lua Snacks.words.jump(-1)<CR>", desc = "Snacks: Jump to Previous Word" },
