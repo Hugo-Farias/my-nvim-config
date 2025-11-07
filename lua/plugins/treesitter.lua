@@ -16,24 +16,29 @@ return {
   },
   opts = {
     -- TSConfig equivalent: passed to require("nvim-treesitter.configs").setup(opts)
-    ensure_installed = {
-      "lua",
-      "javascript",
-      "typescript",
-      "lua",
-      "vim",
-      "vimdoc",
-      "query",
-      "markdown",
-      "markdown_inline",
-    },
+    -- ensure_installed = {
+    --   "lua",
+    --   "javascript",
+    --   "typescript",
+    --   "lua",
+    --   "vim",
+    --   "vimdoc",
+    --   "query",
+    --   "markdown",
+    --   "markdown_inline",
+    -- },
     sync_install = false,
     auto_install = true,
-    ignore_install = {}, -- e.g., { "php" }
+    ignore_install = { "powershell" }, -- e.g., { "php" }
     modules = {}, -- for disabling or overriding module defaults if needed
     highlight = {
       enable = true,
       additional_vim_regex_highlighting = false,
+      disable = { "powershell" },
+    },
+    indent = {
+      enable = true,
+      disable = { "powershell" },
     },
   },
   config = function(_, opts)

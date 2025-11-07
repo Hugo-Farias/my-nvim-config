@@ -18,8 +18,8 @@ end
 return {
   "zbirenbaum/copilot.lua",
   version = false,
-  lazy = not copilotStatus,
-  -- event = "BufReadPost",
+  lazy = true,
+  event = "BufReadPost",
   opts = {
     filetypes = {
       javascript = true,

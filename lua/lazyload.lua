@@ -1,6 +1,8 @@
 require("lazy").setup({
   -- { "nvim-lua/plenary.nvim" },
 
+  { require("plugins.treesitter") },
+  { require("plugins.treesitter-context") },
   { require("lsp") },
   { require("plugins.mason") },
   { require("plugins.todo-comments") },
@@ -25,8 +27,6 @@ require("lazy").setup({
   ---- Formatter ----
   { require("plugins.conform") },
   -- { require("plugins.nvim-ts-autotag") },
-  { require("plugins.treesitter") },
-  { require("plugins.treesitter-context") },
   { "HiPhish/rainbow-delimiters.nvim" },
 
   ---- AutoComplete ----
@@ -56,7 +56,7 @@ require("lazy").setup({
 
   ---- Buffer/Tab line ----
   -- { require("plugins.bufferline") },
-  -- { require("plugins.mini-tabline") },
+  { require("plugins.mini-tabline") },
 
   ---- Status Line ----
   -- { require("plugins.mini-statusline") },

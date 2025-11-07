@@ -279,10 +279,10 @@ set({ "i", "c" }, "KJ", "<Esc>", { desc = "Exit insert mode (KJ)" })
 set("n", "L", "m0J`0<cmd>delm 0<CR>", { silent = true, desc = "Join lines" })
 
 ----Add empty line under
-set("n", "<C-k>", "m0o<Esc>k_`0<cmd>delm 0<CR>", { desc = "Add empty line under", noremap = true })
+set("n", "<C-k>", "m0o<Esc>`0<cmd>delm 0<CR>", { desc = "Add empty line under", noremap = true })
 
 ---- Add empty line under insert mode
-set("i", "<C-k>", "<Esc>o<Esc>k_i", { desc = "Add empty line under", noremap = true })
+set("i", "<C-k>", "<Esc>m0o<Esc>`0l<cmd>delm 0<CR>i", { desc = "Add empty line under", noremap = true })
 
 ---- Split lines downwards
 set("n", "<C-j>", "m0i<CR><Esc>==`0<cmd>delm 0<CR>", {
