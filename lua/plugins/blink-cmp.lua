@@ -4,6 +4,17 @@ return { -- optional blink completion source for require statements and module a
   lazy = false,
   -- dependencies = { "giuxtaposition/blink-cmp-copilot" },
   opts = {
+    completion = {
+      menu = {
+        border = "rounded",
+        winhighlight = "Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,CursorLine:BlinkCmpDocCursorLine,Search:None",
+      },
+      documentation = {
+        window = {
+          border = "rounded",
+        },
+      },
+    },
     snippets = { preset = "luasnip" },
     -- ensure you have the `snippets` source (enabled by default)
     sources = {
@@ -34,7 +45,9 @@ return { -- optional blink completion source for require statements and module a
       -- ["<C-e>"] = false, -- or {}
       ["<C-e>"] = { "hide", "fallback" },
 
-      ["<C-k>"] = { "show_documentation", "fallback" },
+      -- ["<C-k>"] = { "show_documentation", "fallback" },
+      ["<Right>"] = { "show_documentation", "fallback" },
+      ["<C-k>"] = { "hide_documentation", "fallback" },
 
       -- ["<C-n>"] = { "show", "fallback" },
       -- ["<C-p>"] = { "show", "fallback" },
