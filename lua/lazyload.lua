@@ -19,6 +19,9 @@ require("lazy").setup({
   { "Aasim-A/scrollEOF.nvim", event = { "CursorMoved", "WinScrolled" }, opts = {} },
   { require("plugins.neoscroll") }, -- Smooth Scrolling
   -- { require("plugins.render-markdown") },
+
+  ---- File Explorer ----
+  { require("plugins.yazi") },
   -- { require("plugins.oil") },
 
   ---- Multi Cursor ----
@@ -44,6 +47,7 @@ require("lazy").setup({
   { require("plugins.mini-icons") },
   { require("plugins.mini-surround") },
   { require("plugins.mini-pairs") },
+
   ---- Text Objects ----
   { require("plugins.mini-ai") },
 

@@ -25,6 +25,26 @@
 -- Custom status line
 --
 
+local function unsaved_buffers()
+  local unsaved = {}
+  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+    if vim.api.nvim_buf_get_option(buf, "modified") then
+      local name = vim.api.nvim_buf_get_name(buf)
+      if name == "" then
+        name = "[No Name]"
+      else
+        name = vim.fn.fnamemodify(name, ":t") -- only filename
+      end
+      table.insert(unsaved, name)
+    end
+  end
+
+  if #unsaved > 0 then
+    return " " .. table.concat(unsaved, ", ")
+  end
+  return ""
+end
+
 return {
   "nvim-lualine/lualine.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -98,6 +118,12 @@ return {
             symbols = { error = " ", warn = " ", info = " ", hint = " " },
             update_in_insert = true,
           },
+          -- {
+          --   unsaved_buffers,
+          --   "encoding",
+          --   "fileformat",
+          --   "filetype",
+          -- },
         },
         lualine_y = { clients_lsp },
         lualine_z = {

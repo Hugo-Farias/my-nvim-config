@@ -92,7 +92,6 @@ local function closeAllBuffers()
   end
 end
 
--- TODO: fix biome restart issue
 local function openProjects()
   require("snacks").picker.projects({
     confirm = function(picker, item)
@@ -102,7 +101,8 @@ local function openProjects()
       IsProject = false
       closeAllBuffers()
       LoadSession(picker, item)
-      vim.defer_fn(RestartAll, 1000)
+      -- vim.defer_fn(RestartAll, 1000)
+      RestartAll()
     end,
   })
 end

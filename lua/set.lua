@@ -5,7 +5,6 @@ if vim.fn.has("win32") == 1 then
   vim.o.shellquote = ""
   vim.o.shellxquote = ""
 end
--- vim.opt.clipboard = "unnamedplus"
 
 vim.opt.number = true
 vim.opt.relativenumber = true

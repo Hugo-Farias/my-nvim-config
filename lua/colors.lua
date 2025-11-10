@@ -21,11 +21,11 @@ local function theme(repo, name, style)
     priority = 1000,
     opts = {
       style = style or "",
-      -- transparent = true,
-      -- styles = {
-      --   sidebars = "transparent",
-      --   floats = "transparent",
-      -- },
+      transparent = true,
+      styles = {
+        sidebars = "transparent",
+        floats = "transparent",
+      },
     },
   }
 end

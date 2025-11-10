@@ -1,11 +1,26 @@
+local function is_copilot_attached()
+  for _, client in ipairs(vim.lsp.get_active_clients()) do
+    if client.name == "copilot" then
+      return true
+    end
+  end
+  return false
+end
+
 -- Restart LSP and LLMs
 function RestartAll()
+  local copilotRunning = is_copilot_attached()
+  -- vim.cmd("silent! Copilot disable")
   vim.fn.system("Get-Process biome -ErrorAction SilentlyContinue | Stop-Process")
-  vim.cmd("silent! Copilot disable")
   vim.cmd("LspStop")
-  vim.cmd("silent! Copilot enable")
-  vim.cmd("LspStart")
   vim.cmd("LspRestart")
+  vim.defer_fn(function()
+    if copilotRunning then
+      vim.cmd("silent! Copilot enable")
+    end
+    vim.cmd("LspStart")
+  end, 3000)
+  vim.cmd("LspStart")
 end
 
 -- Change location to git root if found, otherwise to file's location
