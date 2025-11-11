@@ -3,6 +3,7 @@ require("lazy").setup({
 
   { require("plugins.treesitter") },
   { require("plugins.treesitter-context") },
+  { require("plugins.treesitter-textobjects") },
   { require("lsp") },
   { require("plugins.mason") },
   { require("plugins.todo-comments") },
@@ -47,8 +48,6 @@ require("lazy").setup({
   { require("plugins.mini-icons") },
   { require("plugins.mini-surround") },
   { require("plugins.mini-pairs") },
-
-  ---- Text Objects ----
   { require("plugins.mini-ai") },
 
   ---- Color Preview/Pickers ----

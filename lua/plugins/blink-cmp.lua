@@ -37,7 +37,9 @@ return { -- optional blink completion source for require statements and module a
       preset = "none",
 
       ["<Up>"] = { "select_prev", "fallback" },
+      ["<C-k>"] = { "select_prev", "fallback" },
       ["<Down>"] = { "select_next", "fallback" },
+      ["<C-j>"] = { "select_next", "fallback" },
       ["<CR>"] = { "select_and_accept", "fallback" },
       -- ["<Tab>"] = { "none", "fallback" },
 
@@ -45,9 +47,10 @@ return { -- optional blink completion source for require statements and module a
       -- ["<C-e>"] = false, -- or {}
       ["<C-e>"] = { "hide", "fallback" },
 
-      -- ["<C-k>"] = { "show_documentation", "fallback" },
+      ["<C-l>"] = { "show_documentation", "fallback" },
       ["<Right>"] = { "show_documentation", "fallback" },
-      ["<C-k>"] = { "hide_documentation", "fallback" },
+      ["<C-h>"] = { "hide_documentation", "fallback" },
+      ["<Left>"] = { "hide_documentation", "fallback" },
 
       -- ["<C-n>"] = { "show", "fallback" },
       -- ["<C-p>"] = { "show", "fallback" },

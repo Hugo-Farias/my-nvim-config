@@ -216,7 +216,10 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 ---- Clear Search Query
 set("n", "<leader>ll", "<cmd>redraw | nohlsearch<CR>", { desc = "Clear Highlight Search" })
 set("n", "<C-l>", "<Cmd>nohlsearch|diffupdate|redraw|normal! <C-L><CR>", { desc = "Clear Highlight Search" })
-set("n", "<leader>lr", RestartAll, { desc = "LSP: Restart" })
+set("n", "<leader>lr", function()
+  vim.fn.system("Get-Process biome -ErrorAction SilentlyContinue | Stop-Process")
+  RestartAll()
+end, { desc = "LSP: Restart" })
 set(
   "n",
   "<leader>lR",
@@ -285,7 +288,9 @@ set("n", "L", "m0J`0<cmd>delm 0<CR>", { silent = true, desc = "Join lines" })
 set("n", "<C-k>", "m0o<Esc>`0<cmd>delm 0<CR>", { desc = "Add empty line under", noremap = true })
 
 ---- Add empty line under insert mode
-set("i", "<C-k>", "<Esc>m0o<Esc>`0l<cmd>delm 0<CR>i", { desc = "Add empty line under", noremap = true })
+-- set("i", "<C-k>", "<Esc>m0o<Esc>`0l<cmd>delm 0<CR>i", { desc = "Add empty line under", noremap = true })
+-- set("i", "<C-k>", "<C-p>", { desc = "Select Prev", noremap = true })
+-- set("i", "<C-j>", "<C-n>", { desc = "Select Next", noremap = true })
 
 ---- Split lines downwards
 set("n", "<C-j>", "m0i<CR><Esc>==`0<cmd>delm 0<CR>", {
