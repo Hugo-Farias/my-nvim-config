@@ -95,7 +95,7 @@ end
 local function openProjects()
   require("snacks").picker.projects({
     confirm = function(picker, item)
-      -- vim.cmd("LspStop")
+      vim.cmd("LspStop")
       vim.fn.system("Get-Process biome -ErrorAction SilentlyContinue | Stop-Process")
       picker:close()
       SmartSaveSession()
@@ -176,7 +176,8 @@ return {
     },
     -- stylua: ignore start
     { "<leader><leader>", "<cmd>lua Snacks.picker.files()<CR>", desc = "Snacks: Search Files" },
-    { "<C-p>", "<cmd>lua Snacks.picker.files()<CR>", desc = "Snacks: Search Files" },
+    { "<C- >", "<cmd>lua Snacks.picker.files()<CR>", desc = "Snacks: Search Files" },
+    { "<C-p>", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
     { "<leader>sf", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
     { "<leader>sg", "<cmd>lua Snacks.picker.git_diff()<CR>", desc = "Snacks: Search Git Diffs" },
     { "<leader>s,", "<cmd>lua Snacks.picker.files({ cwd = vim.fn.stdpath('config') })<CR>", desc = "Snacks: Search Config File"},
@@ -204,14 +205,13 @@ return {
     { "<leader>.", "<cmd>lua Snacks.scratch()<CR>", desc = "Snacks: Open Project Scratch File" },
     { "<leader>sp", openProjects, desc = "Snacks: Search Projects" },
     { "<leader>su", "<cmd>lua Snacks.picker.undo()<CR>", desc = "Snacks: Search Undos" },
-    { "<leader>sT", searchTodos, desc = "Snacks: Search Every TODO" },
-    { "<leader>st", function () searchTodos([[(TODO\:|FIX\:)]]) end, desc = "Snacks: Search TODOs" },
+    { "<leader>st", searchTodos, desc = "Snacks: Search Every TODO" },
+    { "<leader>sT", function () searchTodos([[(TODO\:|FIX\:)]]) end, desc = "Snacks: Search TODOs" },
     -- { "<leader>st", "<cmd>lua Snacks.picker.todo_comments()<CR>", desc = "Search TODOs" },
     ---- Git Actions ----
     { "<leader>gg", "<cmd>lua Snacks.lazygit()<CR>", desc = "Snacks: Git Lazygit" },
     { "<leader>gb", "<cmd>lua Snacks.git.blame_line()<CR>", desc = "Snacks: Git Line Blame" },
     { "<leader>gl", "<cmd>lua Snacks.picker.git_log_line()<CR>", desc = "Snacks: Git Log Line" },
-    { "<leader>gd", "<cmd>lua Snacks.picker.git_diff()<CR>", desc = "Snacks: Git Search Diff" },
     { "<leader>gf", "<cmd>lua Snacks.picker.git_log_file()<CR>", desc = "Snacks: Git Search Diff File" },
     ---- Jumps ----
     { "]w", "<cmd>lua Snacks.words.jump(1)<CR>", desc = "Snacks: Jump to Next Word" },

@@ -1,6 +1,6 @@
-local function is_copilot_attached()
+local function is_attached(lspName)
   for _, client in ipairs(vim.lsp.get_clients()) do
-    if client.name == "copilot" then
+    if client.name == lspName then
       return true
     end
   end
@@ -10,16 +10,15 @@ end
 -- Restart LSP and LLMs
 function RestartAll()
   -- vim.fn.system("Get-Process biome -ErrorAction SilentlyContinue | Stop-Process")
-  local copilotRunning = is_copilot_attached()
-  -- vim.cmd("silent! Copilot disable")
+  local copilotRunning = is_attached("copilot")
+  -- local biome = is_attached("biome")
   vim.cmd("LspStop")
-  vim.cmd("LspRestart")
   vim.defer_fn(function()
     if copilotRunning then
       vim.cmd("silent! Copilot enable")
     end
-    vim.cmd("LspStart")
-  end, 3000)
+  end, 1000)
+  vim.cmd("LspRestart")
   vim.cmd("LspStart")
 end
 

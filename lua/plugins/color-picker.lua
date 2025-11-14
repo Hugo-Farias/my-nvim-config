@@ -3,6 +3,8 @@
 
 return {
   "ziontee113/color-picker.nvim",
+  lazy = true,
+  event = "VeryLazy",
   cmd = { "PickColor", "PickColorInsert", "ConvertHEXandRGB", "ConvertHEXandHSL" },
   keys = {
     -- { "qc", "<cmd>PickColor<cr>", mode = { "n", "x" }, desc = "Color Picker: PickColor" },

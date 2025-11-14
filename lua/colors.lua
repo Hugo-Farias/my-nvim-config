@@ -8,7 +8,7 @@ function EditorColorScheme(color)
   -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
   -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
-  vim.api.nvim_set_hl(0, "LineNr", { fg = "#e6e6e6" })
+  vim.api.nvim_set_hl(0, "LineNr", { fg = "#E6E6E6" })
   vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#666666" })
   vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#666666" })
 end
@@ -25,7 +25,12 @@ local function theme(repo, name, style)
       styles = {
         sidebars = "transparent",
         floats = "transparent",
+        keywords = { italic = true },
+        functions = { italic = true },
       },
+      on_colors = function(colors)
+        colors.bg_statusline = colors.none
+      end,
     },
   }
 end

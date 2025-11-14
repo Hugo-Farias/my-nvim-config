@@ -1,53 +1,27 @@
--- return {
---   "nvim-lualine/lualine.nvim",
---   dependencies = { "nvim-tree/nvim-web-devicons", "pnx/lualine-lsp-status" },
---   config = function()
---     require("lualine").setup({
---       options = {
---         theme = "auto",
---         section_separators = "",
---         component_separators = "",
---       },
---       sections = {
---         lualine_a = { "filename" },
---         lualine_b = { "branch" },
---         lualine_c = { "diagnostics", "lsp-status" },
---         lualine_x = { "filetype" },
---         lualine_y = { "progress" },
---         lualine_z = { "location" },
---       },
---     })
---   end,
--- }
+-- local function unsaved_buffers()
+--   local unsaved = {}
+--   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+--     if vim.api.nvim_buf_get_option(buf, "modified") then
+--       local name = vim.api.nvim_buf_get_name(buf)
+--       if name == "" then
+--         name = "[No Name]"
+--       else
+--         name = vim.fn.fnamemodify(name, ":t") -- only filename
+--       end
+--       table.insert(unsaved, name)
+--     end
+--   end
 --
--- lualine.lua
---
--- Custom status line
---
-
-local function unsaved_buffers()
-  local unsaved = {}
-  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-    if vim.api.nvim_buf_get_option(buf, "modified") then
-      local name = vim.api.nvim_buf_get_name(buf)
-      if name == "" then
-        name = "[No Name]"
-      else
-        name = vim.fn.fnamemodify(name, ":t") -- only filename
-      end
-      table.insert(unsaved, name)
-    end
-  end
-
-  if #unsaved > 0 then
-    return " " .. table.concat(unsaved, ", ")
-  end
-  return ""
-end
+--   if #unsaved > 0 then
+--     return " " .. table.concat(unsaved, ", ")
+--   end
+--   return ""
+-- end
 
 return {
   "nvim-lualine/lualine.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
+  lazy = true,
   event = "VeryLazy",
   config = function()
     -- Custom Lualine component to show attached language server
@@ -84,10 +58,12 @@ return {
         -- theme = custom_catppuccin,
         component_separators = "",
         section_separators = { left = "", right = "" },
+        -- section_separators = { left = "", right = "" },
         disabled_filetypes = { "alpha", "Outline" },
       },
       sections = {
         lualine_a = {
+          -- { "mode", icon = "" },
           { "mode", separator = { left = " ", right = "" }, icon = "" },
         },
         lualine_b = {
@@ -127,17 +103,18 @@ return {
         },
         lualine_y = { clients_lsp },
         lualine_z = {
+          -- { "location", icon = "" },
           { "location", separator = { left = "", right = " " }, icon = "" },
         },
       },
-      inactive_sections = {
-        lualine_a = { "filename" },
-        lualine_b = {},
-        lualine_c = {},
-        lualine_x = {},
-        lualine_y = {},
-        lualine_z = { "location" },
-      },
+      -- inactive_sections = {
+      --   lualine_a = { "filename" },
+      --   lualine_b = {},
+      --   lualine_c = {},
+      --   lualine_x = {},
+      --   lualine_y = {},
+      --   lualine_z = { "location" },
+      -- },
       -- extensions = { "toggleterm", "trouble" },
     })
   end,

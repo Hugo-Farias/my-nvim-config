@@ -102,6 +102,13 @@ set("n", "<M-Up>", "<cmd>horizontal res -5<CR>", { noremap = true, desc = "Resiz
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
 
+---- Add TODO comment
+set("n", "<leader>td", "oTODO: <Esc>gccA", { desc = "Add a TODO comment" })
+
+---- Mantain selection when indenting in visual mode
+set("x", "<", "<gv", { desc = "Indent left" })
+set("x", ">", ">gv", { desc = "Indent right" })
+
 -- Turn on diff mode
 set("n", "<leader>fc", function()
   vim.cmd("diffthis")
@@ -267,7 +274,7 @@ set("n", "<leader>dd", '"_dd', { noremap = true, silent = true, desc = "Delete l
 ---- x deletes without yanking
 -- set({ "n", "x" }, "x", "\"_x", { noremap = true, silent = true, desc = "Delete char without yank" })
 for _, key in ipairs({ "x", "X" }) do
-  set({ "n", "x" }, key, '"_' .. key, { noremap = true, silent = true, desc = "Delete char without yank" })
+  set({ "n", "x" }, key, '"_' .. key, { noremap = true, silent = true, desc = "Delete char without yanking" })
 end
 
 ---- Start/end of line (non-blank)

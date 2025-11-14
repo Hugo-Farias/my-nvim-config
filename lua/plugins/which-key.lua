@@ -27,6 +27,7 @@ return {
       { "<auto>", mode = "nixsotc" },
       { "q", mode = { "n", "x" } },
       { "s", mode = { "n", "x" } },
+      { "Z", mode = { "n", "x" } },
     },
   },
 }
