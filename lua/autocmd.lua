@@ -38,6 +38,7 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   end,
 })
 
+-- Set filetype for dotenv files and Equalizer APO config.txt
 vim.api.nvim_create_autocmd("BufRead", {
   group = vim.api.nvim_create_augroup("dotenv_ft", { clear = true }),
   pattern = { ".env", ".env.*", "C:/Program Files/EqualizerAPO/config/config.txt" },
@@ -45,6 +46,7 @@ vim.api.nvim_create_autocmd("BufRead", {
     vim.bo.filetype = "dosini"
   end,
 })
+
 -- open help in vertical split
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "help",

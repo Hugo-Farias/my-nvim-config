@@ -95,6 +95,10 @@ end
 local function openProjects()
   require("snacks").picker.projects({
     confirm = function(picker, item)
+      if not item then
+        return
+      end
+
       vim.cmd("LspStop")
       vim.fn.system("Get-Process biome -ErrorAction SilentlyContinue | Stop-Process")
       picker:close()
@@ -102,7 +106,6 @@ local function openProjects()
       IsProject = false
       closeAllBuffers()
       LoadSession(picker, item)
-      -- vim.defer_fn(RestartAll, 1000)
       RestartAll()
     end,
   })

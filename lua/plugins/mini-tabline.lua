@@ -7,7 +7,7 @@ return {
     show_icons = true,
     format = nil,
     -- Whether to set Vim's showtabline option automatically
-    set_vim_settings = true,
+    set_vim_settings = false,
   },
   cond = not vim.g.vscode, -- Optional: avoid loading in VSCode
 }

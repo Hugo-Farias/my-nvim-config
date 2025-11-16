@@ -37,7 +37,8 @@ return {
       for _, client in pairs(clients) do
         table.insert(c, client.name)
       end
-      return " " .. table.concat(c, "|")
+      -- return " " .. table.concat(c, "|")
+      return " " .. table.concat(c, "|")
     end
 
     -- local custom_catppuccin = require("lualine.themes.catppuccin")
@@ -57,23 +58,27 @@ return {
       options = {
         -- theme = custom_catppuccin,
         component_separators = "",
-        section_separators = { left = "", right = "" },
+        -- section_separators = { left = "", right = "" },
+        section_separators = { left = "", right = "" },
         -- section_separators = { left = "", right = "" },
         disabled_filetypes = { "alpha", "Outline" },
       },
       sections = {
         lualine_a = {
-          -- { "mode", icon = "" },
-          { "mode", separator = { left = " ", right = "" }, icon = "" },
+          { "mode", icon = "" },
+          -- { "mode", separator = { left = " ", right = "" }, icon = "" },
+          -- { "mode", separator = { left = "", right = "" }, icon = "" },
         },
         lualine_b = {
           {
             "filetype",
             icon_only = true,
             padding = { left = 1, right = 0 },
+            colored = false,
           },
           {
             "filename",
+            path = 1,
             -- symbols = { modified = "🟡" },
           },
         },
@@ -103,8 +108,9 @@ return {
         },
         lualine_y = { clients_lsp },
         lualine_z = {
-          -- { "location", icon = "" },
-          { "location", separator = { left = "", right = " " }, icon = "" },
+          { "location", icon = "" },
+          -- { "location", separator = { left = "", right = " " }, icon = "" },
+          -- { "location", separator = { left = "", right = "" }, icon = "" },
         },
       },
       -- inactive_sections = {

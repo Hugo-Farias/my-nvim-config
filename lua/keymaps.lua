@@ -102,8 +102,41 @@ set("n", "<M-Up>", "<cmd>horizontal res -5<CR>", { noremap = true, desc = "Resiz
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
 
+---- Toggle Relative Line Numbers
+set("n", "<leader>tn", function()
+  vim.wo.relativenumber = not vim.wo.relativenumber
+  if vim.wo.relativenumber then
+    vim.notify("Relative Line Numbers: ON")
+  else
+    vim.notify("Relative Line Numbers: OFF")
+  end
+end, { desc = "Toggle Relative Line Numbers" })
+
+---- Toggle Line Wrap
+set("n", "<leader>tw", function()
+  vim.wo.wrap = not vim.wo.wrap
+  if vim.wo.wrap then
+    vim.notify("Line Wrap: ON")
+  else
+    vim.notify("Line Wrap: OFF")
+  end
+end, { desc = "Toggle Line Wrap" })
+
+-- TODO: Maybe get this working someday
 ---- Add TODO comment
-set("n", "<leader>td", "oTODO: <Esc>gccA", { desc = "Add a TODO comment" })
+-- set("n", "<leader>td", function()
+--   vim.cmd.normal({ "oTODO: ", bang = true })
+--   -- vim.cmd.normal({ "<Esc>", bang = true })
+--   vim.cmd.stopinsert()
+--
+--   -- feed gcc as separate, complete keypresses
+--   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("gcc", true, false, true), "n", false)
+--
+--   -- small defer so A doesn't get swallowed
+--   vim.defer_fn(function()
+--     vim.cmd.normal({ "A", bang = true })
+--   end, 1)
+-- end, { desc = "Add a TODO comment" })
 
 ---- Mantain selection when indenting in visual mode
 set("x", "<", "<gv", { desc = "Indent left" })
