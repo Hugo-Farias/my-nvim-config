@@ -4,8 +4,8 @@ return {
     formatters_by_ft = {
       lua = { "stylua" },
       javascript = { "biome" },
-      javascriptreact = { "biome" },
       typescript = { "biome" },
+      javascriptreact = { "biome" },
       typescriptreact = { "biome" },
       css = { "biome" },
       scss = { "prettierd" },
@@ -42,6 +42,17 @@ return {
           "$FILENAME",
           "-",
         },
+      },
+      biome = {
+        command = "biome",
+        args = {
+          "check",
+          "--write",
+          "--unsafe",
+          "--stdin-file-path",
+          "$FILENAME",
+        },
+        stdin = true,
       },
     },
     diagnostics = {

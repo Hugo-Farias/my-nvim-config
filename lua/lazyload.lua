@@ -30,7 +30,7 @@ require("lazy").setup({
 
   ---- Formatter ----
   { require("plugins.conform") },
-  -- { require("plugins.nvim-ts-autotag") },
+  { require("plugins.nvim-ts-autotag") },
   { "HiPhish/rainbow-delimiters.nvim" },
 
   ---- AutoComplete ----
