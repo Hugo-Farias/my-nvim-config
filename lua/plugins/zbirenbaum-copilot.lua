@@ -60,9 +60,9 @@ return {
   },
   keys = {
     -- stylua: ignore start
-    { "<leader>lc", copilotToggle, desc = "Copilot: Toggle" },
+    { "<leader>tC", copilotToggle, desc = "Toggle Copilot" },
     -- { "<C-d>", autoTriggerToggle, desc = "Copilot: Toggle Auto Trigger", mode = "i" },
-    { "<leader>cp", "<cmd>Copilot panel<CR>", desc = "Copilot: Toggle Panel" },
+    { "<leader>tp", "<cmd>Copilot panel<CR>", desc = "Toggle Copilot Panel" },
     { "<leader>cn", "<cmd>Copilot<CR>", desc = "Copilot: Status" },
     { "<Tab>", "<cmd>lua require('copilot.suggestion').accept_line()<CR>", desc = "Copilot: Accept Line", mode = "i" },
     { "<C-l>", "<cmd>lua require('copilot.suggestion').accept_word()<CR>", desc = "Copilot: Accept Word", mode = "i" },

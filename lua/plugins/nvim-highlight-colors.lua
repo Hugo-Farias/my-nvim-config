@@ -1,11 +1,15 @@
 return {
   "brenoprata10/nvim-highlight-colors",
+  lazy = true,
   event = "VeryLazy",
   version = false,
+  config = function()
+    require("nvim-highlight-colors").turnOff()
+  end,
   opts = {
     ---Render style
     ---@usage 'background'|'foreground'|'virtual'
-    render = "virtual",
+    render = "background",
 
     ---Set virtual symbol (requires render to be set to 'virtual')
     virtual_symbol = "■",
@@ -64,5 +68,8 @@ return {
     exclude_buftypes = {},
     -- Exclude buffer from highlighting e.g. 'exclude_buffer = function(bufnr) return vim.fn.getfsize(vim.api.nvim_buf_get_name(bufnr)) > 1000000 end'
     exclude_buffer = function() end,
+  },
+  keys = {
+    { "<leader>tc", "<cmd>HighlightColors toggle<cr>", desc = "Toggle Highlight Colors" },
   },
 }
