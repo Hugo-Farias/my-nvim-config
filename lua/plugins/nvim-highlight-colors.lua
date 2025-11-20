@@ -1,15 +1,15 @@
 return {
   "brenoprata10/nvim-highlight-colors",
-  lazy = true,
+  -- lazy = true,
   event = "VeryLazy",
   version = false,
-  config = function()
-    require("nvim-highlight-colors").turnOff()
-  end,
+  -- config = function()
+  --   require("nvim-highlight-colors").turnOff()
+  -- end,
   opts = {
     ---Render style
     ---@usage 'background'|'foreground'|'virtual'
-    render = "background",
+    render = "virtual",
 
     ---Set virtual symbol (requires render to be set to 'virtual')
     virtual_symbol = "■",
