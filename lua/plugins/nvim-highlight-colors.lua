@@ -3,13 +3,13 @@ return {
   -- lazy = true,
   event = "VeryLazy",
   version = false,
-  -- config = function()
-  --   require("nvim-highlight-colors").turnOff()
-  -- end,
+  config = function()
+    require("nvim-highlight-colors").turnOff()
+  end,
   opts = {
     ---Render style
     ---@usage 'background'|'foreground'|'virtual'
-    render = "virtual",
+    render = "background",
 
     ---Set virtual symbol (requires render to be set to 'virtual')
     virtual_symbol = "■",
@@ -19,14 +19,14 @@ return {
     virtual_symbol_prefix = " ",
 
     ---Set virtual symbol suffix (defaults to ' ')
-    virtual_symbol_suffix = " ",
+    virtual_symbol_suffix = "",
 
     ---Set virtual symbol position()
     ---inline mimics VS Code style
     ---eol stands for `end of column` - Recommended to set `virtual_symbol_suffix = ''` when used.
     ---eow stands for `end of word` - Recommended to set `virtual_symbol_prefix = ' ' and virtual_symbol_suffix = ''` when used.
     --@usage 'inline'|'eol'|'eow'
-    virtual_symbol_position = "eol",
+    virtual_symbol_position = "inline",
 
     ---Highlight hex colors, e.g. '#FFFFFF'
     enable_hex = true,

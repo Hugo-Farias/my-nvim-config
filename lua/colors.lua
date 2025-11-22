@@ -7,8 +7,8 @@ function EditorColorScheme(color)
 
   -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
   -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-  vim.api.nvim_set_hl(0, "RainbowDelimiterGreen", { fg = "#00b3b3" }) -- teal
-  vim.api.nvim_set_hl(0, "RainbowDelimiterViolet", { fg = "#e6e633" }) -- pink
+  -- vim.api.nvim_set_hl(0, "RainbowDelimiterGreen", { fg = "#00b3b3" }) -- teal
+  -- vim.api.nvim_set_hl(0, "RainbowDelimiterViolet", { fg = "#91e18a" }) -- pink
 
   vim.api.nvim_set_hl(0, "LineNr", { fg = "#E6E6E6" })
   vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#666666" })

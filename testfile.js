@@ -1,9 +1,9 @@
 function greet(name) {
-	console.log("Hi " + name + "!");
+	console.log(`Hi ${name}!`);
 }
 
-const user = "Hugo";
-greet(user);
+const _user = "Hugo";
+greet();
 
 const nums = [1, 2, 3, 4, 5];
 const doubled = nums.map((n) => {
@@ -36,7 +36,7 @@ messy(5, 3);
 messy(2, 9);
 messy(4, 4);
 
-let obj = {
+const obj = {
 	name: "test",
 	items: [
 		{ id: 1, val: "a" },

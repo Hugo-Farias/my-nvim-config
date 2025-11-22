@@ -1,0 +1,16 @@
+This is a short line.
+
+This sentence is intentionally extremely long so that it will wrap on most normal editor widths, giving you a good way to test how gj and gk move between visual display lines instead of logical file lines.
+
+Another very short line.
+
+SupercalifragilisticexpialidociousSupercalifragilisticexpialidociousSupercalifragilisticexpialidocious
+(This line is long because of unbroken words, so wrapping depends entirely on your editor window width.)
+
+Here is a medium-length line that might or might not wrap depending on your window size.
+
+This is another extremely long paragraph designed specifically to test wrapped-line navigation in Neovim. It contains many words, but none of them are particularly long on their own, which lets you see how movement behaves when wrapping occurs naturally between spaces rather than splitting giant words in strange places.
+
+Short again.
+
+One more long line to finish things off and give you a predictable multi-wrap situation so you can test moving up and down with both j and gj, as well as checking 0 versus g0 and $ versus g$ under different visual wrapping conditions in your current Neovim window.

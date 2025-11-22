@@ -63,7 +63,7 @@ return {
         },
         {
           "filename",
-          path = 2,
+          path = 1,
           -- symbols = { modified = "🟡" },
         },
       },

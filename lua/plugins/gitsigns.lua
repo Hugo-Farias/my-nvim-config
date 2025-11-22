@@ -42,7 +42,14 @@ return {
       follow_files = true,
     },
     current_line_blame = false,
-    update_debounce = 100,
+    update_debounce = 500,
     status_formatter = nil,
+    preview_config = {
+      border = "rounded",
+      style = "minimal",
+      relative = "cursor",
+      row = 0,
+      col = 1,
+    },
   },
 }

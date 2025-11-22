@@ -99,10 +99,10 @@ local function openProjects()
         return
       end
 
-      vim.cmd("LspStop")
-      vim.fn.system("Get-Process biome -ErrorAction SilentlyContinue | Stop-Process")
       picker:close()
       SmartSaveSession()
+      vim.cmd("LspStop")
+      vim.fn.system("Get-Process biome -ErrorAction SilentlyContinue | Stop-Process")
       IsProject = false
       closeAllBuffers()
       LoadSession(picker, item)
@@ -196,7 +196,7 @@ return {
     { "<leader>sc", "<cmd>lua Snacks.picker.commands()<CR>", desc = "Snacks: Search Commands" },
     { "<leader>sC", "<cmd>lua Snacks.picker.colorschemes()<CR>", desc = "Snacks: Search Color Schemes" },
     { "<leader>sk", "<cmd>lua Snacks.picker.keymaps()<CR>", desc = "Snacks: Search Keymaps" },
-    { "<leader>sH", "<cmd>lua Snacks.picker.help()<CR>", desc = "Snacks: Search Help" },
+    { "<leader>sH", "<cmd>lua Snacks.picker.help()<CR>", desc = "Snacks: Search Help", mode = {'n', 'x'} },
     { "<leader>sh", "<cmd>lua Snacks.picker.search_history()<CR>", desc = "Snacks: Search History" },
     { "<leader>s'", "<cmd>lua Snacks.picker.registers()<CR>", desc = "Snacks: Search Registers" },
     { "<leader>s;", "<cmd>lua Snacks.picker.command_history()<CR>", desc = "Snacks: Search Command History" },

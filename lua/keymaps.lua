@@ -102,6 +102,18 @@ set("n", "<M-Up>", "<cmd>horizontal res -5<CR>", { noremap = true, desc = "Resiz
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
 
+---- Remape jk to gj gk for moving by display lines
+-- set({ "n", "x" }, "j", "gj", { desc = "Move down by display lines" })
+-- set({ "n", "x" }, "k", "gk", { desc = "Move up by display lines" })
+
+vim.keymap.set("n", "j", function()
+  return vim.v.count > 0 and "j" or "gj"
+end, { expr = true })
+
+vim.keymap.set("n", "k", function()
+  return vim.v.count > 0 and "k" or "gk"
+end, { expr = true })
+
 ---- Toggle Relative Line Numbers
 set("n", "<leader>tn", function()
   vim.wo.relativenumber = not vim.wo.relativenumber
@@ -311,8 +323,10 @@ for _, key in ipairs({ "x", "X" }) do
 end
 
 ---- Start/end of line (non-blank)
-set({ "n", "x", "o" }, "gh", "^", { desc = "Start of line (non-blank)" })
-set({ "n", "x", "o" }, "gl", "g_", { desc = "End of line (non-blank)" })
+-- set({ "n", "x", "o" }, "gh", "^", { desc = "Start of line (non-blank)" })
+set({ "n", "x", "o" }, "gh", "g^", { desc = "Start of line (non-blank)" })
+-- set({ "n", "x", "o" }, "gl", "g_", { desc = "End of line (non-blank)" })
+set({ "n", "x", "o" }, "gl", "g$", { desc = "End of line (non-blank)" })
 
 ---- Exit insert mode
 set({ "i", "c" }, "jk", "<Esc>", { desc = "Exit insert mode (jk)" })

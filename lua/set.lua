@@ -6,39 +6,44 @@ if vim.fn.has("win32") == 1 then
   vim.o.shellxquote = ""
 end
 
-vim.opt.number = true
-vim.opt.relativenumber = true
+local opt = vim.opt
+
+opt.number = true
+opt.relativenumber = true
 
 vim.g.have_nerd_font = true
-vim.opt.shiftwidth = 2
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.expandtab = true
-vim.opt.smartindent = true
+opt.shiftwidth = 2
+opt.tabstop = 2
+opt.softtabstop = 2
+opt.expandtab = true
+opt.smartindent = true
 
-vim.opt.wrap = false
+opt.wrap = false
+opt.linebreak = true
+opt.breakindent = true
+opt.breakat = " "
 
-vim.opt.termguicolors = true
+opt.termguicolors = true
 
--- vim.opt.swapfile = false
--- vim.opt.backup = false
-vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
-vim.opt.undofile = true
+-- opt.swapfile = false
+-- opt.backup = false
+opt.undodir = vim.fn.stdpath("data") .. "/undo"
+opt.undofile = true
 
 -- vim.o.hlsearch = false
--- vim.opt.incsearch = true
+-- opt.incsearch = true
 
-vim.opt.updatetime = 2000
--- vim.opt.colorcolumn = "80"
+opt.updatetime = 2000
+-- opt.colorcolumn = "80"
 
-vim.opt.scrolloff = 20
+opt.scrolloff = 20
 vim.o.timeoutlen = 500
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
+opt.ignorecase = true
+opt.smartcase = true
 -- vim.o.keymodel = ""
 
 -- Fix for session restoring with blank buffer
-vim.opt.sessionoptions = {
+opt.sessionoptions = {
   "buffers",
   "curdir",
   "tabpages",

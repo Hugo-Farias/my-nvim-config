@@ -30,12 +30,13 @@ require("lazy").setup({
 
   ---- Formatter ----
   { require("plugins.conform") },
-  { require("plugins.nvim-ts-autotag") },
+  -- { require("plugins.nvim-ts-autotag") },
+  { require("plugins.autopairs") },
   { require("plugins.rainbow-delimiters") },
 
   ---- AutoComplete ----
-  -- { require("plugins.nvim-cmp") },
-  { require("plugins.blink-cmp") },
+  { require("plugins.nvim-cmp") },
+  -- { require("plugins.blink-cmp") },
 
   ---- Snippets ----
   { require("plugins.luasnip") },
@@ -49,6 +50,7 @@ require("lazy").setup({
   { require("plugins.mini-surround") },
   { require("plugins.mini-pairs") },
   { require("plugins.mini-ai") },
+  { require("plugins.mini-splitjoin") },
 
   ---- Color Preview/Pickers ----
   -- { require("plugins.oklch-color-picker") },
