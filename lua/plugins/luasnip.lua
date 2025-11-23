@@ -21,6 +21,8 @@ return {
       ls.add_snippets(filetype, require("snippets.javascriptreact"))
     end
 
+    ls.add_snippets("json", require("snippets.json"))
+
     -- require("luasnip").filetype_extend("typescript", { "javascript" })
     -- require("luasnip").filetype_extend("javascriptreact", { "javascript" })
     -- require("luasnip").filetype_extend("typescriptreact", { "javascriptreact" })

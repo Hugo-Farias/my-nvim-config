@@ -3,8 +3,8 @@ return {
   opts = {
     formatters_by_ft = {
       lua = { "stylua" },
-      javascript = { "biome" },
-      typescript = { "biome" },
+      javascript = { "prettierd" },
+      typescript = { "prettierd" },
       javascriptreact = { "biome" },
       typescriptreact = { "biome" },
       css = { "biome" },

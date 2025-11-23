@@ -30,8 +30,8 @@ require("lazy").setup({
 
   ---- Formatter ----
   { require("plugins.conform") },
-  -- { require("plugins.nvim-ts-autotag") },
-  { require("plugins.autopairs") },
+  { require("plugins.nvim-ts-autotag") },
+  -- { require("plugins.autopairs") },
   { require("plugins.rainbow-delimiters") },
 
   ---- AutoComplete ----
