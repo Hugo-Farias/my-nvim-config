@@ -14,6 +14,7 @@
         manual = false,
         -- A mapping of filetype to true or false, to enable virtual text.
         filetypes = {
+          ["*"] = false,
           ["*.lua"] = true,
           ["*.js"] = true,
           ["*.jsx"] = true,
@@ -27,7 +28,6 @@
           ["*.scss"] = true,
           ["*.py"] = true,
           ["*.yaml"] = true,
-          ["*"] = false,
         },
         -- Whether to enable virtual text of not for filetypes not specifically listed above.
         default_filetype_enabled = true,
@@ -53,9 +53,9 @@
           prev = "<M-[>",
         },
       },
-      keys = {
-        { "<leader>lc", "<cmd>Codeium toggle<CR>", { desc = "Codeium: Toggle" } },
-      },
     })
   end,
+  keys = {
+    { "<leader>lc", "<cmd>Codeium Toggle<CR>", desc = "Codeium: Toggle" },
+  },
 }

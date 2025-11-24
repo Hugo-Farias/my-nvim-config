@@ -7,11 +7,13 @@ return {
   -- install jsregexp (optional!).
   build = "make install_jsregexp",
   dependencies = {
-    "saadparwaiz1/cmp_luasnip",
+    -- "saadparwaiz1/cmp_luasnip",
     "rafamadriz/friendly-snippets",
   },
   config = function()
     local ls = require("luasnip")
+
+    require("luasnip.loaders.from_vscode").lazy_load() -- Load snippets from friendly-snippets
 
     for _, filetype in ipairs({ "javascript", "typescript", "javascriptreact", "typescriptreact" }) do
       ls.add_snippets(filetype, require("snippets.javascript"))
@@ -22,10 +24,6 @@ return {
     end
 
     ls.add_snippets("json", require("snippets.json"))
-
-    -- require("luasnip").filetype_extend("typescript", { "javascript" })
-    -- require("luasnip").filetype_extend("javascriptreact", { "javascript" })
-    -- require("luasnip").filetype_extend("typescriptreact", { "javascriptreact" })
   end,
   keys = {
     {

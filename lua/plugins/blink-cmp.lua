@@ -1,8 +1,13 @@
+-- TODO: fix blink cmp deleting characters when accepting snippets
 return { -- optional blink completion source for require statements and module annotations
   "saghen/blink.cmp",
   version = "*",
   lazy = false,
-  -- dependencies = { "giuxtaposition/blink-cmp-copilot" },
+  dependencies = {
+    -- "giuxtaposition/blink-cmp-copilot",
+    -- require("plugins.lazydev"),
+    "folke/lazydev.nvim",
+  },
   opts = {
     completion = {
       menu = {
@@ -15,7 +20,9 @@ return { -- optional blink completion source for require statements and module a
         },
       },
     },
-    snippets = { preset = "luasnip" },
+    snippets = {
+      preset = "luasnip",
+    },
     -- ensure you have the `snippets` source (enabled by default)
     sources = {
       -- add lazydev to your completion providers
@@ -48,9 +55,9 @@ return { -- optional blink completion source for require statements and module a
       ["<C-e>"] = { "hide", "fallback" },
 
       ["<C- >"] = { "show_documentation", "fallback" },
-      ["<Right>"] = { "show_documentation", "fallback" },
+      -- ["<Right>"] = { "show_documentation", "fallback" },
       -- ["<C-h>"] = { "hide_documentation", "fallback" },
-      ["<Left>"] = { "hide_documentation", "fallback" },
+      -- ["<Left>"] = { "hide_documentation", "fallback" },
 
       -- ["<C-n>"] = { "show", "fallback" },
       -- ["<C-p>"] = { "show", "fallback" },

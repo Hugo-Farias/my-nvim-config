@@ -50,7 +50,7 @@ set("n", "<C-s>", "<cmd>up<CR>", { desc = "Save File" })
 -- vim.api.nvim_set_keymap("n", "<leader>f", ":format<cr>", { noremap = true, silent = true, desc = "Format buffer" })
 
 ---- Change directory to current file
-set("n", "cd", "<cmd>cd %:p:h | pwd<CR>", { desc = "CD to file directory" })
+-- set("n", "cd", "<cmd>cd %:p:h | pwd<CR>", { desc = "CD to file directory" })
 
 ---- Go up one directory
 set("n", "cu", "<cmd>cd ../ | pwd<CR>", { desc = "CD up a directory" })
@@ -133,22 +133,6 @@ set("n", "<leader>tw", function()
     vim.notify("Line Wrap: OFF")
   end
 end, { desc = "Toggle Line Wrap" })
-
--- TODO: Maybe get this working someday
----- Add TODO comment
--- set("n", "<leader>td", function()
---   vim.cmd.normal({ "oTODO: ", bang = true })
---   -- vim.cmd.normal({ "<Esc>", bang = true })
---   vim.cmd.stopinsert()
---
---   -- feed gcc as separate, complete keypresses
---   vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("gcc", true, false, true), "n", false)
---
---   -- small defer so A doesn't get swallowed
---   vim.defer_fn(function()
---     vim.cmd.normal({ "A", bang = true })
---   end, 1)
--- end, { desc = "Add a TODO comment" })
 
 ---- Mantain selection when indenting in visual mode
 set("x", "<", "<gv", { desc = "Indent left" })

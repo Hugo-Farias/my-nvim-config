@@ -12,6 +12,7 @@ return {
     },
     { "hrsh7th/cmp-nvim-lsp" },
     { "onsails/lspkind.nvim" },
+    { require("plugins.autopairs") },
   },
   config = function()
     vim.opt.signcolumn = "yes"

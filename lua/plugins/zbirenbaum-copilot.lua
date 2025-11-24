@@ -1,4 +1,4 @@
-local copilotStatus = true -- is copilot enabled on start up
+local copilotStatus = false -- is copilot enabled on start up
 -- local autoTriggerStatus = true
 
 local function copilotToggle()
@@ -60,7 +60,7 @@ return {
   },
   keys = {
     -- stylua: ignore start
-    { "<leader>tC", copilotToggle, desc = "Toggle Copilot" },
+    { "<leader>lc", copilotToggle, desc = "Toggle Copilot" },
     -- { "<C-d>", autoTriggerToggle, desc = "Copilot: Toggle Auto Trigger", mode = "i" },
     { "<leader>tp", "<cmd>Copilot panel<CR>", desc = "Toggle Copilot Panel" },
     { "<leader>cn", "<cmd>Copilot<CR>", desc = "Copilot: Status" },
