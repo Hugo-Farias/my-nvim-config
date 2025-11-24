@@ -1,4 +1,3 @@
--- TODO: fix luasnip deleting characters issue
 return {
   "L3MON4D3/LuaSnip",
   lazy = false,

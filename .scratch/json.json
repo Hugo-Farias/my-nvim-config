@@ -1,0 +1,14 @@
+{
+  "id": 1,
+  "name": "Example Item",
+  "active": true,
+  "tags": ["alpha", "beta", "gamma"],
+  "details": {
+    "createdAt": "2025-01-01T12:00:00Z",
+    "score": 42
+  },
+  "items": [
+    { "id": 101, "value": "foo" },
+    { "id": 102, "value": "bar" }
+  ]
+}

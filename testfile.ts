@@ -1,5 +1,3 @@
-newFunction();
-
 // utils.ts
 
 type User = {

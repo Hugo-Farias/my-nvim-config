@@ -1,4 +1,3 @@
--- TODO: fix blink cmp deleting characters when accepting snippets
 return { -- optional blink completion source for require statements and module annotations
   "saghen/blink.cmp",
   version = "*",
@@ -48,13 +47,16 @@ return { -- optional blink completion source for require statements and module a
       ["<Down>"] = { "select_next", "fallback" },
       ["<C-j>"] = { "select_next", "fallback" },
       ["<CR>"] = { "select_and_accept", "fallback" },
+
       -- ["<Tab>"] = { "none", "fallback" },
 
       -- disable a keymap from the preset
       -- ["<C-e>"] = false, -- or {}
+
       ["<C-e>"] = { "hide", "fallback" },
 
       ["<C- >"] = { "show_documentation", "fallback" },
+
       -- ["<Right>"] = { "show_documentation", "fallback" },
       -- ["<C-h>"] = { "hide_documentation", "fallback" },
       -- ["<Left>"] = { "hide_documentation", "fallback" },
