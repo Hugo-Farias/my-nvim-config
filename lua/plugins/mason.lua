@@ -52,6 +52,7 @@ return {
         for _, client in ipairs(vim.lsp.get_clients()) do
           require("workspace-diagnostics").populate_workspace_diagnostics(client, 0)
         end
+        vim.notify("Workspace Diagnostics has finished")
       end,
       mode = "n",
       desc = "Populate workspace diagnostics",

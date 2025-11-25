@@ -4,6 +4,7 @@ function EditorColorScheme(color)
   end
 
   vim.cmd.colorscheme(color)
+  vim.o.background = "dark"
 
   -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
   -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
@@ -38,9 +39,9 @@ local function theme(repo, name, style)
 end
 
 return {
-  -- theme("rose-pine/neovim", "rose-pine"),
+  theme("rose-pine/neovim", "rose-pine"),
   theme("folke/tokyonight.nvim"),
-  -- theme("ellisonleao/gruvbox.nvim"),
+  theme("ellisonleao/gruvbox.nvim"),
   theme("navarasu/onedark.nvim", "onedark", "darker"), -- { 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light' }
-  -- theme("nickkadutskyi/jb.nvim"),
+  theme("uhs-robert/oasis.nvim", "oasis", "night"), -- { 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light' }
 }

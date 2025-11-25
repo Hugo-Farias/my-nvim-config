@@ -3,6 +3,9 @@ local set = vim.keymap.set
 ---- 🛑 Disable Default Mappings
 -------------------------------------------------------------------------------
 
+---- Disable insert key in insert mode
+set("i", "insert", "<Nop>", { noremap = true, silent = true })
+
 ---- Disable "F1" (help)
 set({ "n", "i", "c", "x" }, "<F1>", "<Nop>", { noremap = true, silent = true })
 
@@ -346,6 +349,20 @@ set("x", "U", "<C-c>", { noremap = true, desc = "Exit visual mode (U override)" 
 -------------------------------------------------------------------------------
 ---- 🧭 Explorers/File Navigation
 -------------------------------------------------------------------------------
+
+---- Open in GitHub
+vim.keymap.set("n", "gX", function()
+  local target = vim.fn.expand("<cfile>")
+  if target == "" then
+    return
+  end
+
+  -- if it failed, fall back to GitHub
+  vim.ui.open("https://github.com/" .. target)
+end, {
+  noremap = true,
+  desc = "gx with GitHub fallback",
+})
 
 ---- Open Yazi
 -- set("n", "<leader>E", function()

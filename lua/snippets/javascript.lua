@@ -15,21 +15,28 @@ return {
     i(3),
     t({ "", "}" }),
   }),
+
   s({
     trig = ".af",
     wordTrig = false,
   }, {
     t("("), i(1), t(") => {"), i(2), t("}"),
   }),
+
   -- s({
   --   trig = ".log",
   --   wordTrig = false,
   -- }, {
   --   t("console.log("), i(1), t(")"),
   -- }),
+
   postfix({ trig = ".log", match_pattern = "[%w%._()%[%]{}]+" }, {
     f(function(_, parent)
       return "console.log(" .. parent.snippet.env.POSTFIX_MATCH .. ")"
     end),
+  }),
+
+  s(".imp", {
+    t("import "), i(2), t(" from '"), i(1), t("';"),
   }),
 }

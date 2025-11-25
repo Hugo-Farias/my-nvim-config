@@ -54,7 +54,9 @@
         },
       },
     })
+    vim.cmd("Codeium Toggle")
   end,
+
   keys = {
     { "<leader>lc", "<cmd>Codeium Toggle<CR>", desc = "Codeium: Toggle" },
   },
