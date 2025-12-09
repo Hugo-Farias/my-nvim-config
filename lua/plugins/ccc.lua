@@ -1,10 +1,7 @@
 return {
   "uga-rosa/ccc.nvim",
   lazy = true,
-  -- event = { "BufReadPre", "BufNewFile" },
-  event = "VeryLazy",
   opts = {
-    alpha = false,
     highlighter = {
       auto_enable = false,
       lsp = false,

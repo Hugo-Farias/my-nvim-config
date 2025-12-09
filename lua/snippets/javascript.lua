@@ -39,4 +39,18 @@ return {
   s(".imp", {
     t("import "), i(2), t(" from '"), i(1), t("';"),
   }),
+
+  -- querySelector
+  s(".qs", {
+    t('document.querySelector("'),
+    i(1),
+    t('")'),
+  }),
+
+  -- querySelectorAll
+  s(".qsa", {
+    t('document.querySelectorAll("'),
+    i(1),
+    t('")'),
+  }),
 }

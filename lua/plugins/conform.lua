@@ -30,7 +30,7 @@ return {
     -- },
     formatters = {
       stylua = {
-        inherit = false,
+        inherit = true,
         command = "stylua",
         args = {
           "--search-parent-directories",

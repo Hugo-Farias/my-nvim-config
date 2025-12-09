@@ -4,11 +4,11 @@ for i = 1, 9 do
   end, { desc = "which_key_ignore" })
 end
 
--- for i = 1, 9 do
---   vim.keymap.set("n", "<M-" .. i .. ">", function()
---     require("bufferline").go_to(i, true)
---   end, { desc = "which_key_ignore" })
--- end
+for i = 1, 9 do
+  vim.keymap.set("n", "<M-" .. i .. ">", function()
+    require("bufferline").go_to(i, true)
+  end, { desc = "which_key_ignore" })
+end
 
 -- vim.keymap.set("n", "<C-h>", function () require("bufferline").go_to(1, true) end, { desc = "Go to buffer 1" })
 -- vim.keymap.set("n", "<C-j>", function () require("bufferline").go_to(2, true) end, { desc = "Go to buffer 2" })

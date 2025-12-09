@@ -18,21 +18,21 @@ local function unsaved_buffers()
   return ""
 end
 
--- local clients_lsp = function()
---   -- local bufnr = vim.api.nvim_get_current_buf()
---
---   local clients = vim.lsp.get_clients()
---   if next(clients) == nil then
---     return ""
---   end
---
---   local c = {}
---   for _, client in pairs(clients) do
---     table.insert(c, client.name)
---   end
---   -- return " " .. table.concat(c, "|")
---   return " " .. table.concat(c, "|")
--- end
+local clients_lsp = function()
+  -- local bufnr = vim.api.nvim_get_current_buf()
+
+  local clients = vim.lsp.get_clients()
+  if next(clients) == nil then
+    return ""
+  end
+
+  local c = {}
+  for _, client in pairs(clients) do
+    table.insert(c, client.name)
+  end
+  -- return " " .. table.concat(c, "|")
+  return " " .. table.concat(c, "|")
+end
 
 return {
   "nvim-lualine/lualine.nvim",
@@ -59,7 +59,7 @@ return {
           "filetype",
           icon_only = true,
           padding = { left = 1, right = 0 },
-          colored = false,
+          colored = true,
         },
         {
           "filename",

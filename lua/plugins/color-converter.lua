@@ -5,8 +5,8 @@ return {
   opts = {
     round_hsl = true, -- rounds saturation and light when generating HSL colors.
     lowercase_hex = false, -- by default HEX colors will be uppercased.
-    hsl_pattern = "hsl([h]deg [s] [l])",
-    hsla_pattern = "hsl([h]deg [s] [l] / [a]%)",
+    hsl_pattern = "hsl([h] [s] [l])",
+    hsla_pattern = "hsl([h] [s] [l] / [a]%)",
     rgb_pattern = "rgb([r] [g] [b])",
     rgba_pattern = "rgb([r] [g] [b] / [a]%)",
   },

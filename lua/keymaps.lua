@@ -4,7 +4,7 @@ local set = vim.keymap.set
 -------------------------------------------------------------------------------
 
 ---- Disable insert key in insert mode
-set("i", "insert", "<Nop>", { noremap = true, silent = true })
+set("i", "<Insert>", "<Nop>", { noremap = true, silent = true })
 
 ---- Disable "F1" (help)
 set({ "n", "i", "c", "x" }, "<F1>", "<Nop>", { noremap = true, silent = true })
@@ -73,6 +73,7 @@ end, {})
 -------------------------------------------------------------------------------
 
 ---- Go to previous buffer
+set("n", "<C-6>", "gt", { desc = "Switch Tabs" })
 set("n", "gt", "<C-6>", { desc = "Go to previous buffer" })
 
 ---- Change focus between visible buffers/sidebars/etc...
@@ -105,17 +106,26 @@ set("n", "<M-Up>", "<cmd>horizontal res -5<CR>", { noremap = true, desc = "Resiz
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
 
+-- set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up" })
+-- set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down" })
+
 ---- Remape jk to gj gk for moving by display lines
 -- set({ "n", "x" }, "j", "gj", { desc = "Move down by display lines" })
 -- set({ "n", "x" }, "k", "gk", { desc = "Move up by display lines" })
 
-vim.keymap.set("n", "j", function()
+set("n", "j", function()
   return vim.v.count > 0 and "j" or "gj"
 end, { expr = true })
 
-vim.keymap.set("n", "k", function()
+set("n", "k", function()
   return vim.v.count > 0 and "k" or "gk"
 end, { expr = true })
+
+---- Start/end of line (non-blank)
+set({ "n", "x", "o" }, "gH", "^", { desc = "Start of line (non-blank)" })
+set({ "n", "x", "o" }, "gh", "g^", { desc = "Start of visual line (non-blank)" })
+set({ "n", "x", "o" }, "gL", "g_", { desc = "End of line (non-blank)" })
+set({ "n", "x", "o" }, "gl", "g$", { desc = "End of visual line (non-blank)" })
 
 ---- Toggle Relative Line Numbers
 set("n", "<leader>tn", function()
@@ -154,8 +164,8 @@ set("n", "<leader>fC", function()
   vim.notify("Diff Mode Off")
 end, { desc = "Snacks: Close File Compare" })
 
-set("n", "K", "<cmd>bnext<CR>", { desc = "Next Buffer" })
-set("n", "J", "<cmd>bprev<CR>", { desc = "Previous Buffer" })
+-- set("n", "K", "<cmd>bnext<CR>", { desc = "Next Buffer" })
+-- set("n", "J", "<cmd>bprev<CR>", { desc = "Previous Buffer" })
 
 -- set("n", "gw", "=", { desc = "Align text" })
 
@@ -309,12 +319,6 @@ for _, key in ipairs({ "x", "X" }) do
   set({ "n", "x" }, key, '"_' .. key, { noremap = true, silent = true, desc = "Delete char without yanking" })
 end
 
----- Start/end of line (non-blank)
--- set({ "n", "x", "o" }, "gh", "^", { desc = "Start of line (non-blank)" })
-set({ "n", "x", "o" }, "gh", "g^", { desc = "Start of line (non-blank)" })
--- set({ "n", "x", "o" }, "gl", "g_", { desc = "End of line (non-blank)" })
-set({ "n", "x", "o" }, "gl", "g$", { desc = "End of line (non-blank)" })
-
 ---- Exit insert mode
 set({ "i", "c" }, "jk", "<Esc>", { desc = "Exit insert mode (jk)" })
 set({ "i", "c" }, "kj", "<Esc>", { desc = "Exit insert mode (kj)" })
@@ -361,7 +365,7 @@ vim.keymap.set("n", "gX", function()
   vim.ui.open("https://github.com/" .. target)
 end, {
   noremap = true,
-  desc = "gx with GitHub fallback",
+  desc = "Open in GitHub",
 })
 
 ---- Open Yazi

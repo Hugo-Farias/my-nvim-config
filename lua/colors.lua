@@ -4,7 +4,7 @@ function EditorColorScheme(color)
   end
 
   vim.cmd.colorscheme(color)
-  vim.o.background = "dark"
+  -- vim.o.background = "dark"
 
   -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
   -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
@@ -20,14 +20,14 @@ local function theme(repo, name, style)
   return {
     repo,
     name = name,
-    lazy = false,
+    lazy = true,
     priority = 1000,
     opts = {
       style = style or "",
       -- transparent = true,
       styles = {
-        sidebars = "transparent",
-        floats = "transparent",
+        -- sidebars = "transparent",
+        -- floats = "transparent",
         keywords = { italic = true },
         functions = { italic = true },
       },
@@ -41,7 +41,12 @@ end
 return {
   theme("rose-pine/neovim", "rose-pine"),
   theme("folke/tokyonight.nvim"),
-  theme("ellisonleao/gruvbox.nvim"),
   theme("navarasu/onedark.nvim", "onedark", "darker"), -- { 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light' }
-  theme("uhs-robert/oasis.nvim", "oasis", "night"), -- { 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light' }
+  -- theme("uhs-robert/oasis.nvim", "oasis"),
+  theme("vague-theme/vague.nvim", "vague"),
+  -- theme("catppuccin/nvim", "catppuccin"),
+  -- theme("rebelot/kanagawa.nvim", "kanagawa"),
+  theme("EdenEast/nightfox.nvim", "nightfox"),
+  theme("sainnhe/gruvbox-material", "gruvbox-material"),
+  -- theme("scottmckendry/cyberdream.nvim", "cyberdream"),
 }

@@ -26,7 +26,7 @@ require("lazy").setup({
 
   ---- Formatter ----
   { require("plugins.conform") },
-  -- { require("plugins.nvim-ts-autotag") },
+  { require("plugins.nvim-ts-autotag") },
   { require("plugins.rainbow-delimiters") },
 
   ---- AutoComplete ----
@@ -41,7 +41,7 @@ require("lazy").setup({
   { require("plugins.windsurf") },
 
   ---- Mini Compilation ----
-  { require("plugins.mini-icons") },
+  -- { require("plugins.mini-icons") },
   { require("plugins.mini-surround") },
   { require("plugins.mini-pairs") },
   { require("plugins.mini-ai") },

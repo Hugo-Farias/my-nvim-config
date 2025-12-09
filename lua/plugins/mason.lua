@@ -24,14 +24,11 @@ return {
       ensure_installed = {
         "lua_ls",
         "ts_ls",
-        -- "eslint",
         "html",
         "cssls",
         "stylua",
         "biome",
-        "jsonls",
-        -- "bashls",
-        -- "powershell_es",
+        -- "jsonls",
         "tailwindcss",
       },
     })
@@ -49,8 +46,9 @@ return {
     {
       "<space>x",
       function()
+        local diag = require("workspace-diagnostics")
         for _, client in ipairs(vim.lsp.get_clients()) do
-          require("workspace-diagnostics").populate_workspace_diagnostics(client, 0)
+          diag.populate_workspace_diagnostics(client, 0)
         end
         vim.notify("Workspace Diagnostics has finished")
       end,

@@ -1,5 +1,6 @@
 return {
   "nvim-treesitter/nvim-treesitter-context",
+  lazy = false,
   version = "*",
   opts = {
     enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
@@ -15,5 +16,12 @@ return {
     separator = nil,
     zindex = 20, -- The Z-index of the context window
     on_attach = false, -- (fun(buf: integer): boolean) return false to disable attaching}
+  },
+  keys = {
+    {
+      "[c",
+      "<cmd>lua require('treesitter-context').go_to_context(vim.v.count1)<CR>",
+      desc = "Treesitter Context: Go to context",
+    },
   },
 }
