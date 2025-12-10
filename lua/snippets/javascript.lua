@@ -24,7 +24,7 @@ return {
   }),
 
   -- s({
-  --   trig = ".log",
+  --   trig = "log",
   --   wordTrig = false,
   -- }, {
   --   t("console.log("), i(1), t(")"),

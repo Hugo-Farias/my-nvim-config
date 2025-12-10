@@ -80,15 +80,15 @@ return {
       },
       lualine_x = {
         {
-          "diagnostics",
-          symbols = { error = " ", warn = " ", info = " ", hint = " " },
-          update_in_insert = true,
-        },
-        {
           unsaved_buffers,
           "encoding",
           "fileformat",
           "filetype",
+        },
+        {
+          "diagnostics",
+          symbols = { error = " ", warn = " ", info = " ", hint = " " },
+          update_in_insert = true,
         },
       },
       -- lualine_y = { clients_lsp },

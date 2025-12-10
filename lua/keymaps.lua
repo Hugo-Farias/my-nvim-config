@@ -40,11 +40,21 @@ set("n", "<leader>rs", function()
   vim.cmd("!& %")
 end, { desc = "Execute script inside Neovim" })
 
+---- Show current working directory
 set("n", "cy", "<cmd>pwd<CR>", { desc = "Show current working directory" })
 
+---- Change directory to git root
 set("n", "cp", function()
   SmartChangeDir()
 end, { desc = "CD to git root" })
+
+---- Go up one directory
+set("n", "cu", "<cmd>cd ../ | pwd<CR>", { desc = "CD up a directory" })
+
+---- Show current file directory
+set("n", "co", function()
+  print(vim.fn.expand("%:p:h"))
+end, { desc = "Show current file directory" })
 
 ---- Quick Save
 set("n", "<C-s>", "<cmd>up<CR>", { desc = "Save File" })
@@ -54,14 +64,6 @@ set("n", "<C-s>", "<cmd>up<CR>", { desc = "Save File" })
 
 ---- Change directory to current file
 -- set("n", "cd", "<cmd>cd %:p:h | pwd<CR>", { desc = "CD to file directory" })
-
----- Go up one directory
-set("n", "cu", "<cmd>cd ../ | pwd<CR>", { desc = "CD up a directory" })
-
----- Show current working directory
-set("n", "co", function()
-  print(vim.fn.expand("%:p:h"))
-end, { desc = "Show current working directory" })
 
 ---- Save and source file
 vim.api.nvim_create_user_command("W", function()
@@ -325,9 +327,10 @@ set({ "i", "c" }, "kj", "<Esc>", { desc = "Exit insert mode (kj)" })
 set({ "i", "c" }, "JK", "<Esc>", { desc = "Exit insert mode (JK)" })
 set({ "i", "c" }, "KJ", "<Esc>", { desc = "Exit insert mode (KJ)" })
 
----- Join lines
+---- Join lines and delete space
 -- set("n", "<leader>jl", "J", { noremap = true, silent = true, desc = "Join lines" })
-set("n", "L", "m0J`0<cmd>delm 0<CR>", { silent = true, desc = "Join lines" })
+set("n", "J", "m0J`0<cmd>delm 0<CR>", { silent = true, desc = "Join lines" })
+set("n", "gJ", "m0gJ`0<cmd>delm 0<CR>", { silent = true, desc = "Join lines without space" })
 
 ----Add empty line under
 set("n", "<C-k>", "m0o<Esc>`0<cmd>delm 0<CR>", { desc = "Add empty line under", noremap = true })
