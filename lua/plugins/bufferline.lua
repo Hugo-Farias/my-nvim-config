@@ -49,7 +49,7 @@ return {
     },
   },
   keys = {
-    { "J", "<cmd>BufferLineCyclePrev<CR>", desc = "Bufferline: Cycle Prev" },
-    { "K", "<cmd>BufferLineCycleNext<CR>", desc = "Bufferline: Cycle Next" },
+    { "<M-j>", "<cmd>BufferLineCyclePrev<CR>", desc = "Bufferline: Cycle Prev" },
+    { "<M-k>", "<cmd>BufferLineCycleNext<CR>", desc = "Bufferline: Cycle Next" },
   },
 }

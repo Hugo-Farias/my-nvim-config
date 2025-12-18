@@ -20,16 +20,16 @@ return {
     require("mason").setup()
 
     require("mason-lspconfig").setup({
-      automatic_enable = false,
+      automatic_enable = true,
       ensure_installed = {
         "lua_ls",
-        "ts_ls",
-        "html",
-        "cssls",
+        -- "ts_ls",
+        -- "html",
+        -- "cssls",
         "stylua",
-        "biome",
+        -- "biome",
         -- "jsonls",
-        "tailwindcss",
+        -- "tailwindcss",
       },
     })
 
@@ -38,9 +38,9 @@ return {
     --   root_dir = vim.fs.root(0, { "biome.json", "package.json", ".git" }),
     -- })
 
-    for _, server in ipairs(require("mason-lspconfig").get_installed_servers()) do
-      vim.lsp.enable(server)
-    end
+    -- for _, server in ipairs(require("mason-lspconfig").get_installed_servers()) do
+    --   vim.lsp.enable(server)
+    -- end
   end,
   keys = {
     {

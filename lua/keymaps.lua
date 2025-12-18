@@ -40,21 +40,21 @@ set("n", "<leader>rs", function()
   vim.cmd("!& %")
 end, { desc = "Execute script inside Neovim" })
 
----- Show current working directory
-set("n", "cy", "<cmd>pwd<CR>", { desc = "Show current working directory" })
-
 ---- Change directory to git root
-set("n", "cp", function()
+set("n", "cd", function()
   SmartChangeDir()
-end, { desc = "CD to git root" })
+end, { desc = "CD to git root or file path" })
 
 ---- Go up one directory
 set("n", "cu", "<cmd>cd ../ | pwd<CR>", { desc = "CD up a directory" })
 
 ---- Show current file directory
-set("n", "co", function()
-  print(vim.fn.expand("%:p:h"))
-end, { desc = "Show current file directory" })
+set("n", "cp", function()
+  local cwd = vim.fn.getcwd()
+  local file = vim.fn.expand("%:p")
+
+  vim.notify(("CWD: %s\nFile: %s"):format(cwd, file), vim.log.levels.INFO)
+end, { desc = "Print cwd and file path" })
 
 ---- Quick Save
 set("n", "<C-s>", "<cmd>up<CR>", { desc = "Save File" })
@@ -75,7 +75,7 @@ end, {})
 -------------------------------------------------------------------------------
 
 ---- Go to previous buffer
-set("n", "<C-6>", "gt", { desc = "Switch Tabs" })
+set("n", "<C-6>", "gt", { desc = "Switch tabs" })
 set("n", "gt", "<C-6>", { desc = "Go to previous buffer" })
 
 ---- Change focus between visible buffers/sidebars/etc...
@@ -108,6 +108,12 @@ set("n", "<M-Up>", "<cmd>horizontal res -5<CR>", { noremap = true, desc = "Resiz
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
 
+------ Alternate mappings
+---- Delete line
+set("n", "do", "dd", { desc = "Delete line" })
+set("n", "co", "cc", { desc = "Change line" })
+set("n", "yo", "yy", { desc = "Yank line" })
+
 -- set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up" })
 -- set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down" })
 
@@ -117,11 +123,17 @@ set("n", "<M-Up>", "<cmd>horizontal res -5<CR>", { noremap = true, desc = "Resiz
 
 set("n", "j", function()
   return vim.v.count > 0 and "j" or "gj"
-end, { expr = true })
+end, {
+  expr = true,
+  desc = "Move down by display line",
+})
 
 set("n", "k", function()
   return vim.v.count > 0 and "k" or "gk"
-end, { expr = true })
+end, {
+  expr = true,
+  desc = "Move up by display line",
+})
 
 ---- Start/end of line (non-blank)
 set({ "n", "x", "o" }, "gH", "^", { desc = "Start of line (non-blank)" })
@@ -158,16 +170,16 @@ set("n", "<leader>fc", function()
   vim.cmd("diffthis")
   vim.cmd("diffupdate")
   vim.notify("Diff Mode On")
-end, { desc = "Snacks: Compare Files in Split" })
+end, { desc = "Turn on diff mode" })
 
 -- Turn off diff mode
 set("n", "<leader>fC", function()
   vim.cmd("diffoff")
   vim.notify("Diff Mode Off")
-end, { desc = "Snacks: Close File Compare" })
+end, { desc = "Turn off diff mode" })
 
--- set("n", "K", "<cmd>bnext<CR>", { desc = "Next Buffer" })
--- set("n", "J", "<cmd>bprev<CR>", { desc = "Previous Buffer" })
+set("n", "<M-k>", "<cmd>bnext<CR>", { desc = "Next Buffer" })
+set("n", "<M-j>", "<cmd>bprev<CR>", { desc = "Previous Buffer" })
 
 -- set("n", "gw", "=", { desc = "Align text" })
 
@@ -341,10 +353,7 @@ set("n", "<C-k>", "m0o<Esc>`0<cmd>delm 0<CR>", { desc = "Add empty line under", 
 -- set("i", "<C-j>", "<C-n>", { desc = "Select Next", noremap = true })
 
 ---- Split lines downwards
-set("n", "<C-j>", "m0i<CR><Esc>==`0<cmd>delm 0<CR>", {
-  desc = "Split line downwards",
-  noremap = true,
-})
+set("n", "<C-j>", "m0i<CR><Esc>==`0<cmd>delm 0<CR>", { desc = "Split line downwards", noremap = true })
 
 ---- Visual lowercase
 set("x", "gL", "gu", { noremap = true, desc = "Visual lowercase (gu)" })

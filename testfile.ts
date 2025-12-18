@@ -16,7 +16,7 @@ const arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
 
 arr.forEach((v: any) => {
   console.log(v);
-  // return "lua/plugins/mason.lua";
+  return "lua/plugins/mason.lua";
 });
 
 const getUserById = (id: number): User | null => {

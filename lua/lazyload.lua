@@ -14,7 +14,7 @@ require("lazy").setup({
   { require("plugins.which-key") },
   { require("plugins.gitsigns") },
   { require("plugins.timber") },
-  { "Aasim-A/scrollEOF.nvim", event = { "CursorMoved", "WinScrolled" }, opts = {} },
+  -- { "Aasim-A/scrollEOF.nvim", event = { "CursorMoved", "WinScrolled" }, opts = {} },
   { require("plugins.neoscroll") }, -- Smooth Scrolling
   -- { require("plugins.render-markdown") },
 
@@ -37,8 +37,8 @@ require("lazy").setup({
   { require("plugins.luasnip") },
 
   ---- AI assistant ----
-  -- { require("plugins.zbirenbaum-copilot") },
-  { require("plugins.windsurf") },
+  { require("plugins.zbirenbaum-copilot") },
+  -- { require("plugins.windsurf") },
 
   ---- Mini Compilation ----
   -- { require("plugins.mini-icons") },

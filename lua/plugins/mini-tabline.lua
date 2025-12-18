@@ -12,7 +12,7 @@ return {
   },
   cond = not vim.g.vscode, -- Optional: avoid loading in VSCode
   keys = {
-    { "K", "<cmd>bnext<CR>", desc = "Next Buffer" },
-    { "J", "<cmd>bprev<CR>", desc = "Previous Buffer" },
+    -- { "K", "<cmd>bnext<CR>", desc = "Next Buffer" },
+    -- { "J", "<cmd>bprev<CR>", desc = "Previous Buffer" },
   },
 }
