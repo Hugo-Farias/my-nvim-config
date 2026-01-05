@@ -11,4 +11,4 @@ require("keymaps")
 require("set")
 require("lazyload")
 
-EditorColorScheme("nightfox")
+EditorColorScheme("onedark")

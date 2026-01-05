@@ -113,6 +113,7 @@ set("n", "<M-Up>", "<cmd>horizontal res -5<CR>", { noremap = true, desc = "Resiz
 set("n", "do", "dd", { desc = "Delete line" })
 set("n", "co", "cc", { desc = "Change line" })
 set("n", "yo", "yy", { desc = "Yank line" })
+set("n", "g~o", "g~g~", { desc = "Toggle case line" })
 
 -- set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up" })
 -- set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down" })

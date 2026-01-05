@@ -54,6 +54,6 @@ return {
     },
   },
   keys = {
-    { "<leader>E", "<cmd>lua MiniFiles.open()<CR>", desc = "MiniFilesExplorer" },
+    { "<leader>-", "<cmd>lua MiniFiles.open()<CR>", desc = "MiniFilesExplorer" },
   },
 }

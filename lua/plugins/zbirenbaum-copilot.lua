@@ -23,12 +23,12 @@ return {
   opts = {
     filetypes = {
       javascript = true,
+      javascriptreact = true,
       typescript = true,
+      typescriptreact = true,
       lua = true,
       css = true,
       html = true,
-      jsx = true,
-      tsx = true,
       json = true,
       python = true,
       go = true,

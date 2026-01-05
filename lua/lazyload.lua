@@ -20,6 +20,7 @@ require("lazy").setup({
 
   ---- File Explorer ----
   { require("plugins.yazi") },
+  -- { require("plugins.mini-files") },
 
   ---- Multi Cursor ----
   { require("plugins.multicursor") },
@@ -30,8 +31,8 @@ require("lazy").setup({
   { require("plugins.rainbow-delimiters") },
 
   ---- AutoComplete ----
-  -- { require("plugins.nvim-cmp") },
-  { require("plugins.blink-cmp") },
+  { require("plugins.nvim-cmp") },
+  -- { require("plugins.blink-cmp") },
 
   ---- Snippets ----
   { require("plugins.luasnip") },

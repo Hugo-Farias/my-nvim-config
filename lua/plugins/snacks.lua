@@ -179,7 +179,7 @@ return {
     },
     -- stylua: ignore start
     { "<leader><leader>", "<cmd>lua Snacks.picker.files()<CR>", desc = "Snacks: Search Files" },
-    { "<C-p>", "<cmd>lua Snacks.picker.files()<CR>", desc = "Snacks: Search Files" },
+    { "<C-e>", "<cmd>lua Snacks.picker.files()<CR>", desc = "Snacks: Search Files" },
     { "<C- >", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
     { "<leader>sf", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
     { "<leader>sg", "<cmd>lua Snacks.picker.git_diff()<CR>", desc = "Snacks: Search Git Diffs" },
@@ -191,7 +191,7 @@ return {
     { "<leader>/", "<cmd>lua Snacks.picker.grep()<CR>", desc = "Snacks: Search Grep" },
     { "<leader>sw", "<cmd>lua Snacks.picker.grep_word()<CR>", desc = "Snacks: Search Word Grep", mode = { "n", "x" } },
     -- { "<leader>/", "<cmd>lua Snacks.picker.grep_word()<CR>", desc = "Snacks: Search Selection Grep", mode = "x" },
-    { "<C-e>", "<cmd>lua Snacks.picker.buffers()<CR>", desc = "Snacks: Search Buffers" },
+    { "<C-p>", "<cmd>lua Snacks.picker.buffers()<CR>", desc = "Snacks: Search Buffers" },
     { "<leader>sb", "<cmd>lua Snacks.picker.buffers()<CR>", desc = "Snacks: Search Buffers" },
     { "<leader>sc", "<cmd>lua Snacks.picker.commands()<CR>", desc = "Snacks: Search Commands" },
     { "<leader>sC", "<cmd>lua Snacks.picker.colorschemes()<CR>", desc = "Snacks: Search Color Schemes" },

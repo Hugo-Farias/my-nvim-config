@@ -22,7 +22,7 @@ return {
         "RainbowDelimiterYellow",
         "RainbowDelimiterCyan",
         "RainbowDelimiterOrange",
-        "RainbowDelimiterGreen",
+        -- "RainbowDelimiterGreen",
         "RainbowDelimiterViolet",
       },
     }

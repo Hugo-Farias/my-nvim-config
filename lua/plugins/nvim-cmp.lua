@@ -1,3 +1,16 @@
+local function border(hl_name)
+  return {
+    { "╭", hl_name },
+    { "─", hl_name },
+    { "╮", hl_name },
+    { "│", hl_name },
+    { "╯", hl_name },
+    { "─", hl_name },
+    { "╰", hl_name },
+    { "│", hl_name },
+  }
+end
+
 return {
   "hrsh7th/nvim-cmp",
   dependencies = {
@@ -34,9 +47,15 @@ return {
         end,
       },
       window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
+        completion = cmp.config.window.bordered({
+          border = border("CmpBorder"),
+          winhighlight = "Normal:CmpPmenu,CursorLine:PmenuSel,Search:None",
+        }),
+        documentation = cmp.config.window.bordered({
+          border = border("CmpBorder"),
+        }),
       },
+
       mapping = cmp.mapping.preset.insert({
         ["<C-Down>"] = cmp.mapping.scroll_docs(4),
         ["<C-Up>"] = cmp.mapping.scroll_docs(-4),
