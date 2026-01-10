@@ -36,14 +36,14 @@ return {
       function()
         require("nvim-treesitter-textobjects.move").goto_previous("@function.outer", "textobjects")
       end,
-      desc = "Go to Previous Function Start",
+      desc = "Go to Previous Function",
     },
     {
       "]f",
       function()
         require("nvim-treesitter-textobjects.move").goto_next("@function.outer", "textobjects")
       end,
-      desc = "Go to Next Function End",
+      desc = "Go to Next Function",
     },
   },
 }

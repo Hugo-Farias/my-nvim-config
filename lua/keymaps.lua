@@ -252,6 +252,9 @@ set({ "n", "x" }, "<leader>y", '"+y', { desc = "Yank into system's clipboard" })
 
 set({ "n", "x" }, "<leader>Y", '"+y$', { desc = "which_key_ignore" })
 
+---- 'q' to quit
+-- set({ "n", "x" }, "qq", "<cmd>close<CR>", { desc = "close", silent = true })
+
 ---- `qp` to play macro
 set({ "n", "x" }, "qe", function()
   vim.api.nvim_feedkeys("@", "n", false)

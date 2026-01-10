@@ -151,6 +151,7 @@ end
 
 return {
   "folke/snacks.nvim",
+  dependencies = { "nvim-tree/nvim-web-devicons" },
   priority = 1000,
   lazy = false,
   opts = {
@@ -201,6 +202,7 @@ return {
     { "<leader>s'", "<cmd>lua Snacks.picker.registers()<CR>", desc = "Snacks: Search Registers" },
     { "<leader>s;", "<cmd>lua Snacks.picker.command_history()<CR>", desc = "Snacks: Search Command History" },
     { "<leader>n", "<cmd>lua Snacks.notifier.show_history()<CR>", desc = "Snacks: Show Notification History" },
+    { "<leader>sn", "<cmd>lua Snacks.picker.notifications()<CR>", desc = "Snacks: Show Notification Picker" },
     { "<leader>sm", "<cmd>lua Snacks.picker.marks()<CR>", desc = "Snacks: Search Marks" },
     { "<leader>sz", "<cmd>lua Snacks.picker.zoxide()<CR>", desc = "Snacks: Search Zoxide" },
     { "<leader>sy", searchScratchFiles, desc = "Snacks: Search Custom Scratch Files" },

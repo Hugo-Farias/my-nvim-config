@@ -3,7 +3,7 @@ require("lazy").setup({
 
   { require("plugins.treesitter") },
   { require("plugins.treesitter-context") },
-  { require("plugins.treesitter-textobjects") },
+  -- { require("plugins.treesitter-textobjects") },
   { require("lsp") },
   { require("plugins.mason") },
   { require("plugins.todo-comments") },
@@ -17,6 +17,9 @@ require("lazy").setup({
   -- { "Aasim-A/scrollEOF.nvim", event = { "CursorMoved", "WinScrolled" }, opts = {} },
   { require("plugins.neoscroll") }, -- Smooth Scrolling
   -- { require("plugins.render-markdown") },
+
+  -- { require("plugins.noice") },
+  -- { require("plugins.notify") },
 
   ---- File Explorer ----
   { require("plugins.yazi") },

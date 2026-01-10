@@ -24,10 +24,10 @@ local function theme(repo, name, style)
     priority = 1000,
     opts = {
       style = style or "",
-      -- transparent = true,
+      transparent = true,
       styles = {
-        -- sidebars = "transparent",
-        -- floats = "transparent",
+        sidebars = "transparent",
+        floats = "transparent",
         keywords = { italic = true },
         functions = { italic = true },
       },
@@ -39,8 +39,8 @@ local function theme(repo, name, style)
 end
 
 return {
-  theme("rose-pine/neovim", "rose-pine"),
-  -- theme("folke/tokyonight.nvim"),
+  -- theme("rose-pine/neovim", "rose-pine"),
+  theme("folke/tokyonight.nvim"),
   theme("navarasu/onedark.nvim", "onedark", "darker"), -- { 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light' }
   -- theme("uhs-robert/oasis.nvim", "oasis"),
   theme("vague-theme/vague.nvim", "vague"),
