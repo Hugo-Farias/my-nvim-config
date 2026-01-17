@@ -7,6 +7,16 @@ vim.api.nvim_create_autocmd("VimEnter", {
   end,
 })
 
+---- Prevent d or y operators from yanking into register if register would be empty
+-- Save unnamed register before yank/delete
+vim.api.nvim_create_autocmd("ModeChanged", {
+  pattern = "*:[nv]", -- From any mode into Normal/Visual
+  callback = function()
+    vim.g._reg_backup = vim.fn.getreg('"')
+    vim.g._regtype_backup = vim.fn.getregtype('"')
+  end,
+})
+
 -- Auto Set ini filetype for Equalizer APO config.txt
 -- vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 --   pattern = "C:/Program Files/EqualizerAPO/config/config.txt",
@@ -16,7 +26,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 --   desc = "Set filetype for Equalizer APO config.txt", -- Optional: a description for the autocmd
 -- })
 
--- Before leaving and after buffer opened
+-- Before quiting and after buffer opened
 vim.api.nvim_create_autocmd({ "QuitPre", "BufAdd" }, {
   callback = function()
     SmartSaveSession()

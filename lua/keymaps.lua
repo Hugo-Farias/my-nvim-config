@@ -122,14 +122,14 @@ set("n", "g~o", "g~g~", { desc = "Toggle case line" })
 -- set({ "n", "x" }, "j", "gj", { desc = "Move down by display lines" })
 -- set({ "n", "x" }, "k", "gk", { desc = "Move up by display lines" })
 
-set("n", "j", function()
+set({ "n", "x", "o" }, "j", function()
   return vim.v.count > 0 and "j" or "gj"
 end, {
   expr = true,
   desc = "Move down by display line",
 })
 
-set("n", "k", function()
+set({ "n", "x", "o" }, "k", function()
   return vim.v.count > 0 and "k" or "gk"
 end, {
   expr = true,
@@ -253,7 +253,7 @@ set({ "n", "x" }, "<leader>y", '"+y', { desc = "Yank into system's clipboard" })
 set({ "n", "x" }, "<leader>Y", '"+y$', { desc = "which_key_ignore" })
 
 ---- 'q' to quit
--- set({ "n", "x" }, "qq", "<cmd>close<CR>", { desc = "close", silent = true })
+set({ "n", "x" }, "qq", "<cmd>close<CR>", { desc = "close", silent = true })
 
 ---- `qp` to play macro
 set({ "n", "x" }, "qe", function()
@@ -269,16 +269,6 @@ end, { noremap = true, desc = "Replay last played macro" })
 set({ "n", "x" }, "qr", function()
   vim.api.nvim_feedkeys("q", "n", false)
 end, { noremap = true, desc = "Start recording macro" })
-
----- Prevent d or y operators from yanking into register if register would be empty
--- Save unnamed register before yank/delete
-vim.api.nvim_create_autocmd("ModeChanged", {
-  pattern = "*:[nv]", -- From any mode into Normal/Visual
-  callback = function()
-    vim.g._reg_backup = vim.fn.getreg('"')
-    vim.g._regtype_backup = vim.fn.getregtype('"')
-  end,
-})
 
 ---- Clear Search Query
 set("n", "<leader>ll", "<cmd>redraw | nohlsearch<CR>", { desc = "Clear Highlight Search" })
@@ -304,6 +294,7 @@ set("n", "*", "*N", { desc = "'*' Keeps cursor on the name occurrence" })
 
 ---- Duplicate Line
 set("n", "H", "<cmd>copy .<CR>", { desc = "Duplicate Line" })
+set("n", "<c-h>", "<cmd>copy .<CR>", { desc = "Duplicate Line" })
 
 ---- Move lines
 set("x", "<C-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })

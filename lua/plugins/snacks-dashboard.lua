@@ -88,7 +88,7 @@ return {
       },
       { icon = "z", key = "z", desc = "zoxide", action = ":lua Snacks.dashboard.pick('zoxide')" },
       { icon = " ", key = "s", desc = "Previous Session", action = loadPreviousSession },
-      { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
+      { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
       { icon = " ", key = "q", desc = "Quit", action = ":qa" },
     },
   },

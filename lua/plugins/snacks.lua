@@ -173,8 +173,11 @@ return {
     {
       "<leader><Tab>",
       function()
-        require("snacks").picker.resume()
-        vim.cmd.stopinsert()
+        require("snacks").picker.resume({
+          on_show = function()
+            vim.cmd.stopinsert()
+          end,
+        })
       end,
       desc = "Snacks: Resume Search",
     },
