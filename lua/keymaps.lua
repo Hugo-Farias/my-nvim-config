@@ -114,14 +114,17 @@ set("n", "do", "dd", { desc = "Delete line" })
 set("n", "co", "cc", { desc = "Change line" })
 set("n", "yo", "yy", { desc = "Yank line" })
 set("n", "g~o", "g~g~", { desc = "Toggle case line" })
+set("n", "gco", "<cmd>norm gccA<CR>", { desc = "Toggle comment line" })
+
+set("n", "<leader>T", function()
+  vim.cmd("norm OTODO:  gccA")
+  vim.cmd.startinsert()
+end, { desc = "Insert TODO comment" })
 
 -- set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up" })
 -- set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down" })
 
----- Remape jk to gj gk for moving by display lines
--- set({ "n", "x" }, "j", "gj", { desc = "Move down by display lines" })
--- set({ "n", "x" }, "k", "gk", { desc = "Move up by display lines" })
-
+---- Remap jk to gj gk for moving by display lines
 set({ "n", "x", "o" }, "j", function()
   return vim.v.count > 0 and "j" or "gj"
 end, {
