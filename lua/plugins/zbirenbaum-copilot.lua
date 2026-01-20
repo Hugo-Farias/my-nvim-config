@@ -14,7 +14,7 @@ end
 --   autoTriggerStatus = not autoTriggerStatus
 --   vim.notify(autoTriggerStatus and notifyText .. " On" or notifyText .. " Off")
 -- end
-
+--
 return {
   "zbirenbaum/copilot.lua",
   version = false,
@@ -61,9 +61,10 @@ return {
   keys = {
     -- stylua: ignore start
     { "<leader>ta", copilotToggle, desc = "Toggle Agent: Copilot" },
+    { "<leader>tA", "<cmd>Copilot status<CR>", desc = "Toggle Agent Status: Copilot" },
     -- { "<C-d>", autoTriggerToggle, desc = "Copilot: Toggle Auto Trigger", mode = "i" },
+    { "<C-d>", "<cmd>Copilot suggestion dismiss<CR>", desc = "Copilot: Toggle Auto Trigger", mode = "i" },
     { "<leader>tp", "<cmd>Copilot panel<CR>", desc = "Toggle Agent Panel" },
-    { "<leader>cn", "<cmd>Copilot<CR>", desc = "Copilot: Status" },
     { "<Tab>", "<cmd>lua require('copilot.suggestion').accept_line()<CR>", desc = "Copilot: Accept Line", mode = "i" },
     { "<C-l>", "<cmd>lua require('copilot.suggestion').accept_word()<CR>", desc = "Copilot: Accept Word", mode = "i" },
     { "<C-y>", "<cmd>lua require('copilot.suggestion').accept()<CR>", desc = "Copilot: Accept All", mode = "i" },

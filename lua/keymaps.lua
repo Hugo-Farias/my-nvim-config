@@ -23,8 +23,8 @@ end
 ---- Disable join line in visual mode
 -- set("x", "J", "<Nop>", { desc = "Disable join line in visual line" })
 
----- Remove default lowercase mapping (gu)
-set({ "n", "x" }, "gu", "<Nop>")
+---- Remove default lowercase mapping (gu) in normal mode
+set("n", "gu", "<Nop>")
 
 -------------------------------------------------------------------------------
 ---- 💾 Save / Format / File Ops
@@ -74,6 +74,18 @@ end, {})
 ---- 🪟 Buffers & Windows
 -------------------------------------------------------------------------------
 
+---- Reload Chrome
+set("n", "<F5>", function()
+  vim.fn.system({
+    "powershell",
+    "-NoProfile",
+    "-Command",
+    'ii "D:/Users/Hugo/Documents/AutoHotKey/Reload Chrome.ahk"'
+  })
+  vim.notify("Reload Triggered")
+end, { desc = "Reload Chrome" })
+
+
 ---- Go to previous buffer
 set("n", "<C-6>", "gt", { desc = "Switch tabs" })
 set("n", "gt", "<C-6>", { desc = "Go to previous buffer" })
@@ -116,8 +128,13 @@ set("n", "yo", "yy", { desc = "Yank line" })
 set("n", "g~o", "g~g~", { desc = "Toggle case line" })
 set("n", "gco", "<cmd>norm gccA<CR>", { desc = "Toggle comment line" })
 
-set("n", "<leader>T", function()
+set("n", "<C-t>k", function()
   vim.cmd("norm OTODO:  gccA")
+  vim.cmd.startinsert()
+end, { desc = "Insert TODO comment" })
+
+set("n", "<C-t>j", function()
+  vim.cmd("norm oTODO:  gccA")
   vim.cmd.startinsert()
 end, { desc = "Insert TODO comment" })
 
@@ -139,8 +156,11 @@ end, {
   desc = "Move up by display line",
 })
 
+set({ "n", "x", "o" }, "gk", "k", { desc = "Move up by actual line" })
+set({ "n", "x", "o" }, "gj", "j", { desc = "Move down by actual line" })
+
 ---- Start/end of line (non-blank)
-set({ "n", "x", "o" }, "gH", "^", { desc = "Start of line (non-blank)" })
+set({ "n", "x", "o" }, "gH", "_", { desc = "Start of line (non-blank)" })
 set({ "n", "x", "o" }, "gh", "g^", { desc = "Start of visual line (non-blank)" })
 set({ "n", "x", "o" }, "gL", "g_", { desc = "End of line (non-blank)" })
 set({ "n", "x", "o" }, "gl", "g$", { desc = "End of visual line (non-blank)" })
@@ -354,7 +374,7 @@ set("n", "<C-k>", "m0o<Esc>`0<cmd>delm 0<CR>", { desc = "Add empty line under", 
 set("n", "<C-j>", "m0i<CR><Esc>==`0<cmd>delm 0<CR>", { desc = "Split line downwards", noremap = true })
 
 ---- Visual lowercase
-set("x", "gL", "gu", { noremap = true, desc = "Visual lowercase (gu)" })
+-- set("x", "gL", "gu", { noremap = true, desc = "Visual lowercase (gu)" })
 
 ---- Exit visual mode overrides
 set("x", "u", "<C-c>", { noremap = true, desc = "Exit visual mode (u override)" })
