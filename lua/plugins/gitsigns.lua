@@ -9,6 +9,7 @@ set("n", "]g", "<cmd>Gitsigns nav_hunk next<CR>", { desc = "Gitsigns: Next Hunk"
 set("n", "[g", "<cmd>Gitsigns nav_hunk prev<CR>", { desc = "Gitsigns: Previous Hunk" })
 set({ "o", "x" }, "ig", "<Cmd>Gitsigns select_hunk<CR>", { desc = "Gitsigns: Git Hunk" })
 -- set({ "o", "x" }, "ah", "<Cmd>Gitsigns select_hunk<CR>", { desc = "Gitsigns: Git Hunk" })
+set("n", "<leader>gw", "<cmd>Gitsigns toggle_word_diff<CR>", { desc = "Gitsigns: Toggle Word Diff" })
 
 set("n", "<leader>gd", function()
   vim.cmd("Gitsigns diffthis")

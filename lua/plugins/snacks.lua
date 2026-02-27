@@ -101,12 +101,12 @@ local function openProjects()
 
       picker:close()
       SmartSaveSession()
-      vim.cmd("LspStop")
-      vim.fn.system("Get-Process biome -ErrorAction SilentlyContinue | Stop-Process")
+      -- vim.cmd("LspStop")
+      -- vim.fn.system("Get-Process biome -ErrorAction SilentlyContinue | Stop-Process")
       IsProject = false
       closeAllBuffers()
       LoadSession(picker, item)
-      RestartAll()
+      -- RestartAll()
     end,
   })
 end

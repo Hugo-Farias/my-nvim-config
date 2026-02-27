@@ -75,16 +75,15 @@ end, {})
 -------------------------------------------------------------------------------
 
 ---- Reload Chrome
-set("n", "<F5>", function()
+set("n", "<C-r>", function()
   vim.fn.system({
     "powershell",
     "-NoProfile",
     "-Command",
-    'ii "D:/Users/Hugo/Documents/AutoHotKey/Reload Chrome.ahk"'
+    'ii "D:/Users/Hugo/Documents/AutoHotKey/Reload Chrome.ahk"',
   })
   vim.notify("Reload Triggered")
 end, { desc = "Reload Chrome" })
-
 
 ---- Go to previous buffer
 set("n", "<C-6>", "gt", { desc = "Switch tabs" })
@@ -131,12 +130,12 @@ set("n", "gco", "<cmd>norm gccA<CR>", { desc = "Toggle comment line" })
 set("n", "<C-t>k", function()
   vim.cmd("norm OTODO:  gccA")
   vim.cmd.startinsert()
-end, { desc = "Insert TODO comment" })
+end, { desc = "Insert TODO comment above" })
 
 set("n", "<C-t>j", function()
   vim.cmd("norm oTODO:  gccA")
   vim.cmd.startinsert()
-end, { desc = "Insert TODO comment" })
+end, { desc = "Insert TODO comment bellow" })
 
 -- set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up" })
 -- set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down" })

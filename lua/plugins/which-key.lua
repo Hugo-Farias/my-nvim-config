@@ -25,6 +25,7 @@ return {
     -- },
     triggers = {
       { "<auto>", mode = "nixsotc" },
+      { "<C-t>", mode = "n" },
       { "q", mode = { "n", "x" } },
       { "s", mode = { "n", "x" } },
       { "Z", mode = { "n", "x" } },

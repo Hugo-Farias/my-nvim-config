@@ -3,8 +3,8 @@ return {
   opts = {
     formatters_by_ft = {
       lua = { "stylua" },
-      javascript = { "prettierd" },
-      typescript = { "prettierd" },
+      javascript = { "biome" },
+      typescript = { "biome" },
       javascriptreact = { "biome" },
       typescriptreact = { "biome" },
       css = { "biome" },
@@ -48,6 +48,8 @@ return {
         args = {
           "check",
           "--write",
+          "--indent-style",
+          "space",
           "--unsafe",
           "--stdin-file-path",
           "$FILENAME",

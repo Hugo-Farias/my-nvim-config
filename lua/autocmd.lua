@@ -74,7 +74,7 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Before Quiting Neovim
 vim.api.nvim_create_autocmd("QuitPre", {
   callback = function()
-    vim.cmd("LspStop")
+    -- vim.cmd("LspStop")
     vim.fn.system([[
       powershell -NoProfile -Command "
       if ((Get-Process nvim -ErrorAction SilentlyContinue).Count -le 2) {

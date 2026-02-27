@@ -50,6 +50,7 @@ require("lazy").setup({
   { require("plugins.mini-pairs") },
   { require("plugins.mini-ai") },
   { require("plugins.mini-splitjoin") },
+  { require("plugins.mini-align") },
 
   ---- Color Preview/Pickers ----
   { require("plugins.ccc") },
