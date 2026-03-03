@@ -76,12 +76,15 @@ end, {})
 
 ---- Reload Chrome
 set("n", "<C-r>", function()
+  local ahk = vim.fn.stdpath("config") .. "/scripts/Reload Chrome.ahk"
+
   vim.fn.system({
     "powershell",
     "-NoProfile",
     "-Command",
-    'ii "D:/Users/Hugo/Documents/AutoHotKey/Reload Chrome.ahk"',
+    'ii "' .. ahk .. '"',
   })
+
   vim.notify("Reload Triggered")
 end, { desc = "Reload Chrome" })
 
