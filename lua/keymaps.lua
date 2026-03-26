@@ -122,6 +122,10 @@ set("n", "<M-Up>", "<cmd>horizontal res -5<CR>", { noremap = true, desc = "Resiz
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
 
+set({ "n", "x" }, "gUu", "gU", { desc = "To uppercase" })
+set({ "n", "x" }, "gUl", "gu", { desc = "To lowercase" })
+-- set("n", "<leader>gUu", "g~", { desc = "Switch case operation" })
+
 ------ Alternate mappings
 ---- Delete line
 set("n", "do", "dd", { desc = "Delete line" })
@@ -299,7 +303,7 @@ end, { noremap = true, desc = "Start recording macro" })
 set("n", "<leader>ll", "<cmd>redraw | nohlsearch<CR>", { desc = "Clear Highlight Search" })
 set("n", "<C-l>", "<Cmd>nohlsearch|diffupdate|redraw|normal! <C-L><CR>", { desc = "Clear Highlight Search" })
 set("n", "<leader>lr", function()
-  vim.fn.system("Get-Process biome -ErrorAction SilentlyContinue | Stop-Process")
+  -- vim.fn.system("Get-Process biome -ErrorAction SilentlyContinue | Stop-Process")
   RestartAll()
 end, { desc = "LSP: Restart" })
 set(

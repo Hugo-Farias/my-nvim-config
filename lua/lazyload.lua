@@ -10,13 +10,15 @@ require("lazy").setup({
   { require("plugins.snacks") },
 
   { require("plugins.nvim-spider") },
+  -- { require("plugins.tide") },
   { require("plugins.harpoon") },
   { require("plugins.which-key") },
   { require("plugins.gitsigns") },
   { require("plugins.timber") },
-  -- { "Aasim-A/scrollEOF.nvim", event = { "CursorMoved", "WinScrolled" }, opts = {} },
+  { "Aasim-A/scrollEOF.nvim", event = { "CursorMoved", "WinScrolled" }, opts = {} },
   { require("plugins.neoscroll") }, -- Smooth Scrolling
   -- { require("plugins.render-markdown") },
+  { "j-hui/fidget.nvim", version = "*", opts = {} },
 
   -- { require("plugins.noice") },
   -- { require("plugins.notify") },
@@ -34,8 +36,8 @@ require("lazy").setup({
   { require("plugins.rainbow-delimiters") },
 
   ---- AutoComplete ----
-  { require("plugins.nvim-cmp") },
-  -- { require("plugins.blink-cmp") },
+  -- { require("plugins.nvim-cmp") },
+  { require("plugins.blink-cmp") },
 
   ---- Snippets ----
   { require("plugins.luasnip") },

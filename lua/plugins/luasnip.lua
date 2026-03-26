@@ -6,7 +6,7 @@ return {
   -- install jsregexp (optional!).
   build = "make install_jsregexp",
   dependencies = {
-    "saadparwaiz1/cmp_luasnip",
+    -- "saadparwaiz1/cmp_luasnip",
     "rafamadriz/friendly-snippets",
   },
   config = function()
@@ -22,7 +22,9 @@ return {
       ls.add_snippets(filetype, require("snippets.javascriptreact"))
     end
 
-    ls.add_snippets("json", require("snippets.json"))
+    for _, filetype in ipairs({ "json", "jsonc" }) do
+      ls.add_snippets(filetype, require("snippets.json"))
+    end
   end,
   keys = {
     {

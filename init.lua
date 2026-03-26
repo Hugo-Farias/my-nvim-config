@@ -10,5 +10,6 @@ require("autocmd")
 require("keymaps")
 require("set")
 require("lazyload")
+-- require("neovide")
 
 EditorColorScheme("nightfox")

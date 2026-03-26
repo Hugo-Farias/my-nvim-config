@@ -24,10 +24,10 @@ local function theme(repo, name, style)
     priority = 1000,
     opts = {
       style = style or "",
-      -- transparent = true,
+      transparent = true,
       styles = {
-        -- sidebars = "transparent",
-        -- floats = "transparent",
+        sidebars = "transparent",
+        floats = "transparent",
         keywords = { italic = true },
         functions = { italic = true },
       },

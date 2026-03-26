@@ -106,7 +106,9 @@ local function openProjects()
       IsProject = false
       closeAllBuffers()
       LoadSession(picker, item)
-      -- RestartAll()
+      vim.defer_fn(function()
+        RestartAll()
+      end, 500)
     end,
   })
 end

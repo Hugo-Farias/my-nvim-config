@@ -53,4 +53,11 @@ return {
     i(1),
     t('")'),
   }),
+
+  s({
+    trig = ".void",
+    wordTrig = false,
+  }, {
+    t({ "() => void"}),
+  }),
 }

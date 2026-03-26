@@ -3,6 +3,12 @@ local s = ls.snippet
 local t = ls.text_node
 
 return {
+  s("!tsconfig", {
+    t({
+      '"$schema": "https://www.schemastore.org/tsconfig.json",',
+    }),
+  }),
+
   s("!biome", {
     t({
       "{",

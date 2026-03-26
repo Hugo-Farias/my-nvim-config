@@ -8,7 +8,7 @@ type User = {
   roles: string[];
 };
 
-const unsusedVar = 9;
+const _unsusedVar = 9;
 
 type Status = "" | "approved" | "rejected";
 
@@ -46,7 +46,7 @@ const getUserById = (id: number): User | null => {
   return null;
 };
 
-function updateUserStatus(id: number, status: Status): boolean {
+function _updateUserStatus(id: number, status: Status): boolean {
   const user = getUserById(id);
   if (!user) {
     return false;
