@@ -9,6 +9,24 @@ return {
     }),
   }),
 
+  s("!tscomp", {
+    t({
+      '"compilerOptions": {',
+      '  "jsx": "react-jsx",',
+      '  "allowImportingTsExtensions": true,',
+      '  "allowUnusedLabels": false,',
+      '  "noUncheckedSideEffectImports": true,',
+      '  "noFallthroughCasesInSwitch": true,',
+      '  "allowUnreachableCode": false,',
+      '  "noUncheckedIndexedAccess": true,',
+      '  "noPropertyAccessFromIndexSignature": true,',
+      '  "noImplicitOverride": true,',
+      '  "erasableSyntaxOnly": true,',
+      '  "exactOptionalPropertyTypes": true',
+      "}",
+    }),
+  }),
+
   s("!biome", {
     t({
       "{",

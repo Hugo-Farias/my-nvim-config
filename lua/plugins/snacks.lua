@@ -137,7 +137,7 @@ local function searchScratchFiles()
 end
 
 local function searchTodos(param)
-  local search = param or [[(TODO\:|FIX\:|WARN\:|HACK\:|NOTE\:|TEST\:)]]
+  local search = param or [[( TODO\:| FIX\:| WARN\:| HACK\:| NOTE\:| TEST\:)]]
   require("snacks").picker.grep({
     title = "TODOs",
     on_show = function()
@@ -184,9 +184,9 @@ return {
       desc = "Snacks: Resume Search",
     },
     -- stylua: ignore start
-    { "<leader><leader>", "<cmd>lua Snacks.picker.files()<CR>", desc = "Snacks: Search Files" },
-    { "<C-e>", "<cmd>lua Snacks.picker.files()<CR>", desc = "Snacks: Search Files" },
+    { "<leader><leader>", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
     { "<C- >", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
+    { "<C-e>", "<cmd>lua Snacks.picker.files()<CR>", desc = "Snacks: Search Files" },
     { "<leader>sf", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
     { "<leader>sg", "<cmd>lua Snacks.picker.git_diff()<CR>", desc = "Snacks: Search Git Diffs" },
     { "<leader>s,", "<cmd>lua Snacks.picker.files({ cwd = vim.fn.stdpath('config') })<CR>", desc = "Snacks: Search Config File"},
@@ -196,6 +196,7 @@ return {
     { "<leader>fR", "<cmd>lua Snacks.rename.rename_file()<CR>", desc = "Snacks: Rename File" },
     { "<leader>/", "<cmd>lua Snacks.picker.grep()<CR>", desc = "Snacks: Search Grep" },
     { "<leader>sw", "<cmd>lua Snacks.picker.grep_word()<CR>", desc = "Snacks: Search Word Grep", mode = { "n", "x" } },
+    { "<leader>sW", "m0viW<cmd>lua Snacks.picker.grep_word()<CR>`0", desc = "Snacks: Search Word Grep", mode =  "n"  },
     -- { "<leader>/", "<cmd>lua Snacks.picker.grep_word()<CR>", desc = "Snacks: Search Selection Grep", mode = "x" },
     { "<C-p>", "<cmd>lua Snacks.picker.buffers()<CR>", desc = "Snacks: Search Buffers" },
     { "<leader>sb", "<cmd>lua Snacks.picker.buffers()<CR>", desc = "Snacks: Search Buffers" },
@@ -216,7 +217,7 @@ return {
     { "<leader>sp", openProjects, desc = "Snacks: Search Projects" },
     { "<leader>su", "<cmd>lua Snacks.picker.undo()<CR>", desc = "Snacks: Search Undos" },
     { "<leader>st", searchTodos, desc = "Snacks: Search Every TODO" },
-    { "<leader>sT", function () searchTodos([[(TODO\:|FIX\:)]]) end, desc = "Snacks: Search TODOs" },
+    { "<leader>sT", function () searchTodos([[( TODO\:| FIX\:)]]) end, desc = "Snacks: Search TODOs" },
     -- { "<leader>st", "<cmd>lua Snacks.picker.todo_comments()<CR>", desc = "Search TODOs" },
     ---- Git Actions ----
     { "<leader>gg", "<cmd>lua Snacks.lazygit()<CR>", desc = "Snacks: Git Lazygit" },

@@ -324,6 +324,7 @@ set("n", "*", "*N", { desc = "'*' Keeps cursor on the name occurrence" })
 ---- Duplicate Line
 set("n", "H", "<cmd>copy .<CR>", { desc = "Duplicate Line" })
 set("n", "<c-h>", "<cmd>copy .<CR>", { desc = "Duplicate Line" })
+set("x", "<c-h>", ":'<,'>copy '><CR>", { desc = "Duplicate Selection" })
 
 ---- Move lines
 set("x", "<C-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
@@ -371,13 +372,17 @@ set("n", "gJ", "m0gJ`0<cmd>delm 0<CR>", { silent = true, desc = "Join lines with
 ----Add empty line under
 set("n", "<C-k>", "m0o<Esc>`0<cmd>delm 0<CR>", { desc = "Add empty line under", noremap = true })
 
+----Add empty line above
+set("n", "<C-j>", "m0O<Esc>==`0<cmd>delm 0<CR>", { desc = "Add empty line above", noremap = true })
+set("n", "<C-j>", "m0O<Esc>==`0<cmd>delm 0<CR>", { desc = "Split line downwards", noremap = true })
+
 ---- Add empty line under insert mode
 -- set("i", "<C-k>", "<Esc>m0o<Esc>`0l<cmd>delm 0<CR>i", { desc = "Add empty line under", noremap = true })
 -- set("i", "<C-k>", "<C-p>", { desc = "Select Prev", noremap = true })
 -- set("i", "<C-j>", "<C-n>", { desc = "Select Next", noremap = true })
 
 ---- Split lines downwards
-set("n", "<C-j>", "m0i<CR><Esc>==`0<cmd>delm 0<CR>", { desc = "Split line downwards", noremap = true })
+set("n", "K", "m0i<CR><Esc>==`0<cmd>delm 0<CR>", { desc = "Split line downwards", noremap = true })
 
 ---- Visual lowercase
 -- set("x", "gL", "gu", { noremap = true, desc = "Visual lowercase (gu)" })

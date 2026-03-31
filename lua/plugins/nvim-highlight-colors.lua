@@ -1,6 +1,6 @@
 return {
   "brenoprata10/nvim-highlight-colors",
-  lazy = true,
+  lazy = false,
   -- event = "VeryLazy",
   version = false,
   -- config = function()

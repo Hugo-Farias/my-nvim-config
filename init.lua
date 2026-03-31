@@ -12,4 +12,4 @@ require("set")
 require("lazyload")
 -- require("neovide")
 
-EditorColorScheme("nightfox")
+EditorColorScheme("tokyonight-moon")

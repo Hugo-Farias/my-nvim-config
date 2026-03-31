@@ -27,18 +27,18 @@ return {
     --   "markdown",
     --   "markdown_inline",
     -- },
-    sync_install = false,
+    sync_install = true,
     auto_install = true,
-    ignore_install = { "powershell" }, -- e.g., { "php" }
+    -- ignore_install = { "powershell" }, -- e.g., { "php" }
     modules = {}, -- for disabling or overriding module defaults if needed
     highlight = {
       enable = true,
-      additional_vim_regex_highlighting = false,
-      disable = { "powershell" },
+      additional_vim_regex_highlighting = true,
+      -- disable = { "powershell" },
     },
     indent = {
       enable = true,
-      disable = { "powershell" },
+      -- disable = { "powershell" },
     },
   },
   config = function(_, opts)
