@@ -122,6 +122,12 @@ end, {})
 vim.api.nvim_create_user_command("DiffSaved", function()
   local file = vim.fn.expand("%:p")
   local type = vim.bo.filetype
+  local diff = vim.wo.diff
+
+  if diff then
+    vim.cmd("wincmd o")
+    return
+  end
 
   vim.cmd("vert new")
   vim.cmd("read " .. file)
