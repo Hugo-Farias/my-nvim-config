@@ -99,6 +99,7 @@ local function openProjects()
         return
       end
 
+      vim.cmd("LspStop")
       picker:close()
       SmartSaveSession()
       -- vim.cmd("LspStop")
@@ -106,9 +107,10 @@ local function openProjects()
       IsProject = false
       closeAllBuffers()
       LoadSession(picker, item)
+      vim.cmd("LspRestart")
       vim.defer_fn(function()
-        RestartAll()
-      end, 500)
+        vim.cmd("LspStart")
+      end, 1500)
     end,
   })
 end

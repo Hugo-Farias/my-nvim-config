@@ -53,9 +53,6 @@ opt.sessionoptions = {
   "folds",
 }
 
--- Neovide settings
--- require("neovide")
-
 vim.api.nvim_create_user_command("NvimClean", function()
   CleanShaDaFiles()
 end, { desc = "Run PowerShell alias nvimclean" })

@@ -18,6 +18,10 @@ local function unsaved_buffers()
   return ""
 end
 
+local function cwd_name()
+  return vim.fn.fnamemodify(vim.loop.cwd(), ":t")
+end
+
 -- local clients_lsp = function()
 --   -- local bufnr = vim.api.nvim_get_current_buf()
 --
@@ -69,6 +73,7 @@ return {
         },
       },
       lualine_c = {
+        cwd_name,
         {
           "branch",
           icon = "",

@@ -122,17 +122,19 @@ set("n", "<M-Up>", "<cmd>horizontal res -5<CR>", { noremap = true, desc = "Resiz
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
 
+---- Diff this buffer with the saved file
+set("n", "<leader>fu", "<cmd>DiffSaved<CR>", { desc = "Diff this buffer with the saved file" })
+
 set({ "n", "x" }, "gUu", "gU", { desc = "To uppercase" })
 set({ "n", "x" }, "gUl", "gu", { desc = "To lowercase" })
 -- set("n", "<leader>gUu", "g~", { desc = "Switch case operation" })
 
 ------ Alternate mappings
----- Delete line
 set("n", "do", "dd", { desc = "Delete line" })
 set("n", "co", "cc", { desc = "Change line" })
 set("n", "yo", "yy", { desc = "Yank line" })
 set("n", "g~o", "g~g~", { desc = "Toggle case line" })
-set("n", "gco", "<cmd>norm gccA<CR>", { desc = "Toggle comment line" })
+set("n", "gco", "<cmd>norm gcc<CR>", { desc = "Toggle comment line" })
 
 set("n", "<C-t>k", function()
   vim.cmd("norm OTODO:  gccA")
@@ -361,8 +363,8 @@ end
 ---- Exit insert mode
 set({ "i", "c" }, "jk", "<Esc>", { desc = "Exit insert mode (jk)" })
 set({ "i", "c" }, "kj", "<Esc>", { desc = "Exit insert mode (kj)" })
-set({ "i", "c" }, "JK", "<Esc>", { desc = "Exit insert mode (JK)" })
-set({ "i", "c" }, "KJ", "<Esc>", { desc = "Exit insert mode (KJ)" })
+-- set({ "i", "c" }, "JK", "<Esc>", { desc = "Exit insert mode (JK)" })
+-- set({ "i", "c" }, "KJ", "<Esc>", { desc = "Exit insert mode (KJ)" })
 
 ---- Join lines and delete space
 -- set("n", "<leader>jl", "J", { noremap = true, silent = true, desc = "Join lines" })
@@ -374,7 +376,6 @@ set("n", "<C-k>", "m0o<Esc>`0<cmd>delm 0<CR>", { desc = "Add empty line under", 
 
 ----Add empty line above
 set("n", "<C-j>", "m0O<Esc>==`0<cmd>delm 0<CR>", { desc = "Add empty line above", noremap = true })
-set("n", "<C-j>", "m0O<Esc>==`0<cmd>delm 0<CR>", { desc = "Split line downwards", noremap = true })
 
 ---- Add empty line under insert mode
 -- set("i", "<C-k>", "<Esc>m0o<Esc>`0l<cmd>delm 0<CR>i", { desc = "Add empty line under", noremap = true })
@@ -408,67 +409,6 @@ end, {
   noremap = true,
   desc = "Open in GitHub",
 })
-
----- Open Yazi
--- set("n", "<leader>E", function()
---   local buf = vim.api.nvim_create_buf(false, true)
---
---   local width = math.floor(vim.o.columns * 0.8)
---   local height = math.floor(vim.o.lines * 0.8)
---   local row = math.floor((vim.o.lines - height) / 2)
---   local col = math.floor((vim.o.columns - width) / 2)
---
---   local win = vim.api.nvim_open_win(buf, true, {
---     relative = "editor",
---     width = width,
---     height = height,
---     row = row,
---     col = col,
---     style = "minimal",
---     border = "rounded",
---   })
---
---   vim.api.nvim_set_option_value("bufhidden", "wipe", { buf = buf })
---
---   local chooser_path = "C:\\Temp\\nvim-yazi.txt"
---   vim.fn.mkdir("C:/Temp", "p")
---   vim.fn.delete(chooser_path)
---
---   local cwd = vim.fn.expand("%:p:h")
---
---   vim.fn.termopen({
---     "C:\\PROGRA~1\\PowerShell\\7\\pwsh.exe",
---     "-NoLogo",
---     "-NoProfile",
---     "-Command",
---     "yazi --chooser-file=" .. chooser_path,
---   }, {
---     cwd = cwd, -- ← Set terminal working directory
---     on_exit = function()
---       if vim.fn.filereadable(chooser_path) == 1 then
---         local lines = vim.fn.readfile(chooser_path)
---         if #lines > 0 then
---           local filepath = vim.fn.fnameescape(lines[1])
---           vim.cmd("e " .. filepath)
---
---           vim.defer_fn(function()
---             local bufnr = vim.fn.bufnr(filepath)
---             if bufnr ~= -1 then
---               vim.api.nvim_set_current_buf(bufnr)
---             end
---           end, 50)
---         end
---         vim.fn.delete(chooser_path)
---       end
---
---       if vim.api.nvim_win_is_valid(win) then
---         vim.api.nvim_win_close(win, true)
---       end
---     end,
---   })
---
---   vim.cmd("startinsert")
--- end, { desc = "Yazi: Open" })
 
 -------------------------------------------------------------------------------
 ---- 🔤 Insert Mode Keymaps

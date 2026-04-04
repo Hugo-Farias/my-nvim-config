@@ -118,3 +118,21 @@ end
 vim.api.nvim_create_user_command("DeleteAllMarks", function()
   vim.cmd("delmarks A-Z a-z 0-9")
 end, {})
+
+vim.api.nvim_create_user_command("DiffSaved", function()
+  local file = vim.fn.expand("%:p")
+  local type = vim.bo.filetype
+
+  vim.cmd("vert new")
+  vim.cmd("read " .. file)
+  vim.cmd("0d_") -- remove empty first line
+
+  vim.cmd("setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile")
+  vim.cmd("setlocal readonly nomodifiable")
+  vim.cmd("set filetype=" .. type)
+  vim.cmd("diffthis")
+
+  vim.cmd("wincmd p")
+  vim.cmd("diffthis")
+  vim.cmd("wincmd H")
+end, {})
