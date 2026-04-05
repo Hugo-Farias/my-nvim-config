@@ -55,7 +55,8 @@ return {
     },
     sections = {
       lualine_a = {
-        { "mode", icon = "" },
+        -- { "mode", icon = "" },
+        { cwd_name, icon = "" },
         -- { "mode", separator = { left = " ", right = "" }, icon = "" },
         -- { "mode", separator = { left = "", right = "" }, icon = "" },
       },
@@ -73,7 +74,7 @@ return {
         },
       },
       lualine_c = {
-        cwd_name,
+        -- cwd_name,
         {
           "branch",
           icon = "",

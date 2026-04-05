@@ -72,7 +72,6 @@ function SmartSaveSession()
   local cwd = vim.fn.getcwd()
   local git_dir = cwd .. "/.git"
 
-  ---@diagnostic disable-next-line: undefined-field
   if not vim.loop.fs_stat(git_dir) then
     return
   end
@@ -97,7 +96,6 @@ function SmartSaveSession()
   else
     -- Delete session file
     if vim.loop.fs_stat(session_path) then
-      ---@diagnostic disable-next-line: undefined-field
       vim.loop.fs_unlink(session_path)
     end
   end
@@ -131,7 +129,7 @@ vim.api.nvim_create_user_command("DiffSaved", function()
 
   vim.cmd("vert new")
   vim.cmd("read " .. file)
-  vim.cmd("0d_") -- remove empty first line
+  vim.cmd("0d_") -- Removed empty first line
 
   vim.cmd("setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile")
   vim.cmd("setlocal readonly nomodifiable")
@@ -141,4 +139,5 @@ vim.api.nvim_create_user_command("DiffSaved", function()
   vim.cmd("wincmd p")
   vim.cmd("diffthis")
   vim.cmd("wincmd H")
+  -- vim.cmd("wincmd |")
 end, {})

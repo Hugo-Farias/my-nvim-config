@@ -125,8 +125,8 @@ set("n", "<M-Up>", "<cmd>horizontal res -5<CR>", { noremap = true, desc = "Resiz
 ---- Diff this buffer with the saved file
 set("n", "<leader>fu", "<cmd>DiffSaved<CR>", { desc = "Diff this buffer with the saved file" })
 
-set({ "n", "x" }, "gUu", "gU", { desc = "To uppercase" })
-set({ "n", "x" }, "gUl", "gu", { desc = "To lowercase" })
+set("n", "gUu", "gU", { desc = "To uppercase" })
+set("n", "gUl", "gu", { desc = "To lowercase" })
 -- set("n", "<leader>gUu", "g~", { desc = "Switch case operation" })
 
 ------ Alternate mappings
@@ -136,15 +136,25 @@ set("n", "yo", "yy", { desc = "Yank line" })
 set("n", "g~o", "g~g~", { desc = "Toggle case line" })
 set("n", "gco", "<cmd>norm gcc<CR>", { desc = "Toggle comment line" })
 
-set("n", "<C-t>k", function()
+set("n", "<C-t><C-k>", function()
   vim.cmd("norm OTODO:  gccA")
   vim.cmd.startinsert()
 end, { desc = "Insert TODO comment above" })
 
-set("n", "<C-t>j", function()
+set("n", "<C-t><C-j>", function()
   vim.cmd("norm oTODO:  gccA")
   vim.cmd.startinsert()
 end, { desc = "Insert TODO comment bellow" })
+
+set("n", "<C-t><C-l>", function()
+  vim.cmd('norm oxgcckJ$xA ')
+  vim.cmd.startinsert()
+end, { desc = "Insert comment at end of line" })
+
+set("n", "<C-t><C-h>", function()
+  vim.cmd('norm Oxgcc$xA ')
+  vim.cmd.startinsert()
+end, { desc = "Insert comment above" })
 
 -- set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up" })
 -- set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down" })
@@ -284,7 +294,7 @@ set({ "n", "x" }, "<leader>y", '"+y', { desc = "Yank into system's clipboard" })
 set({ "n", "x" }, "<leader>Y", '"+y$', { desc = "which_key_ignore" })
 
 ---- 'q' to quit
-set({ "n", "x" }, "qq", "<cmd>close<CR>", { desc = "close", silent = true })
+set({ "n", "x" }, "qq", ":wincmd o|silent! close<CR>", { desc = "close", silent = true })
 
 ---- `qp` to play macro
 set({ "n", "x" }, "qe", function()
@@ -303,11 +313,13 @@ end, { noremap = true, desc = "Start recording macro" })
 
 ---- Clear Search Query
 set("n", "<leader>ll", "<cmd>redraw | nohlsearch<CR>", { desc = "Clear Highlight Search" })
-set("n", "<C-l>", "<Cmd>nohlsearch|diffupdate|redraw|normal! <C-L><CR>", { desc = "Clear Highlight Search" })
+set("n", "<C-l>", "<cmd>nohlsearch|diffupdate|redraw|normal! <C-L><CR>", { desc = "Clear Highlight Search" })
+
 set("n", "<leader>lr", function()
   -- vim.fn.system("Get-Process biome -ErrorAction SilentlyContinue | Stop-Process")
   RestartAll()
 end, { desc = "LSP: Restart" })
+
 set(
   "n",
   "<leader>lR",
@@ -318,7 +330,7 @@ set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search query" })
 
 set("n", "<leader>lm", "<cmd>DeleteAllMarks<CR>jk", { desc = "Clear All Marks" })
 
-set("n", "<leader>lf", "<cmd>e!<CR>", { desc = "Reload from file" })
+set("n", "<leader>lf", "<cmd>e!<CR>", { desc = "Reload from disk" })
 
 ---- '*' Keeps cursor on the same occurrence
 set("n", "*", "*N", { desc = "'*' Keeps cursor on the name occurrence" })
