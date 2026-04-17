@@ -122,6 +122,12 @@ set("n", "<M-Up>", "<cmd>horizontal res -5<CR>", { noremap = true, desc = "Resiz
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
 
+---- Spellcheck word under cursor
+set("n", "z;", function()
+  local word = vim.fn.spellbadword()[1]
+  print(word == "" and "✅ No misspelled word under cursor" or "❌ Misspelled word: " .. word)
+end, { desc = "Spellcheck Line" })
+
 ---- Diff this buffer with the saved file
 set("n", "<leader>fu", "<cmd>DiffSaved<CR>", { desc = "Diff this buffer with the saved file" })
 
@@ -136,26 +142,29 @@ set("n", "yo", "yy", { desc = "Yank line" })
 set("n", "g~o", "g~g~", { desc = "Toggle case line" })
 set("n", "gco", "<cmd>norm gcc<CR>", { desc = "Toggle comment line" })
 
-set("n", "<C-t><C-k>", function()
-  vim.cmd("norm OTODO:  gccA")
-  vim.cmd.startinsert()
-end, { desc = "Insert TODO comment above" })
+local insertCommentMaps = {
+  t = function()
+    vim.cmd("norm OTODO:  gccA")
+    vim.cmd.startinsert()
+  end,
+  f = function()
+    vim.cmd("norm OFIX:  gccA")
+    vim.cmd.startinsert()
+  end,
+  l = function()
+    vim.cmd("norm oxgcckJ$xA ")
+    vim.cmd.startinsert()
+  end,
+  k = function()
+    vim.cmd("norm Oxgcc$xA ")
+    vim.cmd.startinsert()
+  end,
+}
 
-set("n", "<C-t><C-j>", function()
-  vim.cmd("norm oTODO:  gccA")
-  vim.cmd.startinsert()
-end, { desc = "Insert TODO comment bellow" })
-
-set("n", "<C-t><C-l>", function()
-  vim.cmd('norm oxgcckJ$xA ')
-  vim.cmd.startinsert()
-end, { desc = "Insert comment at end of line" })
-
-set("n", "<C-t><C-h>", function()
-  vim.cmd('norm Oxgcc$xA ')
-  vim.cmd.startinsert()
-end, { desc = "Insert comment above" })
-
+for key, fn in pairs(insertCommentMaps) do
+  set("n", "<C-t>" .. key, fn)
+  set("n", "<C-t><C-" .. key .. ">", fn)
+end
 -- set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up" })
 -- set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down" })
 
@@ -316,7 +325,6 @@ set("n", "<leader>ll", "<cmd>redraw | nohlsearch<CR>", { desc = "Clear Highlight
 set("n", "<C-l>", "<cmd>nohlsearch|diffupdate|redraw|normal! <C-L><CR>", { desc = "Clear Highlight Search" })
 
 set("n", "<leader>lr", function()
-  -- vim.fn.system("Get-Process biome -ErrorAction SilentlyContinue | Stop-Process")
   RestartAll()
 end, { desc = "LSP: Restart" })
 
@@ -357,8 +365,8 @@ set({ "o", "x" }, "az", function()
 end, { desc = "Entire buffer" })
 
 ---- Swap Paste without overwriting register with regular
-set("x", "p", "P", { noremap = true, silent = true, desc = "Paste without overwrite" })
-set("x", "P", "p", { noremap = true, silent = true, desc = "Paste without overwrite" })
+set("x", "p", "P", { noremap = true, silent = true, desc = "Paste without yanking selection" })
+set("x", "P", "p", { noremap = true, silent = true, desc = "Paste yanking selection" })
 
 ---- Delete selection without yanking
 set("x", "<leader>d", '"_d', { noremap = true, silent = true, desc = "Delete without yank" })
@@ -427,9 +435,9 @@ end, {
 -------------------------------------------------------------------------------
 
 ---- Ctrl-Backspace: delete word before cursor
-set({ "c", "i" }, "<C-Backspace>", "<C-w>", { noremap = true, desc = "Delete word before cursor" })
+set({ "c", "i" }, "<C-Backspace>", "<C-o>db", { noremap = true, desc = "Delete word before cursor" })
 
----- Ctrl-Delete: delete word after cursor
+---- Ctrl-Delete: delete word after curso
 set({ "c", "i" }, "<C-Delete>", "<C-o>de", { noremap = true, desc = "Delete word after cursor" })
 
 -------------------------------------------------------------------------------

@@ -99,18 +99,16 @@ local function openProjects()
         return
       end
 
-      vim.cmd("LspStop")
-      picker:close()
-      SmartSaveSession()
       -- vim.cmd("LspStop")
+      SmartSaveSession()
       -- vim.fn.system("Get-Process biome -ErrorAction SilentlyContinue | Stop-Process")
       IsProject = false
       closeAllBuffers()
       LoadSession(picker, item)
-      vim.cmd("LspRestart")
       vim.defer_fn(function()
-        vim.cmd("LspStart")
-      end, 1500)
+        -- vim.cmd("LspStart")
+        RestartAll()
+      end, 2500)
     end,
   })
 end
@@ -199,7 +197,6 @@ return {
     { "<leader>/", "<cmd>lua Snacks.picker.grep()<CR>", desc = "Snacks: Search Grep" },
     { "<leader>sw", "<cmd>lua Snacks.picker.grep_word()<CR>", desc = "Snacks: Search Word Grep", mode = { "n", "x" } },
     { "<leader>sW", "m0viW<cmd>lua Snacks.picker.grep_word()<CR>`0", desc = "Snacks: Search Word Grep", mode =  "n"  },
-    -- { "<leader>/", "<cmd>lua Snacks.picker.grep_word()<CR>", desc = "Snacks: Search Selection Grep", mode = "x" },
     { "<C-p>", "<cmd>lua Snacks.picker.buffers()<CR>", desc = "Snacks: Search Buffers" },
     { "<leader>sb", "<cmd>lua Snacks.picker.buffers()<CR>", desc = "Snacks: Search Buffers" },
     { "<leader>sc", "<cmd>lua Snacks.picker.commands()<CR>", desc = "Snacks: Search Commands" },
@@ -220,6 +217,7 @@ return {
     { "<leader>su", "<cmd>lua Snacks.picker.undo()<CR>", desc = "Snacks: Search Undos" },
     { "<leader>st", searchTodos, desc = "Snacks: Search Every TODO" },
     { "<leader>sT", function () searchTodos([[( TODO\:| FIX\:)]]) end, desc = "Snacks: Search TODOs" },
+    { "<leader>sj", "<cmd>lua Snacks.picker.jumps()<CR>", desc = "Snacks: Search Jumplist" },
     -- { "<leader>st", "<cmd>lua Snacks.picker.todo_comments()<CR>", desc = "Search TODOs" },
     ---- Git Actions ----
     { "<leader>gg", "<cmd>lua Snacks.lazygit()<CR>", desc = "Snacks: Git Lazygit" },

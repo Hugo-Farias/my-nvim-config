@@ -1,9 +1,7 @@
-alpha              = 1
-beta               = 2
-gamma              = 3
-delta              = 44
-epsilon            = 5
-z                  = 600
-long_variable_name = 7
-mid                = 8
-tiny               = 9
+This is a short line.
+
+This is a medium length line that should still fit in most windows depending on your width settings.
+
+This is a very long line intended to exceed the width of your Neovim window so that horizontal scrolling behavior can be observed clearly without ambiguity or confusion when testing sidescroll, sidescrolloff, and related options in different configurations and setups.
+
+Another extremely long line with repeated content to ensure overflow: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostru

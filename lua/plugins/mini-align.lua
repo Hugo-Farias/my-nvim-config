@@ -4,7 +4,7 @@ return {
   opts = {
     -- Module mappings. Use `''` (empty string) to disable one.
     mappings = {
-      start = "ga",
+      -- start = "ga",
       start_with_preview = "gA",
     },
 

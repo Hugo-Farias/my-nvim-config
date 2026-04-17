@@ -70,6 +70,9 @@ require("lazy").setup({
   ---- Language Support ----
   { "kmonad/kmonad-vim" },
 
+  ---- Indefinitely Disabled ----
+  -- { require("plugins.comfy-line-numbers") },
+
   ---- Colors ----
   require("colors"),
 })

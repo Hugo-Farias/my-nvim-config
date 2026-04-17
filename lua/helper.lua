@@ -12,14 +12,12 @@ function RestartAll()
   -- vim.fn.system("Get-Process biome -ErrorAction SilentlyContinue | Stop-Process")
   local copilotRunning = is_attached("copilot")
   -- local biome = is_attached("biome")
-  vim.cmd("LspStop")
   vim.defer_fn(function()
     if copilotRunning then
       vim.cmd("silent! Copilot enable")
     end
   end, 1000)
   vim.cmd("LspRestart")
-  vim.cmd("LspStart")
 end
 
 -- Change location to git root if found, otherwise to file's location
@@ -140,4 +138,8 @@ vim.api.nvim_create_user_command("DiffSaved", function()
   vim.cmd("diffthis")
   vim.cmd("wincmd H")
   -- vim.cmd("wincmd |")
+end, {})
+
+vim.api.nvim_create_user_command("Q", function()
+  vim.cmd("q")
 end, {})
