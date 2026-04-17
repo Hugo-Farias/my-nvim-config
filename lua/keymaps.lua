@@ -151,6 +151,22 @@ local insertCommentMaps = {
     vim.cmd("norm OFIX:  gccA")
     vim.cmd.startinsert()
   end,
+  w = function()
+    vim.cmd("norm OWARN:  gccA")
+    vim.cmd.startinsert()
+  end,
+  e = function()
+    vim.cmd("norm OTEST:  gccA")
+    vim.cmd.startinsert()
+  end,
+  n = function()
+    vim.cmd("norm ONOTE:  gccA")
+    vim.cmd.startinsert()
+  end,
+  h = function()
+    vim.cmd("norm OHACK:  gccA")
+    vim.cmd.startinsert()
+  end,
   l = function()
     vim.cmd("norm oxgcckJ$xA ")
     vim.cmd.startinsert()
