@@ -74,7 +74,6 @@ return {
         },
       },
       lualine_c = {
-        -- cwd_name,
         {
           "branch",
           icon = "",

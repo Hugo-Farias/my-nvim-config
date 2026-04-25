@@ -115,6 +115,7 @@ vim.api.nvim_create_user_command("DeleteAllMarks", function()
   vim.cmd("delmarks A-Z a-z 0-9")
 end, {})
 
+-- Command to diff current buffer with saved file on disk
 vim.api.nvim_create_user_command("DiffSaved", function()
   local file = vim.fn.expand("%:p")
   local type = vim.bo.filetype

@@ -171,6 +171,10 @@ local insertCommentMaps = {
     vim.cmd("norm oxgcckJ$xA ")
     vim.cmd.startinsert()
   end,
+  j = function()
+    vim.cmd("norm oxgcc$xA ")
+    vim.cmd.startinsert()
+  end,
   k = function()
     vim.cmd("norm Oxgcc$xA ")
     vim.cmd.startinsert()
