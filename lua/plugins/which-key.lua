@@ -11,6 +11,7 @@ return {
 
         wk.add({
           { "<leader>g", group = "Git" },
+          { "C-t", group = "Add Comment" },
         })
       end,
       desc = "Buffer Local Keymaps (which-key)",

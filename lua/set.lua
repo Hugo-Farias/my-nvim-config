@@ -23,18 +23,14 @@ vim.opt.breakat = " "
 
 vim.opt.termguicolors = true
 
--- vim.opt.swapfile = false
 -- vim.opt.backup = false
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
 vim.opt.undofile = true
 
--- vim.o.hlsearch = false
--- vim.opt.incsearch = true
-
-vim.opt.updatetime = 2000
+-- vim.opt.updatetime = 2000
 -- vim.opt.colorcolumn = "80"
 
-vim.opt.scrolloff = 20
+vim.opt.scrolloff = 15
 vim.opt.sidescrolloff = 8
 vim.o.timeoutlen = 500
 vim.opt.ignorecase = true

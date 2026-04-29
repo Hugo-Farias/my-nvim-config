@@ -61,7 +61,7 @@ return {
   keys = {
     -- stylua: ignore start
     { "<leader>ta", copilotToggle, desc = "Toggle Agent: Copilot" },
-    { "<leader>tA", "<cmd>Copilot status<CR>", desc = "Toggle Agent Status: Copilot" },
+    { "<leader>tA", "<cmd>Copilot status<CR>", desc = "Check Agent Status: Copilot" },
     -- { "<C-d>", autoTriggerToggle, desc = "Copilot: Toggle Auto Trigger", mode = "i" },
     { "<C-d>", "<cmd>Copilot suggestion dismiss<CR>", desc = "Copilot: Toggle Auto Trigger", mode = "i" },
     { "<leader>tp", "<cmd>Copilot panel<CR>", desc = "Toggle Agent Panel" },

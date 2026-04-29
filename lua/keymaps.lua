@@ -139,6 +139,8 @@ set("n", "gUl", "gu", { desc = "To lowercase" })
 set("n", "do", "dd", { desc = "Delete line" })
 set("n", "co", "cc", { desc = "Change line" })
 set("n", "yo", "yy", { desc = "Yank line" })
+set("n", "vo", "V", { desc = "Visual Line Mode" })
+set("n", "vq", "", { desc = "Visual Block Mode" })
 set("n", "g~o", "g~g~", { desc = "Toggle case line" })
 set("n", "gco", "<cmd>norm gcc<CR>", { desc = "Toggle comment line" })
 
@@ -300,16 +302,21 @@ end, { desc = "Flip first boolean on current line" })
 
 ---- Search and replace word under cursor
 set(
-  { "n", "x" },
+  "n",
   "<leader>*",
-  ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gI<Left><Left><Left>",
+  ":%s/\\<<C-r><C-w>\\>/<C-r><C-w>/gcI<Left><Left><Left><Left>",
   { desc = "Search and replace word under cursor" }
 )
 
+-- TODO: Finish this mapping to work in visual mode with the selected text instead of the word under cursor
+set(
+  "x",
+  "<leader>*",
+  '"zy:s/\\V<C-r>z/<C-r>z/gcI<Left><Left><Left><Left>',
+  { desc = "Search and replace selection under cursor" }
+)
+
 ---- Paste from system's clipboard
--- for _, key in ipairs({ "p", "P" }) do
---   set({ "n", "x" }, "<leader>" .. key, '"+' .. key .. "==", { desc = "Paste from system's clipboard" })
--- end
 set({ "n", "x" }, "<leader>p", '"+p', { desc = "Paste from system's clipboard" })
 set({ "n", "x" }, "<leader>P", 'o<Esc>"+p^', { desc = "which_key_ignore" })
 
