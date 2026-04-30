@@ -2,8 +2,6 @@
 
 ### 🐞 Bug Fixes
 
-- [ ] Fix PowerShell's LSP erroring out
-
 Class:  or 󰠱
 Color: 
 Constant:  or 󰏿

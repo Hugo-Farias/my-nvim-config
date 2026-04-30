@@ -1,6 +1,7 @@
 require("lazy").setup({
   -- { "nvim-lua/plenary.nvim" },
 
+  -- { require("plugins.tree-sitter-manager") },
   { require("plugins.treesitter") },
   { require("plugins.treesitter-context") },
   -- { require("plugins.treesitter-textobjects") },

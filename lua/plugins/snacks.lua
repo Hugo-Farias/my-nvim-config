@@ -1,10 +1,37 @@
 ﻿local set = vim.keymap.set
 
+local floatingOpts = {
+  focusable = true,
+  style = "minimal",
+  border = "rounded",
+  source = true, -- or "if_many"
+  header = "",
+  prefix = "",
+}
+
+vim.diagnostic.config({
+  virtual_text = true,
+  signs = true,
+  underline = true,
+  update_in_insert = false,
+  severity_sort = true,
+  float = floatingOpts,
+})
+
 -- stylua: ignore start
 ---- Lsp Keymaps ----
 vim.api.nvim_create_autocmd("LspAttach", {
   desc = "LSP actions",
-  callback = function()
+  callback = function(event)
+    local opts = { buffer = event.buf }
+    set("n", "gu", function() vim.lsp.buf.hover(floatingOpts) end, vim.tbl_extend("force", opts, { desc = "LSP: Hover" }))
+    set("n", "gs", function() vim.lsp.buf.signature_help(floatingOpts) end, vim.tbl_extend("force", opts, { desc = "LSP: Signature Help" }))
+    set("i", "<C-s>", function() vim.lsp.buf.signature_help(floatingOpts) end, vim.tbl_extend("force", opts, { desc = "LSP: Signature Help" }))
+    set("n", "<F2>", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "LSP: Rename" }))
+    set({ "n", "x" }, "<F3>", function() vim.lsp.buf.format({ async = true }) end, vim.tbl_extend("force", opts, { desc = "LSP: Format" }))
+    set({ "n", "x" }, "gq", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "LSP: Code action" }))
+    set("n", "ga", function() vim.diagnostic.open_float(nil, { focusable = true }) end, vim.tbl_extend("force", opts, { desc = "LSP: Line diagnostics" }))
+    set("n", "gA", function() vim.diagnostic.setqflist() end, vim.tbl_extend("force", opts, { desc = "LSP: Open full buffer diagnostics" }))
     set("n", "gd", "<cmd>lua Snacks.picker.lsp_definitions()<CR>", { desc = "LSP: Goto Definition" })
     set("n", "gD", "<cmd>lua Snacks.picker.lsp_declarations()<CR>", { desc = "LSP: Goto Declaration" })
     set("n", "gr", "<cmd>lua Snacks.picker.lsp_references()<CR>", { nowait = true, desc = "LSP: References" })
@@ -106,7 +133,7 @@ local function openProjects()
       closeAllBuffers()
       LoadSession(picker, item)
       -- vim.cmd("LspStart")
-      RestartAll()
+      -- RestartAll()
     end,
   })
 end
@@ -217,6 +244,7 @@ return {
     { "<leader>sT", function () searchTodos([[( TODO\:| FIX\:)]]) end, desc = "Snacks: Search TODOs" },
     { "<leader>sj", "<cmd>lua Snacks.picker.jumps()<CR>", desc = "Snacks: Search Jumplist" },
     -- { "<leader>st", "<cmd>lua Snacks.picker.todo_comments()<CR>", desc = "Search TODOs" },
+    { "<leader>sP", "<cmd>lua Snacks.picker.pickers()<CR>", desc = "Search Snacks' Pickers" },
     ---- Git Actions ----
     { "<leader>gg", "<cmd>lua Snacks.lazygit()<CR>", desc = "Snacks: Git Lazygit" },
     { "<leader>gb", "<cmd>lua Snacks.git.blame_line()<CR>", desc = "Snacks: Git Line Blame" },
