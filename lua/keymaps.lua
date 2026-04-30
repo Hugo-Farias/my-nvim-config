@@ -351,9 +351,9 @@ end, { noremap = true, desc = "Start recording macro" })
 set("n", "<leader>ll", "<cmd>redraw | nohlsearch<CR>", { desc = "Clear Highlight Search" })
 set("n", "<C-l>", "<cmd>nohlsearch|diffupdate|redraw|normal! <C-L><CR>", { desc = "Clear Highlight Search" })
 
-set("n", "<leader>lr", function()
-  RestartAll()
-end, { desc = "LSP: Restart" })
+-- set("n", "<leader>lr", function()
+--   RestartAll()
+-- end, { desc = "LSP: Restart" })
 
 set(
   "n",
@@ -366,6 +366,8 @@ set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search query" })
 set("n", "<leader>lm", "<cmd>DeleteAllMarks<CR>jk", { desc = "Clear All Marks" })
 
 set("n", "<leader>lf", "<cmd>e!<CR>", { desc = "Reload from disk" })
+
+set("n", "<leader>lq", "<cmd>restart<CR>", { desc = "Restart Neovim" })
 
 ---- '*' Keeps cursor on the same occurrence
 set("n", "*", "*N", { desc = "'*' Keeps cursor on the name occurrence" })

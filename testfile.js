@@ -32,6 +32,7 @@ function messy(a, b) {
     console.log("Tie!");
   }
 }
+
 messy(5, 3);
 messy(2, 9);
 messy(4, 4);

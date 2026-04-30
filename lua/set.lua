@@ -1,14 +1,17 @@
--- Neovim base settings
+-- Windows Only settings
 if vim.fn.has("win32") == 1 then
   vim.o.shell = "C:\\PROGRA~1\\PowerShell\\7\\pwsh.exe"
   vim.o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
   vim.o.shellquote = ""
   vim.o.shellxquote = ""
+  vim.env.CC = "gcc"
 end
 
+-- Neovim base settings
 vim.opt.number = true
 vim.opt.relativenumber = true
 
+vim.lsp.document_color.enable(false)
 vim.g.have_nerd_font = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2

@@ -42,11 +42,11 @@ return {
   -- theme("rose-pine/neovim", "rose-pine"),
   theme("folke/tokyonight.nvim"),
   -- theme("navarasu/onedark.nvim", "onedark", "cool"), -- { 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light' }
-  -- theme("uhs-robert/oasis.nvim", "oasis"),
+  theme("uhs-robert/oasis.nvim", "oasis"),
   -- theme("vague-theme/vague.nvim", "vague"),
-  -- theme("catppuccin/nvim", "catppuccin"),
+  -- theme("catppuccin/nvim", "catppuccin-nvim"),
   -- theme("rebelot/kanagawa.nvim", "kanagawa"),
   theme("EdenEast/nightfox.nvim", "nightfox"),
   -- theme("sainnhe/gruvbox-material", "gruvbox-material"),
-  -- theme("scottmckendry/cyberdream.nvim", "cyberdream"),
+  theme("scottmckendry/cyberdream.nvim", "cyberdream"),
 }
