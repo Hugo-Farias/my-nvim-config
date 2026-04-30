@@ -352,7 +352,8 @@ set("n", "<leader>ll", "<cmd>redraw | nohlsearch<CR>", { desc = "Clear Highlight
 set("n", "<C-l>", "<cmd>nohlsearch|diffupdate|redraw|normal! <C-L><CR>", { desc = "Clear Highlight Search" })
 
 set("n", "<leader>lr", function()
-  RestartAll()
+  -- RestartAll()
+  vim.cmd("LspRestart")
 end, { desc = "LSP: Restart" })
 
 set(

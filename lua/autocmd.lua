@@ -75,13 +75,13 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("QuitPre", {
   callback = function()
     vim.cmd("LspStop")
-    vim.fn.system([[
-      powershell -NoProfile -Command "
-      if ((Get-Process nvim -ErrorAction SilentlyContinue).Count -le 2) {
-      Get-Process biome -ErrorAction SilentlyContinue | Stop-Process
-      }
-    "
-    ]])
+    -- vim.fn.system([[
+    --   powershell -NoProfile -Command "
+    --   if ((Get-Process nvim -ErrorAction SilentlyContinue).Count -le 2) {
+    --   Get-Process biome -ErrorAction SilentlyContinue | Stop-Process
+    --   }
+    -- "
+    -- ]])
     -- vim.fn.jobstart({ "eslint_d", "--stop" })
     -- vim.fn.jobstart({ "prettierd", "--stop" })
     -- CleanShaDaFiles()
