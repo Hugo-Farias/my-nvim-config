@@ -1,10 +1,10 @@
 require("lazy").setup({
   -- { "nvim-lua/plenary.nvim" },
 
+  { require("lsp") },
   { require("plugins.treesitter") },
   { require("plugins.treesitter-context") },
   -- { require("plugins.treesitter-textobjects") },
-  { require("lsp") },
   { require("plugins.mason") },
   { require("plugins.todo-comments") },
   { require("plugins.snacks") },
