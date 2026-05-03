@@ -17,7 +17,7 @@ require("lazy").setup({
   { require("plugins.timber") },
   { "Aasim-A/scrollEOF.nvim", event = { "CursorMoved", "WinScrolled" }, opts = {} },
   { require("plugins.neoscroll") }, -- Smooth Scrolling
-  -- { require("plugins.render-markdown") },
+  { require("plugins.render-markdown") },
   { "j-hui/fidget.nvim", version = "*", opts = {} },
 
   -- { require("plugins.noice") },
@@ -49,7 +49,7 @@ require("lazy").setup({
   ---- Mini Compilation ----
   -- { require("plugins.mini-icons") },
   { require("plugins.mini-surround") },
-  { require("plugins.mini-pairs") },
+  -- { require("plugins.mini-pairs") },
   { require("plugins.mini-ai") },
   { require("plugins.mini-splitjoin") },
   { require("plugins.mini-align") },

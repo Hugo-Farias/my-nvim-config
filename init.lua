@@ -1,8 +1,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- TODO: find solution for shada files being created with 0 bytes
-
 require("config.lazy") -- Add lazy.nvim to runtime path
 
 vim.loader.enable()
@@ -14,4 +12,4 @@ require("set")
 require("lazyload")
 -- require("neovide")
 
-EditorColorScheme("tokyonight-moon")
+EditorColorScheme("nightfox")

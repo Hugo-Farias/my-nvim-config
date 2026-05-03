@@ -31,9 +31,9 @@ local function theme(repo, name, style)
         keywords = { italic = true },
         functions = { italic = true },
       },
-      on_colors = function(colors)
-        colors.bg_statusline = colors.none
-      end,
+      -- on_colors = function(colors)
+      --   colors.bg_statusline = colors.none
+      -- end,
     },
   }
 end

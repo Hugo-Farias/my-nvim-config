@@ -1,13 +1,16 @@
 local function unsaved_buffers()
   local unsaved = {}
+
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-    if vim.api.nvim_buf_get_option(buf, "modified") then
+    if vim.api.nvim_get_option_value("modified", { buf = buf }) then
       local name = vim.api.nvim_buf_get_name(buf)
+
       if name == "" then
         name = "[No Name]"
       else
-        name = vim.fn.fnamemodify(name, ":t") -- only filename
+        name = vim.fn.fnamemodify(name, ":t")
       end
+
       table.insert(unsaved, name)
     end
   end
@@ -15,11 +18,13 @@ local function unsaved_buffers()
   if #unsaved > 0 then
     return " " .. table.concat(unsaved, ", ")
   end
+
   return ""
 end
 
 local function cwd_name()
-  return vim.fn.fnamemodify(vim.loop.cwd(), ":t")
+  local cwd = vim.uv.cwd()
+  return cwd and vim.fn.fnamemodify(cwd, ":t") or nil
 end
 
 -- local clients_lsp = function()
@@ -49,8 +54,8 @@ return {
       -- theme = custom_catppuccin,
       component_separators = "",
       -- section_separators = { left = "", right = "" },
-      section_separators = { left = "", right = "" },
-      -- section_separators = { left = "", right = "" },
+      -- section_separators = { left = "", right = "" },
+      section_separators = { left = "", right = "" },
       disabled_filetypes = { "alpha", "Outline" },
     },
     sections = {
@@ -81,7 +86,7 @@ return {
         {
           "diff",
           symbols = { added = " ", modified = " ", removed = " " },
-          colored = false,
+          colored = true,
         },
       },
       lualine_x = {

@@ -123,7 +123,7 @@ local function openProjects()
       IsProject = false
       closeAllBuffers()
       LoadSession(picker, item)
-      vim.cmd("LspRestart")
+      -- vim.cmd("LspRestart")
       -- RestartAll()
     end,
   })
