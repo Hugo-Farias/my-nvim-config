@@ -2,7 +2,7 @@
 
 ### 🐞 Bug Fixes
 
-- [ ] Fix PowerShell's LSP erroring out
+- [ ] Windhawk Extension to auto extend file explorer fields to auto fit
 
 Class:  or 󰠱
 Color: 

@@ -47,9 +47,9 @@ require("lazy").setup({
   -- { require("plugins.windsurf") },
 
   ---- Mini Compilation ----
-  -- { require("plugins.mini-icons") },
+  { require("plugins.mini-icons") },
   { require("plugins.mini-surround") },
-  -- { require("plugins.mini-pairs") },
+  { require("plugins.mini-pairs") },
   { require("plugins.mini-ai") },
   { require("plugins.mini-splitjoin") },
   { require("plugins.mini-align") },

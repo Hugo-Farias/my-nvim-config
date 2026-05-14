@@ -72,7 +72,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Before Quiting Neovim
--- vim.api.nvim_create_autocmd("QuitPre", {
+-- vim.api.nvim_create_autocmd("VimLeavePre", {
 --   callback = function()
 --     vim.cmd("LspStop")
 --     -- vim.fn.system([[
