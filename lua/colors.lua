@@ -31,9 +31,9 @@ local function theme(repo, name, style)
         keywords = { italic = true },
         functions = { italic = true },
       },
-      on_colors = function(colors)
-        colors.bg_statusline = colors.none
-      end,
+      -- on_colors = function(colors)
+      --   colors.bg_statusline = colors.none
+      -- end,
     },
   }
 end
@@ -41,10 +41,10 @@ end
 return {
   -- theme("rose-pine/neovim", "rose-pine"),
   theme("folke/tokyonight.nvim"),
-  -- theme("navarasu/onedark.nvim", "onedark", "cool"), -- { 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light' }
+  theme("navarasu/onedark.nvim", "onedark", "cool"), -- { 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light' }
   -- theme("uhs-robert/oasis.nvim", "oasis"),
-  -- theme("vague-theme/vague.nvim", "vague"),
-  -- theme("catppuccin/nvim", "catppuccin-nvim"),
+  theme("vague-theme/vague.nvim", "vague"),
+  -- theme("catppuccin/nvim", "catppuccin"),
   -- theme("rebelot/kanagawa.nvim", "kanagawa"),
   theme("EdenEast/nightfox.nvim", "nightfox"),
   -- theme("sainnhe/gruvbox-material", "gruvbox-material"),

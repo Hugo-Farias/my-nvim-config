@@ -1,8 +1,6 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- FIX: find solution for shada files being created with 0 bytes
-
 require("config.lazy") -- Add lazy.nvim to runtime path
 
 vim.loader.enable()

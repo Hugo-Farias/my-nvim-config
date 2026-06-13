@@ -18,6 +18,7 @@ vim.diagnostic.config({
   float = floatingOpts,
 })
 
+
 -- stylua: ignore start
 ---- Lsp Keymaps ----
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -101,16 +102,6 @@ for _, key in ipairs({ "<C-f4>", "<leader>q", "<M-q>", "qt" }) do
   set("n", key, "<cmd>lua Snacks.bufdelete()<CR>", { desc = "Close Buffer" })
 end
 
--- local function closeAllBuffers()
---   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
---     if vim.fn.buflisted(buf) == 1 then
---       -- Delete the buffer
---       vim.api.nvim_set_current_buf(buf)
---       require("snacks").bufdelete()
---     end
---   end
--- end
-
 local function closeAllBuffers()
   for _, buf in ipairs(vim.api.nvim_list_bufs()) do
     if vim.fn.buflisted(buf) == 1 then
@@ -132,7 +123,7 @@ local function openProjects()
       IsProject = false
       closeAllBuffers()
       LoadSession(picker, item)
-      -- vim.cmd("LspStart")
+      -- vim.cmd("LspRestart")
       -- RestartAll()
     end,
   })
@@ -210,7 +201,7 @@ return {
     },
     -- stylua: ignore start
     { "<leader><leader>", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
-    { "<C- >", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
+    -- { "<C- >", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
     { "<C-e>", "<cmd>lua Snacks.picker.files()<CR>", desc = "Snacks: Search Files" },
     { "<leader>sf", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
     { "<leader>sg", "<cmd>lua Snacks.picker.git_diff()<CR>", desc = "Snacks: Search Git Diffs" },

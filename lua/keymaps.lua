@@ -33,12 +33,28 @@ set("n", "gu", "<Nop>")
 --- Run file
 set("n", "<leader>rf", function()
   vim.cmd("!ii %")
+  vim.notify("File opened with default application")
 end, { desc = "Run current file" })
 
 -- Execute script inside Neovim
 set("n", "<leader>rs", function()
   vim.cmd("!& %")
+  vim.notify("Script executed inside Neovim")
 end, { desc = "Execute script inside Neovim" })
+
+---- Source nvim config file
+set("n", "<leader>rv", function()
+  local filetype = vim.bo.filetype
+  if filetype ~= "lua" then
+    vim.notify(
+      "Warning: This command is meant to be used on Lua files. Current filetype: " .. filetype,
+      vim.log.levels.WARN
+    )
+    return
+  end
+  vim.cmd("source " .. vim.fn.stdpath("config") .. "/init.lua")
+  vim.notify("Config Reloaded")
+end, { desc = "Source nvim config file" })
 
 ---- Change directory to git root
 set("n", "cd", function()
@@ -59,16 +75,13 @@ end, { desc = "Print cwd and file path" })
 ---- Quick Save
 set("n", "<C-s>", "<cmd>up<CR>", { desc = "Save File" })
 
----- Format buffer
--- vim.api.nvim_set_keymap("n", "<leader>f", ":format<cr>", { noremap = true, silent = true, desc = "Format buffer" })
-
 ---- Change directory to current file
--- set("n", "cd", "<cmd>cd %:p:h | pwd<CR>", { desc = "CD to file directory" })
+set("n", "cD", "<cmd>cd %:p:h | pwd<CR>", { desc = "CD to file directory" })
 
 ---- Save and source file
-vim.api.nvim_create_user_command("W", function()
-  vim.cmd("write | source %")
-end, {})
+-- vim.api.nvim_create_user_command("W", function()
+--   vim.cmd("write | source %")
+-- end, {})
 
 -------------------------------------------------------------------------------
 ---- 🪟 Buffers & Windows
@@ -351,9 +364,7 @@ end, { noremap = true, desc = "Start recording macro" })
 set("n", "<leader>ll", "<cmd>redraw | nohlsearch<CR>", { desc = "Clear Highlight Search" })
 set("n", "<C-l>", "<cmd>nohlsearch|diffupdate|redraw|normal! <C-L><CR>", { desc = "Clear Highlight Search" })
 
--- set("n", "<leader>lr", function()
---   RestartAll()
--- end, { desc = "LSP: Restart" })
+set("n", "<leader>lr", "<cmd>LspRestart<CR>", { desc = "LSP: Restart" })
 
 set(
   "n",
@@ -365,7 +376,7 @@ set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search query" })
 
 set("n", "<leader>lm", "<cmd>DeleteAllMarks<CR>jk", { desc = "Clear All Marks" })
 
-set("n", "<leader>lf", "<cmd>e!<CR>", { desc = "Reload from disk" })
+set("n", "<leader>rf", "<cmd>e!<CR>", { desc = "Reload from disk" })
 
 set("n", "<leader>lq", "<cmd>restart<CR>", { desc = "Restart Neovim" })
 
@@ -402,6 +413,9 @@ set("x", "<leader>d", '"_d', { noremap = true, silent = true, desc = "Delete wit
 
 ---- Delete line without yanking
 set("n", "<leader>dd", '"_dd', { noremap = true, silent = true, desc = "Delete line without yank" })
+
+---- Delete till $ witout yanking
+set("x", "<leader>D", '"_d$', { noremap = false, silent = true, desc = "Delete without yank" })
 
 ---- x deletes without yanking
 -- set({ "n", "x" }, "x", "\"_x", { noremap = true, silent = true, desc = "Delete char without yank" })

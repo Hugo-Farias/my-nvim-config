@@ -30,7 +30,7 @@ return {
   s("!biome", {
     t({
       "{",
-      '  "$schema": "https://biomejs.dev/schemas/2.3.7/schema.json",',
+      '  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",',
       '  "vcs": {',
       '    "enabled": true,',
       '    "clientKind": "git",',

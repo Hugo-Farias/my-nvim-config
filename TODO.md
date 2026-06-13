@@ -2,6 +2,8 @@
 
 ### 🐞 Bug Fixes
 
+- [ ] Windhawk Extension to auto extend file explorer fields to auto fit
+
 Class:  or 󰠱
 Color: 
 Constant:  or 󰏿

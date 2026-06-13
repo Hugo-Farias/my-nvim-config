@@ -1,11 +1,10 @@
 require("lazy").setup({
   -- { "nvim-lua/plenary.nvim" },
 
-  -- { require("plugins.tree-sitter-manager") },
+  { require("lsp") },
   { require("plugins.treesitter") },
   { require("plugins.treesitter-context") },
   -- { require("plugins.treesitter-textobjects") },
-  { require("lsp") },
   { require("plugins.mason") },
   { require("plugins.todo-comments") },
   { require("plugins.snacks") },
@@ -48,7 +47,7 @@ require("lazy").setup({
   -- { require("plugins.windsurf") },
 
   ---- Mini Compilation ----
-  -- { require("plugins.mini-icons") },
+  { require("plugins.mini-icons") },
   { require("plugins.mini-surround") },
   { require("plugins.mini-pairs") },
   { require("plugins.mini-ai") },

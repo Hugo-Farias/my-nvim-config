@@ -3,12 +3,10 @@ local set = vim.keymap.set
 set("n", "<leader>ga", "<cmd>Gitsigns preview_hunk<CR>", { desc = "Gitsigns: Preview Line" })
 set("n", "<leader>gA", "<cmd>Gitsigns preview_hunk_inline<CR>", { desc = "Gitsigns: Preview Hunk Inline" })
 set("n", "<leader>gu", "<cmd>Gitsigns reset_hunk<CR>", { desc = "Gitsigns: Undo" })
--- set("n", "<leader>gn", "<cmd>Gitsigns nav_hunk next<CR>", { desc = "Gitsigns: Next Hunk" })
 set("n", "]g", "<cmd>Gitsigns nav_hunk next<CR>", { desc = "Gitsigns: Next Hunk" })
--- set("n", "<leader>gp", "<cmd>Gitsigns nav_hunk prev<CR>", { desc = "Gitsigns: Previous Hunk" })
 set("n", "[g", "<cmd>Gitsigns nav_hunk prev<CR>", { desc = "Gitsigns: Previous Hunk" })
 set({ "o", "x" }, "ig", "<Cmd>Gitsigns select_hunk<CR>", { desc = "Gitsigns: Git Hunk" })
--- set({ "o", "x" }, "ah", "<Cmd>Gitsigns select_hunk<CR>", { desc = "Gitsigns: Git Hunk" })
+set({ "o", "x" }, "ag", "<Cmd>Gitsigns select_hunk<CR>", { desc = "Gitsigns: Git Hunk" })
 set("n", "<leader>gw", "<cmd>Gitsigns toggle_word_diff<CR>", { desc = "Gitsigns: Toggle Word Diff" })
 
 set("n", "<leader>gd", function()

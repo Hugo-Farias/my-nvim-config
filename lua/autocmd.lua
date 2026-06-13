@@ -72,11 +72,11 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 -- Before Quiting Neovim
--- vim.api.nvim_create_autocmd("QuitPre", {
+-- vim.api.nvim_create_autocmd("VimLeavePre", {
 --   callback = function()
 --     vim.cmd("LspStop")
 --     -- vim.fn.system([[
---     --   pwsh -NoProfile -Command "
+--     --   powershell -NoProfile -Command "
 --     --   if ((Get-Process nvim -ErrorAction SilentlyContinue).Count -le 2) {
 --     --   Get-Process biome -ErrorAction SilentlyContinue | Stop-Process
 --     --   }
