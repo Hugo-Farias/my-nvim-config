@@ -129,6 +129,24 @@ local function openProjects()
   })
 end
 
+-- TODO: Finish This!!!
+local function diffGitBranch()
+  require("snacks").picker.git_branches(
+    ---@type snacks.picker.git.branches.Config
+    {
+      source = "git_branches",
+      confirm = function(picker, item)
+        picker:close()
+        if not item then
+          return
+        end
+
+        vim.cmd("GitSigns diffthis " .. item)
+      end,
+    }
+  )
+end
+
 local function searchScratchFiles()
   local scratch_dir = vim.fn.getcwd():gsub("\\", "/") .. "/.scratch/"
   if vim.fn.isdirectory(scratch_dir) == 0 then
@@ -230,6 +248,7 @@ return {
     { "<leader>s.", "<cmd>lua Snacks.scratch.select()<CR>", desc = "Snacks: Pick Project Scratch File" },
     { "<leader>.", "<cmd>lua Snacks.scratch()<CR>", desc = "Snacks: Open Project Scratch File" },
     { "<leader>sp", openProjects, desc = "Snacks: Search Projects" },
+    { "<leader>sG", diffGitBranch, desc = "Snacks: Diff Branches" },
     { "<leader>su", "<cmd>lua Snacks.picker.undo()<CR>", desc = "Snacks: Search Undos" },
     { "<leader>st", searchTodos, desc = "Snacks: Search Every TODO" },
     { "<leader>sT", function () searchTodos([[( TODO\:| FIX\:)]]) end, desc = "Snacks: Search TODOs" },

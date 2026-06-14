@@ -321,7 +321,6 @@ set(
   { desc = "Search and replace word under cursor" }
 )
 
--- TODO: Finish this mapping to work in visual mode with the selected text instead of the word under cursor
 set(
   "x",
   "<leader>*",
@@ -364,7 +363,7 @@ end, { noremap = true, desc = "Start recording macro" })
 set("n", "<leader>ll", "<cmd>redraw | nohlsearch<CR>", { desc = "Clear Highlight Search" })
 set("n", "<C-l>", "<cmd>nohlsearch|diffupdate|redraw|normal! <C-L><CR>", { desc = "Clear Highlight Search" })
 
-set("n", "<leader>lr", "<cmd>LspRestart<CR>", { desc = "LSP: Restart" })
+set("n", "<leader>lr", "<cmd>lsp restart<CR>", { desc = "LSP: Restart" })
 
 set(
   "n",
