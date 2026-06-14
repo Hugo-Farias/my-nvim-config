@@ -38,6 +38,7 @@ vim.opt.sidescrolloff = 8
 vim.o.timeoutlen = 500
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
+vim.opt.splitright = true
 -- vim.o.keymodel = ""
 
 -- Fix for session restoring with blank buffer

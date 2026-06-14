@@ -129,24 +129,6 @@ local function openProjects()
   })
 end
 
--- TODO: Finish This!!!
-local function diffGitBranch()
-  require("snacks").picker.git_branches(
-    ---@type snacks.picker.git.branches.Config
-    {
-      source = "git_branches",
-      confirm = function(picker, item)
-        picker:close()
-        if not item then
-          return
-        end
-
-        vim.cmd("GitSigns diffthis " .. item)
-      end,
-    }
-  )
-end
-
 local function searchScratchFiles()
   local scratch_dir = vim.fn.getcwd():gsub("\\", "/") .. "/.scratch/"
   if vim.fn.isdirectory(scratch_dir) == 0 then
@@ -170,20 +152,20 @@ local function searchScratchFiles()
   })
 end
 
-local function searchTodos(param)
-  local search = param or [[( TODO\:| FIX\:| WARN\:| HACK\:| NOTE\:| TEST\:)]]
-  require("snacks").picker.grep({
-    title = "TODOs",
-    on_show = function()
-      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-g>", true, false, true), "i", false)
-      vim.cmd.stopinsert()
-    end,
-    finder = "grep",
-    search = function()
-      return search
-    end,
-  })
-end
+-- local function searchTodos(param)
+--   local search = param or [[( TODO\:| FIX\:| WARN\:| HACK\:| NOTE\:| TEST\:)]]
+--   require("snacks").picker.grep({
+--     title = "TODOs",
+--     on_show = function()
+--       vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-g>", true, false, true), "i", false)
+--       vim.cmd.stopinsert()
+--     end,
+--     finder = "grep",
+--     search = function()
+--       return search
+--     end,
+--   })
+-- end
 
 return {
   "folke/snacks.nvim",
@@ -206,19 +188,9 @@ return {
     styles = { notification = { wo = { wrap = true } } },
   },
   keys = {
-    {
-      "<leader><Tab>",
-      function()
-        require("snacks").picker.resume({
-          on_show = function()
-            vim.cmd.stopinsert()
-          end,
-        })
-      end,
-      desc = "Snacks: Resume Search",
-    },
     -- stylua: ignore start
-    { "<leader><leader>", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
+    { "<leader><Tab>", "<cmd>lua Snacks.picker.resume()<CR>",{ desc = "Snacks: Resume Search" }},
+    -- { "<leader><leader>", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
     -- { "<C- >", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
     { "<C-e>", "<cmd>lua Snacks.picker.files()<CR>", desc = "Snacks: Search Files" },
     { "<leader>sf", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
@@ -239,7 +211,7 @@ return {
     { "<leader>sh", "<cmd>lua Snacks.picker.help()<CR>", desc = "Snacks: Search Help", mode = {'n', 'x'} },
     { "<leader>s/", "<cmd>lua Snacks.picker.search_history()<CR>", desc = "Snacks: Search History" },
     { "<leader>s'", "<cmd>lua Snacks.picker.registers()<CR>", desc = "Snacks: Search Registers" },
-    { "<leader>s;", "<cmd>lua Snacks.picker.command_history()<CR>", desc = "Snacks: Search Command History" },
+    { "<leader>s:", "<cmd>lua Snacks.picker.command_history()<CR>", desc = "Snacks: Search Command History" },
     { "<leader>n", "<cmd>lua Snacks.notifier.show_history()<CR>", desc = "Snacks: Show Notification History" },
     { "<leader>sn", "<cmd>lua Snacks.picker.notifications()<CR>", desc = "Snacks: Show Notification Picker" },
     { "<leader>sm", "<cmd>lua Snacks.picker.marks()<CR>", desc = "Snacks: Search Marks" },
@@ -248,12 +220,11 @@ return {
     { "<leader>s.", "<cmd>lua Snacks.scratch.select()<CR>", desc = "Snacks: Pick Project Scratch File" },
     { "<leader>.", "<cmd>lua Snacks.scratch()<CR>", desc = "Snacks: Open Project Scratch File" },
     { "<leader>sp", openProjects, desc = "Snacks: Search Projects" },
-    { "<leader>sG", diffGitBranch, desc = "Snacks: Diff Branches" },
-    { "<leader>su", "<cmd>lua Snacks.picker.undo()<CR>", desc = "Snacks: Search Undos" },
-    { "<leader>st", searchTodos, desc = "Snacks: Search Every TODO" },
-    { "<leader>sT", function () searchTodos([[( TODO\:| FIX\:)]]) end, desc = "Snacks: Search TODOs" },
-    { "<leader>sj", "<cmd>lua Snacks.picker.jumps()<CR>", desc = "Snacks: Search Jumplist" },
-    -- { "<leader>st", "<cmd>lua Snacks.picker.todo_comments()<CR>", desc = "Search TODOs" },
+    { "<leader>su", "<cmd>lua Snacks.picker.undo({focus='list'})<CR>", desc = "Snacks: Search Undos" },
+    -- { "<leader>st", searchTodos, desc = "Snacks: Search Every TODO" },
+    -- { "<leader>sT", function () searchTodos([[( TODO\:| FIX\:)]]) end, desc = "Snacks: Search TODOs" },
+    { "<leader>sj", "<cmd>lua Snacks.picker.jumps({focus='list'})<CR>", desc = "Snacks: Search Jumplist" },
+    { "<leader>st", "<cmd>lua Snacks.picker.todo_comments({focus='list'})<CR>", desc = "Search TODOs" },
     { "<leader>sP", "<cmd>lua Snacks.picker.pickers()<CR>", desc = "Search Snacks' Pickers" },
     ---- Git Actions ----
     { "<leader>gg", "<cmd>lua Snacks.lazygit()<CR>", desc = "Snacks: Git Lazygit" },
