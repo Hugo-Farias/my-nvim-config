@@ -10,7 +10,10 @@ local function gitDiffBranch()
           vim.notify("No branch selected", vim.log.levels.WARN)
           return
         end
+        vim.cmd("wincmd o")
+
         -- print(vim.inspect(item))
+
         vim.cmd("Gitsigns diffthis " .. item.branch)
       end,
     }
@@ -29,6 +32,8 @@ local function gitDiffCommit()
           vim.notify("No commit selected", vim.log.levels.WARN)
           return
         end
+
+        vim.cmd("wincmd o")
 
         vim.cmd("Gitsigns diffthis " .. item.commit)
       end,

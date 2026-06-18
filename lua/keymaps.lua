@@ -182,6 +182,10 @@ local insertCommentMaps = {
     vim.cmd("norm OHACK:  gccA")
     vim.cmd.startinsert()
   end,
+  b = function()
+    vim.cmd("norm OBUG:  gccA")
+    vim.cmd.startinsert()
+  end,
   l = function()
     vim.cmd("norm oxgcckJ$xA ")
     vim.cmd.startinsert()
@@ -330,7 +334,7 @@ set(
 
 ---- Paste from system's clipboard
 set({ "n", "x" }, "<leader>p", '"+p', { desc = "Paste from system's clipboard" })
-set({ "n", "x" }, "<leader>P", 'o<Esc>"+p^', { desc = "which_key_ignore" })
+set({ "n", "x" }, "<leader>P", 'O<Esc>"+p^', { desc = "which_key_ignore" })
 
 ---- Yank into system's clipboard
 -- for _, key in ipairs({ "y", "Y" }) do
@@ -363,8 +367,6 @@ end, { noremap = true, desc = "Start recording macro" })
 set("n", "<leader>ll", "<cmd>redraw | nohlsearch<CR>", { desc = "Clear Highlight Search" })
 set("n", "<C-l>", "<cmd>nohlsearch|diffupdate|redraw|normal! <C-L><CR>", { desc = "Clear Highlight Search" })
 
-set("n", "<leader>lr", "<cmd>lsp restart<CR>", { desc = "LSP: Restart" })
-
 set(
   "n",
   "<leader>lR",
@@ -373,11 +375,13 @@ set(
 )
 set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search query" })
 
-set("n", "<leader>lm", "<cmd>DeleteAllMarks<CR>jk", { desc = "Clear All Marks" })
+set("n", "<leader>rm", "<cmd>DeleteAllMarks<CR>jk", { desc = "Reset Marks" })
 
 set("n", "<leader>rf", "<cmd>e!<CR>", { desc = "Reload from disk" })
 
-set("n", "<leader>lq", "<cmd>restart<CR>", { desc = "Restart Neovim" })
+set("n", "<leader>rl", "<cmd>lsp restart<CR>", { desc = "Restart LSP" })
+
+set("n", "<leader>rn", "<cmd>restart<CR>", { desc = "Restart Neovim" })
 
 ---- '*' Keeps cursor on the same occurrence
 set("n", "*", "*N", { desc = "'*' Keeps cursor on the name occurrence" })
@@ -425,8 +429,8 @@ end
 ---- Exit insert mode
 set({ "i", "c" }, "jk", "<Esc>", { desc = "Exit insert mode (jk)" })
 set({ "i", "c" }, "kj", "<Esc>", { desc = "Exit insert mode (kj)" })
--- set({ "i", "c" }, "JK", "<Esc>", { desc = "Exit insert mode (JK)" })
--- set({ "i", "c" }, "KJ", "<Esc>", { desc = "Exit insert mode (KJ)" })
+set({ "i", "c" }, "JK", "<Esc>", { desc = "Exit insert mode (JK)" })
+set({ "i", "c" }, "KJ", "<Esc>", { desc = "Exit insert mode (KJ)" })
 
 ---- Join lines and delete space
 -- set("n", "<leader>jl", "J", { noremap = true, silent = true, desc = "Join lines" })

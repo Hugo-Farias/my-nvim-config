@@ -51,7 +51,3 @@ vim.opt.sessionoptions = {
   "terminal",
   "folds",
 }
-
-vim.api.nvim_create_user_command("NvimClean", function()
-  CleanShaDaFiles()
-end, { desc = "Run PowerShell alias nvimclean" })

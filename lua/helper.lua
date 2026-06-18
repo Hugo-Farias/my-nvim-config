@@ -99,18 +99,6 @@ function SmartSaveSession()
   end
 end
 
--- Clean up temporary ShaDa files that are smaller than 1 KB
-function CleanShaDaFiles()
-  local data_dir = vim.fn.stdpath("data") .. "/shada"
-  local tmp_files = vim.fn.glob(data_dir .. "/main.shada.tmp.?*", false, true)
-  for _, file in ipairs(tmp_files) do
-    local stat = vim.loop.fs_stat(file)
-    if stat and stat.size < 1024 then -- smaller than 1 KB
-      vim.fn.delete(file)
-    end
-  end
-end
-
 vim.api.nvim_create_user_command("DeleteAllMarks", function()
   vim.cmd("delmarks A-Z a-z 0-9")
 end, {})
