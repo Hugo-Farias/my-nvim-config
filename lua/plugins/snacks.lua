@@ -152,6 +152,15 @@ local function searchScratchFiles()
   })
 end
 
+local function snacksTodo()
+  ---@diagnostic disable-next-line: undefined-field
+  Snacks.picker.todo_comments({
+    focus = "list",
+    -- keywords = { "TODO", "FIX", "TEST", "WARN", "HACK", "BUG", "NOTE" },
+    keywords = { "TODO", "FIX", "TEST", "BUG" },
+  })
+end
+
 -- local function searchTodos(param)
 --   local search = param or [[( TODO\:| FIX\:| WARN\:| HACK\:| NOTE\:| TEST\:)]]
 --   require("snacks").picker.grep({
@@ -224,7 +233,8 @@ return {
     -- { "<leader>st", searchTodos, desc = "Snacks: Search Every TODO" },
     -- { "<leader>sT", function () searchTodos([[( TODO\:| FIX\:)]]) end, desc = "Snacks: Search TODOs" },
     { "<leader>sj", "<cmd>lua Snacks.picker.jumps({focus='list'})<CR>", desc = "Snacks: Search Jumplist" },
-    { "<leader>st", "<cmd>lua Snacks.picker.todo_comments({focus='list'})<CR>", desc = "Search TODOs" },
+    { "<leader>sT", "<cmd>lua Snacks.picker.todo_comments()<CR>", desc = "Search TODOs" },
+    { "<leader>st", snacksTodo, desc = "Search TODOs" },
     { "<leader>sP", "<cmd>lua Snacks.picker.pickers()<CR>", desc = "Search Snacks' Pickers" },
     ---- Git Actions ----
     { "<leader>gg", "<cmd>lua Snacks.lazygit()<CR>", desc = "Snacks: Git Lazygit" },

@@ -20,6 +20,8 @@ return {
       graphql = { "biome" },
       vue = { "biome" },
       handlebars = { "prettierd" },
+      -- TODO: Try to get this working later, maybe
+      -- ps1 = { "prettierd" },
     },
     -- format_on_save = {
     --   timeout_ms = 500,

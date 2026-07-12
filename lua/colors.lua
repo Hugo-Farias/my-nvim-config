@@ -48,5 +48,4 @@ return {
   -- theme("rebelot/kanagawa.nvim", "kanagawa"),
   theme("EdenEast/nightfox.nvim", "nightfox"),
   -- theme("sainnhe/gruvbox-material", "gruvbox-material"),
-  theme("scottmckendry/cyberdream.nvim", "cyberdream"),
 }

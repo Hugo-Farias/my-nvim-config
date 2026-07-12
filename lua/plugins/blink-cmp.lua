@@ -5,7 +5,6 @@ return { -- optional blink completion source for require statements and module a
   dependencies = {
     -- "giuxtaposition/blink-cmp-copilot",
     require("plugins.lazydev"),
-    "folke/lazydev.nvim",
   },
   opts = {
     completion = {

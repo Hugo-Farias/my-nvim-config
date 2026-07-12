@@ -14,15 +14,16 @@ end
 return {
   "hrsh7th/nvim-cmp",
   dependencies = {
-    {
-      "folke/lazydev.nvim",
-      ft = "lua",
-      opts = {
-        library = {
-          { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-        },
-      },
-    },
+    -- {
+    --   "folke/lazydev.nvim",
+    --   ft = "lua",
+    --   opts = {
+    --     library = {
+    --       { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+    --     },
+    --   },
+    -- },
+    { require("plugins.lazydev") },
     { "hrsh7th/cmp-nvim-lsp" },
     { "onsails/lspkind.nvim" },
     { require("plugins.autopairs") },

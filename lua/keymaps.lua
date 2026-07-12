@@ -186,6 +186,34 @@ local insertCommentMaps = {
     vim.cmd("norm OBUG:  gccA")
     vim.cmd.startinsert()
   end,
+  p = function()
+    vim.cmd("norm OPERFORMANCE:  gccA")
+    vim.cmd.startinsert()
+  end,
+  i = function()
+    vim.cmd("norm OINFO:  gccA")
+    vim.cmd.startinsert()
+  end,
+  W = function()
+    vim.cmd("norm OWARNING:  gccA")
+    vim.cmd.startinsert()
+  end,
+  x = function()
+    vim.cmd("norm OXXX:  gccA")
+    vim.cmd.startinsert()
+  end,
+  o = function()
+    vim.cmd("norm OOPTMIZE:  gccA")
+    vim.cmd.startinsert()
+  end,
+  P = function()
+    vim.cmd("norm OPASSED:  gccA")
+    vim.cmd.startinsert()
+  end,
+  F = function()
+    vim.cmd("norm OFAILED:  gccA")
+    vim.cmd.startinsert()
+  end,
   l = function()
     vim.cmd("norm oxgcckJ$xA ")
     vim.cmd.startinsert()
@@ -375,7 +403,7 @@ set(
 )
 set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search query" })
 
-set("n", "<leader>rm", "<cmd>DeleteAllMarks<CR>jk", { desc = "Reset Marks" })
+set("n", "<leader>rm", "<cmd>DeleteAllMarks<CR>", { desc = "Reset Marks" })
 
 set("n", "<leader>rf", "<cmd>e!<CR>", { desc = "Reload from disk" })
 
