@@ -51,3 +51,29 @@ vim.opt.sessionoptions = {
   "terminal",
   "folds",
 }
+
+--- LSP Configs ----
+
+vim.lsp.config("rust_analyzer", {
+  settings = {
+    ["rust-analyzer"] = {
+      assist = {
+        importEnforceGranularity = true,
+        importPrefix = "crate",
+      },
+      cargo = {
+        allFeatures = true,
+      },
+      checkOnSave = false,
+      inlayHints = {
+        locationLinks = false,
+      },
+      diagnostics = {
+        enable = true,
+        experimental = {
+          enable = true,
+        },
+      },
+    },
+  },
+})

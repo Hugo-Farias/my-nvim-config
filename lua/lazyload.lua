@@ -1,11 +1,11 @@
 require("lazy").setup({
   -- { "nvim-lua/plenary.nvim" },
 
-  { require("lsp") },
+  -- { require("lsp") },
+  { require("plugins.mason") },
   { require("plugins.treesitter") },
   { require("plugins.treesitter-context") },
   -- { require("plugins.treesitter-textobjects") },
-  { require("plugins.mason") },
   { require("plugins.todo-comments") },
   { require("plugins.snacks") },
 
@@ -16,7 +16,7 @@ require("lazy").setup({
   { require("plugins.gitsigns") },
   { require("plugins.timber") },
   { "Aasim-A/scrollEOF.nvim", event = { "CursorMoved", "WinScrolled" }, opts = {} },
-  { require("plugins.neoscroll") }, -- Smooth Scrolling
+  -- { require("plugins.neoscroll") }, -- Smooth Scrolling
   -- { require("plugins.render-markdown") },
   { "j-hui/fidget.nvim", version = "*", opts = {} },
 
@@ -75,4 +75,8 @@ require("lazy").setup({
 
   ---- Colors ----
   require("colors"),
+
+  ---- Temporary ----
+
+  { require("plugins.rustlings") },
 })

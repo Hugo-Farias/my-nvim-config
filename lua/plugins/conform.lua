@@ -20,7 +20,7 @@ return {
       graphql = { "biome" },
       vue = { "biome" },
       handlebars = { "prettierd" },
-      -- TODO: Try to get this working later, maybe
+      rust = { "rustfmt" },
       -- ps1 = { "prettierd" },
     },
     -- format_on_save = {

@@ -392,24 +392,26 @@ set({ "n", "x" }, "qr", function()
 end, { noremap = true, desc = "Start recording macro" })
 
 ---- Clear Search Query
-set("n", "<leader>ll", "<cmd>redraw | nohlsearch<CR>", { desc = "Clear Highlight Search" })
+-- set("n", "<leader>ll", "<cmd>redraw | nohlsearch<CR>", { desc = "Clear Highlight Search" })
 set("n", "<C-l>", "<cmd>nohlsearch|diffupdate|redraw|normal! <C-L><CR>", { desc = "Clear Highlight Search" })
 
-set(
-  "n",
-  "<leader>lR",
-  "m0<cmd>enew<CR><C-6><cmd>bd<CR><C-6>`0<cmd>delm 0<CR><C-6><cmd>bd<CR>",
-  { desc = "Refresh buffer" }
-)
+-- set(
+--   "n",
+--   "<leader>lR",
+--   "m0<cmd>enew<CR><C-6><cmd>bd<CR><C-6>`0<cmd>delm 0<CR><C-6><cmd>bd<CR>",
+--   { desc = "Refresh buffer" }
+-- )
 set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search query" })
 
 set("n", "<leader>rm", "<cmd>DeleteAllMarks<CR>", { desc = "Reset Marks" })
 
 set("n", "<leader>rf", "<cmd>e!<CR>", { desc = "Reload from disk" })
 
+set("n", "<leader>rF", "<cmd>bufdo e!<CR>", { desc = "Reload from disk (All Buffers)" })
+
 set("n", "<leader>rl", "<cmd>lsp restart<CR>", { desc = "Restart LSP" })
 
-set("n", "<leader>rn", "<cmd>restart<CR>", { desc = "Restart Neovim" })
+set("n", "<leader>rN", "<cmd>restart<CR>", { desc = "Restart Neovim" })
 
 ---- '*' Keeps cursor on the same occurrence
 set("n", "*", "*N", { desc = "'*' Keeps cursor on the name occurrence" })
