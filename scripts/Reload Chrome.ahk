@@ -12,10 +12,16 @@
 ; Send: F21+L, F21+K, F5, F21+H
 
 Send, {F21 down}l{F21 up}
-
 Send, {F21 down}k{F21 up}
 
-Send, {F5}
+sleep 50
+; Send, {F5}
+Send, {ctrl down}l{ctrl up}
+sleep 50
+Send, {up}
+sleep 50
+Send, {enter}
+sleep 50
 
 Send, {F21 down}j{F21 up}
 Send, {F21 down}h{F21 up}

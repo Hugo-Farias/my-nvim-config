@@ -31,27 +31,27 @@ set("n", "gu", "<Nop>")
 -------------------------------------------------------------------------------
 
 --- Run file
-set("n", "<leader>rf", function()
-  vim.cmd("!ii %")
-  vim.notify("File opened with default application")
-end, { desc = "Run current file" })
+-- set("n", "<leader>rf", function()
+--   vim.cmd("!ii %")
+--   vim.notify("File opened with default application")
+-- end, { desc = "Run current file" })
 
 -- Execute script inside Neovim
-set("n", "<leader>rs", function()
-  vim.cmd("!& %")
-  vim.notify("Script executed inside Neovim")
-end, { desc = "Execute script inside Neovim" })
+-- set("n", "<leader>rs", function()
+--   vim.cmd("!& %")
+--   vim.notify("Script executed inside Neovim")
+-- end, { desc = "Execute script inside Neovim" })
 
 ---- Source nvim config file
-set("n", "<leader>rv", function()
-  local filetype = vim.bo.filetype
-  if filetype ~= "lua" then
-    vim.notify(
-      "Warning: This command is meant to be used on Lua files. Current filetype: " .. filetype,
-      vim.log.levels.WARN
-    )
-    return
-  end
+set("n", "<leader>r,", function()
+  -- local filetype = vim.bo.filetype
+  -- if filetype ~= "lua" then
+  --   vim.notify(
+  --     "Warning: This command is meant to be used on Lua files. Current filetype: " .. filetype,
+  --     vim.log.levels.WARN
+  --   )
+  --   return
+  -- end
   vim.cmd("source " .. vim.fn.stdpath("config") .. "/init.lua")
   vim.notify("Config Reloaded")
 end, { desc = "Source nvim config file" })
@@ -88,18 +88,18 @@ set("n", "cD", "<cmd>cd %:p:h | pwd<CR>", { desc = "CD to file directory" })
 -------------------------------------------------------------------------------
 
 ---- Reload Chrome
-set("n", "<C-r>", function()
-  local ahk = vim.fn.stdpath("config") .. "/scripts/Reload Chrome.ahk"
-
-  vim.fn.system({
-    "powershell",
-    "-NoProfile",
-    "-Command",
-    'ii "' .. ahk .. '"',
-  })
-
-  vim.notify("Reload Triggered")
-end, { desc = "Reload Chrome" })
+-- set("n", "<C-r>", function()
+--   local ahk = vim.fn.stdpath("config") .. "/scripts/Reload Chrome.ahk"
+--
+--   vim.fn.system({
+--     "powershell",
+--     "-NoProfile",
+--     "-Command",
+--     'ii "' .. ahk .. '"',
+--   })
+--
+--   vim.notify("Reload Triggered")
+-- end, { desc = "Reload Chrome" })
 
 ---- Go to previous buffer
 set("n", "<C-6>", "gt", { desc = "Switch tabs" })
@@ -232,8 +232,9 @@ for key, fn in pairs(insertCommentMaps) do
   set("n", "<C-t>" .. key, fn)
   set("n", "<C-t><C-" .. key .. ">", fn)
 end
--- set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up" })
--- set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down" })
+
+-- set("n", "<C-u>", "<C-u>M", { desc = "Scroll up" })
+-- set("n", "<C-d>", "<C-d>M", { desc = "Scroll down" })
 
 ---- Remap jk to gj gk for moving by display lines
 set({ "n", "x", "o" }, "j", function()
@@ -417,7 +418,7 @@ set("n", "<leader>rN", "<cmd>restart<CR>", { desc = "Restart Neovim" })
 set("n", "*", "*N", { desc = "'*' Keeps cursor on the name occurrence" })
 
 ---- Duplicate Line
-set("n", "H", "<cmd>copy .<CR>", { desc = "Duplicate Line" })
+-- set("n", "H", "<cmd>copy .<CR>", { desc = "Duplicate Line" })
 set("n", "<c-h>", "<cmd>copy .<CR>", { desc = "Duplicate Line" })
 set("x", "<c-h>", ":'<,'>copy '><CR>", { desc = "Duplicate Selection" })
 
@@ -459,8 +460,8 @@ end
 ---- Exit insert mode
 set({ "i", "c" }, "jk", "<Esc>", { desc = "Exit insert mode (jk)" })
 set({ "i", "c" }, "kj", "<Esc>", { desc = "Exit insert mode (kj)" })
-set({ "i", "c" }, "JK", "<Esc>", { desc = "Exit insert mode (JK)" })
-set({ "i", "c" }, "KJ", "<Esc>", { desc = "Exit insert mode (KJ)" })
+-- set({ "i", "c" }, "JK", "<Esc>", { desc = "Exit insert mode (JK)" })
+-- set({ "i", "c" }, "KJ", "<Esc>", { desc = "Exit insert mode (KJ)" })
 
 ---- Join lines and delete space
 -- set("n", "<leader>jl", "J", { noremap = true, silent = true, desc = "Join lines" })

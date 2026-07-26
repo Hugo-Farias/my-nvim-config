@@ -23,6 +23,9 @@ require("lazy").setup({
   -- { require("plugins.noice") },
   -- { require("plugins.notify") },
 
+  ---- Runners ----
+  { require("plugins.jaq") },
+
   ---- File Explorer ----
   { require("plugins.yazi") },
   -- { require("plugins.mini-files") },
@@ -70,13 +73,9 @@ require("lazy").setup({
   ---- Language Support ----
   { "kmonad/kmonad-vim" },
 
-  ---- Indefinitely Disabled ----
-  -- { require("plugins.comfy-line-numbers") },
-
   ---- Colors ----
   require("colors"),
 
   ---- Temporary ----
-
-  { require("plugins.rustlings") },
+  -- { require("plugins.rustlings") },
 })

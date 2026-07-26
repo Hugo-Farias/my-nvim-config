@@ -42,9 +42,9 @@ return { -- optional blink completion source for require statements and module a
       preset = "none",
 
       ["<Up>"] = { "select_prev", "fallback" },
-      ["<C-k>"] = { "select_prev", "fallback" },
+      -- ["<C-k>"] = { "select_prev", "fallback" },
       ["<Down>"] = { "select_next", "fallback" },
-      ["<C-j>"] = { "select_next", "fallback" },
+      -- ["<C-j>"] = { "select_next", "fallback" },
       ["<CR>"] = { "select_and_accept", "fallback" },
 
       -- ["<Tab>"] = { "none", "fallback" },

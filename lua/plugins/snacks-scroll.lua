@@ -8,8 +8,8 @@ return {
   -- faster animation when repeating scroll after delay
   animate_repeat = {
     delay = 100, -- delay in ms before using the repeat animation
-    duration = { step = 5, total = 50 },
-    easing = "linear",
+    duration = { step = 5, total = 10 },
+    easing = "outElastic",
   },
   -- what buffers to animate
   filter = function(buf)
