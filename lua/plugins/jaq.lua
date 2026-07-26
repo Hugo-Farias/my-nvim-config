@@ -1,12 +1,26 @@
--- Makes the jaq buffer temporary, unlisted and hidden when closed
+-- Makes the jaq buffer temporary, unlisted and hidden when closedkggg
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "jaq",
+  pattern = "Jaq",
   callback = function(args)
     vim.bo[args.buf].bufhidden = "wipe"
     vim.bo[args.buf].buflisted = false
     vim.bo[args.buf].swapfile = false
   end,
 })
+
+-- Close any jaq buffer before opening a new one
+local function run_jaq()
+  -- Close any existing JAQ windows
+  for _, win in ipairs(vim.api.nvim_list_wins()) do
+    local buf = vim.api.nvim_win_get_buf(win)
+
+    if vim.bo[buf].filetype == "Jaq" then
+      vim.api.nvim_win_close(win, true)
+    end
+  end
+
+  vim.cmd("Jaq terminal")
+end
 
 return {
   "is0n/jaq-nvim",
@@ -84,6 +98,6 @@ return {
     },
   },
   keys = {
-    { "<C-r>", "<cmd>Jaq terminal<CR>", desc = "Run code with Jaq" },
+    { "<C-r>", run_jaq, desc = "Run code with Jaq" },
   },
 }
