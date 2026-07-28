@@ -135,6 +135,14 @@ set("n", "<M-Up>", "<cmd>horizontal res -5<CR>", { noremap = true, desc = "Resiz
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
 
+---- Add semicolon to the end of the line
+set("n", "<leader>;", function()
+  local line = vim.api.nvim_get_current_line()
+  if not line:match(";$") then
+    vim.api.nvim_set_current_line(line .. ";")
+  end
+end, { desc = "Add semicolon to the end of the line" })
+
 ---- Spellcheck word under cursor
 set("n", "z;", function()
   local word = vim.fn.spellbadword()[1]

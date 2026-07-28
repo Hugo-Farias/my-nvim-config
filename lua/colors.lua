@@ -39,12 +39,12 @@ local function theme(repo, name, style)
 end
 
 return {
-  theme("rose-pine/neovim"),
+  { "catppuccin/nvim", priority = 1000 },
+  theme("rose-pine/neovim", "rose-pine"),
   theme("folke/tokyonight.nvim"),
-  theme("navarasu/onedark.nvim", "onedark", "warm"), -- { 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light' }
+  -- theme("navarasu/onedark.nvim", "onedark", "warm"), -- { 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light' }
   -- theme("uhs-robert/oasis.nvim", "oasis"),
   theme("vague-theme/vague.nvim", "vague"),
-  -- theme("catppuccin/nvim"),
   theme("EdenEast/nightfox.nvim", "nightfox"),
-  theme("sainnhe/gruvbox-material", "gruvbox-material"),
+  theme("scottmckendry/cyberdream.nvim"),
 }

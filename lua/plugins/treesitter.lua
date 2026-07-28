@@ -30,6 +30,7 @@ return {
       "yaml",
       "html",
       "css",
+      "rust",
     },
     sync_install = true,
     auto_install = true,

@@ -79,10 +79,11 @@ return {
 
       terminal = {
         -- Window position
-        position = "bot",
+        -- position = "bot",
+        position = "vert 60",
 
         -- Window size
-        size = 18,
+        size = 20,
 
         -- Disable line numbers
         line_no = false,
