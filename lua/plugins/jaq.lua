@@ -19,7 +19,7 @@ local function run_jaq()
     end
   end
 
-  vim.cmd("Jaq terminal")
+  vim.cmd("Jaq")
 end
 
 return {
@@ -46,7 +46,7 @@ return {
 
     behavior = {
       -- Default type
-      default = "float",
+      default = "terminal",
 
       -- Start in insert mode
       startinsert = false,

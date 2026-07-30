@@ -135,13 +135,29 @@ set("n", "<M-Up>", "<cmd>horizontal res -5<CR>", { noremap = true, desc = "Resiz
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
 
----- Add semicolon to the end of the line
+---- Set comma at the end of the line
+set("n", "<leader>,", function()
+  local line = vim.api.nvim_get_current_line()
+  if line:match(";$") then
+    vim.api.nvim_set_current_line(line:sub(1, -2) .. ",")
+  elseif not line:match(",$") then
+    vim.api.nvim_set_current_line(line .. ",")
+  elseif line:match(",$") then
+    vim.api.nvim_set_current_line(line:sub(1, -2))
+  end
+end, { desc = "Set comma at the end of the line" })
+
+---- Set semicolon at the end of the line
 set("n", "<leader>;", function()
   local line = vim.api.nvim_get_current_line()
-  if not line:match(";$") then
+  if line:match(",$") then
+    vim.api.nvim_set_current_line(line:sub(1, -2) .. ";")
+  elseif not line:match(";$") then
     vim.api.nvim_set_current_line(line .. ";")
+  else
+    vim.api.nvim_set_current_line(line:sub(1, -2))
   end
-end, { desc = "Add semicolon to the end of the line" })
+end, { desc = "Set semicolon at the end of the line" })
 
 ---- Spellcheck word under cursor
 set("n", "z;", function()
@@ -241,8 +257,8 @@ for key, fn in pairs(insertCommentMaps) do
   set("n", "<C-t><C-" .. key .. ">", fn)
 end
 
--- set("n", "<C-u>", "<C-u>M", { desc = "Scroll up" })
--- set("n", "<C-d>", "<C-d>M", { desc = "Scroll down" })
+-- set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up" })
+-- set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down" })
 
 ---- Remap jk to gj gk for moving by display lines
 set({ "n", "x", "o" }, "j", function()
@@ -508,7 +524,6 @@ vim.keymap.set("n", "gX", function()
     return
   end
 
-  -- if it failed, fall back to GitHub
   vim.ui.open("https://github.com/" .. target)
 end, {
   noremap = true,

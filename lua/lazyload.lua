@@ -73,6 +73,9 @@ require("lazy").setup({
   ---- Language Support ----
   { "kmonad/kmonad-vim" },
 
+  ---- String Manipulation ----
+  { "nicwest/vim-camelsnek", event = "VeryLazy" },
+
   ---- Colors ----
   require("colors"),
 

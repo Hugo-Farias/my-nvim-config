@@ -1,3 +1,29 @@
+--- LSP Configs ----
+
+vim.lsp.config("rust_analyzer", {
+  settings = {
+    ["rust-analyzer"] = {
+      assist = {
+        importEnforceGranularity = true,
+        importPrefix = "crate",
+      },
+      cargo = {
+        allFeatures = true,
+      },
+      checkOnSave = false,
+      inlayHints = {
+        locationLinks = true,
+      },
+      diagnostics = {
+        enable = true,
+        experimental = {
+          enable = true,
+        },
+      },
+    },
+  },
+})
+
 return {
   "williamboman/mason.nvim",
   lazy = false,
