@@ -140,10 +140,13 @@ set("n", "<leader>,", function()
   local line = vim.api.nvim_get_current_line()
   if line:match(";$") then
     vim.api.nvim_set_current_line(line:sub(1, -2) .. ",")
+    vim.notify("Replaced semicolon with comma")
   elseif not line:match(",$") then
     vim.api.nvim_set_current_line(line .. ",")
+    vim.notify("Added comma at the end of the line")
   elseif line:match(",$") then
     vim.api.nvim_set_current_line(line:sub(1, -2))
+    vim.notify("Removed comma at the end of the line")
   end
 end, { desc = "Set comma at the end of the line" })
 
@@ -152,10 +155,13 @@ set("n", "<leader>;", function()
   local line = vim.api.nvim_get_current_line()
   if line:match(",$") then
     vim.api.nvim_set_current_line(line:sub(1, -2) .. ";")
+    vim.notify("Replaced comma with semicolon")
   elseif not line:match(";$") then
     vim.api.nvim_set_current_line(line .. ";")
+    vim.notify("Added semicolon at the end of the line")
   else
     vim.api.nvim_set_current_line(line:sub(1, -2))
+    vim.notify("Removed semicolon at the end of the line")
   end
 end, { desc = "Set semicolon at the end of the line" })
 
@@ -257,8 +263,8 @@ for key, fn in pairs(insertCommentMaps) do
   set("n", "<C-t><C-" .. key .. ">", fn)
 end
 
--- set("n", "<C-u>", "<C-u>zz", { desc = "Scroll up" })
--- set("n", "<C-d>", "<C-d>zz", { desc = "Scroll down" })
+set("n", "<C-u>", "M<C-u>", { desc = "Scroll up" })
+set("n", "<C-d>", "M<C-d>", { desc = "Scroll down" })
 
 ---- Remap jk to gj gk for moving by display lines
 set({ "n", "x", "o" }, "j", function()
@@ -436,7 +442,7 @@ set("n", "<leader>rF", "<cmd>bufdo e!<CR>", { desc = "Reload from disk (All Buff
 
 set("n", "<leader>rl", "<cmd>lsp restart<CR>", { desc = "Restart LSP" })
 
-set("n", "<leader>rN", "<cmd>restart<CR>", { desc = "Restart Neovim" })
+set("n", "<leader>rn", "<cmd>restart<CR>", { desc = "Restart Neovim" })
 
 ---- '*' Keeps cursor on the same occurrence
 set("n", "*", "*N", { desc = "'*' Keeps cursor on the name occurrence" })

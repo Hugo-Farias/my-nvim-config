@@ -11,6 +11,8 @@ type User = {
 type Status = "" | "approved" | "rejected";
 
 const arr: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
+console.error("This is an error message");
+console.log("This is a log message");
 
 arr.forEach((v) => {
   console.log(v);

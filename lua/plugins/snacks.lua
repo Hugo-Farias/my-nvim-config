@@ -186,7 +186,7 @@ return {
     dashboard = require("plugins.snacks-dashboard"),
     explorer = { enabled = true },
     indent = require("plugins.snacks-indent"),
-    -- input = { enabled = true },
+    input = { enabled = true },
     picker = require("plugins.snacks-picker"),
     notifier = { enabled = true, timeout = 3000 },
     quickfile = { enabled = true },
@@ -244,5 +244,8 @@ return {
     ---- Jumps ----
     { "]w", "<cmd>lua Snacks.words.jump(1)<CR>", desc = "Snacks: Jump to Next Word" },
     { "[w", "<cmd>lua Snacks.words.jump(-1)<CR>", desc = "Snacks: Jump to Previous Word" },
+    ---- Zen mode ----
+    -- {"<leader>z", "<cmd>lua Snacks.zen()<CR>", desc = "Snacks: Toggle Zen Mode" },
+    -- {"<leader>Z", "<cmd>lua Snacks.zen.zoom()<CR>", desc = "Snacks: Toggle Zen Mode Zoom" },
   },
 }

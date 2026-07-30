@@ -50,7 +50,7 @@ require("lazy").setup({
   -- { require("plugins.windsurf") },
 
   ---- Mini Compilation ----
-  { require("plugins.mini-icons") },
+  -- { require("plugins.mini-icons") },
   { require("plugins.mini-surround") },
   { require("plugins.mini-pairs") },
   { require("plugins.mini-ai") },
@@ -74,7 +74,7 @@ require("lazy").setup({
   { "kmonad/kmonad-vim" },
 
   ---- String Manipulation ----
-  { "nicwest/vim-camelsnek", event = "VeryLazy" },
+  { require("plugins.vim-camelsnek") },
 
   ---- Colors ----
   require("colors"),
