@@ -58,6 +58,6 @@
   end,
 
   keys = {
-    { "<leader>lc", "<cmd>Codeium Toggle<CR>", desc = "Codeium: Toggle" },
+    { "<leader>ta", "<cmd>Codeium Toggle<CR>", desc = "Codeium: Toggle" },
   },
 }

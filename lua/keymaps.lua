@@ -135,18 +135,40 @@ set("n", "<M-Up>", "<cmd>horizontal res -5<CR>", { noremap = true, desc = "Resiz
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
 
+local ns = vim.api.nvim_create_namespace("comma_flash")
+
+local function flash_last_char()
+  local row = vim.api.nvim_win_get_cursor(0)[1] - 1
+  local line = vim.api.nvim_get_current_line()
+
+  if line == "" then
+    return
+  end
+
+  local col = #line - 1
+
+  local id = vim.api.nvim_buf_set_extmark(0, ns, row, col, {
+    end_col = col + 1,
+    hl_group = "IncSearch", -- choose any highlight group you like
+  })
+
+  vim.defer_fn(function()
+    pcall(vim.api.nvim_buf_del_extmark, 0, ns, id)
+  end, 400)
+end
+
 ---- Set comma at the end of the line
 set("n", "<leader>,", function()
   local line = vim.api.nvim_get_current_line()
+
   if line:match(";$") then
     vim.api.nvim_set_current_line(line:sub(1, -2) .. ",")
-    vim.notify("Replaced semicolon with comma")
+    flash_last_char()
   elseif not line:match(",$") then
     vim.api.nvim_set_current_line(line .. ",")
-    vim.notify("Added comma at the end of the line")
+    flash_last_char()
   elseif line:match(",$") then
     vim.api.nvim_set_current_line(line:sub(1, -2))
-    vim.notify("Removed comma at the end of the line")
   end
 end, { desc = "Set comma at the end of the line" })
 
@@ -155,13 +177,12 @@ set("n", "<leader>;", function()
   local line = vim.api.nvim_get_current_line()
   if line:match(",$") then
     vim.api.nvim_set_current_line(line:sub(1, -2) .. ";")
-    vim.notify("Replaced comma with semicolon")
+    flash_last_char()
   elseif not line:match(";$") then
     vim.api.nvim_set_current_line(line .. ";")
-    vim.notify("Added semicolon at the end of the line")
+    flash_last_char()
   else
     vim.api.nvim_set_current_line(line:sub(1, -2))
-    vim.notify("Removed semicolon at the end of the line")
   end
 end, { desc = "Set semicolon at the end of the line" })
 
@@ -263,8 +284,8 @@ for key, fn in pairs(insertCommentMaps) do
   set("n", "<C-t><C-" .. key .. ">", fn)
 end
 
-set("n", "<C-u>", "M<C-u>", { desc = "Scroll up" })
-set("n", "<C-d>", "M<C-d>", { desc = "Scroll down" })
+set("n", "<C-u>", "M<C-u>zz", { desc = "Scroll up" })
+set("n", "<C-d>", "M<C-d>zz", { desc = "Scroll down" })
 
 ---- Remap jk to gj gk for moving by display lines
 set({ "n", "x", "o" }, "j", function()
@@ -329,23 +350,6 @@ end, { desc = "Turn off diff mode" })
 
 set("n", "<M-k>", "<cmd>bnext<CR>", { desc = "Next Buffer" })
 set("n", "<M-j>", "<cmd>bprev<CR>", { desc = "Previous Buffer" })
-
--- set("n", "gw", "=", { desc = "Align text" })
-
--- Marks are always uppercase
--- for c = string.byte("a"), string.byte("z") do
---   local lower = string.char(c)
---   local upper = string.upper(lower)
---
---   -- Set mark: ma → mA
---   vim.keymap.set("n", "m" .. lower, "m" .. upper, { noremap = true })
---
---   -- Jump to mark by line: 'a → 'A
---   vim.keymap.set("n", "'" .. lower, "'" .. upper, { noremap = true })
---
---   -- Jump to mark by exact position: `a → `A
---   vim.keymap.set("n", "`" .. lower, "`" .. upper, { noremap = true })
--- end
 
 ---- Get previous yanked text
 set({ "n", "x" }, '<leader>"', '"0p', { desc = "Paste previously yanked text", noremap = true })

@@ -9,7 +9,7 @@ return {
   opts = {
     cmdline = {
       enabled = true,
-      view = "cmdline", -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline
+      view = "cmdline_popup", -- view for rendering the cmdline. Change to `cmdline` to get a classic cmdline
     },
     views = {
       cmdline_popup = {
