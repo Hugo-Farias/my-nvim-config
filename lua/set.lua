@@ -8,6 +8,7 @@ if vim.fn.has("win32") == 1 then
 end
 
 -- Neovim base settings
+-- vim.o.laststatus = 3
 vim.opt.number = true
 vim.opt.relativenumber = true
 
@@ -33,7 +34,7 @@ vim.opt.undofile = true
 -- vim.opt.updatetime = 2000
 -- vim.opt.colorcolumn = "80"
 
-vim.opt.scrolloff = 15
+vim.opt.scrolloff = 9
 vim.opt.sidescrolloff = 8
 vim.o.timeoutlen = 500
 vim.opt.ignorecase = true

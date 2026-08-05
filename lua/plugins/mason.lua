@@ -10,7 +10,7 @@ vim.lsp.config("rust_analyzer", {
       cargo = {
         allFeatures = true,
       },
-      checkOnSave = false,
+      checkOnSave = true,
       inlayHints = {
         locationLinks = true,
       },

@@ -57,9 +57,7 @@ set("n", "<leader>r,", function()
 end, { desc = "Source nvim config file" })
 
 ---- Change directory to git root
-set("n", "cd", function()
-  SmartChangeDir()
-end, { desc = "CD to git root or file path" })
+set("n", "cd", SmartChangeDir, { desc = "CD to git root or file path" })
 
 ---- Go up one directory
 set("n", "cu", "<cmd>cd ../ | pwd<CR>", { desc = "CD up a directory" })
@@ -201,8 +199,11 @@ set("n", "gUl", "gu", { desc = "To lowercase" })
 
 ------ Alternate mappings
 set("n", "do", "dd", { desc = "Delete line" })
+set("n", "<leader>do", '"_dd', { desc = "Delete line without yank" })
 set("n", "co", "cc", { desc = "Change line" })
+set("n", "<leader>co", '"_cc', { desc = "Change line without yank" })
 set("n", "yo", "yy", { desc = "Yank line" })
+set("n", "<leader>yo", '"+yy', { desc = "Yank line into system clipboard" })
 set("n", "vo", "V", { desc = "Visual Line Mode" })
 set("n", "vq", "", { desc = "Visual Block Mode" })
 set("n", "g~o", "g~g~", { desc = "Toggle case line" })
@@ -409,7 +410,19 @@ set({ "n", "x" }, "<leader>y", '"+y', { desc = "Yank into system's clipboard" })
 set({ "n", "x" }, "<leader>Y", '"+y$', { desc = "which_key_ignore" })
 
 ---- 'q' to quit
-set({ "n", "x" }, "qq", ":wincmd o|silent! close<CR>", { desc = "close", silent = true })
+local function closeAllSplits()
+  vim.api.nvim_feedkeys("q", "n", false)
+  vim.api.nvim_feedkeys("", "n", false)
+  vim.cmd("wincmd h")
+  vim.cmd("wincmd k")
+  vim.cmd("wincmd o")
+  vim.cmd("silent! close")
+end
+
+set({ "n", "x" }, "qq", closeAllSplits, { desc = "close", silent = true })
+-- set({ "n", "x" }, "qq", ":wincmd o|silent! close<CR>", { desc = "close", silent = true })
+-- set({ "n", "x" }, "q[", ":wincmd o|silent! close<CR>", { desc = "close", silent = true })
+set({ "n", "x" }, "q[", closeAllSplits, { desc = "close", silent = true })
 
 ---- `qp` to play macro
 set({ "n", "x" }, "qe", function()

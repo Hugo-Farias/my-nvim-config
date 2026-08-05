@@ -229,7 +229,7 @@ return {
     { "<leader>s.", "<cmd>lua Snacks.scratch.select()<CR>", desc = "Snacks: Pick Project Scratch File" },
     { "<leader>.", "<cmd>lua Snacks.scratch()<CR>", desc = "Snacks: Open Project Scratch File" },
     { "<leader>sp", openProjects, desc = "Snacks: Search Projects" },
-    { "<leader>su", "<cmd>lua Snacks.picker.undo({focus='list', preset='sidebar'})<CR>", desc = "Snacks: Search Undos" },
+    { "<leader>su", "<cmd>lua Snacks.picker.undo({focus='list'})<CR>", desc = "Snacks: Search Undos" },
     -- { "<leader>st", searchTodos, desc = "Snacks: Search Every TODO" },
     -- { "<leader>sT", function () searchTodos([[( TODO\:| FIX\:)]]) end, desc = "Snacks: Search TODOs" },
     { "<leader>sj", "<cmd>lua Snacks.picker.jumps({focus='list'})<CR>", desc = "Snacks: Search Jumplist" },
