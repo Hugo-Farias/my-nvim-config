@@ -133,6 +133,10 @@ set("n", "<M-Up>", "<cmd>horizontal res -5<CR>", { noremap = true, desc = "Resiz
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
 
+set("i", "<M-,>", "<Esc>A,<C-j>", { noremap = true, desc = "Insert comma at the end of the line and start next line" })
+set("i", "<M-;>", "<Esc>A;<C-j>", { noremap = true, desc = "Insert semicolon at the end of the line and start next line" })
+
+
 local ns = vim.api.nvim_create_namespace("comma_flash")
 
 local function flash_last_char()

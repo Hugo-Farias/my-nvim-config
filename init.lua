@@ -16,4 +16,4 @@ require("set")
 require("lazyload")
 -- require("neovide")
 
-EditorColorScheme("tokyonight-moon")
+EditorColorScheme("catppuccin-mocha")
