@@ -85,6 +85,20 @@ set("n", "cD", "<cmd>cd %:p:h | pwd<CR>", { desc = "CD to file directory" })
 ---- 🪟 Buffers & Windows
 -------------------------------------------------------------------------------
 
+local function closeAllSplits()
+  vim.api.nvim_feedkeys("q", "n", false)
+  vim.api.nvim_feedkeys("", "n", false)
+  vim.cmd("wincmd h")
+  vim.cmd("wincmd k")
+  vim.cmd("wincmd o")
+  vim.cmd("silent! close")
+end
+
+set({ "n", "x" }, "qq", closeAllSplits, { desc = "close", silent = true })
+-- set({ "n", "x" }, "qq", ":wincmd o|silent! close<CR>", { desc = "close", silent = true })
+-- set({ "n", "x" }, "q[", ":wincmd o|silent! close<CR>", { desc = "close", silent = true })
+set({ "n", "x" }, "q[", closeAllSplits, { desc = "close", silent = true })
+
 ---- Reload Chrome
 -- set("n", "<C-r>", function()
 --   local ahk = vim.fn.stdpath("config") .. "/scripts/Reload Chrome.ahk"
@@ -133,10 +147,6 @@ set("n", "<M-Up>", "<cmd>horizontal res -5<CR>", { noremap = true, desc = "Resiz
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
 
-set("i", "<M-,>", "<Esc>A,<C-j>", { noremap = true, desc = "Insert comma at the end of the line and start next line" })
-set("i", "<M-;>", "<Esc>A;<C-j>", { noremap = true, desc = "Insert semicolon at the end of the line and start next line" })
-
-
 local ns = vim.api.nvim_create_namespace("comma_flash")
 
 local function flash_last_char()
@@ -156,11 +166,11 @@ local function flash_last_char()
 
   vim.defer_fn(function()
     pcall(vim.api.nvim_buf_del_extmark, 0, ns, id)
-  end, 400)
+  end, 300)
 end
 
----- Set comma at the end of the line
-set("n", "<leader>,", function()
+local function set_comma(go_to_next_line)
+  local next_line = go_to_next_line or false
   local line = vim.api.nvim_get_current_line()
 
   if line:match(";$") then
@@ -172,11 +182,16 @@ set("n", "<leader>,", function()
   elseif line:match(",$") then
     vim.api.nvim_set_current_line(line:sub(1, -2))
   end
-end, { desc = "Set comma at the end of the line" })
 
----- Set semicolon at the end of the line
-set("n", "<leader>;", function()
+  if next_line then
+    vim.api.nvim_feedkeys("o", "n", false)
+  end
+end
+
+local function set_semicolon(go_to_next_line)
+  local next_line = go_to_next_line or false
   local line = vim.api.nvim_get_current_line()
+
   if line:match(",$") then
     vim.api.nvim_set_current_line(line:sub(1, -2) .. ";")
     flash_last_char()
@@ -186,7 +201,25 @@ set("n", "<leader>;", function()
   else
     vim.api.nvim_set_current_line(line:sub(1, -2))
   end
-end, { desc = "Set semicolon at the end of the line" })
+
+  if next_line then
+    vim.api.nvim_feedkeys("o", "n", false)
+  end
+end
+
+set("i", "<M-,>", function()
+  set_comma(true)
+end, { noremap = true, desc = "Insert comma at the end of the line and start next line" })
+
+set("i", "<M-;>", function()
+  set_semicolon(true)
+end, { noremap = true, desc = "Insert semicolon at the end of the line and start next line" })
+
+---- Set comma at the end of the line
+set("n", "<leader>,", set_comma, { desc = "Set comma at the end of the line" })
+
+---- Set semicolon at the end of the line
+set("n", "<leader>;", set_semicolon, { desc = "Set semicolon at the end of the line" })
 
 ---- Spellcheck word under cursor
 set("n", "z;", function()
@@ -342,8 +375,12 @@ set("x", ">", ">gv", { desc = "Indent right" })
 
 -- Turn on diff mode
 set("n", "<leader>fc", function()
+  vim.cmd("wincmd h")
+  vim.cmd("diffthis")
+  vim.cmd("wincmd l")
   vim.cmd("diffthis")
   vim.cmd("diffupdate")
+  vim.cmd("wincmd h")
   vim.notify("Diff Mode On")
 end, { desc = "Turn on diff mode" })
 
@@ -413,30 +450,15 @@ set({ "n", "x" }, "<leader>y", '"+y', { desc = "Yank into system's clipboard" })
 
 set({ "n", "x" }, "<leader>Y", '"+y$', { desc = "which_key_ignore" })
 
----- 'q' to quit
-local function closeAllSplits()
-  vim.api.nvim_feedkeys("q", "n", false)
-  vim.api.nvim_feedkeys("", "n", false)
-  vim.cmd("wincmd h")
-  vim.cmd("wincmd k")
-  vim.cmd("wincmd o")
-  vim.cmd("silent! close")
-end
-
-set({ "n", "x" }, "qq", closeAllSplits, { desc = "close", silent = true })
--- set({ "n", "x" }, "qq", ":wincmd o|silent! close<CR>", { desc = "close", silent = true })
--- set({ "n", "x" }, "q[", ":wincmd o|silent! close<CR>", { desc = "close", silent = true })
-set({ "n", "x" }, "q[", closeAllSplits, { desc = "close", silent = true })
-
 ---- `qp` to play macro
 set({ "n", "x" }, "qe", function()
   vim.api.nvim_feedkeys("@", "n", false)
 end, { noremap = true, desc = "Play macro" })
 
 ---- 'Q' to replay last played macro
-set({ "n", "x" }, "Q", function()
-  vim.api.nvim_feedkeys("@@", "n", false)
-end, { noremap = true, desc = "Replay last played macro" })
+-- set({ "n", "x" }, "Q", function()
+--   vim.api.nvim_feedkeys("@@", "n", false)
+-- end, { noremap = true, desc = "Replay last played macro" })
 
 ---- `qr` to start macro recording
 set({ "n", "x" }, "qr", function()
@@ -457,9 +479,9 @@ set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search query" })
 
 set("n", "<leader>rm", "<cmd>DeleteAllMarks<CR>", { desc = "Reset Marks" })
 
-set("n", "<leader>rf", "<cmd>e!<CR>", { desc = "Reload from disk" })
+set("n", "<leader>rf", "<cmd>e!<CR>", { desc = "Reload buffer from disk" })
 
-set("n", "<leader>rF", "<cmd>bufdo e!<CR>", { desc = "Reload from disk (All Buffers)" })
+set("n", "<leader>rF", "<cmd>bufdo e!<CR>", { desc = "Reload all buffers from disk" })
 
 set("n", "<leader>rl", "<cmd>lsp restart<CR>", { desc = "Restart LSP" })
 
@@ -517,7 +539,7 @@ set({ "i", "c" }, "kj", "<Esc>", { desc = "Exit insert mode (kj)" })
 ---- Join lines and delete space
 -- set("n", "<leader>jl", "J", { noremap = true, silent = true, desc = "Join lines" })
 set("n", "J", "m0J`0<cmd>delm 0<CR>", { silent = true, desc = "Join lines" })
-set("n", "gJ", "m0gJ`0<cmd>delm 0<CR>", { silent = true, desc = "Join lines without space" })
+set("n", "gJ", "m0gJ`0<cmd>delm 0<CR>", { silent = true, desc = "Join lines without spaces" })
 
 ----Add empty line under
 set("n", "<C-k>", "m0o<Esc>`0<cmd>delm 0<CR>", { desc = "Add empty line under", noremap = true })
@@ -571,5 +593,5 @@ set({ "c", "i" }, "<C-Delete>", "<C-o>de", { noremap = true, desc = "Delete word
 ---- ☸> Command Mode Keymaps
 -------------------------------------------------------------------------------
 
-set("c", "<Up>", "<C-p>", { desc = "Select Previous" })
-set("c", "<Down>", "<C-n>", { desc = "Select Next" })
+-- set("c", "<Up>", "<C-p>", { desc = "Select Previous" })
+-- set("c", "<Down>", "<C-n>", { desc = "Select Next" })

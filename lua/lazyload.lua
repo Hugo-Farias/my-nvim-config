@@ -80,5 +80,5 @@ require("lazy").setup({
   require("colors"),
 
   ---- Temporary ----
-  -- { require("plugins.rustlings") },
+  { require("plugins.rustlings") },
 })

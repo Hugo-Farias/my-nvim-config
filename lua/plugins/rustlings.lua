@@ -9,14 +9,14 @@ return {
     -- Path to rustlings directory (auto-detected if nil)
     rustlings_path = "D:/Users/Hugo/Documents/Projects/rustlings",
 
-    -- keymaps = {
-    --   next = "<leader>ln", -- Set to false to disable
-    --   hint = "<leader>lh",
-    --   list = "<leader>ll",
-    --   reset = "<leader>lr",
-    --   start = "<leader>ls",
-    --   stop = "<leader>lq",
-    -- },
+    keymaps = {
+      next = "<leader>ln", -- Set to false to disable
+      --   hint = "<leader>lh",
+      --   list = "<leader>ll",
+      --   reset = "<leader>lr",
+      --   start = "<leader>ls",
+      --   stop = "<leader>lq",
+    },
 
     progress = {
       show_in_statusline = true,

@@ -1,3 +1,16 @@
+local is_highlight_colors_on = true
+
+local function toggle_colors()
+  vim.cmd("HighlightColors toggle")
+  if is_highlight_colors_on then
+    is_highlight_colors_on = false
+    vim.notify("Highlight Colors Disabled", vim.log.levels.INFO, { title = "Highlight Colors" })
+  else
+    is_highlight_colors_on = true
+    vim.notify("Highlight Colors Enabled", vim.log.levels.INFO, { title = "Highlight Colors" })
+  end
+end
+
 return {
   "brenoprata10/nvim-highlight-colors",
   lazy = false,
@@ -70,6 +83,6 @@ return {
     exclude_buffer = function() end,
   },
   keys = {
-    { "<leader>tc", "<cmd>HighlightColors toggle<cr>", desc = "Toggle Highlight Colors" },
+    { "<leader>tc", toggle_colors, desc = "Toggle Highlight Colors" },
   },
 }

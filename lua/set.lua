@@ -8,7 +8,8 @@ if vim.fn.has("win32") == 1 then
 end
 
 -- Neovim base settings
--- vim.o.laststatus = 3
+-- vim.o.guicursor = ""
+vim.o.laststatus = 3
 vim.opt.number = true
 vim.opt.relativenumber = true
 
@@ -21,17 +22,19 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 
 vim.opt.wrap = false
+
 vim.opt.linebreak = true
 vim.opt.breakindent = true
 vim.opt.breakat = " "
 
 vim.opt.termguicolors = true
 
+-- vim.opt.swapfile = false
 -- vim.opt.backup = false
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
 vim.opt.undofile = true
 
--- vim.opt.updatetime = 2000
+vim.opt.updatetime = 100
 -- vim.opt.colorcolumn = "80"
 
 vim.opt.scrolloff = 9

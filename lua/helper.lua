@@ -1,25 +1,3 @@
--- local function is_attached(lspName)
---   for _, client in ipairs(vim.lsp.get_clients()) do
---     if client.name == lspName then
---       return true
---     end
---   end
---   return false
--- end
-
--- Restart LSP and LLMs
--- function RestartAll()
---   -- vim.fn.system("Get-Process biome -ErrorAction SilentlyContinue | Stop-Process")
---   local copilotRunning = is_attached("copilot")
---   -- local biome = is_attached("biome")
---   vim.defer_fn(function()
---     if copilotRunning then
---       vim.cmd("silent! Copilot enable")
---     end
---   end, 1000)
---   vim.cmd("LspRestart")
--- end
-
 -- Change location to git root if found, otherwise to file's location
 function SmartChangeDir()
   local file = vim.api.nvim_buf_get_name(0)

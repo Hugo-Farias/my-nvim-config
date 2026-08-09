@@ -62,43 +62,40 @@ set("n", "<leader>fs", function()
       vim.cmd("wincmd o")
     end,
   })
-end, { desc = "Snacks: Open File in Split" })
+end, { desc = "Snacks: Open File in vertical split" })
 
 ---- Open Diff View
-set("n", "<leader>fd", function()
-  vim.cmd("diffoff")
-  vim.cmd("wincmd o")
-  vim.cmd("wincmd v")
-  vim.cmd("wincmd l")
-  require("snacks").picker.files({
-    confirm = function(picker, item)
-      picker:close()
-      vim.cmd("e " .. item.file)
-      vim.cmd("diffthis")
-      vim.cmd("wincmd h")
-      vim.defer_fn(function()
-        vim.cmd("diffthis")
-        vim.cmd("diffupdate")
-      end, 100)
-    end,
-    cancel = function()
-      vim.cmd("diffoff")
-      vim.cmd("wincmd h")
-      vim.cmd("wincmd o")
-    end,
-  })
-end, { desc = "Snacks: Compare Files" })
-
--- Toggle terminal in normal mode
-set("n", "<C-y>", "<cmd>lua Snacks.terminal.toggle()<CR>", { desc = "Snacks: Toggle terminal (normal)" })
+-- set("n", "<leader>fd", function()
+--   vim.cmd("diffoff")
+--   vim.cmd("wincmd o")
+--   vim.cmd("wincmd v")
+--   vim.cmd("wincmd l")
+--   require("snacks").picker.files({
+--     confirm = function(picker, item)
+--       picker:close()
+--       vim.cmd("e " .. item.file)
+--       vim.cmd("diffthis")
+--       vim.cmd("wincmd h")
+--       vim.defer_fn(function()
+--         vim.cmd("diffthis")
+--         vim.cmd("diffupdate")
+--       end, 100)
+--     end,
+--     cancel = function()
+--       vim.cmd("diffoff")
+--       vim.cmd("wincmd h")
+--       vim.cmd("wincmd o")
+--     end,
+--   })
+-- end, { desc = "Snacks: Compare Files" })
 
 -- Toggle terminal in terminal mode
-set("t", "<C-y>", function()
+local function leave_terminal()
   vim.cmd.stopinsert() -- exit terminal input mode
   vim.cmd("lua Snacks.terminal.toggle()") -- then hide the terminal
-end, { desc = "Snacks: Toggle terminal (terminal)" })
+end
 
-for _, key in ipairs({ "<C-f4>", "<leader>q", "<M-q>", "qt" }) do
+for _, key in ipairs({ "<leader>q", "<M-q>", "qt" }) do
   set("n", key, "<cmd>lua Snacks.bufdelete()<CR>", { desc = "Close Buffer" })
 end
 
@@ -116,15 +113,10 @@ local function openProjects()
       if not item then
         return
       end
-
-      -- vim.cmd("LspStop")
       SmartSaveSession()
-      -- vim.fn.system("Get-Process biome -ErrorAction SilentlyContinue | Stop-Process")
       IsProject = false
       closeAllBuffers()
       LoadSession(picker, item)
-      -- vim.cmd("LspRestart")
-      -- RestartAll()
     end,
   })
 end
@@ -161,21 +153,6 @@ local function snacksTodo()
   })
 end
 
--- local function searchTodos(param)
---   local search = param or [[( TODO\:| FIX\:| WARN\:| HACK\:| NOTE\:| TEST\:)]]
---   require("snacks").picker.grep({
---     title = "TODOs",
---     on_show = function()
---       vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes("<C-g>", true, false, true), "i", false)
---       vim.cmd.stopinsert()
---     end,
---     finder = "grep",
---     search = function()
---       return search
---     end,
---   })
--- end
-
 return {
   "folke/snacks.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -211,7 +188,7 @@ return {
     { "<leader>fR", "<cmd>lua Snacks.rename.rename_file()<CR>", desc = "Snacks: Rename File" },
     { "<leader>/", "<cmd>lua Snacks.picker.grep()<CR>", desc = "Snacks: Search Grep" },
     { "<leader>sw", "<cmd>lua Snacks.picker.grep_word()<CR>", desc = "Snacks: Search Word Grep", mode = { "n", "x" } },
-    { "<leader>sW", "m0viW<cmd>lua Snacks.picker.grep_word()<CR>`0", desc = "Snacks: Search Word Grep", mode =  "n"  },
+    { "<leader>sW", "m0viW<cmd>lua Snacks.picker.grep_word()<CR>`0", desc = "Snacks: Search Word Grep", mode = "n" },
     { "<C-p>", "<cmd>lua Snacks.picker.buffers()<CR>", desc = "Snacks: Search Buffers" },
     { "<leader>sb", "<cmd>lua Snacks.picker.buffers()<CR>", desc = "Snacks: Search Buffers" },
     { "<leader>sc", "<cmd>lua Snacks.picker.commands()<CR>", desc = "Snacks: Search Commands" },
@@ -229,7 +206,7 @@ return {
     { "<leader>s.", "<cmd>lua Snacks.scratch.select()<CR>", desc = "Snacks: Pick Project Scratch File" },
     { "<leader>.", "<cmd>lua Snacks.scratch()<CR>", desc = "Snacks: Open Project Scratch File" },
     { "<leader>sp", openProjects, desc = "Snacks: Search Projects" },
-    { "<leader>su", "<cmd>lua Snacks.picker.undo({focus='list'})<CR>", desc = "Snacks: Search Undos" },
+    { "<leader>su", "<cmd>lua Snacks.picker.undo({focus='list', layout='right'})<CR>", desc = "Snacks: Search Undos" },
     -- { "<leader>st", searchTodos, desc = "Snacks: Search Every TODO" },
     -- { "<leader>sT", function () searchTodos([[( TODO\:| FIX\:)]]) end, desc = "Snacks: Search TODOs" },
     { "<leader>sj", "<cmd>lua Snacks.picker.jumps({focus='list'})<CR>", desc = "Snacks: Search Jumplist" },
@@ -247,5 +224,8 @@ return {
     ---- Zen mode ----
     -- {"<leader>z", "<cmd>lua Snacks.zen()<CR>", desc = "Snacks: Toggle Zen Mode" },
     -- {"<leader>Z", "<cmd>lua Snacks.zen.zoom()<CR>", desc = "Snacks: Toggle Zen Mode Zoom" },
+    ---- Terminal mode ----
+    { "<C-y>", "<cmd>lua Snacks.terminal.toggle()<CR>", { desc = "Snacks: Toggle terminal (normal)" } },
+    { "<C-y>", leave_terminal, { desc = "Snacks: Toggle terminal (terminal)" }, mode = "t" },
   },
 }

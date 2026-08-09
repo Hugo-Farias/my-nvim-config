@@ -90,5 +90,6 @@ return {
     { "ag", "<Cmd>Gitsigns select_hunk<CR>", mode = { "o", "x" }, desc = "Gitsigns: Git Hunk" },
     { "<leader>gw", "<cmd>Gitsigns toggle_word_diff<CR>", desc = "Gitsigns: Toggle Word Diff" },
     { "<leader>gd", gitDiffCommit, desc = "Gitsigns: Diff Commit" },
+    { "<leader>gB", "<cmd>Gitsigns blame", desc = "Gitsigns: Diff Commit" },
   },
 }
