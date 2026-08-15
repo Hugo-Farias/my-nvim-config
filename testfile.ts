@@ -1,5 +1,9 @@
 // utils.ts
 
+const _unused_function = (): null => {
+  return null;
+};
+
 type User = {
   id: number;
   name: string;

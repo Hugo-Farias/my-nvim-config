@@ -53,7 +53,7 @@ return {
     options = {
       -- theme = custom_catppuccin,
       globalstatus = true,
-      component_separators = "",
+      -- component_separators = "",
       -- section_separators = { left = "", right = "" },
       -- section_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
@@ -92,15 +92,15 @@ return {
       },
       lualine_x = {
         {
+          "diagnostics",
+          symbols = { error = " ", warn = " ", info = " ", hint = " " },
+          update_in_insert = true,
+        },
+        {
           unsaved_buffers,
           "encoding",
           "fileformat",
           "filetype",
-        },
-        {
-          "diagnostics",
-          symbols = { error = " ", warn = " ", info = " ", hint = " " },
-          update_in_insert = true,
         },
       },
       -- lualine_y = { clients_lsp },

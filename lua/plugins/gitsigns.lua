@@ -1,4 +1,4 @@
-local function gitDiffBranch()
+local function git_diff_branch()
   require("snacks").picker.git_branches(
     ---@type snacks.picker.git.branches.Config
     {
@@ -20,7 +20,7 @@ local function gitDiffBranch()
   )
 end
 
-local function gitDiffCommit()
+local function git_diff_commit()
   require("snacks").picker.git_log_file(
     ---@type snacks.picker.git.log.Config
     {
@@ -80,7 +80,7 @@ return {
     },
   },
   keys = {
-    { "<leader>gD", gitDiffBranch, desc = "Snacks: Diff Branches" },
+    { "<leader>gD", git_diff_branch, desc = "Snacks: Diff Branches" },
     { "<leader>ga", "<cmd>Gitsigns preview_hunk<CR>", desc = "Gitsigns: Preview Line" },
     { "<leader>gA", "<cmd>Gitsigns preview_hunk_inline<CR>", desc = "Gitsigns: Preview Hunk Inline" },
     { "<leader>gu", "<cmd>Gitsigns reset_hunk<CR>", desc = "Gitsigns: Undo" },
@@ -89,7 +89,7 @@ return {
     { "ig", "<Cmd>Gitsigns select_hunk<CR>", mode = { "o", "x" }, desc = "Gitsigns: Git Hunk" },
     { "ag", "<Cmd>Gitsigns select_hunk<CR>", mode = { "o", "x" }, desc = "Gitsigns: Git Hunk" },
     { "<leader>gw", "<cmd>Gitsigns toggle_word_diff<CR>", desc = "Gitsigns: Toggle Word Diff" },
-    { "<leader>gd", gitDiffCommit, desc = "Gitsigns: Diff Commit" },
+    { "<leader>gd", git_diff_commit, desc = "Gitsigns: Diff Commit" },
     { "<leader>gB", "<cmd>Gitsigns blame", desc = "Gitsigns: Diff Commit" },
   },
 }

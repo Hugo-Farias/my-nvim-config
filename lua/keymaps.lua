@@ -1,3 +1,5 @@
+local utils = require("utils")
+
 local set = vim.keymap.set
 -------------------------------------------------------------------------------
 ---- 🛑 Disable Default Mappings
@@ -57,7 +59,7 @@ set("n", "<leader>r,", function()
 end, { desc = "Source nvim config file" })
 
 ---- Change directory to git root
-set("n", "cd", SmartChangeDir, { desc = "CD to git root or file path" })
+set("n", "cd", utils.smart_change_dir, { desc = "CD to git root or file path" })
 
 ---- Go up one directory
 set("n", "cu", "<cmd>cd ../ | pwd<CR>", { desc = "CD up a directory" })
@@ -67,7 +69,7 @@ set("n", "cp", function()
   local cwd = vim.fn.getcwd()
   local file = vim.fn.expand("%:p")
 
-  vim.notify(("CWD: %s\nFile: %s"):format(cwd, file), vim.log.levels.INFO)
+  vim.notify(("CWD:\n%s\n%s"):format(cwd, file), vim.log.levels.INFO)
 end, { desc = "Print cwd and file path" })
 
 ---- Quick Save
@@ -76,28 +78,14 @@ set("n", "<C-s>", "<cmd>up<CR>", { desc = "Save File" })
 ---- Change directory to current file
 set("n", "cD", "<cmd>cd %:p:h | pwd<CR>", { desc = "CD to file directory" })
 
----- Save and source file
--- vim.api.nvim_create_user_command("W", function()
---   vim.cmd("write | source %")
--- end, {})
-
 -------------------------------------------------------------------------------
 ---- 🪟 Buffers & Windows
 -------------------------------------------------------------------------------
 
-local function closeAllSplits()
-  vim.api.nvim_feedkeys("q", "n", false)
-  vim.api.nvim_feedkeys("", "n", false)
-  vim.cmd("wincmd h")
-  vim.cmd("wincmd k")
-  vim.cmd("wincmd o")
-  vim.cmd("silent! close")
-end
-
-set({ "n", "x" }, "qq", closeAllSplits, { desc = "close", silent = true })
+set({ "n", "x" }, "qq", utils.close_all_splits, { desc = "close", silent = true })
 -- set({ "n", "x" }, "qq", ":wincmd o|silent! close<CR>", { desc = "close", silent = true })
 -- set({ "n", "x" }, "q[", ":wincmd o|silent! close<CR>", { desc = "close", silent = true })
-set({ "n", "x" }, "q[", closeAllSplits, { desc = "close", silent = true })
+set({ "n", "x" }, "q[", utils.close_all_splits, { desc = "close", silent = true })
 
 ---- Reload Chrome
 -- set("n", "<C-r>", function()
@@ -228,7 +216,7 @@ set("n", "z;", function()
 end, { desc = "Spellcheck Line" })
 
 ---- Diff this buffer with the saved file
-set("n", "<leader>fu", "<cmd>DiffSaved<CR>", { desc = "Diff this buffer with the saved file" })
+set("n", "<leader>fu", utils.diff_saved, { desc = "Diff this buffer with the saved file" })
 
 set("n", "gUu", "gU", { desc = "To uppercase" })
 set("n", "gUl", "gu", { desc = "To lowercase" })
@@ -375,12 +363,12 @@ set("x", ">", ">gv", { desc = "Indent right" })
 
 -- Turn on diff mode
 set("n", "<leader>fc", function()
-  vim.cmd("wincmd h")
+  vim.cmd("wincmd p")
   vim.cmd("diffthis")
-  vim.cmd("wincmd l")
+  vim.cmd("wincmd p")
   vim.cmd("diffthis")
   vim.cmd("diffupdate")
-  vim.cmd("wincmd h")
+  vim.cmd("wincmd p")
   vim.notify("Diff Mode On")
 end, { desc = "Turn on diff mode" })
 
@@ -450,15 +438,11 @@ set({ "n", "x" }, "<leader>y", '"+y', { desc = "Yank into system's clipboard" })
 
 set({ "n", "x" }, "<leader>Y", '"+y$', { desc = "which_key_ignore" })
 
----- `qp` to play macro
-set({ "n", "x" }, "qe", function()
-  vim.api.nvim_feedkeys("@", "n", false)
-end, { noremap = true, desc = "Play macro" })
+set({ "n", "x" }, "qe", "@", { noremap = true, desc = "Play macro" })
 
----- 'Q' to replay last played macro
--- set({ "n", "x" }, "Q", function()
---   vim.api.nvim_feedkeys("@@", "n", false)
--- end, { noremap = true, desc = "Replay last played macro" })
+set({ "n", "x" }, "Q", "@@", { noremap = true, desc = "Replay last played macro" })
+
+set({ "n", "x" }, "@@", "Q", { noremap = true, desc = "Play last recorded macro" })
 
 ---- `qr` to start macro recording
 set({ "n", "x" }, "qr", function()
@@ -477,11 +461,11 @@ set("n", "<C-l>", "<cmd>nohlsearch|diffupdate|redraw|normal! <C-L><CR>", { desc 
 -- )
 set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search query" })
 
-set("n", "<leader>rm", "<cmd>DeleteAllMarks<CR>", { desc = "Reset Marks" })
+set("n", "<leader>rm", "<cmd>delmarks A-Z a-z 0-9<CR>", { desc = "Reset Marks" })
 
-set("n", "<leader>rf", "<cmd>e!<CR>", { desc = "Reload buffer from disk" })
+set("n", "<leader>rf", "<cmd>e!<CR>", { desc = "Reload buffer" })
 
-set("n", "<leader>rF", "<cmd>bufdo e!<CR>", { desc = "Reload all buffers from disk" })
+set("n", "<leader>rF", "<cmd>bufdo e!<CR>", { desc = "Reload all buffers" })
 
 set("n", "<leader>rl", "<cmd>lsp restart<CR>", { desc = "Restart LSP" })
 

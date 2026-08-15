@@ -8,18 +8,16 @@ require("lazy").setup({
   -- { require("plugins.treesitter-textobjects") },
   { require("plugins.todo-comments") },
   { require("plugins.snacks") },
-
   { require("plugins.nvim-spider") },
   -- { require("plugins.tide") },
   { require("plugins.harpoon") },
   { require("plugins.which-key") },
   { require("plugins.gitsigns") },
   { require("plugins.timber") },
-  { "Aasim-A/scrollEOF.nvim", event = { "CursorMoved", "WinScrolled" }, opts = {} },
+  -- { "Aasim-A/scrollEOF.nvim", event = { "CursorMoved", "WinScrolled" }, opts = {} },
   -- { require("plugins.neoscroll") }, -- Smooth Scrolling
   -- { require("plugins.render-markdown") },
   { "j-hui/fidget.nvim", version = "*", opts = {} },
-
   -- { require("plugins.noice") },
   -- { require("plugins.notify") },
 
@@ -29,6 +27,7 @@ require("lazy").setup({
   ---- File Explorer ----
   { require("plugins.yazi") },
   -- { require("plugins.mini-files") },
+  -- { require("plugins.oil") },
 
   ---- Multi Cursor ----
   { require("plugins.multicursor") },
@@ -52,7 +51,7 @@ require("lazy").setup({
   ---- Mini Compilation ----
   -- { require("plugins.mini-icons") },
   { require("plugins.mini-surround") },
-  { require("plugins.mini-pairs") },
+  -- { require("plugins.mini-pairs") },
   { require("plugins.mini-ai") },
   { require("plugins.mini-splitjoin") },
   { require("plugins.mini-align") },

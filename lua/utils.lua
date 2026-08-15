@@ -1,5 +1,34 @@
+local M = {}
+
+function M.set_colorscheme(color)
+  if not color then
+    return nil
+  end
+
+  vim.cmd.colorscheme(color)
+  -- vim.o.background = "dark"
+
+  -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+  -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+  -- vim.api.nvim_set_hl(0, "RainbowDelimiterGreen", { fg = "#00b3b3" }) -- teal
+  -- vim.api.nvim_set_hl(0, "RainbowDelimiterViolet", { fg = "#91e18a" }) -- pink
+
+  vim.api.nvim_set_hl(0, "LineNr", { fg = "#E6E6E6" })
+  vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#666666" })
+  vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#666666" })
+end
+
+function M.close_all_splits()
+  vim.api.nvim_feedkeys("q", "n", false)
+  vim.api.nvim_feedkeys("", "n", false)
+  vim.cmd("wincmd h")
+  vim.cmd("wincmd k")
+  vim.cmd("wincmd o")
+  vim.cmd("silent! close")
+end
+
 -- Change location to git root if found, otherwise to file's location
-function SmartChangeDir()
+function M.smart_change_dir()
   local file = vim.api.nvim_buf_get_name(0)
   if vim.fn.filereadable(file) ~= 1 then
     return
@@ -32,7 +61,7 @@ function SmartChangeDir()
 end
 
 -- Get the session's directory path
-function SessionName(path)
+function M.session_name(path)
   local session_dir = vim.fn.stdpath("data") .. "/sessions/"
   local session_name = path:gsub("[:/\\]", "%%") .. ".vim"
   return session_dir .. session_name
@@ -40,7 +69,7 @@ end
 
 -- Save session in nvim-data/session with name based on the current working directory
 -- if no files are associated with the buffers, delete the session file
-function SmartSaveSession()
+function M.smart_save_session()
   if not IsProject then
     return
   end
@@ -52,7 +81,7 @@ function SmartSaveSession()
     return
   end
 
-  local session_path = SessionName(cwd)
+  local session_path = M.session_name(cwd)
 
   -- Check for listed buffers that are associated with a real file on disk
   local has_real_files = false
@@ -77,12 +106,8 @@ function SmartSaveSession()
   end
 end
 
-vim.api.nvim_create_user_command("DeleteAllMarks", function()
-  vim.cmd("delmarks A-Z a-z 0-9")
-end, {})
-
 -- Command to diff current buffer with saved file on disk
-vim.api.nvim_create_user_command("DiffSaved", function()
+function M.diff_saved()
   local file = vim.fn.expand("%:p")
   local type = vim.bo.filetype
   local diff = vim.wo.diff
@@ -105,8 +130,6 @@ vim.api.nvim_create_user_command("DiffSaved", function()
   vim.cmd("diffthis")
   vim.cmd("wincmd H")
   -- vim.cmd("wincmd |")
-end, {})
+end
 
-vim.api.nvim_create_user_command("Q", function()
-  vim.cmd("q")
-end, {})
+return M

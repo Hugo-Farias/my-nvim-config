@@ -9,11 +9,11 @@ require("vim._core.ui2").enable({
   enable = true,
 })
 
-require("helper")
 require("autocmd")
 require("keymaps")
 require("set")
 require("lazyload")
+require("commands")
 -- require("neovide")
 
-EditorColorScheme("catppuccin-mocha")
+require("utils").set_colorscheme("tokyonight-moon")

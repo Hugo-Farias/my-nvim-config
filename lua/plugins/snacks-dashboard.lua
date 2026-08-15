@@ -1,10 +1,7 @@
-﻿vim.api.nvim_create_user_command("MkProject", function()
-  SmartChangeDir()
-  IsProject = true
-end, {})
+﻿local utils = require("utils")
 
 function LoadSession(picker, item)
-  local session_path = SessionName(item.file)
+  local session_path = utils.session_name(item.file)
   vim.cmd("tcd " .. item.file)
   picker:close()
 
@@ -17,13 +14,9 @@ function LoadSession(picker, item)
       vim.cmd("lua Snacks.dashboard.pick('files')")
     end)
   end
-  -- vim.cmd.stopinsert()
-  -- vim.defer_fn(function()
-  --   vim.cmd("LspRestart")
-  -- end, 10000)
 end
 
-local function loadPreviousSession()
+local function load_previous_session()
   local session_dir = vim.fn.stdpath("data") .. "/sessions/"
   local files = vim.fn.glob(session_dir .. "*.vim", false, true)
   if #files == 0 then
@@ -79,7 +72,7 @@ return {
         -- action = ":lua Snacks.dashboard.pick('projects')",
       },
       { icon = "z", key = "z", desc = "zoxide", action = ":lua Snacks.dashboard.pick('zoxide')" },
-      { icon = " ", key = "s", desc = "Restore Session", action = loadPreviousSession },
+      { icon = " ", key = "s", desc = "Restore Session", action = load_previous_session },
       { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
       { icon = " ", key = "q", desc = "Quit", action = ":qa" },
     },

@@ -1,22 +1,4 @@
-function EditorColorScheme(color)
-  if not color then
-    return nil
-  end
-
-  vim.cmd.colorscheme(color)
-  -- vim.o.background = "dark"
-
-  -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-  -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-  -- vim.api.nvim_set_hl(0, "RainbowDelimiterGreen", { fg = "#00b3b3" }) -- teal
-  -- vim.api.nvim_set_hl(0, "RainbowDelimiterViolet", { fg = "#91e18a" }) -- pink
-
-  vim.api.nvim_set_hl(0, "LineNr", { fg = "#E6E6E6" })
-  vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#666666" })
-  vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#666666" })
-end
-
-local function theme(repo, name, style)
+local function theme(repo, name, transparent, style)
   return {
     repo,
     name = name,
@@ -24,7 +6,7 @@ local function theme(repo, name, style)
     priority = 1000,
     opts = {
       style = style or "",
-      transparent = true,
+      transparent = transparent or false,
       styles = {
         sidebars = "transparent",
         floats = "transparent",
@@ -40,11 +22,12 @@ end
 
 return {
   { "catppuccin/nvim", priority = 1000 },
-  theme("rose-pine/neovim", "rose-pine"),
-  theme("folke/tokyonight.nvim"),
-  -- theme("navarasu/onedark.nvim", "onedark", "warm"), -- { 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light' }
-  -- theme("uhs-robert/oasis.nvim", "oasis"),
-  theme("vague-theme/vague.nvim", "vague"),
-  theme("EdenEast/nightfox.nvim", "nightfox"),
-  theme("scottmckendry/cyberdream.nvim"),
+  -- theme("catppuccin/nvim", "catppuccin", false),
+  theme("rose-pine/neovim", "rose-pine", true),
+  theme("folke/tokyonight.nvim", "tokyonight", true),
+  theme("navarasu/onedark.nvim", "onedark", true, "warm"), -- { 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light' }
+  theme("uhs-robert/oasis.nvim", "oasis"),
+  theme("vague-theme/vague.nvim", "vague", true),
+  theme("EdenEast/nightfox.nvim", "nightfox", true),
+  theme("scottmckendry/cyberdream.nvim", "cyberdream", true),
 }

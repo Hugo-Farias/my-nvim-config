@@ -57,6 +57,7 @@ return {
         odin = [[fmt.printfln("%log_target: %v", %log_target)]],
         swift = [[print("%log_target:", %log_target)]],
         kotlin = [[println("%log_target: ${%log_target}")]],
+        powershell = [[Write-Output "%log_target"]],
       },
       plain = {
         javascript = [[console.log("%insert_cursor")]],
@@ -79,6 +80,7 @@ return {
         odin = [[fmt.println("%insert_cursor")]],
         swift = [[print("%insert_cursor")]],
         kotlin = [[println("%insert_cursor")]],
+        powershell = [[Write-Output "%insert_cursor"]],
       },
     },
   },

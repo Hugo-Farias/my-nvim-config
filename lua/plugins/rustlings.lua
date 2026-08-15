@@ -3,7 +3,7 @@ return {
   lazy = false,
   dependencies = {
     "nvim-lua/plenary.nvim",
-    --   "nvim-telescope/telescope.nvim", -- optional
+    "nvim-telescope/telescope.nvim", -- optional
   },
   opts = {
     -- Path to rustlings directory (auto-detected if nil)
@@ -29,7 +29,7 @@ return {
     },
   },
   keys = {
-    { "<leader>ln", "<cmd>Rustlings next<cr>", desc = "Next Exercise" },
+    -- { "<leader>ln", "<cmd>Rustlings next<cr>", desc = "Next Exercise" },
     { "<leader>lh", "<cmd>Rustlings hint<cr>", desc = "Hint" },
     { "<leader>ll", "<cmd>Rustlings list<cr>", desc = "List Exercises" },
     { "<leader>lr", "<cmd>Rustlings reset<cr>", desc = "Reset Exercise" },

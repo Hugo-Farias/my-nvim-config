@@ -21,7 +21,7 @@ return {
       vue = { "biome" },
       handlebars = { "prettierd" },
       rust = { "rustfmt" },
-      -- ps1 = { "prettierd" },
+      ps1 = { "powershell_formatter" },
     },
     -- format_on_save = {
     --   timeout_ms = 500,
@@ -55,6 +55,18 @@ return {
           "--unsafe",
           "--stdin-file-path",
           "$FILENAME",
+        },
+        stdin = true,
+      },
+      powershell_formatter = {
+        command = "pwsh",
+        args = {
+          "-NoProfile",
+          "-Command",
+          [[
+                    $script = [Console]::In.ReadToEnd()
+                    Invoke-Formatter -ScriptDefinition $script
+                ]],
         },
         stdin = true,
       },

@@ -1,7 +1,7 @@
 local copilotStatus = false -- is copilot enabled on start up
 -- local autoTriggerStatus = true
 
-local function copilotToggle()
+local function copilot_toggle()
   vim.cmd(copilotStatus and "Copilot disable" or "Copilot enable")
   copilotStatus = not copilotStatus
   vim.notify(copilotStatus and "Copilot Enabled" or "Copilot Disabled")
@@ -60,7 +60,7 @@ return {
   },
   keys = {
     -- stylua: ignore start
-    { "<leader>ta", copilotToggle, desc = "Toggle Agent: Copilot" },
+    { "<leader>ta", copilot_toggle, desc = "Toggle Agent: Copilot" },
     { "<leader>tA", "<cmd>Copilot status<CR>", desc = "Check Agent Status: Copilot" },
     -- { "<C-d>", autoTriggerToggle, desc = "Copilot: Toggle Auto Trigger", mode = "i" },
     { "<C-d>", "<cmd>Copilot suggestion dismiss<CR>", desc = "Copilot: Toggle Auto Trigger", mode = "i" },

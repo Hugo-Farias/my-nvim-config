@@ -1,3 +1,5 @@
+local utils = require("utils")
+
 -- On vim startup
 vim.api.nvim_create_autocmd("VimEnter", {
   callback = function()
@@ -20,7 +22,7 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 -- Before quiting and after buffer opened
 vim.api.nvim_create_autocmd({ "QuitPre", "BufAdd" }, {
   callback = function()
-    SmartSaveSession()
+    utils.smart_save_session()
   end,
 })
 
@@ -117,7 +119,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 ---- Reduce timeoutlen in insert and Cmdline
 vim.api.nvim_create_autocmd({ "InsertEnter", "CmdlineEnter" }, {
   callback = function()
-    vim.o.timeoutlen = 50
+    vim.o.timeoutlen = 20
   end,
 })
 
