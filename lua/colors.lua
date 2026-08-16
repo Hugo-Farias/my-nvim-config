@@ -25,7 +25,7 @@ return {
   -- theme("catppuccin/nvim", "catppuccin", false),
   theme("rose-pine/neovim", "rose-pine", true),
   theme("folke/tokyonight.nvim", "tokyonight", true),
-  theme("navarasu/onedark.nvim", "onedark", true, "warm"), -- { 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light' }
+  theme("navarasu/onedark.nvim", "onedark", false, "cool"), -- { 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light' }
   theme("uhs-robert/oasis.nvim", "oasis"),
   theme("vague-theme/vague.nvim", "vague", true),
   theme("EdenEast/nightfox.nvim", "nightfox", true),

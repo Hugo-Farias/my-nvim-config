@@ -9,11 +9,13 @@ require("vim._core.ui2").enable({
   enable = true,
 })
 
-require("autocmd")
-require("keymaps")
+local utils = require("utils")
+
 require("set")
-require("lazyload")
+require("keymaps")
+require("autocmd")
 require("commands")
+require("lazyload")
 -- require("neovide")
 
-require("utils").set_colorscheme("tokyonight-moon")
+utils.set_colorscheme("vague")
