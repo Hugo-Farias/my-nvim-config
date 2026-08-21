@@ -8,9 +8,9 @@ return {
     keys = {
       leader = "q", -- Leader key to prefix all Tide commands
       panel = "t", -- Open the panel (uses leader key as prefix)
-      add_item = "a", -- Add a new item to the list (leader + 'a')
-      delete = "d", -- Remove an item from the list (leader + 'd')
-      clear_all = "x", -- Clear all items (leader + 'x')
+      add_item = "A", -- Add a new item to the list (leader + 'a')
+      delete = "D", -- Remove an item from the list (leader + 'd')
+      clear_all = "X", -- Clear all items (leader + 'x')
       horizontal = "-", -- Split window horizontally (leader + '-')
       vertical = "|", -- Split window vertically (leader + '|')
     },

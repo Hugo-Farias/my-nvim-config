@@ -1,15 +1,15 @@
 -- Windows Only settings
 if vim.fn.has("win32") == 1 then
-  vim.o.shell = "C:\\PROGRA~1\\PowerShell\\7\\pwsh.exe"
-  vim.o.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
-  vim.o.shellquote = ""
-  vim.o.shellxquote = ""
+  vim.opt.shell = "C:\\PROGRA~1\\PowerShell\\7\\pwsh.exe"
+  vim.opt.shellcmdflag = "-NoLogo -NoProfile -ExecutionPolicy RemoteSigned -Command"
+  vim.opt.shellquote = ""
+  vim.opt.shellxquote = ""
   vim.env.CC = "gcc"
 end
 
 -- Neovim base settings
 -- vim.o.guicursor = ""
-vim.o.laststatus = 3
+vim.opt.laststatus = 3
 vim.opt.number = true
 vim.opt.relativenumber = true
 
@@ -39,19 +39,19 @@ vim.opt.undofile = true
 
 vim.opt.scrolloff = 10
 vim.opt.sidescrolloff = 8
-vim.o.timeoutlen = 500
+vim.opt.timeoutlen = 500
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.splitright = true
 -- vim.o.keymodel = ""
 
--- Fix for session restoring with blank buffer
-vim.opt.sessionoptions = {
-  "buffers",
-  "curdir",
-  "tabpages",
-  "winsize",
-  "help",
-  "terminal",
-  "folds",
-}
+-- WORKAROUND: for session restoring with blank buffer
+-- vim.opt.sessionoptions = {
+--   "buffers",
+--   "curdir",
+--   "tabpages",
+--   "winsize",
+--   "help",
+--   "terminal",
+--   "folds",
+-- }

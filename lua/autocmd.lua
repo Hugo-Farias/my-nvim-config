@@ -119,7 +119,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 ---- Reduce timeoutlen in insert and Cmdline
 vim.api.nvim_create_autocmd({ "InsertEnter", "CmdlineEnter" }, {
   callback = function()
-    vim.o.timeoutlen = 20
+    vim.o.timeoutlen = 50
   end,
 })
 

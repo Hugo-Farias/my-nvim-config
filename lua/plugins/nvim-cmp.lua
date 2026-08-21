@@ -11,6 +11,20 @@ local function border(hl_name)
   }
 end
 
+local autopairs = {
+  "windwp/nvim-autopairs",
+  event = "InsertEnter",
+  opts = {}, -- uses defaults
+  config = function(_, opts)
+    require("nvim-autopairs").setup(opts)
+
+    -- Integrate with cmp
+    local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+    local cmp = require("cmp")
+    cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
+  end,
+}
+
 return {
   "hrsh7th/nvim-cmp",
   dependencies = {
@@ -26,7 +40,7 @@ return {
     { require("plugins.lazydev") },
     { "hrsh7th/cmp-nvim-lsp" },
     { "onsails/lspkind.nvim" },
-    { require("plugins.autopairs") },
+    { autopairs },
   },
   config = function()
     vim.opt.signcolumn = "yes"

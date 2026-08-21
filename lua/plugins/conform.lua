@@ -21,7 +21,7 @@ return {
       vue = { "biome" },
       handlebars = { "prettierd" },
       rust = { "rustfmt" },
-      ps1 = { "powershell_formatter" },
+      -- ps1 = { "powershell_formatter" },
     },
     -- format_on_save = {
     --   timeout_ms = 500,

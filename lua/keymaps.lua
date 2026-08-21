@@ -1,6 +1,9 @@
 local utils = require("utils")
 
 local set = vim.keymap.set
+
+-- set("<leader>ln", "")
+
 -------------------------------------------------------------------------------
 ---- 🛑 Disable Default Mappings
 -------------------------------------------------------------------------------
@@ -135,6 +138,9 @@ set("n", "<M-Up>", "<cmd>horizontal res -5<CR>", { noremap = true, desc = "Resiz
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
 
+-- delete whitespace
+set("n", "g=", "m0<cmd>%s/\\s\\+$/<CR>`0<cmd>delm 0<CR>", { desc = "Delete trailing whitespace in buffer" })
+
 local ns = vim.api.nvim_create_namespace("comma_flash")
 
 local function flash_last_char()
@@ -167,7 +173,7 @@ local function set_comma(go_to_next_line)
   elseif not line:match(",$") then
     vim.api.nvim_set_current_line(line .. ",")
     flash_last_char()
-  elseif line:match(",$") then
+  else
     vim.api.nvim_set_current_line(line:sub(1, -2))
   end
 
@@ -328,8 +334,8 @@ end, {
   desc = "Move up by display line",
 })
 
-set({ "n", "x", "o" }, "gk", "k", { desc = "Move up by actual line" })
-set({ "n", "x", "o" }, "gj", "j", { desc = "Move down by actual line" })
+set({ "n", "x", "o" }, "gk", "k", { desc = "Move up by real line" })
+set({ "n", "x", "o" }, "gj", "j", { desc = "Move down by real line" })
 
 ---- Start/end of line (non-blank)
 set({ "n", "x", "o" }, "gH", "_", { desc = "Start of line (non-blank)" })
@@ -368,7 +374,6 @@ set("n", "<leader>fc", function()
   vim.cmd("wincmd p")
   vim.cmd("diffthis")
   vim.cmd("diffupdate")
-  vim.cmd("wincmd p")
   vim.notify("Diff Mode On")
 end, { desc = "Turn on diff mode" })
 
@@ -427,7 +432,7 @@ set(
 
 ---- Paste from system's clipboard
 set({ "n", "x" }, "<leader>p", '"+p', { desc = "Paste from system's clipboard" })
-set({ "n", "x" }, "<leader>P", 'O<Esc>"+p^', { desc = "which_key_ignore" })
+set({ "n", "x" }, "<leader>P", 'O<Esc>"+p^', { desc = "Paste above from system's clipboard" })
 
 ---- Yank into system's clipboard
 -- for _, key in ipairs({ "y", "Y" }) do
@@ -461,7 +466,7 @@ set("n", "<C-l>", "<cmd>nohlsearch|diffupdate|redraw|normal! <C-L><CR>", { desc 
 -- )
 set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search query" })
 
-set("n", "<leader>rm", "<cmd>delmarks A-Z a-z 0-9<CR>", { desc = "Reset Marks" })
+set("n", "<leader>rm", "<cmd>delm A-Z a-z 0-9<CR>", { desc = "Reset Marks" })
 
 set("n", "<leader>rf", "<cmd>e!<CR>", { desc = "Reload buffer" })
 

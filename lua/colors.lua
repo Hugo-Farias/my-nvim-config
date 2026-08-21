@@ -26,7 +26,7 @@ return {
   theme("rose-pine/neovim", "rose-pine", true),
   theme("folke/tokyonight.nvim", "tokyonight", true),
   theme("navarasu/onedark.nvim", "onedark", false, "cool"), -- { 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light' }
-  theme("uhs-robert/oasis.nvim", "oasis"),
+  -- theme("uhs-robert/oasis.nvim", "oasis"),
   theme("vague-theme/vague.nvim", "vague", true),
   theme("EdenEast/nightfox.nvim", "nightfox", true),
   theme("scottmckendry/cyberdream.nvim", "cyberdream", true),

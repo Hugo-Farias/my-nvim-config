@@ -69,31 +69,6 @@ set("n", "<leader>fs", function()
   })
 end, { desc = "Snacks: Open File in vertical split" })
 
----- Open Diff View
--- set("n", "<leader>fd", function()
---   vim.cmd("diffoff")
---   vim.cmd("wincmd o")
---   vim.cmd("wincmd v")
---   vim.cmd("wincmd l")
---   require("snacks").picker.files({
---     confirm = function(picker, item)
---       picker:close()
---       vim.cmd("e " .. item.file)
---       vim.cmd("diffthis")
---       vim.cmd("wincmd h")
---       vim.defer_fn(function()
---         vim.cmd("diffthis")
---         vim.cmd("diffupdate")
---       end, 100)
---     end,
---     cancel = function()
---       vim.cmd("diffoff")
---       vim.cmd("wincmd h")
---       vim.cmd("wincmd o")
---     end,
---   })
--- end, { desc = "Snacks: Compare Files" })
-
 -- Toggle terminal in terminal mode
 local function leave_terminal()
   vim.cmd.stopinsert() -- exit terminal input mode
@@ -159,6 +134,12 @@ local function snacks_todo()
   })
 end
 
+local function open_terminal()
+  vim.cmd("lua Snacks.terminal.toggle()")
+  vim.cmd("wincmd L")
+  vim.cmd("vertical res -8")
+end
+
 return {
   "folke/snacks.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -202,7 +183,7 @@ return {
     { "<leader>sk", "<cmd>lua Snacks.picker.keymaps()<CR>", desc = "Snacks: Search Keymaps" },
     { "<leader>sh", "<cmd>lua Snacks.picker.help()<CR>", desc = "Snacks: Search Help", mode = {'n', 'x'} },
     { "<leader>s/", "<cmd>lua Snacks.picker.search_history()<CR>", desc = "Snacks: Search History" },
-    { "<leader>s'", "<cmd>lua Snacks.picker.registers()<CR>", desc = "Snacks: Search Registers" },
+    { "<leader>s\"", "<cmd>lua Snacks.picker.registers()<CR>", desc = "Snacks: Search Registers" },
     { "<leader>s:", "<cmd>lua Snacks.picker.command_history()<CR>", desc = "Snacks: Search Command History" },
     { "<leader>n", "<cmd>lua Snacks.notifier.show_history()<CR>", desc = "Snacks: Show Notification History" },
     { "<leader>sn", "<cmd>lua Snacks.picker.notifications()<CR>", desc = "Snacks: Show Notification Picker" },
@@ -229,9 +210,9 @@ return {
     { "[w", "<cmd>lua Snacks.words.jump(-1)<CR>", desc = "Snacks: Jump to Previous Word" },
     ---- Zen mode ----
     {"<leader>z", "<cmd>lua Snacks.zen()<CR>", desc = "Snacks: Toggle Zen Mode" },
-    {"<leader>Z", "<cmd>lua Snacks.zen.zoom()<CR>", desc = "Snacks: Toggle Zen Mode Zoom" },
+    -- {"<leader>Z", "<cmd>lua Snacks.zen.zoom()<CR>", desc = "Snacks: Toggle Zen Mode Zoom" },
     ---- Terminal mode ----
-    { "<C-y>", "<cmd>lua Snacks.terminal.toggle()<CR>", { desc = "Snacks: Toggle terminal (normal)" } },
+    { "<C-y>", open_terminal, { desc = "Snacks: Toggle terminal (normal)" } },
     { "<C-y>", leave_terminal, { desc = "Snacks: Toggle terminal (terminal)" }, mode = "t" },
   },
 }

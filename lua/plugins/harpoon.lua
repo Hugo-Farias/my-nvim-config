@@ -6,7 +6,7 @@ return {
     save_on_toggle = false,
 
     -- saves the harpoon file upon every change. disabling is unrecommended.
-    save_on_change = true,
+    save_on_change = false,
 
     -- sets harpoon to run the command immediately as it's passed to the terminal when calling `sendCommand`.
     enter_on_sendcmd = false,

@@ -11,6 +11,7 @@ require("lazy").setup({
   { require("plugins.nvim-spider") },
   -- { require("plugins.tide") },
   { require("plugins.harpoon") },
+  -- { require("plugins.harpoon2") },
   { require("plugins.which-key") },
   { require("plugins.gitsigns") },
   { require("plugins.timber") },
@@ -79,5 +80,5 @@ require("lazy").setup({
   require("colors"),
 
   ---- Temporary ----
-  { require("plugins.rustlings") },
+  -- { require("plugins.rustlings") },
 })

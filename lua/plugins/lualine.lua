@@ -53,7 +53,7 @@ return {
     options = {
       -- theme = custom_catppuccin,
       globalstatus = true,
-      -- component_separators = "",
+      component_separators = "|",
       -- section_separators = { left = "", right = "" },
       -- section_separators = { left = "", right = "" },
       section_separators = { left = "", right = "" },
@@ -62,8 +62,8 @@ return {
     sections = {
       lualine_a = {
         -- { "mode", icon = "" },
-        { cwd_name, icon = "" },
-        -- { "mode", separator = { left = " ", right = "" }, icon = "" },
+        { cwd_name },
+        -- { cwd_name, separator = { left = " ", right = "" }, icon = "" },
         -- { "mode", separator = { left = "", right = "" }, icon = "" },
       },
       lualine_b = {
@@ -72,10 +72,12 @@ return {
           icon_only = true,
           padding = { left = 1, right = 0 },
           colored = true,
+          separator = "",
         },
         {
           "filename",
           path = 1,
+          padding = { left = 0, right = 1 },
           -- symbols = { modified = "🟡" },
         },
       },
