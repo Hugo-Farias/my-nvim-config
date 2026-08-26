@@ -69,12 +69,6 @@ set("n", "<leader>fs", function()
   })
 end, { desc = "Snacks: Open File in vertical split" })
 
--- Toggle terminal in terminal mode
-local function leave_terminal()
-  vim.cmd.stopinsert() -- exit terminal input mode
-  vim.cmd("lua Snacks.terminal.toggle()") -- then hide the terminal
-end
-
 for _, key in ipairs({ "<leader>q", "<M-q>", "qt" }) do
   set("n", key, "<cmd>lua Snacks.bufdelete()<CR>", { desc = "Close Buffer" })
 end
@@ -138,6 +132,11 @@ local function open_terminal()
   vim.cmd("lua Snacks.terminal.toggle()")
   vim.cmd("wincmd L")
   vim.cmd("vertical res -8")
+end
+
+local function leave_terminal()
+  vim.cmd.stopinsert()
+  vim.cmd("lua Snacks.terminal.toggle()")
 end
 
 return {

@@ -13,7 +13,7 @@ vim.opt.laststatus = 3
 vim.opt.number = true
 vim.opt.relativenumber = true
 
-vim.lsp.document_color.enable(false)
+vim.lsp.document_color.enable(true, nil, { style = "virtual" })
 vim.g.have_nerd_font = true
 vim.opt.shiftwidth = 2
 vim.opt.tabstop = 2
@@ -37,7 +37,7 @@ vim.opt.undofile = true
 -- vim.opt.updatetime = 2000
 -- vim.opt.colorcolumn = "80"
 
-vim.opt.scrolloff = 10
+vim.opt.scrolloff = 13
 vim.opt.sidescrolloff = 8
 vim.opt.timeoutlen = 500
 vim.opt.ignorecase = true

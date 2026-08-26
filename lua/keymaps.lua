@@ -2,7 +2,19 @@ local utils = require("utils")
 
 local set = vim.keymap.set
 
--- set("<leader>ln", "")
+-- TODO: Temporary!!! Remove when rust course over.
+local function toggle_explorer()
+  require("snacks").picker.explorer({
+    open = function()
+      vim.schedule(function()
+        local keys = vim.api.nvim_replace_termcodes("jjljljl", true, false, true)
+        vim.api.nvim_feedkeys(keys, "n", false)
+      end)
+    end,
+  })
+end
+
+set("n", "<leader>ln", toggle_explorer, { desc = "rust course: next challenge" })
 
 -------------------------------------------------------------------------------
 ---- 🛑 Disable Default Mappings
@@ -85,6 +97,22 @@ set("n", "cD", "<cmd>cd %:p:h | pwd<CR>", { desc = "CD to file directory" })
 ---- 🪟 Buffers & Windows
 -------------------------------------------------------------------------------
 
+-- Toggle document color
+local function toggle_color()
+  local color_status = vim.lsp.document_color.is_enabled()
+  local notify_msg = color_status and "Disabled" or "Enabled"
+
+  vim.lsp.document_color.enable(not color_status)
+
+  vim.notify("Highlight Colors: " .. notify_msg, vim.log.levels.INFO)
+
+  if not color_status then
+    vim.cmd("e!")
+  end
+end
+
+set("n", "<leader>tc", toggle_color, { desc = "Toggle Color Highlights" })
+
 set({ "n", "x" }, "qq", utils.close_all_splits, { desc = "close", silent = true })
 -- set({ "n", "x" }, "qq", ":wincmd o|silent! close<CR>", { desc = "close", silent = true })
 -- set({ "n", "x" }, "q[", ":wincmd o|silent! close<CR>", { desc = "close", silent = true })
@@ -137,6 +165,9 @@ set("n", "<M-Up>", "<cmd>horizontal res -5<CR>", { noremap = true, desc = "Resiz
 -------------------------------------------------------------------------------
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
+
+set({ "o", "x" }, "ie", "iW", { desc = "inner WORD" })
+set({ "o", "x" }, "ae", "aW", { desc = "around WORD" })
 
 -- delete whitespace
 set("n", "g=", "m0<cmd>%s/\\s\\+$/<CR>`0<cmd>delm 0<CR>", { desc = "Delete trailing whitespace in buffer" })
@@ -234,7 +265,7 @@ set("n", "<leader>do", '"_dd', { desc = "Delete line without yank" })
 set("n", "co", "cc", { desc = "Change line" })
 set("n", "<leader>co", '"_cc', { desc = "Change line without yank" })
 set("n", "yo", "yy", { desc = "Yank line" })
-set("n", "<leader>yo", '"+yy', { desc = "Yank line into system clipboard" })
+set("n", "<leader>yo", '"+yy', { desc = "Yank line into system's clipboard" })
 set("n", "vo", "V", { desc = "Visual Line Mode" })
 set("n", "vq", "", { desc = "Visual Block Mode" })
 set("n", "g~o", "g~g~", { desc = "Toggle case line" })
@@ -331,9 +362,12 @@ set({ "n", "x", "o" }, "k", function()
   return vim.v.count > 0 and "k" or "gk"
 end, {
   expr = true,
+  silent = true,
   desc = "Move up by display line",
 })
 
+-- set({ "n", "x", "o" }, "k", "gk", { desc = "Move up by display line" })
+-- set({ "n", "x", "o" }, "j", "gj", { desc = "Move down by display line" })
 set({ "n", "x", "o" }, "gk", "k", { desc = "Move up by real line" })
 set({ "n", "x", "o" }, "gj", "j", { desc = "Move down by real line" })
 
@@ -464,6 +498,7 @@ set("n", "<C-l>", "<cmd>nohlsearch|diffupdate|redraw|normal! <C-L><CR>", { desc 
 --   "m0<cmd>enew<CR><C-6><cmd>bd<CR><C-6>`0<cmd>delm 0<CR><C-6><cmd>bd<CR>",
 --   { desc = "Refresh buffer" }
 -- )
+
 set("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search query" })
 
 set("n", "<leader>rm", "<cmd>delm A-Z a-z 0-9<CR>", { desc = "Reset Marks" })

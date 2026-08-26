@@ -1,4 +1,4 @@
--- Makes the jaq buffer temporary, unlisted and hidden when closedkggg
+-- Makes the jaq buffer temporary, unlisted and hidden when closed
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "Jaq",
   callback = function(args)
@@ -23,7 +23,7 @@ local function run_jaq()
 end
 
 return {
-  "is0n/jaq-nvim",
+  "hugo-farias/jaq-nvim",
   opts = {
     cmds = {
       -- Uses vim commands

@@ -16,4 +16,4 @@ require("commands")
 require("lazyload")
 -- require("neovide")
 
-vim.cmd.colorscheme("tokyonight-moon")
+vim.cmd.colorscheme("catppuccin-mocha")

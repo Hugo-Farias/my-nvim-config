@@ -3,7 +3,7 @@ return {
   lazy = true,
   opts = {
     InsignificantPunctuation = true,
-    consistentOperatorPending = false, -- see the README for details
+    consistentOperatorPending = true, -- see the README for details
     subwordMovement = false,
     customPatterns = {}, -- see the README for details
   },
