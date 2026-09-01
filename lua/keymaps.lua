@@ -61,14 +61,6 @@ set("n", "gu", "<Nop>")
 
 ---- Source nvim config file
 set("n", "<leader>r,", function()
-  -- local filetype = vim.bo.filetype
-  -- if filetype ~= "lua" then
-  --   vim.notify(
-  --     "Warning: This command is meant to be used on Lua files. Current filetype: " .. filetype,
-  --     vim.log.levels.WARN
-  --   )
-  --   return
-  -- end
   vim.cmd("source " .. vim.fn.stdpath("config") .. "/init.lua")
   vim.notify("Config Reloaded")
 end, { desc = "Source nvim config file" })
@@ -460,7 +452,7 @@ set(
 set(
   "x",
   "<leader>*",
-  '"zy:s/\\V<C-r>z/<C-r>z/gcI<Left><Left><Left><Left>',
+  '"zy:%s/\\V<C-r>z/<C-r>z/gcI<Left><Left><Left><Left>',
   { desc = "Search and replace selection under cursor" }
 )
 
