@@ -1,8 +1,9 @@
 require("lazy").setup({
   -- { "nvim-lua/plenary.nvim" },
 
-  -- { require("lspconfig") },
+  { require("lsp") },
   { require("plugins.mason") },
+  { require("plugins.schemastore") },
   { require("plugins.treesitter") },
   { require("plugins.treesitter-context") },
   -- { require("plugins.treesitter-textobjects") },
