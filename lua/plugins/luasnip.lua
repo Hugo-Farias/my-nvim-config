@@ -35,13 +35,23 @@ return {
       expr = true,
       desc = "LuaSnip: Jump forward",
     },
-    -- {
-    --   "<S-Tab>",
-    --   function()
-    --     return require("luasnip").jump(-1)
-    --   end,
-    --   expr = true,
-    --   desc = "LuaSnip: Jump backward",
-    -- },
+    {
+      "<C-f>",
+      function()
+        return require("luasnip").jump(1)
+      end,
+      expr = false,
+      desc = "LuaSnip: Jump forward",
+      mode = { "i" },
+    },
+    {
+      "<C-b>",
+      function()
+        return require("luasnip").jump(-1)
+      end,
+      expr = true,
+      desc = "LuaSnip: Jump Backwards",
+      mode = { "i" },
+    },
   },
 }

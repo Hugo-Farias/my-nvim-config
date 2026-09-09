@@ -158,6 +158,11 @@ set("n", "<M-Up>", "<cmd>horizontal res -5<CR>", { noremap = true, desc = "Resiz
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
 
+-- set("i", "<C-f>", "<C-o>a", { desc = "Move forward one character" })
+-- set("i", "<C-b>", "<C-o>h", { desc = "Move backward one character" })
+
+set("n", "G", "Gzz", { desc = "Go to end of file and center" })
+
 set({ "o", "x" }, "ie", "iW", { desc = "inner WORD" })
 set({ "o", "x" }, "ae", "aW", { desc = "around WORD" })
 

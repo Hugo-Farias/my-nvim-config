@@ -8,6 +8,7 @@ local function theme(repo, name, transparent, style)
       style = style or "",
       transparent = transparent or false,
       styles = {
+        transparency = transparent or false,
         sidebars = "transparent",
         floats = "transparent",
         keywords = { italic = true },

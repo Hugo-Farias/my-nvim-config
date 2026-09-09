@@ -14,7 +14,7 @@ end
 --   autoTriggerStatus = not autoTriggerStatus
 --   vim.notify(autoTriggerStatus and notifyText .. " On" or notifyText .. " Off")
 -- end
---
+
 return {
   "zbirenbaum/copilot.lua",
   version = false,

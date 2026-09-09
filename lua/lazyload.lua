@@ -1,7 +1,7 @@
 require("lazy").setup({
   -- { "nvim-lua/plenary.nvim" },
 
-  -- { require("lsp") },
+  -- { require("lspconfig") },
   { require("plugins.mason") },
   { require("plugins.treesitter") },
   { require("plugins.treesitter-context") },
@@ -21,6 +21,9 @@ require("lazy").setup({
   { "j-hui/fidget.nvim", version = "*", opts = {} },
   -- { require("plugins.noice") },
   -- { require("plugins.notify") },
+
+  ---- General Editing ----
+  { require("plugins.tabout") },
 
   ---- Runners ----
   { require("plugins.jaq") },

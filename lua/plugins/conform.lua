@@ -115,6 +115,7 @@ return {
         require("conform").format({ async = true })
       end,
       desc = "Format file with Conform",
+      mode = { "n" },
     },
   },
 }
