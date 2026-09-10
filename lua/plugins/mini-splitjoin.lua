@@ -7,7 +7,7 @@ return {
     -- Module mappings. Use `''` (empty string) to disable one.
     -- Created for both Normal and Visual modes.
     mappings = {
-      toggle = "gS",
+      toggle = "<leader>j",
       split = "",
       join = "",
     },
