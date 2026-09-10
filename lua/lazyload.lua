@@ -23,7 +23,7 @@ require("lazy").setup({
   -- { require("plugins.noice") },
   -- { require("plugins.notify") },
 
-  ---- General Editing ----
+  ---- Buffer Navigation ----
   { require("plugins.tabout") },
 
   ---- Runners ----

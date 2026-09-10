@@ -2,20 +2,6 @@ local utils = require("utils")
 
 local set = vim.keymap.set
 
--- TODO: Temporary!!! Remove when rust course over.
-local function toggle_explorer()
-  require("snacks").picker.explorer({
-    open = function()
-      vim.schedule(function()
-        local keys = vim.api.nvim_replace_termcodes("jjljljl", true, false, true)
-        vim.api.nvim_feedkeys(keys, "n", false)
-      end)
-    end,
-  })
-end
-
-set("n", "<leader>ln", toggle_explorer, { desc = "rust course: next challenge" })
-
 -------------------------------------------------------------------------------
 ---- 🛑 Disable Default Mappings
 -------------------------------------------------------------------------------

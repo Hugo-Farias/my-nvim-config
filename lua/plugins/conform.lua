@@ -55,6 +55,8 @@ return {
           "--unsafe",
           "--stdin-file-path",
           "$FILENAME",
+          "--skip=correctness/noUnusedVariables",
+          "--skip=correctness/noUnusedFunctionParameters",
         },
         stdin = true,
       },
