@@ -38,7 +38,11 @@ return {
     {
       "<C-f>",
       function()
-        return require("luasnip").jump(1)
+        if require("luasnip").in_snippet() then
+          return require("luasnip").jump(1)
+        else
+          vim.api.nvim_feedkeys("a", "i", false)
+        end
       end,
       expr = false,
       desc = "LuaSnip: Jump forward",
@@ -47,9 +51,13 @@ return {
     {
       "<C-b>",
       function()
-        return require("luasnip").jump(-1)
+        if require("luasnip").in_snippet() then
+          return require("luasnip").jump(-1)
+        else
+          vim.api.nvim_feedkeys("h", "i", false)
+        end
       end,
-      expr = true,
+      expr = false,
       desc = "LuaSnip: Jump Backwards",
       mode = { "i" },
     },
