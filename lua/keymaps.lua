@@ -158,8 +158,8 @@ set("n", "<M-Up>", "<cmd>horizontal res -5<CR>", { noremap = true, desc = "Resiz
 ---- 📦 General Editing
 -------------------------------------------------------------------------------
 
--- set("i", "<C-f>", "<C-o>a", { desc = "Move forward one character" })
--- set("i", "<C-b>", "<C-o>h", { desc = "Move backward one character" })
+set("i", "<C-f>", "<C-o>a", { desc = "Move forward one character" })
+set("i", "<C-b>", "<C-o>h", { desc = "Move backward one character" })
 
 set("n", "G", "Gzz", { desc = "Go to end of file and center" })
 
@@ -245,8 +245,11 @@ set("n", "<leader>;", set_semicolon, { desc = "Set semicolon at the end of the l
 
 ---- Spellcheck word under cursor
 set("n", "z;", function()
+  local spell_status = vim.o.spell
+  vim.o.spell = true
   local word = vim.fn.spellbadword()[1]
   print(word == "" and "✅ No misspelled word under cursor" or "❌ Misspelled word: " .. word)
+  vim.o.spell = spell_status
 end, { desc = "Spellcheck Line" })
 
 ---- Diff this buffer with the saved file
@@ -394,7 +397,7 @@ set("n", "<leader>tw", function()
   end
 end, { desc = "Toggle Line Wrap" })
 
----- Mantain selection when indenting in visual mode
+---- Maintain selection when indenting in visual mode
 set("x", "<", "<gv", { desc = "Indent left" })
 set("x", ">", ">gv", { desc = "Indent right" })
 
@@ -542,7 +545,7 @@ set("x", "<leader>d", '"_d', { noremap = true, silent = true, desc = "Delete wit
 ---- Delete line without yanking
 set("n", "<leader>dd", '"_dd', { noremap = true, silent = true, desc = "Delete line without yank" })
 
----- Delete till $ witout yanking
+---- Delete till $ without yanking
 set("x", "<leader>D", '"_d$', { noremap = false, silent = true, desc = "Delete without yank" })
 
 ---- x deletes without yanking

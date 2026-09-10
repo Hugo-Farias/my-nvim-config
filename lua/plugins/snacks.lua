@@ -32,6 +32,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     set("i", "<C-s>", function() vim.lsp.buf.signature_help(floatingOpts) end, vim.tbl_extend("force", opts, { desc = "LSP: Signature Help" }))
     set("n", "<F2>", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "LSP: Rename" }))
     set({ "n", "x" }, "<F3>", function() vim.lsp.buf.format({ async = true }) end, vim.tbl_extend("force", opts, { desc = "LSP: Format" }))
+    -- TODO: make this show the code action preview 
     set({ "n", "x" }, "gq", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "LSP: Code action" }))
     set("n", "ga", function() vim.diagnostic.open_float(nil, { focusable = true }) end, vim.tbl_extend("force", opts, { desc = "LSP: Line diagnostics" }))
     set("n", "gA", function() vim.diagnostic.setqflist() end, vim.tbl_extend("force", opts, { desc = "LSP: Open full buffer diagnostics" }))
@@ -164,8 +165,8 @@ return {
     { "<leader><Tab>", "<cmd>lua Snacks.picker.resume()<CR>",{ desc = "Snacks: Resume Search" }},
     -- { "<leader><leader>", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
     -- { "<C- >", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
-    { "<C-e>", "<cmd>lua Snacks.picker.files()<CR>", desc = "Snacks: Search Files" },
-    { "<leader>sf", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
+    { "<C-e>", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Search Files" },
+    { "<leader>sf", "<cmd>lua Snacks.picker.files()<CR>", desc = "Snacks: Smart Search Files" },
     { "<leader>sg", "<cmd>lua Snacks.picker.git_diff()<CR>", desc = "Snacks: Search Git Diffs" },
     { "<leader>s,", "<cmd>lua Snacks.picker.files({ cwd = vim.fn.stdpath('config') })<CR>", desc = "Snacks: Search Config Files"},
     { "<leader>sr", "<cmd>lua Snacks.picker.recent()<CR>", desc = "Snacks: Search Recent Files" },
