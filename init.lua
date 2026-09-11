@@ -16,4 +16,4 @@ require("commands")
 require("lazyload")
 -- require("neovide")
 
-vim.cmd.colorscheme("cyberdream-muted")
+vim.cmd.colorscheme("catppuccin-mocha")

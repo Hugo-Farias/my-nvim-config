@@ -18,7 +18,7 @@ set({ "n", "x" }, "q", "<Nop>", { noremap = true })
 ---- Disable "s" key (which is substitute by default)
 set({ "n", "x" }, "s", "<Nop>", { noremap = true })
 
----- Disable F13–F22 in insert/command mode
+---- Disable F1–F22 in insert/command mode
 for i = 1, 22 do
   set({ "i", "c" }, "<F" .. i .. ">", "<Nop>", { silent = true, noremap = true })
 end
@@ -45,16 +45,13 @@ set("n", "gu", "<Nop>")
 --   vim.notify("Script executed inside Neovim")
 -- end, { desc = "Execute script inside Neovim" })
 
----- Source nvim config file
 set("n", "<leader>r,", function()
   vim.cmd("source " .. vim.fn.stdpath("config") .. "/init.lua")
   vim.notify("Config Reloaded")
-end, { desc = "Source nvim config file" })
+end, { desc = "Resource neovim's config file" })
 
----- Change directory to git root
 set("n", "cd", utils.smart_change_dir, { desc = "CD to git root or file path" })
 
----- Go up one directory
 set("n", "cu", "<cmd>cd ../ | pwd<CR>", { desc = "CD up a directory" })
 
 ---- Show current file directory
@@ -65,7 +62,6 @@ set("n", "cp", function()
   vim.notify(("CWD:\n%s\n%s"):format(cwd, file), vim.log.levels.INFO)
 end, { desc = "Print cwd and file path" })
 
----- Quick Save
 set("n", "<C-s>", "<cmd>up<CR>", { desc = "Save File" })
 
 ---- Change directory to current file

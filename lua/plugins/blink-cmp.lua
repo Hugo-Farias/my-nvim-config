@@ -72,32 +72,47 @@ return { -- optional blink completion source for require statements and module a
       -- },
     },
   },
-  keys = {
-    {
-      "<C-p>",
-      function()
-        local cmp = require("blink.cmp")
-        if cmp.is_visible() then
-          cmp.select_prev()
-        else
-          cmp.show()
-        end
-      end,
-      mode = "i",
-      desc = "Show menu or select next item",
-    },
-    {
-      "<C-n>",
-      function()
-        local cmp = require("blink.cmp")
-        if cmp.is_visible() then
-          cmp.select_next()
-        else
-          cmp.show()
-        end
-      end,
-      mode = "i",
-      desc = "Show menu or select next item",
-    },
-  },
+  keys = function()
+    local cmp = require("blink.cmp")
+    local out = {
+      {
+        "<C-p>",
+        function()
+          if cmp.is_visible() then
+            cmp.select_prev()
+          else
+            cmp.show()
+          end
+        end,
+        mode = "i",
+        desc = "Show menu or select previous item",
+      },
+      {
+        "<C-n>",
+        function()
+          if cmp.is_visible() then
+            cmp.select_next()
+          else
+            cmp.show()
+          end
+        end,
+        mode = "i",
+        desc = "Show menu or select next item",
+      },
+      {
+        "<CR>",
+        function()
+          if cmp.is_visible() then
+            -- cmp.accept()
+            vim.api.nvim_feedkeys("", "c", false)
+          else
+            vim.api.nvim_feedkeys("\", "c", false)
+          end
+        end,
+        mode = "c",
+        desc = "Select item",
+      },
+    }
+    return out
+  end,
 }
