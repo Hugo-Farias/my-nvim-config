@@ -76,8 +76,9 @@ require("lazy").setup({
   ---- Language Support ----
   { "kmonad/kmonad-vim" },
 
-  ---- String Manipulation ----
+  ---- General Editing ----
   { require("plugins.vim-camelsnek") },
+  { require("plugins.nvim-toggler") },
 
   ---- Colors ----
   require("colors"),

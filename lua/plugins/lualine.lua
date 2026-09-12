@@ -51,12 +51,12 @@ return {
   event = "VeryLazy",
   opts = {
     options = {
-      -- theme = custom_catppuccin,
+      theme = "ayu_dark",
       globalstatus = true,
-      component_separators = "|",
+      -- component_separators = "|",
       -- section_separators = { left = "", right = "" },
       -- section_separators = { left = "", right = "" },
-      section_separators = { left = "", right = "" },
+      -- section_separators = { left = "", right = "" },
       disabled_filetypes = { "alpha", "Outline" },
     },
     sections = {

@@ -80,9 +80,9 @@ local function toggle_color()
 
   vim.notify("Highlight Colors: " .. notify_msg, vim.log.levels.INFO)
 
-  if not color_status then
-    vim.cmd("e!")
-  end
+  -- if not color_status then
+  --   vim.cmd("e!")
+  -- end
 end
 
 set("n", "<leader>tc", toggle_color, { desc = "Toggle Color Highlights" })
@@ -409,27 +409,29 @@ set({ "n", "x" }, '<leader>"', '"0p', { desc = "Paste previously yanked text", n
 set({ "n", "x" }, "ss", "s", { desc = "Subistitute", noremap = true })
 
 ---- Flip Boolean
-set("n", "<C-b>", function()
-  local line = vim.api.nvim_get_current_line()
-  local replacements = {
-    ["true"] = "false",
-    ["false"] = "true",
-    ["True"] = "False",
-    ["False"] = "True",
-  }
-
-  for bool, flip in pairs(replacements) do
-    local s, e = line:find(bool)
-    if s then
-      -- Replace the first occurrence of the boolean
-      local new_line = line:sub(1, s - 1) .. flip .. line:sub(e + 1)
-      vim.api.nvim_set_current_line(new_line)
-      -- Move cursor to the start of replaced boolean
-      vim.api.nvim_win_set_cursor(0, { vim.api.nvim_win_get_cursor(0)[1], s - 1 })
-      return
-    end
-  end
-end, { desc = "Flip first boolean on current line" })
+-- set("n", "<leader>b", function()
+--   local line = vim.api.nvim_get_current_line()
+--   local replacements = {
+--     ["true"] = "false",
+--     ["false"] = "true",
+--     ["True"] = "False",
+--     ["False"] = "True",
+--     ["on"] = "off",
+--     ["off"] = "off",
+--   }
+--
+--   for bool, flip in pairs(replacements) do
+--     local s, e = line:find(bool)
+--     if s then
+--       -- Replace the first occurrence of the boolean
+--       local new_line = line:sub(1, s - 1) .. flip .. line:sub(e + 1)
+--       vim.api.nvim_set_current_line(new_line)
+--       -- Move cursor to the start of replaced boolean
+--       vim.api.nvim_win_set_cursor(0, { vim.api.nvim_win_get_cursor(0)[1], s - 1 })
+--       return
+--     end
+--   end
+-- end, { desc = "Flip first boolean on current line" })
 
 ---- Search and replace word under cursor
 set(

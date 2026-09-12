@@ -31,7 +31,7 @@ return {
 
     local keys = {
       { "<leader>ha", mark.add_file, desc = "Harpoon: Add File" },
-      { "<leader>hh", ui.toggle_quick_menu, desc = "Harpoon: Quick Menu" },
+      -- { "<leader>hh", ui.toggle_quick_menu, desc = "Harpoon: Quick Menu" },
       { "<leader>H", ui.toggle_quick_menu, desc = "Harpoon: Quick Menu" },
     }
 

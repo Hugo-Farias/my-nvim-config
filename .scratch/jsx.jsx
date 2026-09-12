@@ -1,5 +1,3 @@
-import React, { useState } from "react";
-
 const users = [
   { id: 1, name: "Alice", role: "Developer", active: true },
   { id: 2, name: "Bob", role: "Designer", active: false },
@@ -12,9 +10,7 @@ function UserCard({ user, onSelect }) {
       <h2>{user.name}</h2>
       <p>{user.role}</p>
 
-      <button onClick={() => onSelect(user)}>
-        Select
-      </button>
+      <button onClick={() => onSelect(user)}>Select</button>
 
       {user.active && <span className="status">Online</span>}
     </article>
@@ -27,7 +23,7 @@ export default function App() {
   const [query, setQuery] = useState("");
 
   const filteredUsers = users.filter((user) =>
-    user.name.toLowerCase().includes(query.toLowerCase())
+    user.name.toLowerCase().includes(query.toLowerCase()),
   );
 
   return (
@@ -52,11 +48,7 @@ export default function App() {
 
       <section className="user-list">
         {filteredUsers.map((user) => (
-          <UserCard
-            key={user.id}
-            user={user}
-            onSelect={setSelectedUser}
-          />
+          <UserCard key={user.id} user={user} onSelect={setSelectedUser} />
         ))}
       </section>
 

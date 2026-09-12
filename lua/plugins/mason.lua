@@ -72,9 +72,9 @@ return {
     {
       "<space>x",
       function()
-        local diag = require("workspace-diagnostics")
+        local wd = require("workspace-diagnostics")
         for _, client in ipairs(vim.lsp.get_clients()) do
-          diag.populate_workspace_diagnostics(client, 0)
+          wd.populate_workspace_diagnostics(client, 0)
         end
         vim.notify("Workspace Diagnostics has started...")
       end,

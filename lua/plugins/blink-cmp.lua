@@ -100,7 +100,7 @@ return { -- optional blink completion source for require statements and module a
         desc = "Show menu or select next item",
       },
       {
-        "<CR>",
+        "<C-l>",
         function()
           if cmp.is_visible() then
             -- cmp.accept()
