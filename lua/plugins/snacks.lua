@@ -139,6 +139,21 @@ local function leave_terminal()
   vim.cmd.stopinsert()
   vim.cmd("lua Snacks.terminal.toggle()")
 end
+-- {
+--       finder = "vim_colorschemes",
+--       format = "text",
+--       preview = "colorscheme",
+--       preset = "vertical",
+--       confirm = function(picker, item)
+--         picker:close()
+--         if item then
+--           picker.preview.state.colorscheme = nil
+--           vim.schedule(function()
+--             vim.cmd("colorscheme " .. item.text)
+--           end)
+--         end
+--       end,
+--     }
 
 return {
   "folke/snacks.nvim",
@@ -179,6 +194,7 @@ return {
     { "<C-p>", "<cmd>lua Snacks.picker.buffers()<CR>", desc = "Snacks: Search Buffers" },
     { "<leader>sb", "<cmd>lua Snacks.picker.buffers()<CR>", desc = "Snacks: Search Buffers" },
     { "<leader>sC", "<cmd>lua Snacks.picker.commands()<CR>", desc = "Snacks: Search Commands" },
+    -- TODO: Make this go through the "ColorScheme" function
     { "<leader>sc", "<cmd>lua Snacks.picker.colorschemes()<CR>", desc = "Snacks: Search Color Schemes" },
     { "<leader>sk", "<cmd>lua Snacks.picker.keymaps()<CR>", desc = "Snacks: Search Keymaps" },
     { "<leader>sh", "<cmd>lua Snacks.picker.help()<CR>", desc = "Snacks: Search Help", mode = {'n', 'x'} },

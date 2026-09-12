@@ -5,6 +5,11 @@ return {
     -- opt = true, -- Set this to true if the plugin is optional
     event = "InsertCharPre", -- Set the event to 'InsertCharPre' for better compatibility
     priority = 1000,
+    dependencies = { -- These are optional
+      -- "nvim-treesitter/nvim-treesitter",
+      -- "L3MON4D3/LuaSnip",
+      -- "hrsh7th/nvim-cmp",
+    },
     opts = {
       tabkey = "<Tab>", -- key to trigger tabout, set to an empty string to disable
       backwards_tabkey = "<S-Tab>", -- key to trigger backwards tabout, set to an empty string to disable
@@ -25,11 +30,6 @@ return {
       },
       ignore_beginning = true, --[[ if the cursor is at the beginning of a filled element it will rather tab out than shift the content ]]
       exclude = {}, -- tabout will ignore these filetypes
-    },
-    dependencies = { -- These are optional
-      "nvim-treesitter/nvim-treesitter",
-      "L3MON4D3/LuaSnip",
-      -- "hrsh7th/nvim-cmp",
     },
   },
   -- {
