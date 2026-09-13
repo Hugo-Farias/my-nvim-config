@@ -1,20 +1,19 @@
 require("lazy").setup({
   { "nvim-lua/plenary.nvim" },
 
+  ---- LSP Related ----
   { require("lsp") },
   { require("plugins.mason") },
-  { require("plugins.schemastore") },
+
+  { require("plugins.snacks") },
   { require("plugins.treesitter") },
   { require("plugins.treesitter-context") },
-  { require("plugins.todo-comments") },
-  { require("plugins.snacks") },
-  { require("plugins.nvim-spider") },
-  { require("plugins.harpoon") },
-  -- { require("plugins.harpoon2") },
-  { require("plugins.which-key") },
+  { require("plugins.schemastore") },
   { require("plugins.gitsigns") },
-  { require("plugins.timber") },
+
+  ---- UI ----
   { "j-hui/fidget.nvim", version = "*", opts = {} },
+  { require("plugins.which-key") },
 
   ---- Language Support ----
   { "kmonad/kmonad-vim" },
@@ -31,7 +30,14 @@ require("lazy").setup({
   { require("plugins.mini-ai") },
   { require("plugins.mini-splitjoin") },
   { require("plugins.mini-align") },
+  { require("plugins.timber") },
+  { require("plugins.nvim-spider") },
+  { require("plugins.todo-comments") },
   -- { require("plugins.mini-pairs") },
+
+  ---- File Nav ----
+  { require("plugins.harpoon") },
+  -- { require("plugins.harpoon2") },
 
   ---- Runners ----
   { require("plugins.jaq") },

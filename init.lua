@@ -14,6 +14,5 @@ require("keymaps")
 require("autocmd")
 require("commands")
 require("lazyload")
--- require("neovide")
 
 ColorScheme("cyberdream-muted")
