@@ -83,6 +83,7 @@ return {
       '      "correctness": {',
       '        "noUnusedVariables": "off",',
       '        "noUnusedFunctionParameters": "off"',
+      '        "noUnusedImports": "off"',
       "      },",
       '      "complexity": {',
       '        "noUselessRename": "error"',
