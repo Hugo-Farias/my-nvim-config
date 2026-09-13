@@ -173,6 +173,7 @@ local function flash_last_char()
   end, 300)
 end
 
+---@param go_to_next_line boolean
 local function set_comma(go_to_next_line)
   local next_line = go_to_next_line or false
   local line = vim.api.nvim_get_current_line()

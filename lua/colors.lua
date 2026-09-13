@@ -1,3 +1,4 @@
+---@param color string
 function ColorScheme(color)
   if not color then
     return nil
