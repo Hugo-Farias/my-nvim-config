@@ -159,6 +159,19 @@ local function change_colorscheme()
   })
 end
 
+local function search_project()
+  require("snacks").picker.smart({
+    multi = { "buffers", "files" },
+    format = "file", -- use `file` format for all sources
+    matcher = {
+      cwd_bonus = true, -- boost cwd matches
+      frecency = true, -- use frecency boosting
+      sort_empty = true, -- sort even when the filter is empty
+    },
+    transform = "unique_file",
+  })
+end
+
 return {
   "folke/snacks.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -170,8 +183,7 @@ return {
     explorer = { enabled = true },
     indent = require("plugins.snacks-indent"),
     input = { enabled = true },
-    -- picker = require("plugins.snacks-picker"),
-    picker = { enabled = true },
+    picker = require("plugins.snacks-picker"),
     notifier = { enabled = true, timeout = 3000 },
     quickfile = { enabled = true },
     scope = { enabled = true },
@@ -185,8 +197,8 @@ return {
     { "<leader><Tab>", "<cmd>lua Snacks.picker.resume()<CR>",{ desc = "Snacks: Resume Search" }},
     -- { "<leader><leader>", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
     -- { "<C- >", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
-    { "<C-e>", "<cmd>lua Snacks.picker.files()<CR>", desc = "Snacks: Search Files" },
-    { "<leader>sf", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
+    { "<C-e>", search_project, desc = "Snacks: Search Files" },
+    { "<leader>sf", "<cmd>lua Snacks.picker.files()<CR>", desc = "Snacks: Smart Search Files" },
     { "<leader>sg", "<cmd>lua Snacks.picker.git_diff()<CR>", desc = "Snacks: Search Git Diffs" },
     { "<leader>s,", "<cmd>lua Snacks.picker.files({ cwd = vim.fn.stdpath('config') })<CR>", desc = "Snacks: Search Config Files"},
     { "<leader>sr", "<cmd>lua Snacks.picker.recent()<CR>", desc = "Snacks: Search Recent Files" },

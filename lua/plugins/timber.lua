@@ -17,7 +17,7 @@ return {
       insert_batch_log_operator = "g<S-p>b",
       add_log_targets_to_batch_operator = "g<S-p>a",
     },
-    log_marker = "🔵",
+    log_marker = "✔️",
     -- Controls the flash highlight
     highlight = {
       -- After a log statement is inserted

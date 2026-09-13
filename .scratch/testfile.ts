@@ -1,6 +1,6 @@
 // utils.ts
 
-const _unused_function = (): null => {
+const unused_function = (): null => {
   return null;
 };
 
@@ -47,7 +47,7 @@ const getUserById = (id: number): User | null => {
   return null;
 };
 
-function _updateUserStatus(id: number, status: Status): boolean {
+function updateUserStatus(id: number, status: Status): boolean {
   const user = getUserById(id);
   if (!user) {
     return false;

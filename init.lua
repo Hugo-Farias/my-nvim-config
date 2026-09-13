@@ -15,4 +15,4 @@ require("autocmd")
 require("commands")
 require("lazyload")
 
-ColorScheme("cyberdream-muted")
+ColorScheme("tokyonight-moon")
