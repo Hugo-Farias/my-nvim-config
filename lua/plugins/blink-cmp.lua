@@ -15,6 +15,7 @@ return { -- optional blink completion source for require statements and module a
       documentation = {
         window = {
           border = "rounded",
+          winblend = 100,
         },
       },
     },

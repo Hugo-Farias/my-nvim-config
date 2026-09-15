@@ -12,6 +12,7 @@ end
 vim.opt.laststatus = 3
 vim.opt.number = true
 vim.opt.relativenumber = true
+vim.opt.showmode = false
 
 vim.lsp.document_color.enable(true, nil, { style = "virtual" })
 vim.g.have_nerd_font = true
@@ -26,6 +27,7 @@ vim.opt.wrap = false
 vim.opt.linebreak = true
 vim.opt.breakindent = true
 vim.opt.breakat = " "
+vim.opt.showmatch = true
 
 vim.opt.termguicolors = true
 
@@ -34,10 +36,10 @@ vim.opt.swapfile = false
 vim.opt.undodir = vim.fn.stdpath("data") .. "/undo"
 vim.opt.undofile = true
 
--- vim.opt.updatetime = 2000
+-- vim.opt.updatetime = 3000
 -- vim.opt.colorcolumn = "80"
 
-vim.opt.scrolloff = 13
+vim.opt.scrolloff = 16
 vim.opt.sidescrolloff = 8
 vim.opt.timeoutlen = 500
 vim.opt.ignorecase = true

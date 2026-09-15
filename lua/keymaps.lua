@@ -71,6 +71,9 @@ set("n", "cD", "<cmd>cd %:p:h | pwd<CR>", { desc = "CD to file directory" })
 ---- 🪟 Buffers & Windows
 -------------------------------------------------------------------------------
 
+---- Open File in Vertical Split
+set("n", "<leader>fs", "<cmd>vs<CR>", { desc = "File Vertical split" })
+
 -- Toggle document color
 local function toggle_color()
   local color_status = vim.lsp.document_color.is_enabled()

@@ -32,7 +32,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
     set("i", "<C-s>", function() vim.lsp.buf.signature_help(floatingOpts) end, vim.tbl_extend("force", opts, { desc = "LSP: Signature Help" }))
     set("n", "<F2>", vim.lsp.buf.rename, vim.tbl_extend("force", opts, { desc = "LSP: Rename" }))
     set({ "n", "x" }, "<F3>", function() vim.lsp.buf.format({ async = true }) end, vim.tbl_extend("force", opts, { desc = "LSP: Format" }))
-    -- TODO: make this show the code action preview 
     set({ "n", "x" }, "gq", vim.lsp.buf.code_action, vim.tbl_extend("force", opts, { desc = "LSP: Code action" }))
     set("n", "ga", function() vim.diagnostic.open_float(nil, { focusable = true }) end, vim.tbl_extend("force", opts, { desc = "LSP: Line diagnostics" }))
     set("n", "gA", function() vim.diagnostic.setqflist() end, vim.tbl_extend("force", opts, { desc = "LSP: Open full buffer diagnostics" }))
@@ -47,28 +46,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
   end,
 })
 -- stylua: ignore end
-
----- Open File in Vertical Split
-set("n", "<leader>fs", function()
-  vim.cmd("diffoff")
-  vim.cmd("wincmd o")
-  vim.cmd("wincmd v")
-  require("snacks").picker.files({
-    confirm = function(picker, item)
-      picker:close()
-      vim.cmd("e " .. item.file)
-    end,
-    on_close = function()
-      vim.defer_fn(function()
-        vim.cmd("wincmd h")
-      end, 200)
-    end,
-    cancel = function()
-      vim.cmd("diffoff")
-      vim.cmd("wincmd o")
-    end,
-  })
-end, { desc = "Snacks: Open File in vertical split" })
 
 for _, key in ipairs({ "<leader>q", "<M-q>", "qt" }) do
   set("n", key, "<cmd>lua Snacks.bufdelete()<CR>", { desc = "Close Buffer" })
@@ -140,26 +117,26 @@ local function leave_terminal()
   vim.cmd("lua Snacks.terminal.toggle()")
 end
 
-local function change_colorscheme()
-  require("snacks").picker.colorschemes({
-    finder = "vim_colorschemes",
-    format = "text",
-    preview = "colorscheme",
-    preset = "vertical",
-    confirm = function(picker, item)
-      picker:close()
-      if item then
-        picker.preview.state.colorscheme = nil
-        vim.schedule(function()
-          -- vim.cmd('lua ColorScheme("' .. item.text .. '")')
-          ColorScheme(item.text)
-        end)
-      end
-    end,
-  })
-end
+-- local function change_colorscheme()
+--   require("snacks").picker.colorschemes({
+--     finder = "vim_colorschemes",
+--     format = "text",
+--     preview = "colorscheme",
+--     preset = "vertical",
+--     confirm = function(picker, item)
+--       picker:close()
+--       if item then
+--         picker.preview.state.colorscheme = nil
+--         vim.schedule(function()
+--           -- vim.cmd('lua ColorScheme("' .. item.text .. '")')
+--           ColorScheme(item.text)
+--         end)
+--       end
+--     end,
+--   })
+-- end
 
-local function search_project()
+local function smart_search()
   require("snacks").picker.smart({
     multi = { "buffers", "files" },
     format = "file", -- use `file` format for all sources
@@ -197,7 +174,7 @@ return {
     { "<leader><Tab>", "<cmd>lua Snacks.picker.resume()<CR>",{ desc = "Snacks: Resume Search" }},
     -- { "<leader><leader>", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
     -- { "<C- >", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
-    { "<C-e>", search_project, desc = "Snacks: Search Files" },
+    { "<C-e>", smart_search, desc = "Snacks: Search Files" },
     { "<leader>sf", "<cmd>lua Snacks.picker.files()<CR>", desc = "Snacks: Smart Search Files" },
     { "<leader>sg", "<cmd>lua Snacks.picker.git_diff()<CR>", desc = "Snacks: Search Git Diffs" },
     { "<leader>s,", "<cmd>lua Snacks.picker.files({ cwd = vim.fn.stdpath('config') })<CR>", desc = "Snacks: Search Config Files"},
@@ -211,8 +188,8 @@ return {
     { "<C-p>", "<cmd>lua Snacks.picker.buffers()<CR>", desc = "Snacks: Search Buffers" },
     { "<leader>sb", "<cmd>lua Snacks.picker.buffers()<CR>", desc = "Snacks: Search Buffers" },
     { "<leader>sC", "<cmd>lua Snacks.picker.commands()<CR>", desc = "Snacks: Search Commands" },
-    -- { "<leader>sc", "<cmd>lua Snacks.picker.colorschemes()<CR>", desc = "Snacks: Search Color Schemes" },
-    { "<leader>sc", change_colorscheme, desc = "Snacks: Search Color Schemes" },
+    { "<leader>sc", "<cmd>lua Snacks.picker.colorschemes({ layout = 'bottom' })<CR>", desc = "Snacks: Search Color Schemes" },
+    -- { "<leader>sc", change_colorscheme, desc = "Snacks: Search Color Schemes" },
     { "<leader>sk", "<cmd>lua Snacks.picker.keymaps()<CR>", desc = "Snacks: Search Keymaps" },
     { "<leader>sh", "<cmd>lua Snacks.picker.help()<CR>", desc = "Snacks: Search Help", mode = {'n', 'x'} },
     { "<leader>s/", "<cmd>lua Snacks.picker.search_history()<CR>", desc = "Snacks: Search History" },

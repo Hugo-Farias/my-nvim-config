@@ -96,7 +96,7 @@ return {
         {
           "diagnostics",
           symbols = { error = " ", warn = " ", info = " ", hint = " " },
-          update_in_insert = true,
+          update_in_insert = false,
         },
         {
           unsaved_buffers,

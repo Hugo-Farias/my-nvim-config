@@ -67,5 +67,8 @@ require("lazy").setup({
   { require("plugins.lualine") },
 
   ---- Colors ----
-  require("colors"),
+  { require("schemes.cyberdream") },
+  { require("schemes.tokyonight") },
+  -- { "catppuccin/nvim", priority = 1000 },
+  -- { require("colors") },
 })
