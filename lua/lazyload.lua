@@ -33,10 +33,11 @@ require("lazy").setup({
   { require("plugins.timber") },
   { require("plugins.nvim-spider") },
   { require("plugins.todo-comments") },
-  -- { require("plugins.mini-pairs") },
+  { require("plugins.mini-pairs") },
 
   ---- File Nav ----
-  { require("plugins.harpoon") },
+  -- { require("plugins.harpoon") },
+  { require("plugins.grapple") },
   -- { require("plugins.harpoon2") },
 
   ---- Runners ----

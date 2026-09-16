@@ -26,24 +26,24 @@ return {
     tabline_suffix = "   ",
   },
   keys = function()
-    local mark = require("harpoon.mark")
+    -- local mark = require("harpoon.mark")
     local ui = require("harpoon.ui")
 
     local keys = {
-      { "<leader>ha", mark.add_file, desc = "Harpoon: Add File" },
+      -- { "<leader>ha", mark.add_file, desc = "Harpoon: Add File" },
       -- { "<leader>hh", ui.toggle_quick_menu, desc = "Harpoon: Quick Menu" },
       { "<leader>H", ui.toggle_quick_menu, desc = "Harpoon: Quick Menu" },
     }
 
-    for i, key in ipairs({ "h", "j", "k", "l", ";", "y", "u", "i", "o", "p", "m" }) do
-      table.insert(keys, {
-        "q" .. key,
-        function()
-          ui.nav_file(i)
-        end,
-        desc = "which_key_ignore",
-      })
-    end
+    -- for i, key in ipairs({ "h", "j", "k", "l", ";", "y", "u", "i", "o", "p", "m" }) do
+    --   table.insert(keys, {
+    --     "q" .. key,
+    --     function()
+    --       ui.nav_file(i)
+    --     end,
+    --     desc = "which_key_ignore",
+    --   })
+    -- end
 
     return keys
   end,

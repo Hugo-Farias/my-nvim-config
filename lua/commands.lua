@@ -1,6 +1,6 @@
 local utils = require("utils")
 
-vim.api.nvim_create_user_command("Q", "<cmd>q<CR>", {})
+vim.api.nvim_create_user_command("Q", "quitall", {})
 
 vim.api.nvim_create_user_command("MkProject", function()
   utils.smart_change_dir()
