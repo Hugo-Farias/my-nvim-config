@@ -1,0 +1,30 @@
+return {
+  "polacekpavel/prompt-yank.nvim",
+  cmd = { "PromptYank" },
+  opts = {
+    format = "minimal",
+  },
+  keys = {
+    { "<leader>ad", "<cmd>PromptYank diagnostics<CR>", desc = "PromptYank: Diagnostics", mode = { "n", "v" } },
+    { "<leader>ac", "<cmd>PromptYank context<CR>", desc = "PromptYank: Context", mode = { "n", "v" } },
+    { "<leader>ag", "<cmd>PromptYank diff<CR>", desc = "PromptYank: git diff", mode = { "n", "v" } },
+    { "<leader>af", "<cmd>PromptYank function<CR>", desc = "PromptYank: function", mode = "n" },
+    { "<leader>at", "<cmd>PromptYank tree<CR>", desc = "PromptYank: tree", mode = "n" },
+    { "<leader>al", "<cmd>PromptYank definitions<CR>", desc = "PromptYank: definitions", mode = { "n", "v" } },
+    { "<leader>az", "<cmd>PromptYank<CR>", desc = "PromptYank: Entire file", mode = "n" },
+    { "<leader>ay", "<cmd>'<,'>PromptYank<CR>", desc = "PromptYank: Selection", mode = "v" },
+    { "<leader>ay", "V<cmd>'<,'>PromptYank<CR>", desc = "PromptYank: Line", mode = "n" },
+    {
+      "<leader>aL",
+      "<cmd>PromptYank definitions_deep<CR>",
+      desc = "PromptYank: deep definitions",
+      mode = { "n", "v" },
+    },
+    { "<leader>ai", "vai<cmd>'<,'>PromptYank<CR>", desc = "PromptYank: Block" },
+    -- { "<Leader>ap", desc = "PromptYank: file/selection", mode = { "n", "v" } },
+    -- { "<Leader>am", desc = "PromptYank: multi-file", mode = "n" },
+    -- { "<Leader>ab", desc = "PromptYank: blame", mode = { "n", "v" } },
+    -- { "<Leader>ar", desc = "PromptYank: remote URL", mode = { "n", "v" } },
+    -- { "<Leader>aR", desc = "PromptYank: related files", mode = "n" },
+  },
+}

@@ -27,7 +27,7 @@ return {
         function()
           grapple.select({ index = i })
         end,
-        -- desc = "which_key_ignore",
+        desc = "which_key_ignore",
       })
     end
 
