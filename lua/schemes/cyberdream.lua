@@ -17,12 +17,13 @@ return {
   priority = 1000,
   opts = {
     transparent = true,
+    saturation = 0.8,
     styles = {
       transparency = true,
       sidebars = "transparent",
       floats = "transparent",
       keywords = { italic = true },
-      functions = { italic = true },
+      -- functions = { italic = true },
     },
     -- Alternatively, you can use 'default' to set all extensions at once
     -- cache = true, -- Use cache for fastest loads
@@ -57,12 +58,15 @@ return {
         -- ["@string"] = { fg = hl.green, italic = true },
         ["String"] = { fg = hl.green, italic = true },
         ["Identifier"] = { fg = hl.orange },
+        -- ["Statement"] = { fg = hl.pink },
         ["@property"] = { fg = hl.cyan },
         ["Keyword"] = { fg = hl.cyan, italic = true },
-        ["Function"] = { fg = hl.blue, italic = true },
+        ["Function"] = { fg = hl.blue },
         ["Boolean"] = { fg = hl.orange },
         ["@operator"] = { fg = hl.white },
+        ["Operator"] = { fg = hl.white },
         ["@variable.parameter"] = { fg = hl.orange },
+        ["@variable.builtin"] = { fg = hl.red },
         -- ["Special"] = { fg = "#199fa2" },
         ["Special"] = { fg = hl.cyan },
         ["Search"] = { fg = hl.white, bg = "#3e68d7" },
