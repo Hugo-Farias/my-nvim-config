@@ -62,7 +62,8 @@ return {
     sections = {
       lualine_a = {
         -- { "mode", icon = "" },
-        { cwd_name },
+        { "fileformat", separator = "" },
+        { cwd_name, padding = { right = 1, left = 0 } },
         -- { cwd_name, separator = { left = " ", right = "" }, icon = "" },
         -- { "mode", separator = { left = "", right = "" }, icon = "" },
       },
@@ -98,16 +99,15 @@ return {
           symbols = { error = " ", warn = " ", info = " ", hint = " " },
           update_in_insert = false,
         },
-        {
-          unsaved_buffers,
-          "encoding",
-          "fileformat",
-          "filetype",
-        },
+        { unsaved_buffers },
+        -- { "encoding", "fileformat", "filetype" },
+        { "encoding", padding = { left = 1, right = 0 } },
       },
-      -- lualine_y = { clients_lsp },
+      -- lualine_y = { unsaved_buffers, { "encoding" } },
       lualine_z = {
-        { "location", icon = "" },
+        -- { "location", icon = "", padding = { left = 1 } },
+        -- { "encoding" },
+        { "location" },
         -- { "location", separator = { left = "", right = " " }, icon = "" },
         -- { "location", separator = { left = "", right = "" }, icon = "" },
       },
