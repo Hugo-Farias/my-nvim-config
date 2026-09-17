@@ -15,4 +15,4 @@ require("autocmd")
 require("commands")
 require("lazyload")
 
-vim.cmd.colorscheme("tokyonight-moon")
+vim.cmd.colorscheme("cyberdream")

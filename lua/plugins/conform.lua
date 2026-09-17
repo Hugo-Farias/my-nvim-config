@@ -108,6 +108,9 @@ return {
       function()
         require("conform").format({ async = false })
         vim.cmd("up")
+        if vim.bo.modified and vim.bo.fileformat == "dos" then
+          vim.cmd("set fileformat=unix")
+        end
       end,
       desc = "Save and format file with Conform",
     },
@@ -115,6 +118,9 @@ return {
       "<C-f>",
       function()
         require("conform").format({ async = true })
+        if vim.bo.modified and vim.bo.fileformat == "dos" then
+          vim.cmd("set fileformat=unix")
+        end
       end,
       desc = "Format file with Conform",
       mode = { "n" },
