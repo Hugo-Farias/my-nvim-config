@@ -39,7 +39,7 @@ vim.opt.undofile = true
 -- vim.opt.updatetime = 3000
 -- vim.opt.colorcolumn = "80"
 
-vim.opt.scrolloff = 16
+vim.opt.scrolloff = 8
 vim.opt.sidescrolloff = 8
 vim.opt.timeoutlen = 500
 vim.opt.ignorecase = true

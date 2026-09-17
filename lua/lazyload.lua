@@ -11,15 +11,8 @@ require("lazy").setup({
   { require("plugins.schemastore") },
   { require("plugins.gitsigns") },
 
-  ---- UI ----
-  { "j-hui/fidget.nvim", version = "*", opts = {} },
-  { require("plugins.which-key") },
-
-  ---- Language Support ----
-  { "kmonad/kmonad-vim" },
-  { "MeanderingProgrammer/render-markdown.nvim" },
-
   ---- General Editing ----
+  { require("plugins.mini-ai") },
   { require("plugins.vim-camelsnek") },
   { require("plugins.nvim-toggler") },
   { require("plugins.nvim-ts-autotag") },
@@ -27,13 +20,20 @@ require("lazy").setup({
   { require("plugins.rainbow-delimiters") },
   { require("plugins.mini-surround") },
   { require("plugins.tabout") },
-  { require("plugins.mini-ai") },
   { require("plugins.mini-splitjoin") },
   { require("plugins.mini-align") },
   { require("plugins.timber") },
   { require("plugins.nvim-spider") },
   { require("plugins.todo-comments") },
   { require("plugins.mini-pairs") },
+
+  ---- UI ----
+  { "j-hui/fidget.nvim", version = "*", opts = {} },
+  { require("plugins.which-key") },
+
+  ---- Language Support ----
+  { "kmonad/kmonad-vim" },
+  { "MeanderingProgrammer/render-markdown.nvim" },
 
   ---- File Nav ----
   -- { require("plugins.harpoon") },

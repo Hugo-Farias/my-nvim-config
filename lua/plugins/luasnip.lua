@@ -40,9 +40,7 @@ return {
       {
         "<C-f>",
         function()
-          if ls.in_snippet() then
-            return ls.jump(1)
-          end
+          return ls.jump(1)
         end,
         expr = false,
         desc = "LuaSnip: Jump forward",
@@ -51,9 +49,7 @@ return {
       {
         "<C-b>",
         function()
-          if ls.in_snippet() then
-            return ls.jump(-1)
-          end
+          return ls.jump(-1)
         end,
         expr = false,
         desc = "LuaSnip: Jump Backwards",

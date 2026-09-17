@@ -17,7 +17,7 @@ return {
   priority = 1000,
   opts = {
     transparent = true,
-    saturation = 0.8,
+    -- saturation = 0.8,
     styles = {
       transparency = true,
       sidebars = "transparent",
