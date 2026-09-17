@@ -62,8 +62,8 @@ return {
     sections = {
       lualine_a = {
         -- { "mode", icon = "" },
-        { "fileformat", separator = "" },
-        { cwd_name, padding = { right = 1, left = 0 } },
+        { "fileformat", separator = "", padding = { right = 0, left = 1 } },
+        { cwd_name },
         -- { cwd_name, separator = { left = " ", right = "" }, icon = "" },
         -- { "mode", separator = { left = "", right = "" }, icon = "" },
       },

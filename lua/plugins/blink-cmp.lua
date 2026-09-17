@@ -1,3 +1,16 @@
+---@param direction "next" | "prev"
+local function blink_open(direction, cmp)
+  if cmp.is_visible() then
+    if direction == "next" then
+      cmp.select_next()
+    else
+      cmp.select_prev()
+    end
+  else
+    cmp.show()
+  end
+end
+
 return { -- optional blink completion source for require statements and module annotations
   "saghen/blink.cmp",
   version = "*",
@@ -79,25 +92,17 @@ return { -- optional blink completion source for require statements and module a
       {
         "<C-p>",
         function()
-          if cmp.is_visible() then
-            cmp.select_prev()
-          else
-            cmp.show()
-          end
+          blink_open("prev", cmp)
         end,
-        mode = "i",
+        mode = { "i", "c" },
         desc = "Show menu or select previous item",
       },
       {
         "<C-n>",
         function()
-          if cmp.is_visible() then
-            cmp.select_next()
-          else
-            cmp.show()
-          end
+          blink_open("next", cmp)
         end,
-        mode = "i",
+        mode = { "i", "c" },
         desc = "Show menu or select next item",
       },
       {
@@ -107,7 +112,7 @@ return { -- optional blink completion source for require statements and module a
             -- cmp.accept()
             vim.api.nvim_feedkeys("", "c", false)
           else
-            vim.api.nvim_feedkeys("\", "c", false)
+            cmp.show()
           end
         end,
         mode = "c",

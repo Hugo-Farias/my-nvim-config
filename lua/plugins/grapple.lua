@@ -15,6 +15,8 @@ return {
       {
         "<leader>A",
         function()
+          -- TODO: Must implement a way to prevent more than 10 files to be added
+          -- so index 11 is not overwritten
           grapple.tag({ buffer = 0 })
         end,
         desc = "Grapple: Add buffer",

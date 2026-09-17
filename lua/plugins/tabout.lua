@@ -32,6 +32,7 @@ return {
       exclude = {}, -- tabout will ignore these filetypes
     },
   },
+  -- TODO: Add keys with fallback to move cursor to the right
   -- {
   --   "L3MON4D3/LuaSnip",
   --   keys = function()

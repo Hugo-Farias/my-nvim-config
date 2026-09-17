@@ -26,40 +26,41 @@ return {
       ls.add_snippets(filetype, require("snippets.json"))
     end
   end,
-  keys = {
-    {
-      "<C-t>",
-      function()
-        return require("luasnip").jump(1)
-      end,
-      expr = true,
-      desc = "LuaSnip: Jump forward",
-    },
-    {
-      "<C-f>",
-      function()
-        if require("luasnip").in_snippet() then
-          return require("luasnip").jump(1)
-        else
-          vim.api.nvim_feedkeys("a", "i", false)
-        end
-      end,
-      expr = false,
-      desc = "LuaSnip: Jump forward",
-      mode = { "i" },
-    },
-    {
-      "<C-b>",
-      function()
-        if require("luasnip").in_snippet() then
-          return require("luasnip").jump(-1)
-        else
-          vim.api.nvim_feedkeys("h", "i", false)
-        end
-      end,
-      expr = false,
-      desc = "LuaSnip: Jump Backwards",
-      mode = { "i" },
-    },
-  },
+  keys = function()
+    local ls = require("luasnip")
+    local out = {
+      {
+        "<C-t>",
+        function()
+          return ls.jump(1)
+        end,
+        expr = true,
+        desc = "LuaSnip: Jump forward",
+      },
+      {
+        "<C-f>",
+        function()
+          if ls.in_snippet() then
+            return ls.jump(1)
+          end
+        end,
+        expr = false,
+        desc = "LuaSnip: Jump forward",
+        mode = { "i" },
+      },
+      {
+        "<C-b>",
+        function()
+          if ls.in_snippet() then
+            return ls.jump(-1)
+          end
+        end,
+        expr = false,
+        desc = "LuaSnip: Jump Backwards",
+        mode = { "i" },
+      },
+    }
+
+    return out
+  end,
 }
