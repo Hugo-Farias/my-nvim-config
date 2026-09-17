@@ -19,9 +19,23 @@ return {
         end,
         desc = "Grapple: Add buffer",
       },
+      {
+        "<leader>M",
+        function()
+          grapple.tag({ buffer = 0, index = 11 })
+        end,
+        desc = "Grapple: Add buffer to 'Main'",
+      },
+      {
+        "qm",
+        function()
+          grapple.select({ index = 11 })
+        end,
+        desc = "Grapple: Switch to 'Main'",
+      },
     }
 
-    for i, key in ipairs({ "h", "j", "k", "l", ";", "y", "u", "i", "o", "p", "m" }) do
+    for i, key in ipairs({ "h", "j", "k", "l", ";", "y", "u", "i", "o", "p" }) do
       table.insert(output, {
         "q" .. key,
         function()
