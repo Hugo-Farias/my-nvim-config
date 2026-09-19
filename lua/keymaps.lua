@@ -6,6 +6,9 @@ local set = vim.keymap.set
 ---- 🛑 Disable Default Mappings
 -------------------------------------------------------------------------------
 
+---- Disable ZZ (no saving without explicit command or being prompted)
+set("n", "ZZ", "<Nop>", { noremap = true, silent = true, desc = "which_key_ignore" })
+
 ---- Disable insert key in insert mode
 set("i", "<Insert>", "<Nop>", { noremap = true, silent = true })
 
@@ -89,11 +92,6 @@ local function toggle_color()
 end
 
 set("n", "<leader>tc", toggle_color, { desc = "Toggle Color Highlights" })
-
-set({ "n", "x" }, "qq", utils.close_all_splits, { desc = "close", silent = true })
--- set({ "n", "x" }, "qq", ":wincmd o|silent! close<CR>", { desc = "close", silent = true })
--- set({ "n", "x" }, "q[", ":wincmd o|silent! close<CR>", { desc = "close", silent = true })
-set({ "n", "x" }, "q[", utils.close_all_splits, { desc = "close", silent = true })
 
 ---- Reload Chrome
 -- set("n", "<C-r>", function()
@@ -461,6 +459,11 @@ set({ "n", "x" }, "<leader>P", 'O<Esc>"+p^', { desc = "Paste above from system's
 --   set({ "n", "x" }, "<leader>" .. key, '"+' .. key, { desc = "Yank into system's clipboard" })
 -- end
 
+set({ "n", "x" }, "qq", utils.close_all_splits, { desc = "close", silent = true })
+-- set({ "n", "x" }, "qq", ":wincmd o|silent! close<CR>", { desc = "close", silent = true })
+-- set({ "n", "x" }, "q[", ":wincmd o|silent! close<CR>", { desc = "close", silent = true })
+set({ "n", "x" }, "<BS>", utils.close_all_splits, { desc = "Close all secondary splits", silent = true })
+
 set({ "n", "x" }, "<leader>y", '"+y', { desc = "Yank into system's clipboard" })
 
 set({ "n", "x" }, "<leader>Y", '"+y$', { desc = "which_key_ignore" })
@@ -471,10 +474,10 @@ set({ "n", "x" }, "Q", "@@", { noremap = true, desc = "Replay last played macro"
 
 set({ "n", "x" }, "@@", "Q", { noremap = true, desc = "Play last recorded macro" })
 
----- `qr` to start macro recording
-set({ "n", "x" }, "qr", function()
-  vim.api.nvim_feedkeys("q", "n", false)
-end, { noremap = true, desc = "Start recording macro" })
+-- set({ "n", "x" }, "@q", "q", { noremap = true, desc = "Play last recorded macro" })
+
+-- `qr` to start macro recording
+set({ "n", "x" }, "qr", "q", { noremap = true, desc = "Start recording macro" })
 
 ---- Clear Search Query
 -- set("n", "<leader>ll", "<cmd>redraw | nohlsearch<CR>", { desc = "Clear Highlight Search" })

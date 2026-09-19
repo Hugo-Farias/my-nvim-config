@@ -57,6 +57,7 @@ require("lazy").setup({
   { require("plugins.luasnip") },
 
   ---- Assistant Agent ----
+  { require("plugins.prompt-yank") },
   { require("plugins.zbirenbaum-copilot") },
   -- { require("plugins.windsurf") },
 

@@ -41,6 +41,7 @@ return {
         javascript = "node %",
         typescript = "bun run %",
         rust = "cargo run",
+        ps1 = "& %",
       },
     },
 

@@ -1,3 +1,11 @@
+-- stylua: ignore
+local keymaps = {
+  "q", "w", "e", "r", "t", "a",
+  "s", "d", "f", "g", "h", "j",
+  "k", "l", ";", "z", "x", "c",
+  "v", "b", "y", "u", "i", "o",
+  "p", "m", "n", ",", ".",
+}
 return {
   "cbochs/grapple.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons", lazy = true },
@@ -7,7 +15,7 @@ return {
     local grapple = require("grapple")
 
     local output = {
-      { "qg", grapple.toggle_tags, desc = "Grapple: Toggle menu" },
+      { "<leader>G", grapple.toggle_tags, desc = "Grapple: Toggle menu" },
       -- {
       --   "gA",
       --   function()
@@ -17,11 +25,10 @@ return {
       -- },
     }
 
-    local keymaps = { "h", "j", "k", "l", ";", "y", "u", "i", "o", "p", "m", "n", ",", "." }
-
+    -- TODO: Get a confirmation from user if user trying to attach file already attached
     for _, key in ipairs(keymaps) do
       table.insert(output, {
-        "qa" .. key,
+        "<S-tab>" .. key,
         function()
           grapple.tag({ name = key })
           vim.notify(
@@ -36,7 +43,7 @@ return {
 
     for _, key in ipairs(keymaps) do
       table.insert(output, {
-        "q" .. key,
+        "	" .. key,
         function()
           grapple.select({ name = key })
         end,

@@ -19,12 +19,13 @@ local M = {}
 -- end
 
 function M.close_all_splits()
-  vim.api.nvim_feedkeys("q", "n", false)
+  -- vim.api.nvim_feedkeys("q", "n", false)
   vim.api.nvim_feedkeys("", "n", false)
   vim.cmd("wincmd h")
   vim.cmd("wincmd k")
   vim.cmd("wincmd o")
   vim.cmd("silent! close")
+  -- TODO: fix the viewport to the left after closing the windows/splits.
 end
 
 -- Change location to git root if found, otherwise to file's location
