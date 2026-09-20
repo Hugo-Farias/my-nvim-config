@@ -46,6 +46,7 @@ vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.splitright = true
 -- vim.o.keymodel = ""
+vim.opt.exrc = true -- source .nvim.lua and .nvim.lua from project directory
 
 -- WORKAROUND: for session restoring with blank buffer
 -- vim.opt.sessionoptions = {
