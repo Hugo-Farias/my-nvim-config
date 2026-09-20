@@ -65,7 +65,7 @@ return {
     -- { "<C-d>", autoTriggerToggle, desc = "Copilot: Toggle Auto Trigger", mode = "i" },
     { "<C-d>", "<cmd>Copilot suggestion dismiss<CR>", desc = "Copilot: Toggle Auto Trigger", mode = "i" },
     { "<leader>tp", "<cmd>Copilot panel<CR>", desc = "Toggle Agent Panel" },
-    { "<Tab>", "<cmd>lua require('copilot.suggestion').accept_line()<CR>", desc = "Copilot: Accept Line", mode = "i" },
+    { "<C-j>", "<cmd>lua require('copilot.suggestion').accept_line()<CR>", desc = "Copilot: Accept Line", mode = "i" },
     { "<C-l>", "<cmd>lua require('copilot.suggestion').accept_word()<CR>", desc = "Copilot: Accept Word", mode = "i" },
     { "<C-y>", "<cmd>lua require('copilot.suggestion').accept()<CR>", desc = "Copilot: Accept All", mode = "i" },
     { "<M-]>", "<cmd>lua require('copilot.suggestion').next()<CR>", desc = "Copilot: Next Suggestion", mode = "i" },

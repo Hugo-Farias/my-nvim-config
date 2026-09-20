@@ -31,9 +31,12 @@ require("lazy").setup({
   { "j-hui/fidget.nvim", version = "*", opts = {} },
   { require("plugins.which-key") },
 
-  ---- Language Support ----
-  { "kmonad/kmonad-vim" },
-  { "MeanderingProgrammer/render-markdown.nvim" },
+  ---- Language Highlighting Support ----
+  { "kmonad/kmonad-vim" }, -- Kmonad/Kanata (.kbd)
+  { "MeanderingProgrammer/render-markdown.nvim" }, -- Markdown
+  { "MTDL9/vim-log-highlighting" }, --LOG
+  -- { "mechatroner/rainbow_csv" }, -- CSV
+  -- { "fei6409/log-highlight.nvim" }, -- LOG
 
   ---- File Nav ----
   -- { require("plugins.harpoon") },

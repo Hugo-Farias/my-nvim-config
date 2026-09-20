@@ -62,7 +62,16 @@ return {
     sections = {
       lualine_a = {
         -- { "mode", icon = "" },
-        { "fileformat", separator = "", padding = { right = 0, left = 1 } },
+        -- {
+        --   "fileformat",
+        --   separator = "",
+        --   padding = { right = 0, left = 1 },
+        --   symbols = {
+        --     unix = "", -- e712
+        --     dos = "", -- e70f
+        --     mac = "", -- e711
+        --   },
+        -- },
         { cwd_name },
         -- { cwd_name, separator = { left = " ", right = "" }, icon = "" },
         -- { "mode", separator = { left = "", right = "" }, icon = "" },
@@ -101,6 +110,16 @@ return {
         },
         { unsaved_buffers },
         -- { "encoding", "fileformat", "filetype" },
+        {
+          "fileformat",
+          -- separator = "",
+          -- padding = { right = 0, left = 1 },
+          symbols = {
+            unix = "LF", -- e712
+            dos = "CRLF", -- e70f
+            mac = "CR", -- e711
+          },
+        },
         { "encoding", padding = { left = 1, right = 0 } },
       },
       -- lualine_y = { unsaved_buffers, { "encoding" } },

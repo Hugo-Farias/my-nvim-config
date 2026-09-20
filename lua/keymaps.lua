@@ -504,6 +504,7 @@ set("n", "<leader>rn", "<cmd>restart<CR>", { desc = "Restart Neovim" })
 
 ---- '*' Keeps cursor on the same occurrence
 set("n", "*", "*N", { desc = "'*' Keeps cursor on the name occurrence" })
+set("x", "*", [[y/\V<C-R>=substitute(escape(@", '/\'), "\n", "\\n", "ge")<CR><CR>N]], { silent = true })
 
 ---- Duplicate Line
 -- set("n", "H", "<cmd>copy .<CR>", { desc = "Duplicate Line" })
