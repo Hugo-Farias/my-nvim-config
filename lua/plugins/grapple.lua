@@ -20,7 +20,6 @@ return {
       -- },
     }
 
-    -- TODO: Get a confirmation from user if user trying to attach file already attached
     for _, key in ipairs(keymaps) do
       table.insert(output, {
         "qa" .. key,

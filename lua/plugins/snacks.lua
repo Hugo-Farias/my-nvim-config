@@ -74,6 +74,13 @@ local function open_projects()
   })
 end
 
+local function safe_quit_neovim()
+  utils.smart_save_session()
+  IsProject = false
+  close_all_buffers()
+  vim.cmd("q")
+end
+
 local function search_scratch_files()
   local scratch_dir = vim.fn.getcwd():gsub("\\", "/") .. "/.scratch/"
   if vim.fn.isdirectory(scratch_dir) == 0 then
@@ -177,7 +184,7 @@ return {
     { "<C-e>", smart_search, desc = "Snacks: Search Files" },
     { "<leader>sf", "<cmd>lua Snacks.picker.files()<CR>", desc = "Snacks: Smart Search Files" },
     { "<leader>sg", "<cmd>lua Snacks.picker.git_diff()<CR>", desc = "Snacks: Search Git Diffs" },
-    { "<leader>s,", "<cmd>lua Snacks.picker.files({ cwd = vim.fn.stdpath('config') })<CR>", desc = "Snacks: Search Config Files"},
+    { "<leader>s,", "<cmd>lua Snacks.picker.files({ cwd = vim.fn.stdpath('config') })<CR>", desc = "Snacks: Search Config Files" },
     { "<leader>sr", "<cmd>lua Snacks.picker.recent()<CR>", desc = "Snacks: Search Recent Files" },
     { "<leader>sl", "<cmd>lua Snacks.picker.lines()<CR>", desc = "Snacks: Search Lines" },
     { "<leader>e", "<cmd>lua Snacks.picker.explorer()<CR>", desc = "Snacks: Open Explorer" },
@@ -224,5 +231,7 @@ return {
     ---- Terminal mode ----
     { "<C-y>", open_terminal, { desc = "Snacks: Toggle terminal (normal)" } },
     { "<C-y>", leave_terminal, { desc = "Snacks: Toggle terminal (terminal)" }, mode = "t" },
+    { "ZZ", safe_quit_neovim, { desc = "Safe Quit Neovim" } }
+,
   },
 }

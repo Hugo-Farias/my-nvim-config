@@ -1,22 +1,3 @@
----@param color string
-function ColorScheme(color)
-  if not color then
-    return nil
-  end
-
-  vim.cmd.colorscheme(color)
-  -- vim.o.background = "dark"
-
-  -- vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-  -- vim.api.nvim_set_hl(0, "NormalNC", { bg = "none" })
-  -- vim.api.nvim_set_hl(0, "EndOfBuffer", { bg = "none" })
-  -- vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
-
-  -- vim.api.nvim_set_hl(0, "LineNr", { fg = "#E6E6E6" })
-  -- vim.api.nvim_set_hl(0, "LineNrAbove", { fg = "#666666" })
-  -- vim.api.nvim_set_hl(0, "LineNrBelow", { fg = "#666666" })
-end
-
 local function theme(repo, name, transparent, style)
   return {
     repo,

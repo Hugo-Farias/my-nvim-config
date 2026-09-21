@@ -1,6 +1,6 @@
 local M = {}
 
--- function M.set_colorscheme(color)
+-- function M.set_colorscheme(color) ---@param color string
 --   if not color then
 --     return nil
 --   end

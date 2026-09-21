@@ -64,7 +64,7 @@ require("lazy").setup({
   { require("plugins.zbirenbaum-copilot") },
   -- { require("plugins.windsurf") },
 
-  ---- Color Preview/Pickers ----
+  ---- Hex Color Converter/Picker ----
   { require("plugins.ccc") },
   { require("plugins.color-converter") },
 
