@@ -25,7 +25,7 @@ function M.close_all_splits()
   vim.cmd("wincmd k")
   vim.cmd("wincmd o")
   vim.cmd("silent! close")
-  -- TODO: fix the viewport to the left after closing the windows/splits.
+  vim.api.nvim_feedkeys("zH", "n", false)
 end
 
 -- Change location to git root if found, otherwise to file's location
