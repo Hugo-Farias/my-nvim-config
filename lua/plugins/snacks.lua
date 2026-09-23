@@ -123,37 +123,37 @@ local function leave_terminal()
   vim.cmd("lua Snacks.terminal.toggle()")
 end
 
-local function change_colorscheme()
-  require("snacks").picker.colorschemes({
-    finder = "vim_colorschemes",
-    format = "text",
-    preview = "colorscheme",
-    layout = "bottom",
-    preset = "vertical",
-    transform = function(item)
-      return not item.file or not vim.startswith(item.file, vim.env.VIMRUNTIME)
-    end,
-    confirm = function(picker, item)
-      picker:close()
-      if item then
-        picker.preview.state.colorscheme = nil
-        -- vim.schedule(function()
-        --   -- vim.cmd("colorscheme" .. item.text)
-        --   -- ColorScheme(item.text)
-        -- end)
-      end
-    end,
-  })
-end
+-- local function change_colorscheme()
+--   require("snacks").picker.colorschemes({
+--     finder = "vim_colorschemes",
+--     format = "text",
+--     preview = "colorscheme",
+--     layout = "bottom",
+--     preset = "vertical",
+--     transform = function(item)
+--       return not item.file or not vim.startswith(item.file, vim.env.VIMRUNTIME)
+--     end,
+--     confirm = function(picker, item)
+--       picker:close()
+--       if item then
+--         picker.preview.state.colorscheme = nil
+--         -- vim.schedule(function()
+--         --   -- vim.cmd("colorscheme" .. item.text)
+--         --   -- ColorScheme(item.text)
+--         -- end)
+--       end
+--     end,
+--   })
+-- end
 
 local function smart_search()
   require("snacks").picker.smart({
-    multi = { "buffers", "files" },
+    multi = { "files", "buffers" },
     format = "file", -- use `file` format for all sources
     matcher = {
-      cwd_bonus = true, -- boost cwd matches
-      frecency = true, -- use frecency boosting
-      sort_empty = true, -- sort even when the filter is empty
+      cwd_bonus = false, -- boost cwd matches
+      frecency = false, -- use frecency boosting
+      sort_empty = false, -- sort even when the filter is empty
     },
     transform = "unique_file",
   })
@@ -181,7 +181,7 @@ return {
   },
   keys = {
     -- stylua: ignore start
-    { "<leader><Tab>", "<cmd>lua Snacks.picker.resume()<CR>",{ desc = "Snacks: Resume Search" }},
+    { "<leader><Tab>", "<cmd>lua Snacks.picker.resume()<CR>",{ desc = "Snacks: Resume Search" } },
     -- { "<leader><leader>", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
     -- { "<C- >", "<cmd>lua Snacks.picker.smart()<CR>", desc = "Snacks: Smart Search Files" },
     { "<C-e>", smart_search, desc = "Snacks: Search Files" },
@@ -198,8 +198,8 @@ return {
     { "<C-p>", "<cmd>lua Snacks.picker.buffers()<CR>", desc = "Snacks: Search Buffers" },
     { "<leader>sb", "<cmd>lua Snacks.picker.buffers()<CR>", desc = "Snacks: Search Buffers" },
     { "<leader>sC", "<cmd>lua Snacks.picker.commands()<CR>", desc = "Snacks: Search Commands" },
-    -- { "<leader>sc", "<cmd>lua Snacks.picker.colorschemes({ layout = 'bottom' })<CR>", desc = "Snacks: Search Color Schemes" },
-    { "<leader>sc", change_colorscheme, desc = "Snacks: Search Color Schemes" },
+    { "<leader>sc", "<cmd>lua Snacks.picker.colorschemes({ layout = 'bottom' })<CR>", desc = "Snacks: Search Color Schemes" },
+    -- { "<leader>sc", change_colorscheme, desc = "Snacks: Search Color Schemes" },
     { "<leader>sk", "<cmd>lua Snacks.picker.keymaps()<CR>", desc = "Snacks: Search Keymaps" },
     { "<leader>sh", "<cmd>lua Snacks.picker.help()<CR>", desc = "Snacks: Search Help", mode = {'n', 'x'} },
     { "<leader>s/", "<cmd>lua Snacks.picker.search_history()<CR>", desc = "Snacks: Search History" },

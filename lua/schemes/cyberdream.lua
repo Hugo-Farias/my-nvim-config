@@ -13,7 +13,7 @@
 ---@field black string
 ---@field darkgrey string
 ---@field darkteal string
----@field tuquoise string
+---@field teal string
 
 return {
   "scottmckendry/cyberdream.nvim",
@@ -21,13 +21,11 @@ return {
   priority = 1000,
   opts = {
     transparent = true,
-    saturation = 1,
+    -- saturation = 0.8,
     styles = {
       transparency = true,
-      sidebars = "transparent",
-      floats = "transparent",
-      keywords = { italic = true },
-      -- functions = { italic = true },
+      -- sidebars = "transparent",
+      -- floats = "transparent",
     },
     -- Alternatively, you can use 'default' to set all extensions at once
     -- cache = true, -- Use cache for fastest loads
@@ -50,7 +48,8 @@ return {
       darkgrey = "#333333",
       black = "#000000",
       darkteal = "#26484d",
-      tuquoise = "#19ffc8",
+      teal = "#4fd6be",
+      cyan = "#86e1fc",
     },
     -- on_colors = function(hl)
     --   hl.bg_statusline = hl.none
@@ -60,19 +59,19 @@ return {
       return {
         ["Normal"] = { fg = hl.white },
         ["@variable"] = { fg = hl.white, italic = true },
-        ["@comment"] = { fg = hl.grey, italic = true },
-        ["Comment"] = { fg = hl.grey, italic = true },
+        ["@comment"] = { fg = hl.grey },
+        ["Comment"] = { fg = hl.grey },
         -- ["@string"] = { fg = hl.green, italic = true },
         ["String"] = { fg = hl.green },
         ["Identifier"] = { fg = hl.orange },
         ["Statement"] = { fg = hl.pink, italic = true },
         ["@property"] = { fg = hl.cyan },
-        ["Keyword"] = { fg = hl.cyan, italic = true },
+        ["Keyword"] = { fg = hl.teal, italic = true },
         ["Function"] = { fg = hl.blue },
         ["Boolean"] = { fg = hl.orange },
         ["@operator"] = { fg = hl.white },
         ["Operator"] = { fg = hl.white },
-        ["@variable.parameter"] = { fg = hl.orange, italic = true },
+        ["@variable.parameter"] = { fg = hl.orange },
         ["@variable.builtin"] = { fg = hl.red, italic = true },
         -- ["Special"] = { fg = "#199fa2" },
         ["Special"] = { fg = hl.cyan },
