@@ -74,6 +74,6 @@ require("lazy").setup({
   ---- Colors ----
   { require("schemes.cyberdream") },
   { require("schemes.tokyonight") },
-  -- { "catppuccin/nvim", priority = 1000 },
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
   -- { require("colors") },
 })

@@ -50,6 +50,14 @@ vim.api.nvim_create_autocmd("BufRead", {
   end,
 })
 
+-- vim.api.nvim_create_autocmd("BufRead", {
+--   group = vim.api.nvim_create_augroup("txt_scheme", { clear = true }),
+--   pattern = { "*.txt" },
+--   callback = function()
+--     vim.bo.filetype = ".log"
+--   end,
+-- })
+
 -- open help in vertical split
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "help",

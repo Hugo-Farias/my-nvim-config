@@ -10,6 +10,10 @@
 ---@field red string
 ---@field yellow string
 ---@field white string
+---@field black string
+---@field darkgrey string
+---@field darkteal string
+---@field tuquoise string
 
 return {
   "scottmckendry/cyberdream.nvim",
@@ -17,7 +21,7 @@ return {
   priority = 1000,
   opts = {
     transparent = true,
-    -- saturation = 0.9,
+    saturation = 1,
     styles = {
       transparency = true,
       sidebars = "transparent",
@@ -37,42 +41,49 @@ return {
     --     gitsigns = true,
     -- },
     colors = {
-      -- For a list of colors see `lua/cyberdream/colours.lua`
       -- white = "#f1f1f1",
       white = "#c8d3f5",
-      magenta = "#c099ff",
+      pink = "#c099ff",
       -- green = "#c3e88d",
       green = "#a1e09c", -- Default: #7ee088
-      -- white2 = "#c8d3f5",
-      pink = "#e878a8",
+      -- magenta = "#e878a8",
+      darkgrey = "#333333",
+      black = "#000000",
+      darkteal = "#26484d",
+      tuquoise = "#19ffc8",
     },
-    on_colors = function(hl)
-      hl.bg_statusline = hl.none
-    end,
+    -- on_colors = function(hl)
+    --   hl.bg_statusline = hl.none
+    -- end,
     overrides = function(colors)
       local hl = colors ---@type CyberdreamColors
       return {
         ["Normal"] = { fg = hl.white },
-        ["@variable"] = { fg = hl.white },
+        ["@variable"] = { fg = hl.white, italic = true },
         ["@comment"] = { fg = hl.grey, italic = true },
+        ["Comment"] = { fg = hl.grey, italic = true },
         -- ["@string"] = { fg = hl.green, italic = true },
-        ["String"] = { fg = hl.green, italic = true },
+        ["String"] = { fg = hl.green },
         ["Identifier"] = { fg = hl.orange },
-        -- ["Statement"] = { fg = hl.pink },
+        ["Statement"] = { fg = hl.pink, italic = true },
         ["@property"] = { fg = hl.cyan },
         ["Keyword"] = { fg = hl.cyan, italic = true },
         ["Function"] = { fg = hl.blue },
         ["Boolean"] = { fg = hl.orange },
         ["@operator"] = { fg = hl.white },
         ["Operator"] = { fg = hl.white },
-        ["@variable.parameter"] = { fg = hl.orange },
-        ["@variable.builtin"] = { fg = hl.red },
+        ["@variable.parameter"] = { fg = hl.orange, italic = true },
+        ["@variable.builtin"] = { fg = hl.red, italic = true },
         -- ["Special"] = { fg = "#199fa2" },
         ["Special"] = { fg = hl.cyan },
-        ["Search"] = { fg = hl.white, bg = "#3e68d7" },
-        ["CurSearch"] = { fg = "#1b1d2b", bg = "#ff966c" },
-        ["Visual"] = { bg = "#2d3f76" },
         ["Type"] = { fg = hl.blue, italic = true },
+        ["LspSignatureActiveParameter"] = { bg = hl.darkgrey },
+        ["Search"] = { fg = hl.black, bg = hl.cyan },
+        ["CurSearch"] = { fg = hl.black, bg = hl.orange },
+        -- ["Visual"] = { bg = "#2d3f76" },
+        ["Visual"] = { bg = hl.darkteal },
+        ["SnacksPickerDir"] = { fg = hl.grey },
+        ["SnacksPickerFile"] = { fg = hl.white },
       }
     end,
     extensions = {

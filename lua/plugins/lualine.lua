@@ -122,7 +122,7 @@ return {
         },
         { "encoding", padding = { left = 1, right = 0 } },
       },
-      -- lualine_y = { unsaved_buffers, { "encoding" } },
+      lualine_y = { "progress" },
       lualine_z = {
         -- { "location", icon = "", padding = { left = 1 } },
         -- { "encoding" },
@@ -139,6 +139,6 @@ return {
     --   lualine_y = {},
     --   lualine_z = { "location" },
     -- },
-    -- extensions = { "toggleterm", "trouble" },
+    -- extensions = { "mason" },
   },
 }

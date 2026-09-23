@@ -1,5 +1,5 @@
 -- stylua: ignore
-local keymaps = { "h", "j", "k", "l", ";", "y", "u", "i", "o", "p", "b", "m", "n", ",", "." }
+local keymaps = { "h", "j", "k", "l", ";", "y", "u", "i", "o", "p", "b", "m", "n", ",", ".", "\'", "/", "[" }
 
 return {
   "cbochs/grapple.nvim",

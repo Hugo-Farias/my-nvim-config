@@ -15,4 +15,4 @@ require("autocmd")
 require("commands")
 require("lazyload")
 
-vim.cmd.colorscheme("cyberdream")
+vim.cmd.colorscheme("cyberdream-muted")
