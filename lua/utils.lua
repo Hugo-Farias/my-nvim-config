@@ -99,11 +99,11 @@ function M.smart_save_session()
 
   if has_real_files then
     vim.cmd("mksession! " .. vim.fn.fnameescape(session_path))
-  else
-    -- Delete session file
-    if vim.loop.fs_stat(session_path) then
-      vim.loop.fs_unlink(session_path)
-    end
+    -- else
+    --   -- Delete session file
+    --   if vim.loop.fs_stat(session_path) then
+    --     vim.loop.fs_unlink(session_path)
+    --   end
   end
 end
 
