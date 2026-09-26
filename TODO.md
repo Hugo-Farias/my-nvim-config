@@ -1,3 +1,3 @@
 ﻿## TODO
 
-- [ ] Windhawk Extension to auto extend file explorer fields to auto fit
+- [ ] Windhawk Extension to auto extend file explorer fields to fit

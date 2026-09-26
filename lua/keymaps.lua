@@ -466,7 +466,7 @@ set({ "n", "x" }, "<BS>", utils.close_all_splits, { desc = "Close all secondary 
 
 set({ "n", "x" }, "<leader>y", '"+y', { desc = "Yank into system's clipboard" })
 
-set({ "n", "x" }, "<leader>Y", '"+y$', { desc = "which_key_ignore" })
+set({ "n", "x" }, "<leader>Y", '"+y$', { desc = "Yank content past cursor into system's clipboard" })
 
 set({ "n", "x" }, "qe", "@", { noremap = true, desc = "Play macro" })
 

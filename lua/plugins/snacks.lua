@@ -62,6 +62,7 @@ end
 
 local function open_projects()
   require("snacks").picker.projects({
+    title = "Sessions",
     confirm = function(picker, item)
       if not item then
         return
@@ -151,8 +152,8 @@ local function smart_search()
     multi = { "files", "buffers" },
     format = "file", -- use `file` format for all sources
     matcher = {
-      cwd_bonus = false, -- boost cwd matches
-      frecency = false, -- use frecency boosting
+      cwd_bonus = true, -- boost cwd matches
+      frecency = true, -- use frecency boosting
       sort_empty = false, -- sort even when the filter is empty
     },
     transform = "unique_file",
@@ -234,7 +235,6 @@ return {
     ---- Terminal mode ----
     { "<C-y>", open_terminal, { desc = "Snacks: Toggle terminal (normal)" } },
     { "<C-y>", leave_terminal, { desc = "Snacks: Toggle terminal (terminal)" }, mode = "t" },
-    { "ZZ", safe_quit_neovim, { desc = "Safe Quit Neovim" } }
-,
+    { "ZZ", safe_quit_neovim, { desc = "Safe Quit Neovim" } },
   },
 }

@@ -25,7 +25,8 @@ require("lazy").setup({
   { require("plugins.timber") },
   { require("plugins.nvim-spider") },
   { require("plugins.todo-comments") },
-  { require("plugins.mini-pairs") },
+  { require("plugins.nvim-autopairs") },
+  -- { require("plugins.mini-pairs") },
 
   ---- UI ----
   { "j-hui/fidget.nvim", version = "*", opts = {} },
@@ -75,5 +76,5 @@ require("lazy").setup({
   { require("schemes.cyberdream") },
   { require("schemes.tokyonight") },
   { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
-  -- { require("colors") },
+  { require("colors") },
 })

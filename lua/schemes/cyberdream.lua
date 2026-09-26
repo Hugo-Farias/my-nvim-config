@@ -21,7 +21,7 @@ return {
   priority = 1000,
   opts = {
     transparent = true,
-    -- saturation = 0.8,
+    -- saturation = 0.7,
     styles = {
       transparency = true,
       -- sidebars = "transparent",
@@ -49,6 +49,7 @@ return {
       black = "#000000",
       darkteal = "#26484d",
       teal = "#4fd6be",
+      -- teal = "#19ffc8",
       cyan = "#86e1fc",
     },
     -- on_colors = function(hl)
@@ -66,6 +67,7 @@ return {
         ["Identifier"] = { fg = hl.orange },
         ["Statement"] = { fg = hl.pink, italic = true },
         ["@property"] = { fg = hl.cyan },
+        ["@module"] = { fg = hl.teal, italic = true },
         ["Keyword"] = { fg = hl.teal, italic = true },
         ["Function"] = { fg = hl.blue },
         ["Boolean"] = { fg = hl.orange },
@@ -73,7 +75,6 @@ return {
         ["Operator"] = { fg = hl.white },
         ["@variable.parameter"] = { fg = hl.orange },
         ["@variable.builtin"] = { fg = hl.red, italic = true },
-        -- ["Special"] = { fg = "#199fa2" },
         ["Special"] = { fg = hl.cyan },
         ["Type"] = { fg = hl.blue, italic = true },
         ["LspSignatureActiveParameter"] = { bg = hl.darkgrey },
@@ -83,10 +84,11 @@ return {
         ["Visual"] = { bg = hl.darkteal },
         ["SnacksPickerDir"] = { fg = hl.grey },
         ["SnacksPickerFile"] = { fg = hl.white },
+        ["FloatBorder"] = { fg = hl.white },
       }
     end,
-    extensions = {
-      snacks = false,
-    },
+    -- extensions = {
+    --   snacks = false,
+    -- },
   },
 }

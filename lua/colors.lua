@@ -31,5 +31,5 @@ return {
   -- theme("navarasu/onedark.nvim", "onedark", false, "cool"), -- { 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light' }
   -- theme("uhs-robert/oasis.nvim", "oasis"),
   theme("vague-theme/vague.nvim", "vague", true),
-  theme("EdenEast/nightfox.nvim", "nightfox", true),
+  -- theme("EdenEast/nightfox.nvim", "nightfox", true),
 }

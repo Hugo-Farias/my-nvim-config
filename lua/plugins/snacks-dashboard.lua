@@ -63,9 +63,10 @@ return {
       {
         icon = " ",
         key = "p",
-        desc = "Projects",
+        desc = "Sessions",
         action = function()
           require("snacks").picker.projects({
+            title = "Sessions",
             confirm = LoadSession,
           })
         end,
