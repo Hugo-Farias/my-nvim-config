@@ -11,6 +11,14 @@ local function blink_open(direction, cmp)
   end
 end
 
+vim.api.nvim_create_autocmd("ColorScheme", {
+  callback = function()
+    vim.api.nvim_set_hl(0, "BlinkCmpMenuBorder", {
+      link = "FloatBorder",
+    })
+  end,
+})
+
 return { -- optional blink completion source for require statements and module annotations
   "saghen/blink.cmp",
   version = "*",
@@ -28,7 +36,7 @@ return { -- optional blink completion source for require statements and module a
       documentation = {
         window = {
           border = "rounded",
-          winblend = 100,
+          -- winblend = 100,
         },
       },
     },
