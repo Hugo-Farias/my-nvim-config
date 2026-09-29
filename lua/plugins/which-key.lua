@@ -18,12 +18,16 @@ return {
     },
   },
   opts = {
-    -- spec = {
-    --   { "qr", desc = "Record macro" },
-    --   { "qp", desc = "Play macro" },
-    --   { "q", group = "macro" },
-    --   { "<leader>g", group = "Git" },
-    -- },
+    spec = {
+      { "<leader>g", name = "Git" },
+      { "<leader>a", name = "PromptYank" },
+      { "<leader>c", name = "ColorPicker" },
+      { "<leader>d", name = "Alt Delete" },
+      { "<leader>f", name = "File Ops" },
+      { "<leader>r", name = "Reload/Reset" },
+      { "<leader>s", name = "Snacks" },
+      { "<leader>t", name = "Toggle" },
+    },
     triggers = {
       { "<auto>", mode = "nixsotc" },
       { "<C-t>", mode = "n" },

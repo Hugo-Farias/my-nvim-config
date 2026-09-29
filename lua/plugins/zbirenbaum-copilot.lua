@@ -1,10 +1,10 @@
-local copilotStatus = false -- is copilot enabled on start up
+local isCopilotEnabled = false
 -- local autoTriggerStatus = true
 
 local function copilot_toggle()
-  vim.cmd(copilotStatus and "Copilot disable" or "Copilot enable")
-  copilotStatus = not copilotStatus
-  vim.notify(copilotStatus and "Copilot Enabled" or "Copilot Disabled")
+  vim.cmd(isCopilotEnabled and "Copilot disable" or "Copilot enable")
+  isCopilotEnabled = not isCopilotEnabled
+  vim.notify(isCopilotEnabled and "Copilot Enabled" or "Copilot Disabled")
 end
 
 -- local function autoTriggerToggle()
@@ -18,8 +18,8 @@ end
 return {
   "zbirenbaum/copilot.lua",
   version = false,
-  lazy = not copilotStatus,
-  -- event = "BufReadPost",
+  lazy = true,
+  -- event = "InsertEnter",
   opts = {
     filetypes = {
       javascript = true,
@@ -71,4 +71,12 @@ return {
     { "<M-]>", "<cmd>lua require('copilot.suggestion').next()<CR>", desc = "Copilot: Next Suggestion", mode = "i" },
     { "<M-[>", "<cmd>lua require('copilot.suggestion').prev()<CR>", desc = "Copilot: Prev Suggestion", mode = "i" },
   },
+  config = function(_, opts)
+    require("copilot").setup(opts)
+    if isCopilotEnabled then
+      vim.cmd("Copilot enable")
+    else
+      vim.cmd("Copilot disable")
+    end
+  end,
 }

@@ -232,7 +232,7 @@ set("n", "z;", function()
   local spell_status = vim.o.spell
   vim.o.spell = true
   local word = vim.fn.spellbadword()[1]
-  print(word == "" and "✅ No misspelled word under cursor" or "❌ Misspelled word: " .. word)
+  print(word == "" and "✅ No misspelled word in line" or "❌ Misspelled word: " .. word)
   vim.o.spell = spell_status
 end, { desc = "Spellcheck Line" })
 
@@ -498,9 +498,9 @@ set("n", "<leader>rf", "<cmd>e!<CR>", { desc = "Reload buffer" })
 
 set("n", "<leader>rF", "<cmd>bufdo e!<CR>", { desc = "Reload all buffers" })
 
-set("n", "<leader>rl", "<cmd>lsp restart<CR>", { desc = "Restart LSP" })
+set("n", "<leader>rl", "<cmd>lsp restart<CR>", { desc = "Reload LSP" })
 
-set("n", "<leader>rn", "<cmd>restart<CR>", { desc = "Restart Neovim" })
+set("n", "<leader>rn", "<cmd>restart<CR>", { desc = "Reload Neovim" })
 
 ---- '*' Keeps cursor on the same occurrence
 set("n", "*", "*N", { desc = "'*' Keeps cursor on the name occurrence" })

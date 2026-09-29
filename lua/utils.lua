@@ -69,7 +69,6 @@ function M.session_name(path)
 end
 
 -- Save session in nvim-data/session with name based on the current working directory
--- if no files are associated with the buffers, delete the session file
 function M.smart_save_session()
   if not IsProject then
     return
@@ -99,11 +98,6 @@ function M.smart_save_session()
 
   if has_real_files then
     vim.cmd("mksession! " .. vim.fn.fnameescape(session_path))
-    -- else
-    --   -- Delete session file
-    --   if vim.loop.fs_stat(session_path) then
-    --     vim.loop.fs_unlink(session_path)
-    --   end
   end
 end
 

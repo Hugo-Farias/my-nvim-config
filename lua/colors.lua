@@ -15,8 +15,8 @@ local function theme(repo, name, transparent, style)
         transparency = transparent or false,
         sidebars = "transparent",
         floats = "transparent",
-        keywords = { italic = true },
-        functions = { italic = true },
+        -- keywords = { italic = true },
+        -- functions = { italic = true },
       },
       on_colors = function(colors)
         colors.bg_statusline = colors.none
@@ -29,7 +29,8 @@ return {
   -- theme("catppuccin/nvim", "catppuccin", false),
   -- theme("rose-pine/neovim", "rose-pine", true),
   -- theme("navarasu/onedark.nvim", "onedark", false, "cool"), -- { 'dark', 'darker', 'cool', 'deep', 'warm', 'warmer', 'light' }
-  -- theme("uhs-robert/oasis.nvim", "oasis"),
+  -- theme("uhs-robert/oasis.nvim", "oasis", false),
   theme("vague-theme/vague.nvim", "vague", true),
-  -- theme("EdenEast/nightfox.nvim", "nightfox", true),
+  -- { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
+  theme("EdenEast/nightfox.nvim", "nightfox"),
 }

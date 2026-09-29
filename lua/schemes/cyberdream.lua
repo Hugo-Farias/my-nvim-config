@@ -55,6 +55,7 @@ return {
     -- on_colors = function(hl)
     --   hl.bg_statusline = hl.none
     -- end,
+    -- TODO: deal with priorities of Identifier being overwriten @variable
     overrides = function(colors)
       local hl = colors ---@type CyberdreamColors
       return {
@@ -84,7 +85,7 @@ return {
         ["Visual"] = { bg = hl.darkteal },
         ["SnacksPickerDir"] = { fg = hl.grey },
         ["SnacksPickerFile"] = { fg = hl.white },
-        ["FloatBorder"] = { fg = hl.white },
+        ["FloatBorder"] = { fg = hl.grey },
       }
     end,
     -- extensions = {

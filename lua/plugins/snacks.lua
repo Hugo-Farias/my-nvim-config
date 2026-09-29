@@ -60,6 +60,8 @@ local function close_all_buffers()
   end
 end
 
+-- TODO: Make populating the projects/sessions list based on the sessions
+-- file not this arbitrary snacks method
 local function open_projects()
   require("snacks").picker.projects({
     title = "Sessions",
@@ -235,6 +237,6 @@ return {
     ---- Terminal mode ----
     { "<C-y>", open_terminal, { desc = "Snacks: Toggle terminal (normal)" } },
     { "<C-y>", leave_terminal, { desc = "Snacks: Toggle terminal (terminal)" }, mode = "t" },
-    { "ZZ", safe_quit_neovim, { desc = "Safe Quit Neovim" } },
+    { "ZZ", safe_quit_neovim, { desc = "Snacks: Safe Quit Neovim" } },
   },
 }

@@ -16,7 +16,7 @@ return {
 
     on_highlights = function(colors)
       -- colors["@string"] = { fg = "#998000" }
-      colors["FloatBorder"] = { fg = "#3c4048" }
+      -- colors["FloatBorder"] = { fg = "#3c4048" }
       colors["SnacksIndentScope"] = { fg = "#668080" }
       colors["SnacksPickerDir"] = { fg = "#4d6666" }
       -- colors["SnacksPickerFile"] = { fg = colors.white }

@@ -1,3 +1,4 @@
+-- TODO: Integrate YAZI with "gf" command on files
 return {
   "mikavilpas/yazi.nvim",
   version = "*", -- use the latest stable version
