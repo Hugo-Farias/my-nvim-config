@@ -22,6 +22,13 @@ local function unsaved_buffers()
   return ""
 end
 
+-- local function grapple_index()
+--   local path = vim.api.nvim_buf_get_name(0)
+--   local index = require("grapple").find({ path = path }).name
+--
+--   return "/" .. index
+-- end
+
 local function cwd_name()
   local cwd = vim.uv.cwd()
   return cwd and vim.fn.fnamemodify(cwd, ":t") or nil
@@ -87,9 +94,10 @@ return {
         {
           "filename",
           path = 1,
-          padding = { left = 0, right = 1 },
           -- symbols = { modified = "🟡" },
+          separator = "",
         },
+        -- { grapple_index, padding = { left = 0, right = 1 } },
       },
       lualine_c = {
         {
@@ -139,6 +147,6 @@ return {
     --   lualine_y = {},
     --   lualine_z = { "location" },
     -- },
-    -- extensions = { "mason" },
+    -- extensions = { "grapple" },
   },
 }

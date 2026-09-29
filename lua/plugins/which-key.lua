@@ -37,9 +37,9 @@ return {
       { "q", mode = { "n", "x" } },
       { "s", mode = { "n", "x" } },
     },
-    layout = {
-      width = { min = 20 }, -- min and max width of the columns
-      spacing = 3, -- spacing between columns
-    },
+    -- layout = {
+    --   width = { min = 50 }, -- min and max width of the columns
+    --   spacing = 2, -- spacing between columns
+    -- },
   },
 }

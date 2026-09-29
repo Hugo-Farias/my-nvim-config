@@ -128,7 +128,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 vim.api.nvim_create_autocmd({ "InsertEnter", "CmdlineEnter" }, {
   callback = function()
     vim.o.timeoutlen = 20
-    vim.wo.relativenumber = false
+    -- vim.wo.relativenumber = false
   end,
 })
 
@@ -136,6 +136,6 @@ vim.api.nvim_create_autocmd({ "InsertEnter", "CmdlineEnter" }, {
 vim.api.nvim_create_autocmd({ "InsertLeave", "CmdlineLeave" }, {
   callback = function()
     vim.o.timeoutlen = 500
-    vim.wo.relativenumber = true
+    -- vim.wo.relativenumber = true
   end,
 })
