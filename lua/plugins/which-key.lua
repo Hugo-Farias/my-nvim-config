@@ -18,6 +18,8 @@ return {
     },
   },
   opts = {
+    ---@type false | "classic" | "modern" | "helix"
+    preset = "modern",
     spec = {
       { "<leader>g", name = "Git" },
       { "<leader>a", name = "PromptYank" },
@@ -27,13 +29,17 @@ return {
       { "<leader>r", name = "Reload/Reset" },
       { "<leader>s", name = "Snacks" },
       { "<leader>t", name = "Toggle" },
+      { "qa", name = "Add to Grapple" },
     },
     triggers = {
       { "<auto>", mode = "nixsotc" },
       { "<C-t>", mode = "n" },
       { "q", mode = { "n", "x" } },
       { "s", mode = { "n", "x" } },
-      { "Z", mode = { "n", "x" } },
+    },
+    layout = {
+      width = { min = 20 }, -- min and max width of the columns
+      spacing = 3, -- spacing between columns
     },
   },
 }
