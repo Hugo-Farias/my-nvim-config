@@ -22,12 +22,12 @@ local function unsaved_buffers()
   return ""
 end
 
--- local function grapple_index()
---   local path = vim.api.nvim_buf_get_name(0)
---   local index = require("grapple").find({ path = path }).name
---
---   return "/" .. index
--- end
+local function grapple_index()
+  local path = vim.api.nvim_buf_get_name(0)
+  local index = require("grapple").find({ path = path }).name
+
+  return index
+end
 
 local function cwd_name()
   local cwd = vim.uv.cwd()
@@ -92,12 +92,18 @@ return {
           separator = "",
         },
         {
+          grapple_index,
+          padding = { left = 0, right = 0 },
+          -- color = { fg = "#343f4b", gui = "italic" },
+          color = { fg = "#86e1fc", gui = "italic" },
+          separator = "",
+        },
+        {
           "filename",
           path = 1,
           -- symbols = { modified = "🟡" },
           separator = "",
         },
-        -- { grapple_index, padding = { left = 0, right = 1 } },
       },
       lualine_c = {
         {
