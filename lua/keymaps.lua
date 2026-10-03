@@ -451,8 +451,8 @@ set(
 )
 
 ---- Paste from system's clipboard
-set({ "n", "x" }, "<leader>p", '"+p', { desc = "Paste from system's clipboard" })
-set({ "n", "x" }, "<leader>P", 'O<Esc>"+p^', { desc = "Paste above from system's clipboard" })
+set({ "n", "x" }, "<leader>p", '"+p==', { desc = "Paste from system's clipboard" })
+set({ "n", "x" }, "<leader>P", 'O<Esc>"+p==', { desc = "Paste above from system's clipboard" })
 
 ---- Yank into system's clipboard
 -- for _, key in ipairs({ "y", "Y" }) do

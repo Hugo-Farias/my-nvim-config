@@ -18,8 +18,8 @@ return {
     },
   },
   opts = {
-    ---@type false | "classic" | "modern" | "helix"
-    preset = "modern",
+    -- ---@type false | "classic" | "modern" | "helix"
+    -- preset = "helix",
     spec = {
       { "<leader>g", name = "Git" },
       { "<leader>a", name = "PromptYank" },

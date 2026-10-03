@@ -13,7 +13,7 @@ return {
   keys = {
     -- { "qcc", "<cmd>lua require('color-converter').cycle()<CR>", desc = "Convert color" },
     { "<leader>ch", "<cmd>lua require('color-converter').to_hex()<CR>", desc = "Convert color under cursor to HEX" },
-    { "<leader>cs", "<cmd>lua require('color-converter').to_hsl()<CR>", desc = "Convert color under cursor to HSL" },
+    { "<leader>cH", "<cmd>lua require('color-converter').to_hsl()<CR>", desc = "Convert color under cursor to HSL" },
     { "<leader>cr", "<cmd>lua require('color-converter').to_rgb()<CR>", desc = "Convert color under cursor to RGB" },
   },
 }

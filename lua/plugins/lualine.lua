@@ -117,6 +117,7 @@ return {
         },
       },
       lualine_x = {
+        { "searchcount" },
         {
           "diagnostics",
           symbols = { error = " ", warn = " ", info = " ", hint = " " },
@@ -136,7 +137,9 @@ return {
         },
         { "encoding", padding = { left = 1, right = 0 } },
       },
-      lualine_y = { "progress" },
+      lualine_y = {
+        { "progress" },
+      },
       lualine_z = {
         -- { "location", icon = "", padding = { left = 1 } },
         -- { "encoding" },

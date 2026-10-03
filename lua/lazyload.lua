@@ -60,9 +60,10 @@ require("lazy").setup({
   ---- Snippets ----
   { require("plugins.luasnip") },
 
-  ---- Assistant Agent ----
+  ---- Assistant/Agents ----
   { require("plugins.prompt-yank") },
   { require("plugins.zbirenbaum-copilot") },
+  { require("plugins.cheat-sh") },
   -- { require("plugins.windsurf") },
 
   ---- Hex Color Converter/Picker ----

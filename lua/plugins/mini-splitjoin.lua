@@ -39,28 +39,24 @@ return {
       hooks_post = {},
     },
   },
-  -- keys = {
-  --   {
-  --     "<C-k>",
-  --     function()
-  --       local sj = require("mini.splitjoin")
-  --       local ok, res = pcall(sj.split)
-  --       if not ok or res == nil then
-  --         vim.cmd("normal! i<CR><Esc>")
-  --       end
-  --     end,
-  --     desc = "Split (mini.splitjoin or fallback)",
-  --   },
-  --   {
-  --     "L",
-  --     function()
-  --       local sj = require("mini.splitjoin")
-  --       local ok, res = pcall(sj.join)
-  --       if not ok or res == nil then
-  --         vim.cmd("normal! J")
-  --       end
-  --     end,
-  --     desc = "Join (mini.splitjoin or fallback)",
-  --   },
-  -- },
+  keys = {
+    { "<leader>j", "<cmd>lua require('mini.splitjoin').toggle()<CR>", desc = "mini.splitjoin: Toggle" },
+    --   {
+    --     "<C-k>",
+    --     function() local sj = require("mini.splitjoin") local ok,
+    --     res = pcall(sj.split) if not ok or res == nil then vim.cmd("normal! i<CR><Esc>") end end,
+    --     desc = "Split (mini.splitjoin or fallback)",
+    --   },
+    --   {
+    --     "L",
+    --     function()
+    --       local sj = require("mini.splitjoin")
+    --       local ok, res = pcall(sj.join)
+    --       if not ok or res == nil then
+    --         vim.cmd("normal! J")
+    --       end
+    --     end,
+    --     desc = "Join (mini.splitjoin or fallback)",
+    --   },
+  },
 }
