@@ -21,9 +21,7 @@ vim.api.nvim_create_autocmd("ModeChanged", {
 
 -- Before quiting and after buffer opened
 vim.api.nvim_create_autocmd({ "QuitPre", "BufAdd" }, {
-  callback = function()
-    utils.smart_save_session()
-  end,
+  callback = utils.smart_save_session,
 })
 
 -- restore cursor to file position in previous editing session

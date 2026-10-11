@@ -9,7 +9,7 @@ body {
 
 /* Header styling */
 header {
-  background-color: #cc67ccff;
+  background-color: rgb(204 103 204 / 100%);
   color: pink;
   text-align: right;
   padding: 1rem 0;

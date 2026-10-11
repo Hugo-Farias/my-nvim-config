@@ -1,5 +1,6 @@
 ﻿local utils = require("utils")
 
+-- TODO: can probally make this a global function (that doesn't use snacks)
 function LoadSession(picker, item)
   local session_path = utils.session_name(item.file)
   vim.cmd("tcd " .. item.file)
@@ -66,7 +67,7 @@ return {
         desc = "Sessions",
         action = function()
           require("snacks").picker.projects({
-            title = "Sessions",
+            limit = 30,
             confirm = LoadSession,
           })
         end,

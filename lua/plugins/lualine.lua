@@ -117,7 +117,6 @@ return {
         },
       },
       lualine_x = {
-        { "searchcount" },
         {
           "diagnostics",
           symbols = { error = " ", warn = " ", info = " ", hint = " " },
