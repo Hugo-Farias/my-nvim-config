@@ -68,20 +68,25 @@ function M.session_name(path)
   return session_dir .. session_name
 end
 
+function M.set_is_project()
+  -- If git folder is found recursevely set isProject variable to true
+  local cwd = vim.fn.getcwd()
+  local git_dir = cwd .. "/.git"
+
+  if vim.loop.fs_stat(git_dir) then
+    IsProject = true
+  end
+
+  return cwd
+end
+
 -- Save session in nvim-data/session with name based on the current working directory
 function M.smart_save_session()
   if not IsProject then
     return
   end
 
-  local cwd = vim.fn.getcwd()
-  local git_dir = cwd .. "/.git"
-
-  if not vim.loop.fs_stat(git_dir) then
-    return
-  end
-
-  local session_path = M.session_name(cwd)
+  local session_path = M.session_name(vim.fn.getcwd())
 
   -- Check for listed buffers that are associated with a real file on disk
   local has_real_files = false

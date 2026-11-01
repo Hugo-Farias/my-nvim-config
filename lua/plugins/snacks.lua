@@ -105,7 +105,8 @@ end
 -- TODO: This has stopped adding new projects into the list
 local function open_projects()
   Snacks.picker.projects({
-    -- limit = 20,
+    dev = { "~/dev", "~/projects" },
+    patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "package.json", "Makefile" },
     confirm = function(picker, item)
       if not item then
         return

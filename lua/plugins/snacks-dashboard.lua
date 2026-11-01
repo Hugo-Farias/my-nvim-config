@@ -67,7 +67,7 @@ return {
         desc = "Sessions",
         action = function()
           Snacks.picker.projects({
-            limit = 30,
+            -- limit = 30,
             confirm = LoadSession,
           })
         end,
