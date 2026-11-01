@@ -66,7 +66,7 @@ return {
         key = "p",
         desc = "Sessions",
         action = function()
-          require("snacks").picker.projects({
+          Snacks.picker.projects({
             limit = 30,
             confirm = LoadSession,
           })

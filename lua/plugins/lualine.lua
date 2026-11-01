@@ -30,8 +30,7 @@ local function grapple_index()
 end
 
 local function cwd_name()
-  local cwd = vim.uv.cwd()
-  return cwd and vim.fn.fnamemodify(cwd, ":t") or nil
+  return vim.fs.basename(vim.uv.cwd())
 end
 
 -- local clients_lsp = function()
