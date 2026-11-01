@@ -60,64 +60,68 @@ local function close_all_buffers()
   end
 end
 
+local function open_projects()
+  Snacks.picker.files({
+    cwd = vim.fn.stdpath("data") .. "/sessions",
+    finder = "files",
+    title = "Sessions",
+    layout = "vscode",
+    -- format = function(item)
+    --   item.text = item.text:match(".*%%(.*)%.vim")
+    --   return item
+    -- end,
+    confirm = function(picker, item)
+      if not item then
+        return
+      end
+
+      picker:close()
+      -- local sourcefilepath = item.file
+      -- print(sourcefilepath)
+      utils.smart_save_session()
+      IsProject = false
+      close_all_buffers()
+      -- LoadSession(picker, item)
+      vim.cmd("silent! source " .. vim.fn.fnameescape(item._path))
+      IsProject = true
+    end,
+    win = {
+      input = {
+        keys = {
+          ["<C-x>"] = { "delete_session", mode = { "n", "i" } },
+        },
+      },
+    },
+    actions = {
+      delete_session = function(picker)
+        local item = picker:current()
+        if not item then
+          return
+        end
+
+        vim.fn.delete(item.file)
+        picker:find()
+      end,
+    },
+  })
+end
+
+-- TODO: This has stopped adding new projects into the list
 -- local function open_projects()
---   Snacks.picker.files({
---     cwd = vim.fn.stdpath("data") .. "/sessions",
---     finder = "files",
---     format = function(item)
---       item.text = item.text:match(".*%%(.*)%.vim")
---       return item
---     end,
+--   Snacks.picker.projects({
+--     dev = { "~/dev", "~/projects" },
+--     patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "package.json", "Makefile" },
 --     confirm = function(picker, item)
 --       if not item then
 --         return
 --       end
---
---       picker:close()
---       local sourcefilepath = utils.session_name(item.file)
---       print(sourcefilepath)
 --       utils.smart_save_session()
 --       IsProject = false
 --       close_all_buffers()
 --       LoadSession(picker, item)
 --     end,
---     win = {
---       input = {
---         keys = {
---           ["<C-x>"] = { "delete_session", mode = { "n", "i" } },
---         },
---       },
---     },
---     actions = {
---       delete_session = function(picker)
---         local item = picker:current()
---         if not item then
---           return
---         end
---
---         vim.fn.delete(item.file)
---         picker:find()
---       end,
---     },
 --   })
 -- end
-
--- TODO: This has stopped adding new projects into the list
-local function open_projects()
-  Snacks.picker.projects({
-    dev = { "~/dev", "~/projects" },
-    patterns = { ".git", "_darcs", ".hg", ".bzr", ".svn", "package.json", "Makefile" },
-    confirm = function(picker, item)
-      if not item then
-        return
-      end
-      utils.smart_save_session()
-      IsProject = false
-      close_all_buffers()
-      LoadSession(picker, item)
-    end,
-  })
-end
 
 local function safe_quit_neovim()
   utils.smart_save_session()

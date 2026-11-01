@@ -63,8 +63,9 @@ end
 
 -- Get the session's directory path
 function M.session_name(path)
-  local session_dir = vim.fn.stdpath("data") .. "/sessions/"
-  local session_name = path:gsub("[:/\\]", "%%") .. ".vim"
+  local session_dir = vim.fn.stdpath("data") .. "\\sessions\\"
+  -- local session_name = path:gsub("[:/\\]", "%%") .. ".vim"
+  local session_name = path:gsub("/", "\\") .. ".vim"
   return session_dir .. session_name
 end
 
@@ -86,24 +87,24 @@ function M.smart_save_session()
     return
   end
 
-  local session_path = M.session_name(vim.fn.getcwd())
+  local session_name = M.session_name(vim.fs.basename(vim.uv.cwd()))
 
-  -- Check for listed buffers that are associated with a real file on disk
-  local has_real_files = false
-  for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-    if
-      vim.api.nvim_buf_is_loaded(buf)
-      and vim.api.nvim_buf_get_name(buf) ~= ""
-      and vim.loop.fs_stat(vim.api.nvim_buf_get_name(buf))
-    then
-      has_real_files = true
-      break
-    end
-  end
+  -- -- Check for listed buffers that are associated with a real file on disk
+  -- local has_real_files = false
+  -- for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+  --   if
+  --     vim.api.nvim_buf_is_loaded(buf)
+  --     and vim.api.nvim_buf_get_name(buf) ~= ""
+  --     and vim.loop.fs_stat(vim.api.nvim_buf_get_name(buf))
+  --   then
+  --     has_real_files = true
+  --     break
+  --   end
+  -- end
 
-  if has_real_files then
-    vim.cmd("mksession! " .. vim.fn.fnameescape(session_path))
-  end
+  -- if has_real_files then
+  vim.cmd("mksession! " .. vim.fn.fnameescape(session_name))
+  -- end
 end
 
 -- Command to diff current buffer with saved file on disk
