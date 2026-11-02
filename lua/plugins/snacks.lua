@@ -63,9 +63,25 @@ end
 function OpenSession()
   Snacks.picker.files({
     cwd = vim.fn.stdpath("data") .. "/sessions",
+    matcher = {
+      frecency = true,
+      fuzzy = true,
+      -- history_bonus = true,
+      sort_empty = true,
+    },
+    hidden = true,
+    ignored = true,
+    toggles = {
+      hidden = false,
+      ignored = false,
+    },
+    -- sort = {
+    --   -- default sort is by score, text length and index
+    --   fields = { "score:asc", "#text", "idx" },
+    -- },
     finder = "files",
     title = "Sessions",
-    layout = "vscode",
+    layout = "select",
     -- format = function(item)
     --   item.text = item.text:match(".*%%(.*)%.vim")
     --   return item
@@ -82,13 +98,22 @@ function OpenSession()
       IsProject = false
       close_all_buffers()
       -- LoadSession(picker, item)
-      vim.cmd("source " .. vim.fn.fnameescape(item._path))
+      -- vim.cmd("source " .. vim.fn.fnameescape(item._path))
+      utils.load_session(item)
       IsProject = true
     end,
     win = {
       input = {
         keys = {
           ["<C-x>"] = { "delete_session", mode = { "n", "i" } },
+          ["<a-h>"] = "",
+          ["<a-i>"] = "",
+        },
+      },
+      list = {
+        keys = {
+          ["<a-h>"] = "",
+          ["<a-i>"] = "",
         },
       },
     },

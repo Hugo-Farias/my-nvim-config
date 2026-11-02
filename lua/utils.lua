@@ -133,4 +133,28 @@ function M.diff_saved()
   -- vim.cmd("wincmd |")
 end
 
+-- TODO: Finish this!!!!!!
+function M.load_session(item)
+  local ok, err = pcall(function()
+    vim.cmd("source " .. vim.fn.fnameescape(item._path))
+  end)
+
+  if not ok then
+    vim.notify(err, vim.log.levels.ERROR)
+
+    vim.ui.select({ "Delete session", "Keep session" }, {
+      prompt = "Failed to load session. Delete it?",
+    }, function(choice)
+      if choice == "Delete session" then
+        vim.fn.delete(item._path)
+        vim.notify("Session deleted: " .. item.file)
+      end
+    end)
+
+    return
+  end
+
+  IsProject = true
+end
+
 return M

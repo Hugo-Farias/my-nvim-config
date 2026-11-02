@@ -53,7 +53,10 @@ set("n", "<leader>r,", function()
   vim.notify("Config Reloaded")
 end, { desc = "Resource neovim's config file" })
 
-set("n", "cd", utils.smart_change_dir, { desc = "CD to git root or file path" })
+set("n", "cd", function()
+  utils.set_is_project()
+  utils.smart_change_dir()
+end, { desc = "CD to git root or file path" })
 
 set("n", "cu", "<cmd>cd ../ | pwd<CR>", { desc = "CD up a directory" })
 
