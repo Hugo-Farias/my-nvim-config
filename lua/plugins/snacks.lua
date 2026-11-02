@@ -60,7 +60,7 @@ local function close_all_buffers()
   end
 end
 
-local function open_projects()
+function OpenSession()
   Snacks.picker.files({
     cwd = vim.fn.stdpath("data") .. "/sessions",
     finder = "files",
@@ -82,7 +82,7 @@ local function open_projects()
       IsProject = false
       close_all_buffers()
       -- LoadSession(picker, item)
-      vim.cmd("silent! source " .. vim.fn.fnameescape(item._path))
+      vim.cmd("source " .. vim.fn.fnameescape(item._path))
       IsProject = true
     end,
     win = {
@@ -99,14 +99,17 @@ local function open_projects()
           return
         end
 
-        vim.fn.delete(item.file)
+        print("Session File Deleted:", item.file)
+
+        vim.fn.delete(vim.fn.stdpath("data") .. "\\sessions\\" .. item.file)
         picker:find()
       end,
     },
   })
 end
 
--- TODO: This has stopped adding new projects into the list
+-- NOTE: Old Method
+
 -- local function open_projects()
 --   Snacks.picker.projects({
 --     dev = { "~/dev", "~/projects" },
@@ -237,7 +240,7 @@ return {
     { "<leader>sy", search_scratch_files, desc = "Snacks: Search Custom Scratch Files" },
     { "<leader>s.", "<cmd>lua Snacks.scratch.select()<CR>", desc = "Snacks: Pick Project Scratch File" },
     { "<leader>.", "<cmd>lua Snacks.scratch()<CR>", desc = "Snacks: Open Project Scratch File" },
-    { "<leader>sp", open_projects, desc = "Snacks: Search Projects" },
+    { "<leader>sp", OpenSession, desc = "Snacks: Search Projects" },
     { "<leader>su", "<cmd>lua Snacks.picker.undo({focus='list', layout='right'})<CR>", desc = "Snacks: Search Undos" },
     -- { "<leader>st", searchTodos, desc = "Snacks: Search Every TODO" },
     -- { "<leader>sT", function () searchTodos([[( TODO\:| FIX\:)]]) end, desc = "Snacks: Search TODOs" },

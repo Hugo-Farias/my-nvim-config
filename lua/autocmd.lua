@@ -6,8 +6,6 @@ vim.api.nvim_create_autocmd("VimEnter", {
     -- Change window title to Nvim
     vim.opt.title = true
     vim.opt.titlestring = "Neovim"
-
-    utils.set_is_project()
   end,
 })
 
@@ -21,9 +19,9 @@ vim.api.nvim_create_autocmd("ModeChanged", {
   end,
 })
 
-vim.api.nvim_create_autocmd("BufAdd", {
-  callback = utils.set_is_project,
-})
+-- vim.api.nvim_create_autocmd("BufAdd", {
+--   callback = utils.set_is_project,
+-- })
 
 -- Before quiting and after buffer opened
 vim.api.nvim_create_autocmd({ "QuitPre", "BufAdd" }, {

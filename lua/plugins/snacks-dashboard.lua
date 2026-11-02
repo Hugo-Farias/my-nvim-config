@@ -65,12 +65,13 @@ return {
         icon = " ",
         key = "p",
         desc = "Sessions",
-        action = function()
-          Snacks.picker.projects({
-            -- limit = 30,
-            confirm = LoadSession,
-          })
-        end,
+        action = OpenSession,
+        -- action = function()
+        --   Snacks.picker.projects({
+        --     -- limit = 30,
+        --     confirm = LoadSession,
+        --   })
+        -- end,
         -- action = ":lua Snacks.dashboard.pick('projects')",
       },
       { icon = "z", key = "z", desc = "zoxide", action = ":lua Snacks.dashboard.pick('zoxide')" },
