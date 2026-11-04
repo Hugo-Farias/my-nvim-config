@@ -1,37 +1,21 @@
 ﻿local utils = require("utils")
 
 -- TODO: can probally make this a global function (that doesn't use snacks)
-function LoadSession(picker, item)
-  local session_path = utils.session_name(item.file)
-  vim.cmd("tcd " .. item.file)
-  picker:close()
-
-  IsProject = true
-
-  if vim.loop.fs_stat(session_path) then
-    vim.cmd("silent! source " .. vim.fn.fnameescape(session_path))
-  else
-    vim.schedule(function()
-      vim.cmd("lua Snacks.dashboard.pick('files')")
-    end)
-  end
-end
-
-local function load_previous_session()
-  local session_dir = vim.fn.stdpath("data") .. "/sessions/"
-  local files = vim.fn.glob(session_dir .. "*.vim", false, true)
-  if #files == 0 then
-    return
-  end
-  table.sort(files, function(a, b)
-    return vim.loop.fs_stat(a).mtime.sec > vim.loop.fs_stat(b).mtime.sec
-  end)
-  local last_session = files[1]
-  if last_session then
-    IsProject = true
-    vim.cmd("silent! source " .. vim.fn.fnameescape(last_session))
-  end
-end
+-- function LoadSession(picker, item)
+--   local session_path = utils.session_name(item.file)
+--   vim.cmd("tcd " .. item.file)
+--   picker:close()
+--
+--   IsProject = true
+--
+--   if vim.loop.fs_stat(session_path) then
+--     vim.cmd("silent! source " .. vim.fn.fnameescape(session_path))
+--   else
+--     vim.schedule(function()
+--       vim.cmd("lua Snacks.dashboard.pick('files')")
+--     end)
+--   end
+-- end
 
 ---@class snacks.dashboard.Config
 return {
@@ -75,7 +59,7 @@ return {
         -- action = ":lua Snacks.dashboard.pick('projects')",
       },
       { icon = "z", key = "z", desc = "zoxide", action = ":lua Snacks.dashboard.pick('zoxide')" },
-      { icon = " ", key = "s", desc = "Restore Session", action = load_previous_session },
+      { icon = " ", key = "s", desc = "Restore Session", action = utils.load_previous_session },
       { icon = "󰒲 ", key = "L", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
       { icon = " ", key = "q", desc = "Quit", action = ":qa" },
     },

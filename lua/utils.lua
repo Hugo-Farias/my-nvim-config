@@ -58,7 +58,6 @@ function M.smart_change_dir()
     -- fallback to file's directory
     vim.cmd.lcd(vim.fn.fnamemodify(file, ":h"))
   end
-  vim.cmd("pwd")
 end
 
 -- Get the session's directory path
@@ -81,6 +80,22 @@ function M.set_is_project()
   return cwd
 end
 
+function M.load_previous_session()
+  local session_dir = vim.fn.stdpath("data") .. "/sessions/"
+  local files = vim.fn.glob(session_dir .. "*.vim", false, true)
+  if #files == 0 then
+    return
+  end
+  table.sort(files, function(a, b)
+    return vim.loop.fs_stat(a).mtime.sec > vim.loop.fs_stat(b).mtime.sec
+  end)
+  local last_session = files[1]
+  if last_session then
+    IsProject = true
+    vim.cmd("silent! source " .. vim.fn.fnameescape(last_session))
+  end
+end
+
 -- Save session in nvim-data/session with name based on the current working directory
 function M.smart_save_session()
   if not IsProject then
@@ -89,22 +104,7 @@ function M.smart_save_session()
 
   local session_name = M.session_name(vim.fs.basename(vim.uv.cwd()))
 
-  -- -- Check for listed buffers that are associated with a real file on disk
-  -- local has_real_files = false
-  -- for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-  --   if
-  --     vim.api.nvim_buf_is_loaded(buf)
-  --     and vim.api.nvim_buf_get_name(buf) ~= ""
-  --     and vim.loop.fs_stat(vim.api.nvim_buf_get_name(buf))
-  --   then
-  --     has_real_files = true
-  --     break
-  --   end
-  -- end
-
-  -- if has_real_files then
   vim.cmd("mksession! " .. vim.fn.fnameescape(session_name))
-  -- end
 end
 
 -- Command to diff current buffer with saved file on disk
@@ -133,14 +133,13 @@ function M.diff_saved()
   -- vim.cmd("wincmd |")
 end
 
--- TODO: Finish this!!!!!!
 function M.load_session(item)
-  local ok, err = pcall(function()
+  local ok = pcall(function()
     vim.cmd("source " .. vim.fn.fnameescape(item._path))
   end)
 
   if not ok then
-    vim.notify(err, vim.log.levels.ERROR)
+    -- vim.notify(err, vim.log.levels.ERROR)
 
     vim.ui.select({ "Delete session", "Keep session" }, {
       prompt = "Failed to load session. Delete it?",

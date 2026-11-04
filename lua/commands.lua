@@ -5,6 +5,8 @@ vim.api.nvim_create_user_command("Q", "quitall", {})
 vim.api.nvim_create_user_command("MkProject", function()
   utils.smart_change_dir()
   IsProject = true
+  utils.smart_save_session()
+  print("Session saved for project: " .. vim.fn.getcwd())
 end, {})
 
 ---- Save and source file

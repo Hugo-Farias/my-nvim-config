@@ -56,6 +56,7 @@ end, { desc = "Resource neovim's config file" })
 set("n", "cd", function()
   utils.set_is_project()
   utils.smart_change_dir()
+  vim.cmd("pwd")
 end, { desc = "CD to git root or file path" })
 
 set("n", "cu", "<cmd>cd ../ | pwd<CR>", { desc = "CD up a directory" })
@@ -65,7 +66,7 @@ set("n", "cp", function()
   local cwd = vim.fn.getcwd()
   local file = vim.fn.expand("%:p")
 
-  vim.notify(("CWD:\n%s\n%s"):format(cwd, file), vim.log.levels.INFO)
+  vim.notify(("%s\n%s"):format(cwd, file), vim.log.levels.INFO)
 end, { desc = "Print cwd and file path" })
 
 set("n", "<C-s>", "<cmd>up<CR>", { desc = "Save File" })
